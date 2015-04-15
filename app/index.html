@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" ng-app="ofsApp">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -13,10 +13,58 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+   <!--  <link rel="stylesheet" href="styles/main.css"> -->
     <!-- endbuild -->
+    <style>
+        .container {
+            width:150% !important;
+            height:160% !important;
+            device-type:large-desktop;
+        }
+    </style>
   </head>
-  <body class="metro" ng-app="ofsApp">
+  <body class="metro">
+    <div class ="container">
+      <div class ="tile-area tile-area-dark">
+        <h1 class ="tile-area-title fg-white">
+          OFS
+        </h1>
+
+        <!-- navbar -->
+    <nav class="horizontal-menu">
+      <ul>
+        <li>
+          <a class= "fg-cyan" href="/">HOME</a>
+        </li>
+        <li>
+          <a class="dropdown-toggle fg-cyan" href="#">WELLS</a>
+          <ul class="dropdown-menu" data-role="dropdown" data-show="hover" data-effect='fade'>
+            <li><a href="#/well/">WELL 1</a></li>
+            <li><a href="#">WELL 2</a></li>
+          </ul>
+        </li>
+         <li>
+          <a class="dropdown-toggle fg-cyan" href="#">ELECTRICAL SUBSTATIONS</a>
+          <ul class="dropdown-menu" data-role="dropdown" data-show="hover" data-effect='fade'>
+            <li><a href="#/electrical/">ELECTRICAL SUBSTATIONS 1</a></li>
+            <li><a href="#">ELECTRICAL SUBSTATIONS 2</a></li>
+          </ul>
+        </li>
+    </ul>
+    </nav>
+
+        <div ng-view></div> 
+      
+    
+   <!--  <footer>
+      <div class="bottom-menu-wrapper bg-red">
+        <ul class="horizontal-menu compact">
+          <li>OFS |&copy; Ciheul Engineering</li>
+        </ul>
+      </div>
+    </footer>
+ -->
+   <!--  </div> -->
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -81,15 +129,16 @@
     </div>
     -->
 
-    <div class="container" style="margin:0;padding:0;">
+   <!--  <div class="container" style="margin:0;padding:0;">
       <div ng-view=""></div>
-    </div>
+    </div> -->
 
-    <!--
-    <div class="footer">
+    
+    <!-- <div class="footer">
       <div class="container">Ciheul Engineering</div>
-    </div>
-    -->
+    </div> -->
+
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -125,7 +174,10 @@
         <script src="scripts/start-screen.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/wells.js"></script>
+        <script src="scripts/controllers/ofs.js"></script>
         <!-- endbuild -->
+         
+</div>
 </body>
+
 </html>

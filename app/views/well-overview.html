@@ -1,0 +1,73 @@
+<div class="main-menu-wrapper">
+  <ul class="horizontal-menu nlm">
+    <li class = "fg-white"><a href="#">WELL OVERVIEW</a></li>
+    <li class="place-right fg-white">
+        <a href="#">WELL EVENTS</a>
+    </li>
+</ul>
+</div>
+
+<div class="main-content clearfix">
+  <div class="tile-area no-padding clearfix">
+    <div class="tile-group no-margin no-padding clearfix" style="width: 100%">
+      <div class="tile double quadro-vertical bg-white ol-transparent"  style="float: right;">
+        <div class="tile-content">
+          
+        </div>
+    </div>
+
+    <div class= "tile-group double" ng-repeat="well in totalWells">
+        <div class="tile-group-title">
+            {{well.name}} &nbsp;&nbsp;&nbsp;
+            <a class = "fg-white" style = "font-size: 14px;">
+                {{well.bopd}} bopd,
+                {{well.brl}} brl
+            </a>
+        </div>
+        <div ng-repeat="w in well.wells">
+            <div class = "tile half bg-blue" data-click="transform">
+            <!--
+             <svg height="100" width="100">
+                    <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}" />
+                </svg>--> 
+                <div class="brand">
+                    <div class="badge" style ="font-size: 10px;">
+                        {{w.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="position: fixed; bottom: 0;">
+        <h1 class = "fg-orange">{{totalWells.length}}</h1>
+        TOTAL WELLS
+    </div>
+    <div style="position: fixed; bottom: 0; padding-left: 120px">
+        <h1 class = "fg-darkGreen">{{result.yellow}}</h1>
+        GREEN 
+    </div>
+    <div style="position: fixed; bottom: 0; padding-left: 240px">
+        <h1 class = "fg-yellow"></h1>
+        YELLOW
+    </div>
+    <div style="position: fixed; bottom: 0; padding-left: 360px">
+        <h1 class = "fg-black"></h1>
+        BLACK 
+    </div>
+    <div style="position: fixed; bottom: 0; padding-left: 480px">
+        <h1 class = "fg-gray"></h1>
+        GRAY 
+    </div>
+    <div style="position: fixed; bottom: 0; padding-left: 600px">
+        <h1 class = "fg-darkRed"></h1>
+        RED 
+    </div>
+
+
+
+    <!-- end -->
+    
+</div> <!-- End of tiles -->
+</div>
+</div>

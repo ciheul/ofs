@@ -8,26 +8,27 @@
  *
  * Main module of the application.
  */
-angular
+var ofsApp = angular
   .module('ofsApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ofsControllers'
   ])
-  .config(function ($routeProvider) {
+  ofsApp.config(['$routeProvider',function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+      .when('/well', {
+        templateUrl: 'views/well-overview.html',
+        controller: 'ofsListCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/electrical', {
+        templateUrl: 'views/electrical-overview.html',
+        controller: 'electricalCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);

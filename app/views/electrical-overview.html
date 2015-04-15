@@ -1,0 +1,45 @@
+<div class="main-menu-wrapper">
+  <ul class="horizontal-menu nlm">
+    <li class = "fg-white"><a href="#">ELECTRICAL OVERVIEW</a></li>
+      <li class="place-right fg-white">
+        <a href="#">ELECTRICAL EVENTS</a>
+      </li>
+  </ul>
+</div>
+
+<div class="main-content clearfix">
+  <div class="tile-area no-padding clearfix">
+    <div class="tile-group no-margin no-padding clearfix" style="width: 100%">
+      <div class="tile double quadro-vertical bg-white ol-transparent" style="float: right;">
+        <div class="tile-content">
+          <div class="brand">
+            <span class="label fg-white"></span>
+          </div>
+        </div>
+      </div>
+
+<div class= "tile-group double" ng-repeat="el in totalElectrical">
+    <div class="tile-group-title">
+        {{el.name}} &nbsp;&nbsp;&nbsp;
+    </div>
+    <div class = "fg-white" style = "font-size: 14px;">
+            INCOMING
+            TRAFO
+    </div>
+    <div class = "tile half bg-blue" data-click="transform">
+      <div class="brand">
+        <div class="badge" style ="font-size: 10px;">{{el.incoming}}</div>
+      </div>
+    </div>
+    <div class = "tile half bg-blue" data-click="transform">
+      <div class="brand">
+        <div class="badge" style ="font-size: 10px;">{{el.trafo}}</div>
+      </div>
+    </div>
+</div>
+
+                    <!-- end -->
+      
+        </div> <!-- End of tiles -->
+    </div>
+</div>
