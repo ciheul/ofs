@@ -12,7 +12,7 @@
     <div class="tile-group no-margin no-padding clearfix" style="width: 100%">
       <div class="tile double quadro-vertical bg-white ol-transparent"  style="float: right;">
         <div class="tile-content">
-          
+
         </div>
     </div>
 
@@ -26,10 +26,9 @@
         </div>
         <div ng-repeat="w in well.wells">
             <div class = "tile half bg-blue" data-click="transform">
-            <!--
              <svg height="100" width="100">
-                    <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}" />
-                </svg>--> 
+                    <circle href="#" cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
+             </svg>
                 <div class="brand">
                     <div class="badge" style ="font-size: 10px;">
                         {{w.name}}
@@ -38,36 +37,36 @@
             </div>
         </div>
     </div>
-    
+
     <div style="position: fixed; bottom: 0;">
-        <h1 class = "fg-orange">{{totalWells.length}}</h1>
+        <h1 class = "fg-orange">{{result.total}}</h1>
         TOTAL WELLS
     </div>
     <div style="position: fixed; bottom: 0; padding-left: 120px">
-        <h1 class = "fg-darkGreen">{{result.yellow}}</h1>
+        <h1 class = "fg-darkGreen">{{result.green}}</h1>
         GREEN 
     </div>
     <div style="position: fixed; bottom: 0; padding-left: 240px">
-        <h1 class = "fg-yellow"></h1>
+        <h1 class = "fg-yellow">{{result.yellow}}</h1>
         YELLOW
     </div>
     <div style="position: fixed; bottom: 0; padding-left: 360px">
-        <h1 class = "fg-black"></h1>
+        <h1 class = "fg-black">{{result.black}}</h1>
         BLACK 
     </div>
     <div style="position: fixed; bottom: 0; padding-left: 480px">
-        <h1 class = "fg-gray"></h1>
+        <h1 class = "fg-gray">{{result.gray}}</h1>
         GRAY 
     </div>
     <div style="position: fixed; bottom: 0; padding-left: 600px">
-        <h1 class = "fg-darkRed"></h1>
+        <h1 class = "fg-darkRed">{{result.red}}</h1>
         RED 
     </div>
 
 
 
     <!-- end -->
-    
+
 </div> <!-- End of tiles -->
 </div>
 </div>
