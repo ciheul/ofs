@@ -32,3 +32,10 @@ var ofsApp = angular
         redirectTo: '/'
       });
   }]);
+
+  ofsApp.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Origin', '*'];
+  }
+  ]);
+ 

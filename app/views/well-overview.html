@@ -15,8 +15,7 @@
 
         </div>
     </div>
-
-    <div class= "tile-group double" ng-repeat="well in totalWells">
+    <div class= "tile-group double" ng-repeat="well in plants" >
         <div class="tile-group-title">
             {{well.name}} &nbsp;&nbsp;&nbsp;
             <a class = "fg-white" style = "font-size: 14px;">
@@ -27,7 +26,7 @@
         <div ng-repeat="w in well.wells">
             <div class = "tile half bg-blue" data-click="transform">
              <svg height="100" width="100">
-                    <circle href="#" cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
+                    <a href="#"><circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/></a>
              </svg>
                 <div class="brand">
                     <div class="badge" style ="font-size: 10px;">
@@ -60,8 +59,13 @@
     </div>
     <div style="position: fixed; bottom: 0; padding-left: 600px">
         <h1 class = "fg-darkRed">{{result.red}}</h1>
-        RED 
+       <!--  <a ng-click="checked = !checked">RED</a> -->
     </div>
+   <!--  <div>
+        <div ng-hide="checked">
+             I hide when your checkbox is checked.
+        </div>
+    </div> -->
 
 
 
