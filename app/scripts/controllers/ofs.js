@@ -1,36 +1,30 @@
-var ofsControllers = angular.module('ofsControllers', []);
+  "use strict"
 
-ofsApp.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-      delete $httpProvider.defaults.headers.common['Access-Control-Allow-Origin','*'];
-  }
-  ]);
+var ofsControllers = angular.module('ofsControllers', []);
+/*ofs-well*/
 
 ofsControllers.controller('ofsListCtrl', ['$scope', '$http', function($scope, $http) {
-  $http.get("http://localhost:3000/api/wells").success(function(data) {
-    $scope.plants = data;
-    console.log(data);
-  });
- 
+  $scope.result= { total : 0, green : 0, black : 0, yellow : 0, red : 0, gray : 0 };
+  console.log("debugs");
 
-/*  $scope.result= { total : 0, green : 0, black : 0, yellow : 0, red : 0, gray : 0 };
-  $scope.count = function(totalWells) {
-    console.log("debug 1");
-    for (var i = 0; i < totalWells.length; i++) {
-      for(var j = 0; j < totalWells[i].wells.length; j++) {
-        if (totalWells[i].wells[j].status === 'black') {
+  $scope.count = function(plants) {
+    console.log("debug");
+    console.log(plants);
+    for (var i = 0; i < plants.length; i++) {
+      for(var j = 0; j < plants[i].wells.length; j++) {
+        if (plants[i].wells[j].status === 'black') {
           $scope.result.black += 1;
         }
-        if (totalWells[i].wells[j].status === 'yellow') {
+        if (plants[i].wells[j].status === 'yellow') {
           $scope.result.yellow += 1;
         }
-        if (totalWells[i].wells[j].status === 'gray') {
+        if (plants[i].wells[j].status === 'gray') {
           $scope.result.gray += 1;
         }
-         if (totalWells[i].wells[j].status === 'green') {
+         if (plants[i].wells[j].status === 'green') {
           $scope.result.green += 1;
         }
-        if (totalWells[i].wells[j].status === 'red') {
+        if (plants[i].wells[j].status === 'red') {
           $scope.result.red += 1;
         }
         $scope.result.total = ($scope.result.black + 
@@ -39,21 +33,37 @@ ofsControllers.controller('ofsListCtrl', ['$scope', '$http', function($scope, $h
           $scope.result.gray 
         )
       }
-    }; */
-
-  /*console.log($scope.result);
-  console.log("debug 2");
+    };
+    console.log($scope.result);
+    console.log("debug 2");
   }
-  $scope.count($scope.totalWells);*/
+  console.log($scope.totalWells);
+  
+  $scope.showHidenData = function(n){
+    for (var i = 0; i < n.length; i++) {
+      Things[i]
+    };
+  }
+
+  $http.get("http://localhost:3000/api/wells").success(function(data) {
+    $scope.totalWells = data;
+    console.log(data);
+    $scope.count(data);
+  });
+
 }]);
 
-ofsControllers.controller('electricalCtrl', function ($scope){
-    $scope.totalElectrical = [
-    {   
-        'name': 'ST. P. PLANT 1',
-        'incoming':'I.87R',
-        'trafo':'T.87R'
-    },
-    ];
-});
+
+/*end of ofs-well*/
+
+/*electrical*/
+ ofsControllers.controller('electricalCtrl', function ($scope){
+   $scope.totalElectrical = [
+     {   
+       'name': 'ST. P. PLANT 1',
+       'incoming':'I.87R',
+       'trafo':'T.87R'
+     }
+   ];
+ });
 

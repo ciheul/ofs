@@ -18,24 +18,25 @@ var ofsApp = angular
     'ngTouch',
     'ofsControllers'
   ])
-  ofsApp.config(['$routeProvider',function ($routeProvider) {
+  .config(['$routeProvider','$httpProvider',function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/well', {
         templateUrl: 'views/well-overview.html',
-        controller: 'ofsListCtrl'
+          controller: 'ofsListCtrl'
       })
       .when('/electrical', {
         templateUrl: 'views/electrical-overview.html',
         controller: 'electricalCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
-      });
+        .otherwise({
+          redirectTo: '/'
+        });
+    $httpProvider
+      .defaults
+        .useXDomain = true;
+    $httpProvider
+      .defaults
+        .headers
+          .common['Access-Control-Allow-Origin: *'];
   }]);
 
-  ofsApp.config(['$httpProvider', function ($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-    $httpProvider.defaults.headers.common['Access-Control-Allow-Origin', '*'];
-  }
-  ]);
- 

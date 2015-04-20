@@ -15,7 +15,7 @@
 
         </div>
     </div>
-    <div class= "tile-group double" ng-repeat="well in plants" >
+    <div class= "tile-group double" ng-repeat="well in totalWells" ng-hide = "checked" >
         <div class="tile-group-title">
             {{well.name}} &nbsp;&nbsp;&nbsp;
             <a class = "fg-white" style = "font-size: 14px;">
@@ -36,41 +36,39 @@
             </div>
         </div>
     </div>
+    </div> <!-- End of tiles -->
+</div>
 
+    <div>
     <div style="position: fixed; bottom: 0;">
-        <h1 class = "fg-orange">{{result.total}}</h1>
+        <h1 class="fg-orange">{{result.total}}</h1>
         TOTAL WELLS
     </div>
-    <div style="position: fixed; bottom: 0; padding-left: 120px">
-        <h1 class = "fg-darkGreen">{{result.green}}</h1>
-        GREEN 
+    <div style="position: fixed; bottom: 0; left: 200px">
+        <h1 class="fg-darkGreen">{{result.green}}</h1>
+        <a ng-click="isGreen">GREEN</a> 
     </div>
-    <div style="position: fixed; bottom: 0; padding-left: 240px">
-        <h1 class = "fg-yellow">{{result.yellow}}</h1>
-        YELLOW
+    <div style="position: fixed; bottom: 0; left: 300px">
+        <h1 class="fg-yellow">{{result.yellow}}</h1>
+        <a ng-click="isYellow">YELLOW</a>
     </div>
-    <div style="position: fixed; bottom: 0; padding-left: 360px">
-        <h1 class = "fg-black">{{result.black}}</h1>
-        BLACK 
+    <div style="position: fixed; bottom: 0; left: 400px">
+        <h1 class="fg-black">{{result.black}}</h1>
+        <a ng-click="isBlack">BLACK</a>
     </div>
-    <div style="position: fixed; bottom: 0; padding-left: 480px">
-        <h1 class = "fg-gray">{{result.gray}}</h1>
-        GRAY 
+    <div style="position: fixed; bottom: 0; left: 500px">
+        <h1 class="fg-gray">{{result.gray}}</h1>
+        <a ng-click="isGray">GRAY</a>
     </div>
-    <div style="position: fixed; bottom: 0; padding-left: 600px">
-        <h1 class = "fg-darkRed">{{result.red}}</h1>
-       <!--  <a ng-click="checked = !checked">RED</a> -->
+    <div style="position: fixed; bottom: 0; left: 600px">
+        <h1 class="fg-darkRed">{{result.red}}</h1>
+        <a ng-click="isRed">RED</a>
     </div>
-   <!--  <div>
-        <div ng-hide="checked">
-             I hide when your checkbox is checked.
+    </div>
+    <div>
+        <div ng-show="checked">
+            lorem ipsum
         </div>
-    </div> -->
-
-
-
+    </div>
     <!-- end -->
-
-</div> <!-- End of tiles -->
-</div>
 </div>
