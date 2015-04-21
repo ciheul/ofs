@@ -9,10 +9,10 @@
 
 <div class="main-content clearfix">
   <div class="tile-area no-padding clearfix">
-    <div class="tile-group no-margin no-padding clearfix" style="width: 100%">
-      <div class="tile double quadro-vertical bg-white ol-transparent"  style="float: right;">
-        <div class="tile-content">
-
+    <div class="tile-group no-margin no-padding clearfix" style="width: 100%;">
+      <div class="bg-white ol-transparent" id="scrollbox" data-role="scrollbox" data-scroll="vertical" style="float: right; width: 600px; height: 455px">
+        <div class="text-justify tile-content fg-black" ng-repeat="e in events" style="right: 10px">
+            <p>{{e.message}}</p>
         </div>
     </div>
     <div class= "tile-group double" ng-repeat="well in totalWells" ng-hide = "checked" >
@@ -46,23 +46,23 @@
     </div>
     <div style="position: fixed; bottom: 0; left: 200px">
         <h1 class="fg-darkGreen">{{result.green}}</h1>
-        <a ng-click="isGreen">GREEN</a> 
+        <a href="#" class="fg-darkGreen" ng-click="isGreen">GREEN</a> 
     </div>
     <div style="position: fixed; bottom: 0; left: 300px">
         <h1 class="fg-yellow">{{result.yellow}}</h1>
-        <a ng-click="isYellow">YELLOW</a>
+        <a href="#" class="fg-yellow" ng-click="isYellow">YELLOW</a>
     </div>
     <div style="position: fixed; bottom: 0; left: 400px">
         <h1 class="fg-black">{{result.black}}</h1>
-        <a ng-click="isBlack">BLACK</a>
+        <a href="#" class="fg-black" ng-click="isBlack">BLACK</a>
     </div>
     <div style="position: fixed; bottom: 0; left: 500px">
         <h1 class="fg-gray">{{result.gray}}</h1>
-        <a ng-click="isGray">GRAY</a>
+        <a href="#" class="fg-gray" ng-click="isGray">GRAY</a>
     </div>
     <div style="position: fixed; bottom: 0; left: 600px">
         <h1 class="fg-darkRed">{{result.red}}</h1>
-        <a ng-click="isRed">RED</a>
+        <a href="#" class="fg-darkRed" ng-click="isRed">RED</a>
     </div>
     </div>
     <div>
@@ -72,3 +72,5 @@
     </div>
     <!-- end -->
 </div>
+<script src="bower_components/metro-ui-css/js/metro-scroll.js"></script>
+<script src="bower_components/metro-ui-css/js/metro-drag-tile.js"></script>

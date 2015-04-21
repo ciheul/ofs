@@ -3,7 +3,7 @@
 var ofsControllers = angular.module('ofsControllers', []);
 /*ofs-well*/
 
-ofsControllers.controller('ofsListCtrl', ['$scope', '$http', function($scope, $http) {
+ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
   $scope.result= { total : 0, green : 0, black : 0, yellow : 0, red : 0, gray : 0 };
   console.log("debugs");
 
@@ -39,17 +39,36 @@ ofsControllers.controller('ofsListCtrl', ['$scope', '$http', function($scope, $h
   }
   console.log($scope.totalWells);
   
-  $scope.showHidenData = function(n){
+ /* $scope.showHidenData = function(n){
     for (var i = 0; i < n.length; i++) {
       Things[i]
     };
-  }
+  }*/
 
+/*plants get data*/
   $http.get("http://localhost:3000/api/wells").success(function(data) {
     $scope.totalWells = data;
     console.log(data);
     $scope.count(data);
   });
+
+/*well-events get data*/
+  /*$http.get("http://localhost:3000/api/events").success(function(data){
+    $scope.events = data;
+    console.log(data);
+  });*/
+ 
+  /*interval*/
+  $interval(function(){
+    $http.get("http://localhost:3000/api/events").
+      success(function(data, status, headers, config){
+        $scope.events = data;
+      });
+  }, 2000);
+
+  this.enLongPolling = function(){
+    $interval.cancel(this.interval);
+  };
 
 }]);
 

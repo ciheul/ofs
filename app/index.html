@@ -154,6 +154,8 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/metro-ui-css/js/metro-scroll.js"></script>
+    <script src="bower_components/metro-ui-css/js/metro-drag-tile.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
@@ -166,6 +168,22 @@
     <script src="bower_components/jqueryui/jquery-ui.js"></script>
     <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
     <script src="bower_components/metro-ui-css/min/metro.min.js"></script>
+                <script>
+                    $(function(){
+                        $("#scrollbox").scrollbar({
+                            height: 355,
+                            axis: 'y'
+                        });
+                        $("#scrollbox").scrollbar({
+                            axis: 'x',
+                            height: 355
+                        });
+                        $("#scrollbox3").scrollbar({
+                            height: 355
+                        });
+                    });
+                </script>
+
     <!-- endbower -->
     <!-- endbuild -->
 
