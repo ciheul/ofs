@@ -48,18 +48,12 @@ ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$interval', functi
   }*/
 
 /*plants get data*/
-  $http.get("http://localhost:3000/api/wells")
+  $interval(function(){
+   $http.get("http://localhost:3000/api/wells")
     .success(function(data) {
       $scope.totalWells = data;
-      console.log(data);
-        $scope.count(data);
     });
-
-/*well-events get data*/
-  /*$http.get("http://localhost:3000/api/events").success(function(data){
-    $scope.events = data;
-    console.log(data);
-  });*/
+  }, 2000);  
  
   /*interval*/
   $interval(function(){
@@ -73,20 +67,12 @@ ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$interval', functi
     $interval.cancel(this.interval);
   }
 
-}]);
-
-/*active red*/
-$http.get("http://localhost:3000/api/wells")
-  .success(function(data){
-    if (status = 'gray') {
-      $scope.gray = gray;
-    };
-  });
-
+}
+]);
 /*end of ofs-well*/
 
 /*electrical*/
- ofsControllers.controller('electricalCtrl', function ($scope){
+ /*ofsControllers.controller('electricalCtrl', function ($scope){
    $scope.totalElectrical = [
      {   
        'name': 'ST. P. PLANT 1',
@@ -96,3 +82,4 @@ $http.get("http://localhost:3000/api/wells")
    ];
  });
 
+*/

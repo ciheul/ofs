@@ -15,15 +15,15 @@
             <p>{{totalEvent.message}}</p>
         </div>
     </div>
-    <div class= "tile-group double" ng-repeat="well in totalWells" ng-hide = "checked" >
+    <div class= "tile-group double" ng-hide = "checked" >
         <div class="tile-group-title">
-            {{well.name}} &nbsp;&nbsp;&nbsp;
-            <a class = "fg-white" style = "font-size: 14px;">
-                {{well.bopd}} bopd,
-                {{well.brl}} brl
+            {{totalWells.name}} &nbsp;&nbsp;&nbsp;
+            <a class = "fg-white" style = "font-size: 13px;">
+                {{totalWells.bopd}} bopd,
+                {{totalWells.brl}} brl
             </a>
         </div>
-        <div ng-repeat="w in well.wells">
+        <div ng-repeat="w in totalWells.wells">
             <div class = "tile half bg-blue" data-click="transform">
              <svg height="100" width="100">
                     <a href="#"><circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/></a>
@@ -46,23 +46,23 @@
     </div>
     <div style="position: fixed; bottom: 0; left: 200px">
         <h1 class="fg-darkGreen">{{result.green}}</h1>
-        <a href="#" class="fg-darkGreen" ng-click="isGreen = !isGreen" ng-class="{active: green}">GREEN</a> 
+        <a href="#" class="fg-darkGreen" ng-click="isGreen = !isGreen">GREEN</a> 
     </div>
     <div style="position: fixed; bottom: 0; left: 300px">
         <h1 class="fg-yellow">{{result.yellow}}</h1>
-        <a href="#" class="fg-yellow" ng-click="isYellow = !isYellow" ng-class="active: yellow">YELLOW</a>
+        <a href="#" class="fg-yellow" ng-click="isYellow = !isYellow">YELLOW</a>
     </div>
     <div style="position: fixed; bottom: 0; left: 400px">
         <h1 class="fg-black">{{result.black}}</h1>
-        <a href="#" class="fg-black" ng-click="isBlack = !isBlack" ng-class="{active: black}">BLACK</a>
+        <a href="#" class="fg-black" ng-click="isBlack = !isBlack">BLACK</a>
     </div>
     <div style="position: fixed; bottom: 0; left: 500px">
         <h1 class="fg-gray">{{result.gray}}</h1>
-        <a href="#" class="fg-gray" ng-click="isGray = !isGray" ng-class="{active: gray}">GRAY</a>
+        <a href="#" class="fg-gray" ng-click="isGray = !isGray">GRAY</a>
     </div>
     <div style="position: fixed; bottom: 0; left: 600px">
         <h1 class="fg-darkRed">{{result.red}}</h1>
-        <a class="fg-darkRed" ng-click="isRed = !isRed" ng-class="{active: red}">RED</a>
+        <a class="fg-darkRed" ng-click="isRed = !isRed">RED</a>
     </div>
      <div>
         <div ng-show="checked">
