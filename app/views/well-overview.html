@@ -1,48 +1,53 @@
 <div class="main-menu-wrapper">
-  <ul class="horizontal-menu nlm">
-    <li class = "fg-white"><a href="#">WELL OVERVIEW</a></li>
-    <li class="place-right fg-white">
-        <a href="#">WELL EVENTS</a>
-    </li>
-</ul>
+    <ul class="horizontal-menu nlm">
+        <li class = "fg-white" style="margin-left: 0px;"><a>WELL OVERVIEW</a></li>
+        <li class="place-right fg-white">
+            <a>WELL EVENTS</a>
+        </li>
+    </ul>
 </div>
-
 <div class="main-content clearfix">
-  <div class="tile-area no-padding clearfix">
-    <div class="tile-group no-margin no-padding clearfix" style="width: 100%;">
-      <div class="bg-white ol-transparent" id="scrollbox" data-role="scrollbox" data-scroll="vertical" style="float: right; width: 600px; height: 455px">
-        <div class="text-justify tile-content fg-black" style="right: 10px">
-            <p>{{totalEvent.message}}</p>
-        </div>
-    </div>
-    <div class= "tile-group double" ng-hide = "checked" >
-        <div class="tile-group-title">
-            {{totalWells.name}} &nbsp;&nbsp;&nbsp;
-            <a class = "fg-white" style = "font-size: 13px;">
-                {{totalWells.bopd}} bopd,
-                {{totalWells.brl}} brl
-            </a>
-        </div>
-        <div ng-repeat="w in totalWells.wells">
+    <div class="tile-area no-padding clearfix">
+        <div class="tile-group no-margin no-padding clearfix" style="width: 100%;">
+            <div class="bg-white ol-transparent" data-role="scrollbox" data-scroll="vertical" style="float: right; width: 500px; height: 355px; margin-top: 38px;">     
+                <div class="text-justify tile-content fg-black" style="right: 10px; padding: 10px;">
+                    <md-content layout-padding style="height: 600px;padding: 24px;">
+                        <p>{{totalEvent.message}}</p>
+                    </md-content>
+                </div>
+            </div>
+        <div class= "tile-group double" ng-repeat="well in totalWells" ng-hide = "checked" >
+            <div class="tile-group-title">
+                {{well.name}} &nbsp;&nbsp;&nbsp;
+                <a class = "fg-white" style = "font-size: 13px;">
+                    {{well.bopd}} bopd,
+                    {{well.brl}} brl
+                </a>
+            </div>
+        <div ng-repeat="w in well.wells">
             <div class = "tile half bg-blue" data-click="transform">
-             <svg height="100" width="100">
-                    <a href="#"><circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/></a>
-             </svg>
+                <svg href="#/srp-detail/" height="100" width="100">
+                    <!-- <a href="#/srp-detail/"> -->
+                        <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
+                    <!-- </a> -->
+                </svg>
                 <div class="brand">
-                    <div class="badge" style ="font-size: 10px;">
-                        {{w.name}}
+                    <div class="badge" style ="font-size: 12px;">
+                        <a class="fg-white" href="#/srp-detail/"> 
+                            {{w.name}}
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+        </div> <!-- End of tiles -->
     </div>
-    </div> <!-- End of tiles -->
-</div>
 
     <div>
     <div style="position: fixed; bottom: 0;">
         <h1 class="fg-orange">{{result.total}}</h1>
-        TOTAL WELLS
+        <a class="fg-white">TOTAL WELLS</a>      
     </div>
     <div style="position: fixed; bottom: 0; left: 200px">
         <h1 class="fg-darkGreen">{{result.green}}</h1>
@@ -70,8 +75,5 @@
         </div>
     </div>
     </div>
-   
     <!-- end -->
 </div>
-<script src="bower_components/metro-ui-css/js/metro-scroll.js"></script>
-<script src="bower_components/metro-ui-css/js/metro-drag-tile.js"></script>

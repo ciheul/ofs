@@ -20,13 +20,17 @@ var ofsApp = angular
   ])
   .config(['$routeProvider','$httpProvider',function ($routeProvider, $httpProvider) {
     $routeProvider
-      .when('/well', {
+      .when('/', {
         templateUrl: 'views/well-overview.html',
           controller: 'ofsListCtrl'
       })
       .when('/electrical', {
         templateUrl: 'views/electrical-overview.html',
         controller: 'electricalCtrl'
+      })
+      .when('/srp-detail', {
+        templateUrl: 'views/srp-detail.html',
+        controller: 'srpCtrl'
       })
         .otherwise({
           redirectTo: '/'

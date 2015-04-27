@@ -8,25 +8,25 @@ ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$interval', functi
   $scope.result = { total : 0, green : 0, black : 0, yellow : 0, red : 0, gray : 0 };
   console.log("debugs");
 
-  $scope.count = function(plants) {
+  $scope.count = function(totalWells) {
     console.log("debug");
-    console.log(plants);
-    for (var i = 0; i < plants.length; i++) {
+    console.log(totalWells);
+    for (var i = 0; i < totalWells.length; i++) {
       console.log(i);
-      for(var j = 0; j < plants[i].wells.length; j++) {
-        if (plants[i].wells[j].status === 'black') {
+      for(var j = 0; j < totalWells[i].wells.length; j++) {
+        if (totalWells[i].wells[j].status === 'black') {
           $scope.result.black += 1;
         }
-        if (plants[i].wells[j].status === 'yellow') {
+        if (totalWells[i].wells[j].status === 'yellow') {
           $scope.result.yellow += 1;
         }
-        if (plants[i].wells[j].status === 'gray') {
+        if (totalWells[i].wells[j].status === 'gray') {
           $scope.result.gray += 1;
         }
-         if (plants[i].wells[j].status === 'green') {
+        if (totalWells[i].wells[j].status === 'green') {
           $scope.result.green += 1;
         }
-        if (plants[i].wells[j].status === 'red') {
+        if (totalWells[i].wells[j].status === 'red') {
           $scope.result.red += 1;
         }
         $scope.result.total = ($scope.result.black + 
@@ -53,7 +53,7 @@ ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$interval', functi
     .success(function(data) {
       $scope.totalWells = data;
     });
-  }, 2000);  
+  }, 1000);  
  
   /*interval*/
   $interval(function(){
