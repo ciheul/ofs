@@ -1,0 +1,106 @@
+/* START GLOBAL */
+html,body,div,span,applet,object,iframe,input,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{
+	margin:0;
+	padding:0;
+	border: 0px;
+}
+
+body {
+	font-family:'Open Sans', sans-serif;
+	color:#1e1e1e;
+	font-size:14px;
+	line-height:1.5;
+}
+a {
+	text-decoration:none;
+	color:#fff;	
+}
+
+#mainform {
+	width:960px;
+	margin:20px auto;
+	display:block;
+}
+
+h1 {
+	font-size:60px;
+	padding:0px;
+	margin-bottom:50px;
+	line-height:1;
+	font-family:"Dosis",sans-serif;
+	font-weight:normal;
+	text-transform:uppercase;
+	text-align:center;
+}
+h1 a {
+	color:#1e1e1e;
+}
+h3 {
+	font-size:40px;
+	line-height:1;
+	padding:0px;
+	margin:0px;
+	font-family:"Dosis",sans-serif;
+	font-weight:normal;
+	text-transform:uppercase;
+}
+p {
+	padding-top: 10px;
+	line-height:1.5;
+}
+
+
+.readmore a {
+	display:block;
+	font-size:20px;
+	height:48px;
+	margin-top:20px;
+	font-family:"Dosis",sans-serif;
+}
+
+.demoitem {
+	padding: 0 14px;
+	line-height:48px;
+	font-size:20px;
+	margin-right:5px;
+	display:block;
+}
+.demozone {
+	width:960px;
+	margin:50px auto;
+	font-family:'Open Sans', sans-serif;
+	font-size:20px;
+	border-bottom:1px solid #111;
+}
+.demohover:hover {
+	background:#E4F0F7;
+}
+
+#loadingholder {
+	display:none;
+}
+
+@media screen and (max-width:959px) {
+	#mainform {
+		width:100%;
+	}
+	h1 {
+		font-size:40px;
+	}
+	h1, .demozone {
+		width:100%;
+	}
+	h1 > img {
+		width:48px;
+		height:48px;
+	}
+	.demoitem {
+		padding: 0 10px;
+		line-height:36px;
+		font-size:16px;
+		margin-right:5px;
+		display:block;
+	}
+
+}
+/* END GLOBAL */

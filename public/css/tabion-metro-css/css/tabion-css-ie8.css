@@ -1,0 +1,25 @@
+/*============================================
+
+Tabion CSS by SONHLAB.com - version 1.2
+Website: http://sonhlab.com
+Documentation: http://docs.sonhlab.com/tabion-metro-tab-accordion-switcher-css/
+
+============================================*/
+
+.tabion > li:first-child .tab-content {
+	display:block;
+}
+
+.tabion > li:hover .tab-content {
+	display:block;
+	z-index:9;
+}
+.tabion > li:hover {
+	position:absolute;
+	top:10px;
+	height:100%;
+}
+
+.closebt {
+	display:none;
+}
