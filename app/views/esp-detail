@@ -1,6 +1,6 @@
 <div class="main-menu-wrapper">
   <ul class="horizontal-menu nlm">
-    <li class = "fg-white" style="margin-left: 20px; margin-bottom: 20px;"><a href="#">SRP DETAIL</a></li>
+    <li class = "fg-white" style="margin-left: 20px; margin-bottom: 20px;"><a href="#">ESP DETAIL</a></li>
   </ul>
 </div>
 
@@ -41,64 +41,48 @@
                   </h4>
                   <svg width="1000" height="325">
 
-                    <rect x="20" y="2" width="215" height="320"
+                    <rect x="20" y="2" width="450" height="320"
                     style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity" />
-                        <rect x="25" y="7" width="205" height="20"
+                        <rect x="25" y="7" width="441" height="20"
                         style="fill:white;fill-opacity:0.4;" />
-                        <text x="28" y="22" fill="black" style="font-size: 10px;">FC-603 ERP MONITORING REPORT</text>
-                        <rect x="25" y="29" width="205" height="20"
+                        <text x="28" y="22" fill="black">FC-603 ERP MONITORING REPORT</text>
+                        <rect x="25" y="29" width="441" height="20"
                         style="fill:white;fill-opacity:0.4;" />
-                        <text x="28" y="44" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <rect x="25" y="51" width="205" height="265"
+                        <text x="28" y="44" fill="black">Time Stamp : 2015-02-10 23:58:00</text>
+                        <rect x="25" y="51" width="441" height="265"
                         style="fill:white;fill-opacity:0.4;" />
 
-                    <rect x="250" y="2" width="215" height="320"
+                    <rect x="480" y="2" width="200" height="250"
                     style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity" />
-                        <rect x="255" y="7" width="205" height="20"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="258" y="22" fill="black" style="font-size: 10px;">FC-603 ERP MONITORING REPORT</text>
-                        <rect x="255" y="29" width="205" height="20"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="258" y="44" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <rect x="255" y="51" width="205" height="265"
-                        style="fill:white;fill-opacity:0.4;" />
-
-                    <rect x="480" y="30" width="200" height="292"
-                    style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity" />
-                        <rect x="485" y="35" width="190" height="20"
+                        <rect x="485" y="7" width="190" height="20"
                         style="fill:yellow;fill-opacity:0.4;" />
-                        <text x="558" y="50" fill="black">T.99X</text>
-                        <rect x="485" y="57" width="190" height="20"
+                        <text x="558" y="22" fill="black">T.99X</text>
+                        <rect x="485" y="29" width="190" height="20"
                         style="fill:yellow;fill-opacity:0.4;" />
-                        <text x="558" y="72" fill="black">ESP-01</text>
-                        <rect x="500" y="79" width="160" height="17"
+                        <text x="558" y="44" fill="black">ESP-01</text>
+                        <rect x="500" y="51" width="160" height="17"
                         style="fill:white;fill-opacity:0.4;" />
-                        <text x="543" y="93" fill="black" style="font-size: 12px;">MOTOR</text>
+                        <text x="543" y="65" fill="black" style="font-size: 12px;">MOTOR / VFD</text>
 
-                        <rect x="500" y="100" width="160" height="70"
+                        <rect x="500" y="70" width="160" height="70"
                         style="fill:gray;fill-opacity:0.4;" />
-                        <!-- <text x="503" y="80" fill="black" style="font-size: 10px;">MODE</text>
+                        <text x="503" y="80" fill="black" style="font-size: 10px;">MODE</text>
                         <text x="503" y="100" fill="black" style="font-size:10px;">AUTO SET</text>
                         <text x="503" y="110" fill="black" style="font-size: 10px;">(FLUID LVL)</text>
                         <text x="635" y="105" fill="black" style="font-size: 10px;">m</text>
                         <text x="503" y="130" fill="black" style="font-size: 10px;">MANUAL SET</text>
-                        <text x="635" y="130" fill="black" style="font-size: 10px;">Hz</text> -->
+                        <text x="635" y="130" fill="black" style="font-size: 10px;">Hz</text>
 
-                        <text x="500" y="183" fill="black" style="font-size: 10px;">ENTER NOTES :</text>
-                       <!--  <text x="500" y="210" fill="black" style="font-size: 10px;">AUTO SET</text>
+                        <text x="500" y="155" fill="black" style="font-size: 10px;">ENTER NOTES :</text>
+                        <text x="500" y="210" fill="black" style="font-size: 10px;">AUTO SET</text>
                         <text x="500" y="220" fill="black" style="font-size: 10px;">(FLUID LVL)</text>
                         <text x="635" y="215" fill="black" style="font-size: 10px;">m</text>
                         <text x="500" y="240" fill="black" style="font-size: 10px;">MANUAL SET</text>
-                        <text x="635" y="240" fill="black" style="font-size: 10px;">Hz</text> -->
-                        <text x="500" y="290" fill="black" style="font-size: 10px;">COMMAND STATUS :</text>
+                        <text x="635" y="240" fill="black" style="font-size: 10px;">Hz</text>
                   </svg>
-
-                  <button class="bg-blue" style="margin-left: 510px; margin-top: -160px;">START</button>
-                  <button class="bg-red" style="margin-left: 590px; margin-top: -200px;">STOP</button>
-                  <button class="bg-orange" style="margin-left: 478px; margin-top: -750px;">MOTOR</button>
-                  <button class="bg-white" style="margin-left: 558px; margin-top: -790px;">TIMER</button>
-                  <button class="bg-white" style="margin-left: 628px; margin-top: -830px;">VFD</button>
-
+                  <button class="mini bg-blue" style="margin-left: 500px; margin-top: -140px;">AUTO</button>
+                  <button class="mini bg-white" style="margin-left: 563px; margin-top: -180px;">MAN</button>
+                  <button class="mini bg-red" style="margin-left: 620px; margin-top: -220px;">STOP</button>
 
 
                   <p class="closebt"><label for="close_tabion"><i class="icon-remove icon-2x"></i></label></p>

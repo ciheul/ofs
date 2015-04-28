@@ -1,6 +1,7 @@
   "use strict"
 
 var ofsControllers = angular.module('ofsControllers', []);
+
 /*ofs-well*/
 
 ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval) {
@@ -69,6 +70,7 @@ ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$interval', functi
 
 }
 ]);
+  
 /*end of ofs-well*/
 
 /*electrical*/
