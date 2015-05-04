@@ -1,15 +1,22 @@
 <!doctype html>
 <html class="no-js" ng-app="ofsApp">
-  <head>
+  <head lang="en">
     <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/metro-ui-css/css/metro-bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/metro-ui-css/css/metro-bootstrap-responsive.css" />
+    <link rel="stylesheet" href="bower_components/metro-ui-css/build/css/metro.css" />
+    <link rel="stylesheet" href="bower_components/metro-ui-css/build/css/metro-icons.css" />
+    <link rel="stylesheet" href="bower_components/metro-ui-css/less/metro.less" />
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -22,49 +29,165 @@
     <link rel="stylesheet" href="bower_components/tabion/css/global-demo.css" type="text/css" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <style>
-        .container {
-            width:150% !important;
-            height:160% !important;
-            device-type:large-desktop;
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 200%;
+      }
+        .tile-area-controls {
+            position: fixed;
+            right: 40px;
+            top: 40px;
         }
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
+
+        .tile-group {
+            left: 10px;
         }
-        th, td {
-            padding-left: 5px;
-            font-size: 10px;
+        @media screen and (max-width: 640px) {
+            .tile-area {
+                overflow-y: scroll;
+            }
+            .tile-area-controls {
+                display: none;
+            }
         }
-        .info {
-            font-size: 10px; 
+
+        @media screen and (max-width: 320px) {
+            .tile-area {
+                overflow-y: scroll;
+            }
+
+            .tile-area-controls {
+                display: none;
+            }
+
         }
     </style>
+
+     <script>
+
+        /*
+         * Do not use this is a google analytics fro Metro UI CSS
+         * */
+        if (window.location.hostname !== 'localhost') {
+
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-58849249-3', 'auto');
+            ga('send', 'pageview');
+
+        }
+
+    </script>
+
+    <script>
+        (function($) {
+            $.StartScreen = function(){
+                var plugin = this;
+                var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+                plugin.StartScreen = function(){
+                    setTilesAreaSize();
+                    if (width > 640) addMouseWheel();
+                };
+
+                var setTilesAreaSize = function(){
+                    var groups = $(".tile-group");
+                    var tileAreaWidth = 80;
+                    $.each(groups, function(i, t){
+                        if (width <= 640) {
+                            tileAreaWidth = width;
+                        } else {
+                            tileAreaWidth += $(t).outerWidth() + 80;
+                        }
+                    });
+                    $(".tile-area").css({
+                        width: tileAreaWidth
+                    });
+                };
+
+                var addMouseWheel = function (){
+                    $("body").mousewheel(function(event, delta, deltaX, deltaY){
+                        var page = $(document);
+                        var scroll_value = delta * 50;
+                        page.scrollLeft(page.scrollLeft() - scroll_value);
+                        return false;
+                    });
+                };
+
+                plugin.init();
+            }
+        })(jQuery);
+
+        $(function(){
+            $.index();
+
+            var tiles = $(".tile, .tile-small, .tile-sqaure, .tile-wide, .tile-large, .tile-big, .tile-super");
+
+            $.each(tiles, function(){
+                var tile = $(this);
+                setTimeout(function(){
+                    tile.css({
+                        opacity: 1,
+                        "-webkit-transform": "scale(1)",
+                        "transform": "scale(1)",
+                        "-webkit-transition": ".3s",
+                        "transition": ".3s"
+                    });
+                }, Math.floor(Math.random()*500));
+            });
+
+            $(".tile-group").animate({
+                left: 0
+            });
+        });
+      </script>
+      <script>
+        $(function(){
+
+          $("#datepicker").datepicker();
+
+        });
+      </script>
+
   </head>
-  <body class="metro">
-    <div class="container">
-      <div class="tile-area tile-area-dark">
-        <h1 class="tile-area-title fg-white">
-          OFS
-        </h1>
+  <body onload="init()">
+      <div class="tile-area tile-area-scheme-grayed fg-white">
         <!-- navbar -->
-    <nav class="horizontal-menu">
-      <ul>
-        <li>
-          <a class="dropdown-toggle fg-lightOrange" href="#">WELLS</a>
-          <ul class="dropdown-menu" data-role="dropdown" data-show="hover" data-effect='fade' >
-            <li><a class="fg-lightOrange" href="#/well/">WELL 1</a></li>
-            <li><a class="fg-lightOrange" href="#">WELL 2</a></li>
-          </ul>
-        </li>
-         <li>
+        <h1 class="tile-area-title">OFS</h1>
+        <ul class="v-menu subdown" style="width: 200px; font-size: 12px; height: 500px; position: relative;">
+          <li class="menu-title">Oil Field Solution</li>
+          <li>
+          <a href="#/well/" class="dropdown-toggle" style="margin-left: -30px; font-size: 13px;">WELLS</a>
+            <ul class="d-menu" data-role="dropdown">
+              <li>
+                <a href="#/well/" style="margin-left: -25px; font-size: 13px;">WELL 1</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+          <a href="#/well/" class="dropdown-toggle" style="margin-left: -30px; font-size: 13px;">ELECTRICAL SUBSTATIONS</a>
+            <ul class="d-menu" data-role="dropdown" style="font-size: 13px;">
+              <li>
+                <a href="#/well/" style="margin-left: -25px; font-size: 13px;">ELECTRICAL SUBSTATIONS 1</a>
+                <a href="#/well/" style="margin-left: -25px; font-size: 13px;">ELECTRICAL SUBSTATIONS 1</a>
+              </li>
+            </ul>
+          </li>
+          
+          
+         <!-- <li>
           <a class="dropdown-toggle fg-lightOrange" href="#">ELECTRICAL SUBSTATIONS</a>
           <ul class="dropdown-menu" data-role="dropdown" data-show="hover" data-effect='fade'>
             <li><a class="fg-lightOrange" href="#/electrical/">ELECTRICAL SUBSTATIONS 1</a></li>
             <li><a class="fg-lightOrange" href="#">ELECTRICAL SUBSTATIONS 2</a></li>
           </ul>
-        </li>
-    </ul>
-    </nav>
+        </li> -->
+      </ul>
 
         <div ng-view></div> 
       
@@ -178,7 +301,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/jqueryui/jquery-ui.js"></script>
     <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="bower_components/metro-ui-css/min/metro.min.js"></script>
+    <script src="bower_components/metro-ui-css/build/js/metro.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
@@ -194,6 +317,7 @@
         <!-- endbuild -->
          
 </div>
+
 </body>
 
 </html>

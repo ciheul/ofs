@@ -1,19 +1,24 @@
-<div class="main-menu-wrapper">
+<!-- <div class="main-menu-wrapper">
     <ul class="horizontal-menu nlm">
         <li class = "fg-white" style="margin-left: 0px;">
             <a>WELL OVERVIEW</a>
         </li>
-        <li class="fg-white" style="margin-left: 1150px;">
-            <a>WELL EVENTS</a>
-        </li>
     </ul>
-</div>
-<div class="main-content clearfix">
-    <div class="tile-area no-padding clearfix">
-        <div class="tile-group no-margin no-padding clearfix" style="width: 100%;">
-            <div class="bg-lightBlue ol-transparent" style="float: right; width: 500px; height: 355px; margin-top: 38px;"> 
+</div> -->
+<!-- <div class="main-content clearfix">
+   <div class="tile-area no-padding clearfix">
+        <div class="tile-group no-margin no-padding clearfix" style="width: 100%;"> 
+            <div class="tile bg-lightBlue ol-transparent" style="float: right; width: 500px; height: 355px; margin-top: 38px;"> 
                 <div class="text-justify tile-content fg-white" style="right: 10px; padding: 5px;">
                     <md-content layout-padding style="height: 355px;padding: 14px;">
+                        <h5>HISTORICAL ALARM
+                        </h5>
+                        <p>Sort By :
+                            <select ng-model="orderProp">
+                                <option value="name">Lorem</option>
+                                <option value="age">Ipsum</option>
+                            </select>
+                        </p>
                         <p>{{totalEvent.message}}</p>
                         <p>{{totalEvent.message}}</p>
                         <p>{{totalEvent.message}}</p>
@@ -26,36 +31,96 @@
                     </md-content>
                 </div>
             </div>
-        <div class= "tile-group double" ng-repeat="well in totalWells" ng-hide = "checked" >
-            <div class="tile-group-title fg-lightBlue">
+            <div class="tile bg-lightBlue ol-transparent" style="float: right; width: 500px; height: 355px; margin-top: 38px;"> 
+                <div class="text-justify tile-content fg-white" style="right: 10px; padding: 5px;">
+                    <md-content layout-padding style="height: 355px;padding: 14px;">
+                        <h5>ALARM</h5>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                        <p>{{totalEvent.message}}</p>
+                    </md-content>
+                </div>
+            </div> -->
+         <div class="tile-group double" style="float: right;">
+            <span class="tile-group-title">HISTORICAL ALARM</span>
+            <div class="tile-container">
+                <div class="tile-wide-y bg-green fg-white" data-role="tile">
+                    <span>START</span>
+                    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+                        <input type="text">
+                        <button class="button"><span class="mif-calendar"></span></button>
+                    </div><br>
+                    <span>START</span>
+                    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+                        <input type="text">
+                        <button class="button"><span class="mif-calendar"></span></button>
+                    </div>
+                   
+                    <div class="tile-content">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+          <div class="tile-group double" style="float: right;">
+            <span class="tile-group-title">ALARM</span>
+            <div class="tile-container">
+                <div class="tile-wide-y bg-red fg-white" data-role="tile">
+                    <div class="tile-content">
+                       <div class="text-justify tile-content fg-white" style="right: 10px; padding: 3px; margin-bottom: 20px;">
+                            <md-content layout-padding style="height: 300px; padding: 8px;">
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                                <p>{{totalEvent.message}}</p>
+                            </md-content>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class= "tile-group double" ng-repeat="well in totalWells" data-role="tile">
+            <span class="tile-group-title fg-white">
                 {{well.name}} &nbsp;&nbsp;&nbsp;
                 <a class = "fg-white" style = "font-size: 13px;">
                     {{well.bopd}} bopd,
                     {{well.brl}} brl
                 </a>
-            </div>
-        <div ng-repeat="w in well.wells">
-            <div class = "tile half bg-white" data-click="transform">
-                <svg href="#/srp-detail/" height="100" width="100">
-                    <!-- <a href="#/srp-detail/"> -->
-                        <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
-                    <!-- </a> -->
-                </svg>
-                <div class="brand">
-                    <div class="badge" style ="font-size: 12px;">
-                        <a class="fg-orange" href="#/srp-detail/"> 
-                            {{w.name}}
-                        </a>
+            </span>
+            <div class="tile-container" style="margin-left: -50px;">
+                <div ng-repeat="w in well.wells">
+                    <div class = "tile-small bg-blue" data-click="transform" data-role="tile">
+                        <svg href="#/srp-detail/" height="100" width="100">
+                            <a href="#/srp-detail/">
+                                <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
+                            </a>
+                        </svg>
+                         <div class="tile-label">{{w.name}}</div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        </div> <!-- End of tiles -->
-    </div>
 
-    <div>
-    <div style="position: fixed; bottom: 0;">
+       
+
+        <!-- </div> --> 
+        <!-- End of tiles -->
+    <!-- </div>
+
+    <div> -->
+    <!-- <div style="position: fixed; bottom: 0;">
         <h1 class="fg-orange" style="font-size: 45px;">{{result.total}}</h1>
         <a class="fg-white">TOTAL WELLS</a>      
     </div>
@@ -74,8 +139,8 @@
     <div style="position: fixed; bottom: 0; left: 500px">
         <h1 class="fg-gray" style="font-size: 45px;">{{result.gray}}</h1>
         <a href="#" class="fg-gray" ng-click="isGray = !isGray">GRAY</a>
-    </div>
-    <div style="position: fixed; bottom: 0; left: 600px">
+    </div> -->
+    <div style="position: fixed; bottom: 0; left: 0px">
         <h1 class="fg-darkRed" style="font-size: 45px;">{{result.red}}</h1>
         <a class="fg-darkRed" ng-click="isRed = !isRed">RED</a>
     </div>
