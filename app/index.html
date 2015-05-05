@@ -2,12 +2,6 @@
 <html class="no-js" ng-app="ofsApp">
   <head lang="en">
     <meta charset="utf-8">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
-    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
-    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -16,7 +10,6 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/metro-ui-css/build/css/metro.css" />
     <link rel="stylesheet" href="bower_components/metro-ui-css/build/css/metro-icons.css" />
-    <link rel="stylesheet" href="bower_components/metro-ui-css/less/metro.less" />
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -28,19 +21,14 @@
     <link rel="stylesheet" href="bower_components/tabion/css/tabion-css.css" type="text/css" />
     <link rel="stylesheet" href="bower_components/tabion/css/global-demo.css" type="text/css" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <style>
-      body {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 200%;
-      }
-        .tile-area-controls {
-            position: fixed;
-            right: 40px;
-            top: 40px;
-        }
 
+    <script src="bower_components/metro-ui-css/docs/js/jquery-2.1.3.min.js"</script>
+    <script src="bower_components/metro-ui-css/docs/js/metro.js"</script>
+    <style>
+        body{
+          height: 100%;
+          width: 200%;
+        }
         .tile-group {
             left: 10px;
         }
@@ -65,32 +53,13 @@
         }
     </style>
 
-     <script>
-
-        /*
-         * Do not use this is a google analytics fro Metro UI CSS
-         * */
-        if (window.location.hostname !== 'localhost') {
-
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-58849249-3', 'auto');
-            ga('send', 'pageview');
-
-        }
-
-    </script>
-
     <script>
         (function($) {
             $.StartScreen = function(){
                 var plugin = this;
                 var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 
-                plugin.StartScreen = function(){
+                plugin.init = function(){
                     setTilesAreaSize();
                     if (width > 640) addMouseWheel();
                 };
@@ -124,7 +93,7 @@
         })(jQuery);
 
         $(function(){
-            $.index();
+            $.StartScreen();
 
             var tiles = $(".tile, .tile-small, .tile-sqaure, .tile-wide, .tile-large, .tile-big, .tile-super");
 
@@ -146,20 +115,11 @@
             });
         });
       </script>
-      <script>
-        $(function(){
-
-          $("#datepicker").datepicker();
-
-        });
-      </script>
 
   </head>
-  <body onload="init()">
-      <div class="tile-area tile-area-scheme-grayed fg-white">
-        <!-- navbar -->
-        <h1 class="tile-area-title">OFS</h1>
-        <ul class="v-menu subdown" style="width: 200px; font-size: 12px; height: 500px; position: relative;">
+  <body>
+        <ul class="v-menu subdown " style="width: 200px; font-size: 12px; height: 500px; position: relative;">
+          <h1 class="tile-area-title">OFS</h1>
           <li class="menu-title">Oil Field Solution</li>
           <li>
           <a href="#/well/" class="dropdown-toggle" style="margin-left: -30px; font-size: 13px;">WELLS</a>
@@ -188,7 +148,7 @@
           </ul>
         </li> -->
       </ul>
-
+      <div class="tile-area tile-area-scheme-grayed no-padding fg-white">
         <div ng-view></div> 
       
     
@@ -276,7 +236,7 @@
 
 
 
-
+</div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
@@ -310,13 +270,13 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/start-screen.js"></script>
+        <script src="scripts/controllers/start-screen.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/ofs.js"></script>
         <!-- endbuild -->
          
-</div>
+
 
 </body>
 
