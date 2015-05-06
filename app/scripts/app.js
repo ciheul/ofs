@@ -41,6 +41,6 @@ var ofsApp = angular
     $httpProvider
       .defaults
         .headers
-          .common['Access-Control-Allow-Origin: *'];
+          .common['X-Requested-With']= 'XMLHttpRequest';
   }]);
 
