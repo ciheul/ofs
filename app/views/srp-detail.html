@@ -1,318 +1,143 @@
-<div class="main-menu-wrapper">
-  <ul class="horizontal-menu nlm">
-    <li class = "fg-white" style="margin-left: 20px; margin-bottom: 20px;"><a href="#">SRP DETAIL</a></li>
-  </ul>
-</div>
-
-<div class="main-content clearfix">
-  <div class="tile-area no-padding clearfix">
-    <div class="tile-group no-margin no-padding clearfix" style="width: 100%">
-      <div class="tile quadro quadro-vertical">
-        <div class="brand-top bg-darkPink opacity">
-          <span class="text" style="font-size: 15px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px;">
-              UNIT DETAIL : T.99[WELL, SRP]
-          </span>
+<div class="tile-group triple">
+  <span class="tile-group-title">SRP-T.150</span>
+    <div class="tile-container">
+      <div class="tile-big bg-LightGray fg-white" data-role="tile">
+        <div class="tile-content">
         </div>
       </div>
+    </div>
+</div>
 
-      <div id="mainform" style="margin-left: 510px;">
-        <!-- START TABION -->
-        <ul class="tabion height-500">
-        <!-- Start Tab 1 -->
-          <li>
-            <input type="radio" name="tabion" id="tab11" class="none" />
-              <div>
-                 <!-- Start Tab Button -->
-                <label for="tab11" class="tabtile tabtile-small solid-blue-2 hovershadow-blue light-text" style="width: 80px; height: 50px">
-                  <span class="light-text" style="padding: 5px; margin-top: 10px;">TELEMETRY</span>
-                </label>
-                  <!-- End Tab Button -->
-                  <!-- Start Tab Content -->
-                <div class="tab-content animated tab-bounceIn solid-blue-2 light-text pos-top-100" style="width: 700px; height: 456px; margin-top: -40px;">
-                  <h4 class ="text" style="font-size: 18px; margin-left: 20px;">
-                    EQUIPMENT TELEMETRY
-                  </h4>
-                  <svg height="3" width="680">
-                    <line x1="20" y1="0" x2="700" y2="000" style="stroke:black;stroke-width:2" />
-                  </svg> 
-                  <p class="title" style="font-size: 12px; margin-top: -20px;">SELECT EQUIPMENT / DEVICE :
-                    <select ng-model="orderProp">
-                      <option value="name">Lorem</option>
-                      <option value="age">Ipsum</option>
-                    </select>
-                  </p>
-                  <!-- <svg width="1000" height="325">
+<div class="tile-group double">
+  <span class="tile-group-title">Monitoring Report</span>
+    <div class="tile-container">
+      <table class="table hovered" style="margin-top: 0px;">
+        <tbody style="font-size: 12px;">
+          <tr>
+            <td>Motor Status</td>
+            <td>A</td>
+          </tr>
+          <tr>
+            <td>SPM</td>
+            <td>%</td>
+          </tr>
+          <tr>
+            <td>PPRL</td>
+            <td>kg/m2</td>
+          </tr>
+          <tr>
+            <td>PumpFillage</td>
+            <td>kg/m2</td>
+          </tr>
+          <tr>
+            <td>Cycle Counter</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>inferred Prod</td>
+            <td>bph</td>
+          </tr>
+          <tr>
+            <td>Motor Status</td>
+            <td>A</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
 
-                    <rect x="20" y="2" width="215" height="320"
-                    style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity" />
-                        <rect x="25" y="7" width="205" height="20"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="28" y="22" fill="black" style="font-size: 10px;">FC-603 ERP MONITORING REPORT</text>
-                        <rect x="25" y="29" width="205" height="20"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="28" y="44" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <rect x="25" y="51" width="205" height="265"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="28" y="64" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="84" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="104" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="124" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="144" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="164" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="184" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="204" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="224" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="244" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="264" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="284" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="304" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <text x="28" y="324" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
+<div class="tile-group double">
+  <span class="tile-group-title">PM Report</span>
+    <div class="tile-container">   
+        <table class="table hovered" cellspacing: "10" style="margin-top: 0px;">
+          <tbody style="font-size: 12px;">
+            <tr>
+              <td>Motor Status</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+            </tr>
+            <tr>
+              <td>Voltage Average</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Max</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Min</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Unbalan.</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Current Average</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Current Min</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>A</td>
+            </tr>
+             <tr>
+              <td>Current Max</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>A</td>    
+            </tr>
+            <tr>
+              <td>Current Unbalan.</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Power Average</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Power Max</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Power Min</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Stroke Energy</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>kWh</td>
+            </tr>
+            <tr>
+              <td>Inferred Prod.</td>
+              <td><input type="text" style="width:50px; height: 22px;" readonly></td>
+              <td>bph</td>
+            </tr>
+          </tbody>
+        </table>  
+    </div>
+</div>
 
-                    <rect x="250" y="2" width="215" height="320"
-                    style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity" />
-                        <rect x="255" y="7" width="205" height="20"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="258" y="22" fill="black" style="font-size: 10px;">FC-603 ERP MONITORING REPORT</text>
-                        <rect x="255" y="29" width="205" height="20"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="258" y="44" fill="black" style="font-size: 10px;">Time Stamp : 2015-02-10 23:58:00</text>
-                        <rect x="255" y="51" width="205" height="265"
-                        style="fill:white;fill-opacity:0.4;" />
-
-                    <rect x="480" y="30" width="200" height="292"
-                    style="fill:blue;stroke:black;stroke-width:3;fill-opacity:0.1;stroke-opacity" />
-                        <rect x="485" y="35" width="190" height="20"
-                        style="fill:yellow;fill-opacity:0.4;" />
-                        <text x="558" y="50" fill="black">T.99X</text>
-                        <rect x="485" y="57" width="190" height="20"
-                        style="fill:yellow;fill-opacity:0.4;" />
-                        <text x="558" y="72" fill="black">ESP-01</text>
-                        <rect x="500" y="79" width="160" height="17"
-                        style="fill:white;fill-opacity:0.4;" />
-                        <text x="553" y="93" fill="black" style="font-size: 12px;">MOTOR</text>
-
-                        <rect x="500" y="100" width="160" height="70"
-                        style="fill:gray;fill-opacity:0.4;" />
-                        <text x="503" y="80" fill="black" style="font-size: 10px;">MODE</text>
-                        <text x="503" y="100" fill="black" style="font-size:10px;">AUTO SET</text>
-                        <text x="503" y="110" fill="black" style="font-size: 10px;">(FLUID LVL)</text>
-                        <text x="635" y="105" fill="black" style="font-size: 10px;">m</text>
-                        <text x="503" y="130" fill="black" style="font-size: 10px;">MANUAL SET</text>
-                        <text x="635" y="130" fill="black" style="font-size: 10px;">Hz</text> 
-
-                        <text x="500" y="183" fill="black" style="font-size: 10px;">ENTER NOTES :</text>
-                       <text x="500" y="210" fill="black" style="font-size: 10px;">AUTO SET</text>
-                        <text x="500" y="220" fill="black" style="font-size: 10px;">(FLUID LVL)</text>
-                        <text x="635" y="215" fill="black" style="font-size: 10px;">m</text>
-                        <text x="500" y="240" fill="black" style="font-size: 10px;">MANUAL SET</text>
-                        <text x="635" y="240" fill="black" style="font-size: 10px;">Hz</text>
-                        <text x="500" y="290" fill="black" style="font-size: 10px;">COMMAND STATUS :</text>
-                  </svg> -->
-
-                  <!-- <button class="bg-blue" style="margin-left: 510px; margin-top: -160px;">START</button>
-                  <button class="bg-red" style="margin-left: 590px; margin-top: -200px;">STOP</button> -->
-                 
-
-                  <table class="table striped fg-black" style="cell-padding: 2px; width:30%; margin-left: 20px;">
-                    <thead>
-                    <tr class="success">
-                      <th colspan="2" >FC-603 ERP MONITORING REPORT</th>
-                    </tr>
-                    <tr class="success">
-                      <th colspan="2">Time Stamp : 2015-02-10 23:58:00</th>
-                    </tr>
-                    <tbody>
-                    <tr>
-                      <td style="margin-left: 10px;">Motor Status</td>
-                      <td>RUNNING</td>
-                    </tr>
-                    <tr>
-                      <td>SPM</td>
-                      <td>7.2</td>
-                    </tr>
-                    <tr>
-                      <td>PPRL</td>
-                      <td>1000.0 Psi</td>
-                    </tr>
-                    <tr>
-                      <td>MPRL</td>
-                      <td>2000.0 Psi</td>
-                    </tr>
-                    <tr>
-                      <td>Pump Fillage</td>
-                      <td>50 %</td>
-                    </tr>
-                    <tr>
-                      <td>Cycle Counter</td>
-                      <td>12,222,111</td>
-                    </tr>
-                    <tr>
-                      <td>Inferred Prod.</td>
-                      <td>100 BPD</td>
-                    </tr>
-                    </tbody>
-                  </table>
-
-                  <table class="table striped fg-black" style="width:30%; margin-left: 235px; margin-top: -209px;">
-                    <tbody>
-                    <tr class="success">
-                      <th colspan="2">FC-603 ERP MONITORING REPORT</th>
-                    </tr>
-                    <tr class="success">
-                      <th colspan="2">Time Stamp : 2015-02-10 23:58:00</th>
-                    </tr>
-                    <tr>
-                      <td>Motor Status</td>
-                      <td>RUNNING</td>
-                    </tr>
-                    <tr>
-                      <td>Voltage Average</td>
-                      <td>384.5 v</td>
-                    </tr>
-                    <tr>
-                      <td>Voltage Max</td>
-                      <td>390.0 v</td>
-                    </tr>
-                    <tr>
-                      <td>Voltage Min</td>
-                      <td>370.0 v</td>
-                    </tr>
-                    <tr>
-                      <td>Voltage Unbalan</td>
-                      <td>10.0 %</td>
-                    </tr>
-                    <tr>
-                      <td>Current Average</td>
-                      <td>110.0 A</td>
-                    </tr>
-                    <tr>
-                      <td>Current Max</td>
-                      <td>161.0 A</td>
-                    </tr>
-                    <tr>
-                      <td>Current Min</td>
-                      <td>90.0 A</td>
-                    </tr>
-                    <tr>
-                      <td>Current Unbalan</td>
-                      <td>5.5 %</td>
-                    </tr>
-                    <tr>
-                      <td>Power Average </td>
-                      <td>2,000.0 kW</td>
-                    </tr>
-                    <tr>
-                      <td>Power Max</td>
-                      <td>2,000.0 kW</td>
-                    </tr>
-                    <tr>
-                      <td>Power Min</td>
-                      <td>2,000.0 kW</td>
-                    </tr>
-                    <tr>
-                      <td>Stroke Energy</td>
-                      <td>2,000.0 kWh</td>
-                    </tr>
-                    <tr>
-                      <td>Inferred Prod</td>
-                      <td>10.99 BPD</td>
-                    </tr>
-                  </tbody>
-                  </table>
-
-                  <div>
-                    <button class="bg-orange" style="margin-left: 478px; margin-top: -700px; font-size: 10px;">MOTOR</button>
-                    <button class="bg-white" style="margin-left: 558px; margin-top: -740px; font-size: 10px;">TIMER</button>
-                    <button class="bg-white" style="margin-left: 628px; margin-top: -780px; font-size: 10px;">VFD</button>
-                  </div> 
-
-                  <div>
-
-                  </div>
-                  <p class="closebt"><label for="close_tabion"><i class="icon-remove icon-2x"></i></label></p>
-
-                </div>
-                <!-- End Tab Content -->
-              </div>  
-          </li>
-        <!-- End Tab 1 -->
-        <!-- Start Tab 2 -->
-  
-          <li>
-            <input type="radio" name="tabion" id="tab12" class="none">
-              <div>
-              <!-- Start Tab Button -->
-                <label for="tab12" class="tabtile tabtile-small solid-red-2 hovershadow-red light-text pos-left-100" style="width: 80px; height: 50px">
-                  <span class="light-text" style="padding: 5px; margin-top: 10px;">TREND ANALYSIS</span>
-                </label>
-                <!-- End Tab Button -->
-            
-            <!-- Start Tab Content -->
-                <div class="tab-content animated tab-bounceIn solid-red-2 light-text pos-top-100" style="width: 700px; height: 456px; margin-top: -40px;">
-                  <p class="title">Tab 1.2 Content</p>
-                  <p class="closebt"><label for="close_tabion"><i class="icon-remove icon-2x"></i></label></p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                  </p>
-
-                </div>
-                <!-- End Tab Content -->
-              </div>         
-          </li>
-          <!-- End Tab 2 -->
-
-          <!-- Start Tab 3 -->
-          <li>
-            <input type="radio" name="tabion" id="tab13" class="none">
-              <div>
-                <!-- Start Tab Button -->
-                <label for="tab13" class="tabtile tabtile-small solid-orange-2 hovershadow-orange light-text pos-left-200" style="width: 80px; height: 50px;">
-                  <span class="light-text" style="padding: 5px; margin-top: 10px;">REPORTS</span>
-                </label>  
-              <!-- End Tab Button -->
-              <!-- Start Tab Content -->
-                <div class="tab-content animated tab-flipInY solid-orange-2 light-text pos-top-100" style="width: 700px; height: 456px; margin-top: -40px;">
-                <p class="title">Tab 1.3 Content</p>
-                <p class="closebt"><label for="close_tabion"><i class="icon-remove icon-2x"></i></label></p>
-            <div>
-            </div>
-                </div>
-                <!-- End Tab Content -->
-              </div>
-          </li>
-          <!-- End Tab 3 -->
-
-          <!-- Start Tab 4 -->
-          <li>
-            <input type="radio" name="tabion" id="tab14" class="none">
-              <div>
-                <!-- Start Tab Button -->
-                <label for="tab14" class="tabtile tabtile-small solid-green-2 hovershadow-green light-text pos-left-300" style="width: 80px; height: 50px">
-                  <span class="light-text" style="padding: 5px; margin-top: 10px;">EVENTS & ALARM</span>
-                </label>
-                <!-- End Tab Button -->
-                <!-- Start Tab Content -->
-                <div class="tab-content animated tab-bounceIn solid-green-2 light-text pos-top-100" style="width: 700px; height: 456px; margin-top: -40px;">
-                  <p class="title">Tab 1.4 Content</p>
-                  <p class="closebt"><label for="close_tabion"><i class="icon-remove icon-2x"></i></label></p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut 
-                  </p>
-                </div>
-                <!-- End Tab Content -->
-              </div>
-          </li>
-        <!-- End Tab 4 -->
-        <!-- End Tab 7 -->
-  </ul>
-  
-          <!-- Radio is used to close tabion content -->
-          <input type="radio" name="tabion" class="none" id="close_tabion">
-          <!-- END TABION -->
-          <div class="clearspace"></div>
+<div class="tile-group double">
+    <div class="tile-container">
+      <div class="tile-large bg-LightGray fg-black" data-role="tile">
+        <span class="tile-group-title fg-black" style="margin-left: 120px;">Alarm</span>
+        <div class="tile-content">
+        </div>
       </div>
-                    <!-- end -->
-      
-        </div> <!-- End of tiles -->
+    </div>
+    <div class="tile-container">
+      <div class="tile-large bg-LightGray fg-black" data-role="tile">
+        <span class="tile-group-title fg-black" style="margin-left: 80px;">Historical Alarm</span>
+        <div class="tile-content">
+        </div>
+      </div>
     </div>
 </div>
