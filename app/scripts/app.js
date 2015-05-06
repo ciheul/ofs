@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var ofsApp = angular
+angular
   .module('ofsApp', [
     'ngAnimate',
     'ngCookies',

@@ -47,27 +47,83 @@
                     </md-content>
                 </div>
             </div> -->
-         <div class="tile-group double" style="float: right;">
+         <div class="tile-group double" style="float: right; margin-right: 50px;">
             <span class="tile-group-title">HISTORICAL ALARM</span>
-            
             <div class="tile-container">
+                <span style="margin-left: 20px;">START</span>
+                    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+                        <input type="text">
+                        <button class="button"><span class="mif-calendar"></span></button>
+                    </div><br>
+                <span style="margin-left: 20px;">END&nbsp;&nbsp;&nbsp;</span>
+                    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+                        <input type="text">
+                        <button class="button"><span class="mif-calendar"></span></button>
+                    </div> 
+                    <button class="button rounded primary" style="margin-left: 189px;">LOAD</button>  
+
                 <div class="tile-large bg-LightGray fg-black" data-role="tile">
-                    <span>START</span>
-                        <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-                            <input type="text">
-                            <button class="button"><span class="mif-calendar"></span></button>
-                        </div><br>
-                    <span>END&nbsp;&nbsp;&nbsp;</span>
-                        <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-                            <input type="text">
-                            <button class="button"><span class="mif-calendar"></span></button>
-                    </div>
+                    <table class="table hovered cell-hovered " style="font-size: 9px; width: 97%; width: 97%; margin-left: 5px;">
+                        <thead class="bg-green">
+                            <tr>
+                                <th style="width: 5px;">Date</th>
+                                <th style="width: 5px;">Time</th>
+                                <th style="width: 5px;">Equipment</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-yellow">
+                            <tr>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                            </tr>
+                            <tr>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                            </tr>
+                            <tr>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                            </tr>
+                            <tr>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                            </tr>
+                            <tr>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                            </tr>
+                            <tr>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                            </tr>
+                            <tr>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                                <td>Column</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
           <div class="tile-group double" style="float: right;">
-            <span class="tile-group-title">ALARM</span>
+            <span class="tile-group-title">ACTIVE ALARM</span>
             <div class="tile-container">
                 <div class="tile-large bg-LightGray" data-role="tile">
                     <div class="tile-content">
@@ -100,11 +156,11 @@
             <div class="tile-container" style="margin-left: -50px;">
                 <div ng-repeat="w in well.wells">
                     <div class = "tile-small bg-white" data-click="transform" data-role="tile">
-                        <svg href="#/srp-detail/" height="100" width="100">
+                        <!-- <svg href="#/srp-detail/" height="100" width="100">
                             <a href="#/srp-detail/">
                                 <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
                             </a>
-                        </svg>
+                        </svg> -->
                          <div class="tile-label fg-black">{{w.name}}</div>
                     </div>
                 </div>
