@@ -47,8 +47,67 @@
                     </md-content>
                 </div>
             </div> -->
-         <div class="tile-group double" style="float: right; margin-right: 50px;">
-            <span class="tile-group-title">HISTORICAL ALARM</span>
+        
+         
+
+        <div class= "tile-group double" ng-repeat="well in totalWells.OilWellGroupList" data-role="tile">
+            <span class="tile-group-title fg-black">
+                {{well.Name}} &nbsp;&nbsp;&nbsp;
+                <a href="#/srp-detail/" class = "fg-black" style = "font-size: 13px;">
+                    {{w.bopd}} bopd,
+                    {{well.brl}} brl
+                </a>
+            </span>
+            <div class="tile-container" style="margin-left: -50px;">
+                <div ng-repeat="w in well.OilWells">
+                    <a class = "tile-small bg-{{w.Status}}" href="#/srp-detail/{{w.UnitId}}" data-click="transform" data-role="tile">
+                        <!-- <svg href="#/srp-detail/" height="100" width="100">
+                            <a href="#/srp-detail/">
+                                <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
+                            </a>
+                        </svg> -->
+                        <div class="tile-content fg-lighterBlue">
+                            <span class="label bottom">{{w.Name}}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+         <div class="tile-group double fg-black">
+            <span class="tile-group-title fg-black">ACTIVE ALARM</span>
+            <div class="tile-container">
+                <div class="tile-large bg-grayLight" data-role="tile">
+                    <div class="tile-content">
+                       <div class="text-justify tile-content fg-black" style="right: 10px; padding: 3px; margin-bottom: 20px;">
+                            <md-content layout-padding style="height: 300px; padding: 8px;">
+                                <table class="table hovered cell-hovered " style="font-size: 9px; width: 97%; width: 97%; margin-left: 5px;">
+                                    <thead class="bg-green">
+                                        <tr>
+                                            <th style="width: 5px;">Date</th>
+                                            <th style="width: 5px;">Time</th>
+                                            <th style="width: 5px;">Equipment</th>
+                                            <th>Message</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-yellow" ng-repeat="act in totalEvents.ActiveAlarmList">
+                                        <tr>                
+                                            <td>{{act.Date}}</td>
+                                            <td>{{act.Time}}</td>
+                                            <td>{{act.Equipment}}</td>
+                                            <td>{{act.Message}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-content>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="tile-group double fg-black">
+            <span class="tile-group-title fg-black align-center">HISTORICAL ALARM</span>
             <div class="tile-container">
                 <span style="margin-left: 20px;">START</span>
                     <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
@@ -62,7 +121,8 @@
                     </div> 
                     <button class="button rounded primary" style="margin-left: 189px;">LOAD</button>  
 
-                <div class="tile-large bg-LightGray fg-black" data-role="tile">
+                <div class="tile-large bg-grayLight fg-black" data-role="tile">
+                <md-content layout-padding style="height: 300px; padding: 8px;">
                     <table class="table hovered cell-hovered " style="font-size: 9px; width: 97%; width: 97%; margin-left: 5px;">
                         <thead class="bg-green">
                             <tr>
@@ -72,100 +132,20 @@
                                 <th>Message</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-yellow">
+                        <tbody class="bg-yellow" ng-repeat="hst in totalEvents.HistoricalAlarmList">
                             <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
+                                <td>{{hst.Date}}</td>
+                                <td>{{hst.Time}}</td>
+                                <td>{{hst.Equipment}}</td>
+                                <td>{{hst.Message}}</td>
                             </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
-                            <tr>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                                <td>Column</td>
-                            </tr>
-
                         </tbody>
                     </table>
+                </md-content>
                 </div>
             </div>
         </div>
 
-          <div class="tile-group double" style="float: right;">
-            <span class="tile-group-title">ACTIVE ALARM</span>
-            <div class="tile-container">
-                <div class="tile-large bg-LightGray" data-role="tile">
-                    <div class="tile-content">
-                       <div class="text-justify tile-content fg-black" style="right: 10px; padding: 3px; margin-bottom: 20px;">
-                            <md-content layout-padding style="height: 300px; padding: 8px;">
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                                <p>{{totalEvent.message}}</p>
-                            </md-content>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class= "tile-group double" ng-repeat="well in totalWells" data-role="tile">
-            <span class="tile-group-title fg-white">
-                {{well.name}} &nbsp;&nbsp;&nbsp;
-                <a href="#/srp-detail/" class = "fg-white" style = "font-size: 13px;">
-                    {{well.bopd}} bopd,
-                    {{well.brl}} brl
-                </a>
-            </span>
-            <div class="tile-container" style="margin-left: -50px;">
-                <div ng-repeat="w in well.wells">
-                    <div class = "tile-small bg-white" data-click="transform" data-role="tile">
-                        <!-- <svg href="#/srp-detail/" height="100" width="100">
-                            <a href="#/srp-detail/">
-                                <circle cx="27.5" cy="27.5" r="{{ w.size }}" fill="{{w.status}}"/>
-                            </a>
-                        </svg> -->
-                         <div class="tile-label fg-black">{{w.name}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- </div> --> 
         <!-- End of tiles -->
@@ -194,13 +174,5 @@
     </div> -->
 
 
-    <!-- <div style="position: fixed; bottom: 0; left: 0px">
-        <h1 class="fg-darkRed" style="font-size: 45px;">{{result.red}}</h1>
-        <a class="fg-darkRed" ng-click="isRed = !isRed">RED</a>
-    </div>
-     <div>
-        <div ng-show="checked">
-            lorem ipsum
-        </div>
-    </div> -->
-   
+    
+    

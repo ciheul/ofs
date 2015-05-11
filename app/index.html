@@ -27,7 +27,7 @@
     <style>
         body{
           height: 110%;
-          width: 190%;
+          width: 180%;
         }
         .tile-group {
             left: 10px;
@@ -54,24 +54,30 @@
     </style>
 
     
-
   </head>
   <body>
-        <ul class="v-menu subdown " style="width: 200px; font-size: 12px; height: 500px; position: relative;">
-          <h1 class="tile-area-title">OFS</h1>
+        <ul class="v-menu subdown bg-grayLight fg-white" style="width: 200px; font-size: 12px; height: 100%; position: relative;">
+
+          <h1 class="tile-area-title fg-white">OFS</h1>
           <li class="menu-title">Oil Field Solution</li>
           <li>
-            <a href="#/well/" style="margin-left: -30px; font-size: 13px;">WELLS</a>
+            <a class="fg-white" href="#/" style="margin-left: -30px; font-size: 13px;">WELLS</a>
           </li>
           <li>
-            <a href="#/well/" class="dropdown-toggle" style="margin-left: -30px; font-size: 13px;">ELECTRICAL SUBSTATIONS</a>
+            <a class="fg-white" href="#/well/" class="dropdown-toggle" style="margin-left: -30px; font-size: 13px;">ELECTRICAL SUBSTATIONS</a>
               <ul class="d-menu" data-role="dropdown" style="font-size: 13px;">
                 <li>
-                  <a href="#/well/" style="margin-left: -25px; font-size: 13px;">ELECTRICAL SUBSTATIONS 1</a>
-                  <a href="#/well/" style="margin-left: -25px; font-size: 13px;">ELECTRICAL SUBSTATIONS 1</a>
+                  <a class="fg-white" href="#/well/" style="margin-left: -25px; font-size: 13px;">ELECTRICAL SUBSTATIONS 1</a>
+                  <a class="fg-white" href="#/well/" style="margin-left: -25px; font-size: 13px;">ELECTRICAL SUBSTATIONS 1</a>
                 </li>
               </ul>
           </li>
+          <div style="margin-top: 220px;">
+            <!-- <h1 class="fg-darkRed" style="font-size: 45px;">{{result.red}}</h1> -->
+            <h2 class="align-center fg-red">1 <br>
+              ALARM</h2>
+          </div>
+
           
           
          <!-- <li>
@@ -82,7 +88,7 @@
           </ul>
         </li> -->
       </ul>
-      <div class="tile-area tile-area-scheme-grayed no-padding fg-white">
+      <div class="tile-area tile-area-scheme bg-teal no-padding fg-black">
         <div ng-view></div> 
       
     

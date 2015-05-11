@@ -28,7 +28,7 @@ angular
         templateUrl: 'views/electrical-overview.html',
         controller: 'electricalCtrl'
       })
-      .when('/srp-detail', {
+      .when('/srp-detail/:UnitId', {
         templateUrl: 'views/srp-detail.html',
         controller: 'srpCtrl'
       })
@@ -38,9 +38,5 @@ angular
     $httpProvider
       .defaults
         .useXDomain = true;
-    $httpProvider
-      .defaults
-        .headers
-          .common['X-Requested-With']= 'XMLHttpRequest';
   }]);
 
