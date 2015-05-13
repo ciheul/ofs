@@ -105,13 +105,19 @@ $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*ht
       $scope.eventsHistoric = data;
     });
 
-  $scope.filterAlarm = function(){
+  $scope.filterAlarm = function(start, end){
     console.log('hello');
+    console.log(start);
+    console.log(end);
+
     console.log($scope.start);
     console.log($scope.end);
+
     console.log(this.start);
     console.log(this.end);
-    var params = {dtfrom: start, dtto: end};
+    start = start.replace(/\./g, '');
+    end = end.replace(/\./g, '');
+    var params = {dtfrom: start + '000000', dtto: end + '000000'};
     $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
     .success(function(data){
       console.log(data);
