@@ -16,22 +16,29 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ofsControllers'
+    'ofsControllers',
+    'srpControllers'
   ])
   .config(['$routeProvider','$httpProvider',function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/well-overview.html',
-          controller: 'ofsListCtrl'
+          controller: 'WellOverviewCtrl'
       })
       .when('/electrical', {
         templateUrl: 'views/electrical-overview.html',
         controller: 'electricalCtrl'
       })
-      .when('/srp-detail/:UnitId', {
+      .when('/api/srpdetail/:UnitId', {
         templateUrl: 'views/srp-detail.html',
         controller: 'srpCtrl'
       })
+
+      .when('/api/espdetail/:UnitId', {
+        templateUrl: 'views/esp-detail.html',
+        controller: 'espCtrl'
+      })
+     
         .otherwise({
           redirectTo: '/'
         });

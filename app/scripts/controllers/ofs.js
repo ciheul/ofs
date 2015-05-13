@@ -4,8 +4,8 @@ var ofsControllers = angular.module('ofsControllers', []);
 
 /*ofs-well*/
 
-ofsControllers.controller('ofsListCtrl', ['$scope', '$http', '$filter','$interval', 
-  function($scope, $http, $filter, $interval) {
+ofsControllers.controller('WellOverviewCtrl', ['$scope', '$http', '$interval', 
+  function($scope, $http, $interval) {
 
   /*$scope.result = { total : 0};*/
  
@@ -61,7 +61,6 @@ $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*ht
    $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
     .success(function(data) {
       $scope.totalWells = data;
-
     });
   }, 10000);
 
@@ -109,7 +108,7 @@ $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*ht
     console.log('hello');
     console.log(start);
     console.log(end);
-
+    
     console.log($scope.start);
     console.log($scope.end);
 
@@ -145,13 +144,4 @@ $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*ht
 /*end of ofs-well*/
 
 /*SRP-DETAIL*/
- ofsControllers.controller('srpCtrl', ['$scope', '$http', '$routeParams', 
-  function ($scope, $routeParams, $http){
-    console.log($routeParams.UnitId);
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/' + $routeParams.UnitId)
-      .success(function(data){
-        $scope.dataId = data;
-    });
-      
-  }]);
- 
+
