@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('srpCtrl', ['$scope', '$http', '$routeParams', 
+  .controller('SrpCtrl', ['$scope', '$http', '$routeParams', 
     function($scope, $http, $routeParams) {
       console.log($routeParams.UnitId);
       var param = {unitId: $routeParams.UnitId};

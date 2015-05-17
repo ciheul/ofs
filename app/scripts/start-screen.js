@@ -8,7 +8,7 @@
     plugin.init = function() {
       setTilesAreaSize();
       if (width > 640) {
-        addMouseWheel();
+          // addMouseWheel();
       }
     };
 
@@ -27,16 +27,16 @@
       });
     };
 
-    var addMouseWheel = function () {
-      $('body').mousewheel(function(event, delta) {
-        var page = $(document);
-        var scrollValue = delta * 10;
-        // console.log('page.scrollLeft(): ' + page.scrollLeft());
-        // console.log('scrollValue: ' + scrollValue);
-        page.scrollLeft(page.scrollLeft() - scrollValue);
-        return false;
-      });
-    };
+    // var addMouseWheel = function () {
+    //   $('body').mousewheel(function(event, delta) {
+    //     var page = $(document);
+    //     var scrollValue = delta * 10;
+    //     // console.log('page.scrollLeft(): ' + page.scrollLeft());
+    //     // console.log('scrollValue: ' + scrollValue);
+    //     page.scrollLeft(page.scrollLeft() - scrollValue);
+    //     return false;
+    //   });
+    // };
 
     plugin.init();
   };

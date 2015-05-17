@@ -21,19 +21,19 @@ angular
     $routeProvider
       .when('/well', {
         templateUrl: 'views/well-overview.html',
-        controller: 'WellOverviewCtrl'
+        controller: 'WellCtrl'
       })
-      .when('/electrical', {
+      .when('/substation', {
         templateUrl: 'views/electrical-overview.html',
-        controller: 'electricalCtrl'
+        controller: 'SubstationCtrl'
       })
       .when('/api/srpdetail/:UnitId', {
         templateUrl: 'views/srp-detail.html',
-        controller: 'srpCtrl'
+        controller: 'SrpCtrl'
       })
       .when('/api/espdetail/:UnitId', {
         templateUrl: 'views/esp-detail.html',
-        controller: 'espCtrl'
+        controller: 'EspCtrl'
       })
       .otherwise({
         redirectTo: '/'

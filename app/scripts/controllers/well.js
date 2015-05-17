@@ -3,7 +3,7 @@
 /* ofs-well */
 
 angular.module('ofsApp')
-  .controller('WellOverviewCtrl', ['$scope', '$http', '$interval', 
+  .controller('WellCtrl', ['$scope', '$http', '$interval', 
     function($scope, $http, $interval) {
 
       /* plants get data */

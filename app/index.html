@@ -49,18 +49,17 @@
   </head>
 
   <body>
-    <ul class="v-menu subdown bg-grayLight fg-white" style="width: 200px; font-size: 12px; height: 100%; position: relative;">
-      <h1 class="tile-area-title fg-white">OFS</h1>
-      <li class="menu-title">Oil Field Solution</li>
-      <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 13px;">WELLS</a></li>
-      <li><a class="fg-white" href="#/electrical/" class="dropdown-toggle" style="margin-left: -30px; font-size: 13px;">ELECTRICAL SUBSTATIONS</a></li>
+    <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; position: relative; background-color: #7d7d7d">
+      <h1 class="align-center tile-area-title fg-white">OFS</h1>
+      <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
+      <li><a class="fg-white" href="#/substation" class="dropdown-toggle" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
       <div style="margin-top: 220px;">
         <!-- <h1 class="fg-darkRed" style="font-size: 45px;">{{result.red}}</h1> -->
-        <h2 class="align-center fg-red">{{result.total}}<br>ALARM</h2>
+        <h2 class="align-center">{{result.total}}<br>ALARM</h2>
       </div>
     </ul>
 
-    <div class="tile-area tile-area-scheme bg-teal no-padding fg-black">
+    <div class="tile-area tile-area-scheme no-padding fg-black" style="background-color: #d2d2d2">
       <div ng-view></div> 
     </div>
 
@@ -98,10 +97,10 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/start-screen.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/ofs.js"></script>
-    <script src="scripts/controllers/srp.js"></script>
+    <script src="scripts/controllers/well.js"></script>
+    <script src="scripts/controllers/well-srp.js"></script>
+    <script src="scripts/controllers/well-esp.js"></script>
+    <script src="scripts/controllers/substation.js"></script>
     <!-- endbuild -->
          
   </body>
