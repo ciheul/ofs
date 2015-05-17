@@ -16,14 +16,12 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ofsControllers',
-    'srpControllers'
   ])
-  .config(['$routeProvider','$httpProvider',function ($routeProvider, $httpProvider) {
+  .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
-      .when('/', {
+      .when('/well', {
         templateUrl: 'views/well-overview.html',
-          controller: 'WellOverviewCtrl'
+        controller: 'WellOverviewCtrl'
       })
       .when('/electrical', {
         templateUrl: 'views/electrical-overview.html',
@@ -33,17 +31,14 @@ angular
         templateUrl: 'views/srp-detail.html',
         controller: 'srpCtrl'
       })
-
       .when('/api/espdetail/:UnitId', {
         templateUrl: 'views/esp-detail.html',
         controller: 'espCtrl'
       })
-     
-        .otherwise({
-          redirectTo: '/'
-        });
-    $httpProvider
-      .defaults
-        .useXDomain = true;
+      .otherwise({
+        redirectTo: '/'
+      });
+
+    $httpProvider.defaults.useXDomain = true;
   }]);
 

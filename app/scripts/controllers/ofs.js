@@ -1,15 +1,72 @@
-  'use strict';
+'use strict';
 
-var ofsControllers = angular.module('ofsControllers', []);
+/* ofs-well */
 
-/*ofs-well*/
+angular.module('ofsApp')
+  .controller('WellOverviewCtrl', ['$scope', '$http', '$interval', 
+    function($scope, $http, $interval) {
 
-ofsControllers.controller('WellOverviewCtrl', ['$scope', '$http', '$interval', 
-  function($scope, $http, $interval) {
+      /* plants get data */
+      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
+        .success(function(data) {
+          $scope.totalWells = data;
+        })
+        .error(function(data) {
+          console.log(data);
+        });
+
+      $interval(function() {
+       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
+        .success(function(data) {
+          $scope.totalWells = data;
+        });
+      }, 10000);
+
+      /* interval Active Alarm */
+      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+        .success(function(data){
+          $scope.eventsAlarm = data;
+        });
+
+      $interval(function() {
+        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+        .success(function(data) {
+          $scope.eventsAlarm = data;
+        });
+      }, 10000);
+
+       /* interval Historical Alarm */
+      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
+        .success(function(data) {
+          $scope.eventsHistoric = data;
+        });
+
+      $scope.filterAlarm = function(start, end) {
+        console.log('hello');
+        console.log(start);
+        console.log(end);
+        
+        console.log($scope.start);
+        console.log($scope.end);
+
+        console.log(this.start);
+        console.log(this.end);
+        start = start.replace(/\./g, '');
+        end = end.replace(/\./g, '');
+        var params = {dtfrom: start + '000000', dtto: end + '000000'};
+        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
+        .success(function(data){
+          console.log(data);
+          $scope.eventsHistoric = data;
+        });
+      };
+
+      this.enLongPolling = function() {
+        $interval.cancel(this.interval);
+      };
 
   /*$scope.result = { total : 0};*/
  
-
   /*$scope.count = function(totalWells) {
     console.log('debug');
     console.log(totalWells);
@@ -50,19 +107,6 @@ ofsControllers.controller('WellOverviewCtrl', ['$scope', '$http', '$interval',
   }*/
 
 
-/*plants get data*/
-$http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
-  .success(function(data) {
-    $scope.totalWells = data;
-  }).error(function(data){
-    console.log(data);
-  });
-  $interval(function(){
-   $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
-    .success(function(data) {
-      $scope.totalWells = data;
-    });
-  }, 10000);
 
   /*$scope.count = function(totalWells){
     for (var i = 0; i < totalWells.length; i++) {
@@ -86,43 +130,6 @@ $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*ht
 
 
    
-  /*interval Historical Alarm*/
-  $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-    .success(function(data){
-      $scope.eventsAlarm = data;
-    });
-  $interval(function(){
-    $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-    .success(function(data){
-      $scope.eventsAlarm = data;
-    });
-  }, 10000);
-
-   /*interval Historical Alarm*/
-  $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
-    .success(function(data){
-      $scope.eventsHistoric = data;
-    });
-
-  $scope.filterAlarm = function(start, end){
-    console.log('hello');
-    console.log(start);
-    console.log(end);
-    
-    console.log($scope.start);
-    console.log($scope.end);
-
-    console.log(this.start);
-    console.log(this.end);
-    start = start.replace(/\./g, '');
-    end = end.replace(/\./g, '');
-    var params = {dtfrom: start + '000000', dtto: end + '000000'};
-    $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
-    .success(function(data){
-      console.log(data);
-      $scope.eventsHistoric = data;
-    });
-  };
 
   /*$interval(function(){
     var params = {dtfrom:'20150501000000', dtto:'20150512000000'};
@@ -133,9 +140,6 @@ $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*ht
     });
   }, 1000);*/
 
-  this.enLongPolling = function(){
-    $interval.cancel(this.interval);
-  };
   }]);
 
  
