@@ -1,9 +1,9 @@
 <h2 style="padding-left: 20px;">Well Overview</h2>
 
-<div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 20px;">
+<div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   <div class="tile-container" style="margin-left: -50px;">
     <div ng-repeat="well in group">
-      <div class="label"><strong>{{well.Name}}</strong></div>
+      <div class="label">{{well.Name}}</div>
       <div ng-repeat="w in well.OilWells">
         <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
           <div class="tile-content fg-black">
@@ -11,7 +11,7 @@
           </div>
         </a>
       </div>
-      <div class="label" style="margin-bottom: 18px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
+      <div class="label" style="margin-bottom: 15px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
     </div>
   </div>
 </div>
@@ -19,7 +19,7 @@
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
-    <table class="table striped hovered cell-hovered border bordered" style="width: 700px;">
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
       <thead>
         <tr>
           <th style="width: 110px;">Date</th>
@@ -61,7 +61,7 @@
 
     <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
 
-    <table class="table striped hovered cell-hovered border bordered" style="width: 700px;">
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
       <thead>
         <tr>
           <th style="width: 110px;">Date</th>

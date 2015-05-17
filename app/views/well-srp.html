@@ -1,0 +1,195 @@
+<h2 style="padding-left: 20px;">SRP-{{UnitId}}</h2>
+
+<div class="tile-group triple">
+  <div class="tile-container">
+    <div class="tile-big bg-grayLight fg-white" data-role="tile">
+      <div class="tile-content">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tile-group double">
+  <span class="tile-group-title fg-black">FR601-SRP Monitoring Report</span>
+    <div class="tile-container">
+      <table class="table hovered fg-black table-report-simple">
+        <tbody>
+          <tr>
+            <td style="width: 90px;">Motor Status</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_ContactorStatus}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>SPM</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.SPM}}</td>
+            <td>%</td>
+          </tr>
+          <tr>
+            <td>PPRL</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PPRL}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>PumpFillage</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PumpFillage}}</td>
+            <td>kg/m2</td>
+          </tr>
+          <tr>
+            <td>Cycle Counter</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.CycleCounter}}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>inferred Prod</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_EstProdRateBPH}}</td>
+            <td>bph</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+
+<div class="tile-group double">
+  <span class="tile-group-title fg-black">FR602-SRP PM Report</span>
+    <div class="tile-container">   
+        <table class="table hovered fg-black table-report">
+          <tbody>
+            <tr>
+              <td style="width: 120px;">Motor Status</td>
+              <td style="width: 90px;"><input type="text" value="{{dataId.PMStatus}}" class="input-report" readonly></td>
+            </tr>
+            <tr>
+              <td>Voltage Average</td>
+              <td><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Max</td>
+              <td><input type="text" value="{{dataId.VoltageMax}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Min</td>
+              <td><input type="text" value="{{dataId.VoltageMin}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Unbalan.</td>
+              <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Current Average</td>
+              <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Current Min</td>
+              <td><input type="text" value="{{dataId.CurrentMin}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+             <tr>
+              <td>Current Max</td>
+              <td><input type="text" value="{{dataId.CurrentMax}}" class="input-report" readonly></td>
+              <td>A</td>    
+            </tr>
+            <tr>
+              <td>Current Unbalan.</td>
+              <td><input type="text" value="{{dataId.CurrentUnbalance}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Power Average</td>
+              <td><input type="text" value="{{dataId.PowerAverage}}" class="input-report" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Power Max</td>
+              <td><input type="text" value="{{dataId.PowerMax}}" class="input-report" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Power Min</td>
+              <td><input type="text" value="{{dataId.PowerMin}}" class="input-report" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Stroke Energy</td>
+              <td><input type="text" value="{{dataId.StrokeEnergyWH}}" class="input-report" readonly></td>
+              <td>kWh</td>
+            </tr>
+            <tr>
+              <td>Inferred Prod.</td>
+              <td><input type="text" value="{{dataId.FR602_EstProdRateBPH}}" class="input-report" readonly></td>
+              <td>bph</td>
+            </tr>
+          </tbody>
+        </table>  
+    </div>
+</div>
+
+<div class="tile-group">
+  <span class="tile-group-title fg-black">ACTIVE ALARM</span>
+  <div class="tile-container">
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Date</th>
+          <th style="width: 110px;">Time</th>
+          <th style="width: 160px;">Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="act in eventsAlarm">
+        <tr>
+          <td>{{act.Date}}</td>
+          <td>{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tile-group">
+  <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
+  <div class="tile-container">
+    <span style="padding-left: 30px;">START</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="start" />
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div>
+
+    <span style="padding-left: 30px;">END</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="end">
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div> 
+
+    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
+
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Date</th>
+          <th style="width: 110px;">Time</th>
+          <th style="width: 160px;">Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="hst in eventsHistoric">
+        <tr>
+          <td>{{hst.Date}}</td>
+          <td>{{hst.Time}}</td>
+          <td>{{hst.Equipment}}</td>
+          <td>{{hst.Message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

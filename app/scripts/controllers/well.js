@@ -3,15 +3,25 @@
 /* ofs-well */
 
 angular.module('ofsApp')
-  .controller('WellCtrl', ['$scope', '$http', '$interval', 
-    function($scope, $http, $interval) {
+  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 
+    function($scope, $rootScope, $http, $interval) {
 
       const TILE_COL = 4;
       const PLANT_PER_GROUP = 3;
 
+      $scope.groups = [];
+
       /* plants get data */
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
+      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')
         .success(function(data) {
+          // handle escape character for url routing
+          data.map(function(i) {
+            i.OilWells.map(function(j) {
+              j.UnitId = encodeURI(j.UnitId);
+            }); 
+          });
+
+          // add wells if the number of OilWells can not be divided by 4
           data.map(function(i) {
             var mod = i.OilWells.length % TILE_COL;
             if (mod !== 0) {
@@ -22,9 +32,9 @@ angular.module('ofsApp')
             }
           });
 
-          $scope.groups = [];
+          // alter data structure such that can be rendered nicely
+          // in HTML. now it has 3 loops
           var group = [];
-
           for (var i = 0; i < data.length; i++) {
             group.push(data[i]);
             if (group.length === PLANT_PER_GROUP) {
@@ -38,12 +48,12 @@ angular.module('ofsApp')
           console.log(data);
         });
 
-      $interval(function() {
-       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
-        .success(function(data) {
-          $scope.totalWells = data;
-        });
-      }, 10000);
+      $scope.pollWells = $interval(function() {
+        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')
+          .success(function(data) {
+            $scope.totalWells = data;
+          });
+        }, 10000);
 
       /* interval Active Alarm */
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
@@ -51,7 +61,7 @@ angular.module('ofsApp')
           $scope.eventsAlarm = data;
         });
 
-      $interval(function() {
+      $scope.pollActiveAlarms = $interval(function() {
         $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
@@ -65,15 +75,6 @@ angular.module('ofsApp')
         });
 
       $scope.filterAlarm = function(start, end) {
-        console.log('hello');
-        console.log(start);
-        console.log(end);
-        
-        console.log($scope.start);
-        console.log($scope.end);
-
-        console.log(this.start);
-        console.log(this.end);
         start = start.replace(/\./g, '');
         end = end.replace(/\./g, '');
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
@@ -84,9 +85,11 @@ angular.module('ofsApp')
         });
       };
 
-      this.enLongPolling = function() {
-        $interval.cancel(this.interval);
-      };
+      // when routes changes, cancel all interval operations
+      $rootScope.$on('$locationChangeSuccess', function() {
+        $interval.cancel($scope.pollWells);
+        $interval.cancel($scope.pollActiveAlarms);
+      });
 
   /*$scope.result = { total : 0};*/
  
@@ -141,34 +144,4 @@ angular.module('ofsApp')
     }
   };*/
 
- /* $scope.total = function() {
-    var count = 0;
-    angular.forEach($scope.totalWells, function(){
-      angular.forEach($scope.totalWells.OilWells.AlarmCount, function(totalWells){
-        count += totalWells.isSelected ? 1 : 0;
-    });
-    });
-    return count; 
-};*/
-
-
-   
-
-  /*$interval(function(){
-    var params = {dtfrom:'20150501000000', dtto:'20150512000000'};
-    $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
-    .success(function(data){
-      console.log(data);
-      $scope.eventsHistoric = data;
-    });
-  }, 1000);*/
-
   }]);
-
- 
-  
-  
-/*end of ofs-well*/
-
-/*SRP-DETAIL*/
-

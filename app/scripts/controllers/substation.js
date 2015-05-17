@@ -3,8 +3,8 @@
 /* ofs-well */
 
 angular.module('ofsApp')
-  .controller('SubstationCtrl', ['$scope', '$http', '$interval', 
-    function($scope, $http, $interval) {
+  .controller('SubstationCtrl', ['$scope', '$rootScope', '$http', '$interval', 
+    function($scope, $rootScope, $http, $interval) {
 
       /* plants get data */
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
@@ -15,7 +15,7 @@ angular.module('ofsApp')
           console.log(data);
         });
 
-      $interval(function() {
+      $scope.pollSubstations = $interval(function() {
        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.totalWells = data;
@@ -28,7 +28,7 @@ angular.module('ofsApp')
           $scope.eventsAlarm = data;
         });
 
-      $interval(function() {
+      $scope.pollActiveAlarms = $interval(function() {
         $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
@@ -61,9 +61,11 @@ angular.module('ofsApp')
         });
       };
 
-      this.enLongPolling = function() {
-        $interval.cancel(this.interval);
-      };
+      // when routes changes, cancel all interval operations
+      $rootScope.$on('$locationChangeSuccess', function() {
+        $interval.cancel($scope.pollSubstations);
+        $interval.cancel($scope.pollActiveAlarms);
+      });
 
   /*$scope.result = { total : 0};*/
  

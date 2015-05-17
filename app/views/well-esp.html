@@ -1,0 +1,181 @@
+<h2 style="padding-left: 20px;">ESP-{{UnitId}}</h2>
+
+<div class="tile-group triple">
+  <div class="tile-container">
+    <div class="tile-big bg-grayLight fg-white" data-role="tile">
+      <div class="tile-content">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tile-group double">
+  <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
+    <div class="tile-container">   
+        <table class="table hovered fg-black table-report">
+          <tbody>
+            <tr>
+              <td style="width: 120px;">Contactor Status</td>
+              <td style="width: 90px;"><input type="text" value="{{dataId.ContactorStatus}}" class="input-report" readonly></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>VFD Status</td>
+              <td><input type="text" value="{{dataId.VSDStatus}}" class="input-report" readonly></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>VFD Frequency</td>
+              <td><input type="text" value="{{dataId.VSDFrequency}}" class="input-report" readonly></td>
+              <td>Hz</td>
+            </tr>
+            <tr>
+              <td>Output Power</td>
+              <td><input type="text" value="{{dataId.OutputPower}}" class="input-report" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Voltage Average</td>
+              <td><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage R</td>
+              <td><input type="text" value="{{dataId.VoltageR}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage S</td>
+              <td><input type="text" value="{{dataId.VoltageS}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage T</td>
+              <td><input type="text" value="{{dataId.VoltageT}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Unbalan.</td>
+              <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Current Average</td>
+              <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Current R</td>
+              <td><input type="text" value="{{dataId.CurrentR}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+             <tr>
+              <td>Current S</td>
+              <td><input type="text" value="{{dataId.CurrentS}}" class="input-report" readonly></td>
+              <td>A</td>    
+            </tr>
+             <tr>
+              <td>Current T</td>
+              <td><input type="text" value="{{dataId.CurrentT}}" class="input-report" readonly></td>
+              <td>A</td>    
+            </tr>
+            <tr>
+              <td>Current Unbalan.</td>
+              <td><input type="text" value="{{dataId.CurrentUnbalance}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Pump In Press.</td>
+              <td><input type="text" value="{{dataId.PumpIntakePressureBar}}" class="input-report" readonly></td>
+              <td>bar</td>
+            </tr>
+            <tr>
+              <td>Est. Liquid Level</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>m</td>
+            </tr>
+            <tr>
+              <td>Casing head Press.</td>
+              <td><input type="text" value="{{dataId.CasingHeadPressureBar}}" class="input-report" readonly></td>
+              <td>bar</td>
+            </tr>
+            <tr>
+              <td>Tubing head Press.</td>
+              <td><input type="text" value="{{dataId.TubingHeadPressureBar}}" class="input-report" readonly></td>
+              <td>bar</td>
+            </tr>
+            <tr>
+              <td>Inferred Prod.</td>
+              <td><input type="text" value="{{dataId.EstProdRateBPH}}" class="input-report" readonly></td>
+              <td>bph</td>
+            </tr>
+          </tbody>
+        </table>  
+    </div>
+</div>
+
+<div class="tile-group">
+  <span class="tile-group-title fg-black">ACTIVE ALARM</span>
+  <div class="tile-container">
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Date</th>
+          <th style="width: 110px;">Time</th>
+          <th style="width: 160px;">Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="act in eventsAlarm">
+        <tr>
+          <td>{{act.Date}}</td>
+          <td>{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tile-group">
+  <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
+  <div class="tile-container">
+    <span style="padding-left: 30px;">START</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="start" />
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div>
+
+    <span style="padding-left: 30px;">END</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="end">
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div> 
+
+    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
+
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Date</th>
+          <th style="width: 110px;">Time</th>
+          <th style="width: 160px;">Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="hst in eventsHistoric">
+        <tr>
+          <td>{{hst.Date}}</td>
+          <td>{{hst.Time}}</td>
+          <td>{{hst.Equipment}}</td>
+          <td>{{hst.Message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

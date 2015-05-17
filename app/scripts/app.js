@@ -24,15 +24,15 @@ angular
         controller: 'WellCtrl'
       })
       .when('/substation', {
-        templateUrl: 'views/electrical-overview.html',
+        templateUrl: 'views/substation-overview.html',
         controller: 'SubstationCtrl'
       })
       .when('/api/srpdetail/:UnitId', {
-        templateUrl: 'views/srp-detail.html',
+        templateUrl: 'views/well-srp.html',
         controller: 'SrpCtrl'
       })
       .when('/api/espdetail/:UnitId', {
-        templateUrl: 'views/esp-detail.html',
+        templateUrl: 'views/well-esp.html',
         controller: 'EspCtrl'
       })
       .otherwise({
