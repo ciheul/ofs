@@ -16,11 +16,12 @@
     <!-- build:css(.tmp) styles/main.css -->
     <!--  <link rel="stylesheet" href="styles/main.css"> -->
     <!-- endbuild -->
+     <link rel="stylesheet" href="styles/ofs.css">
     
     <style>
       body {
-        height: 110%;
-        width: 180%;
+        height: 100%;
+        width: 190%;
       }
 
       .tile-group {
@@ -55,24 +56,13 @@
       <li><a class="fg-white" href="#/substation" class="dropdown-toggle" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
       <div style="margin-top: 220px;">
         <!-- <h1 class="fg-darkRed" style="font-size: 45px;">{{result.red}}</h1> -->
-        <h2 class="align-center">{{result.total}}<br>ALARM</h2>
+        <!-- <h2 class="align&#45;center">{{result.total}}<br>ALARM</h2> -->
       </div>
     </ul>
 
     <div class="tile-area tile-area-scheme no-padding fg-black" style="background-color: #d2d2d2">
       <div ng-view></div> 
     </div>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->

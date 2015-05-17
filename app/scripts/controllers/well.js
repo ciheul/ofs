@@ -6,10 +6,33 @@ angular.module('ofsApp')
   .controller('WellCtrl', ['$scope', '$http', '$interval', 
     function($scope, $http, $interval) {
 
+      const TILE_COL = 4;
+      const PLANT_PER_GROUP = 3;
+
       /* plants get data */
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
         .success(function(data) {
-          $scope.totalWells = data;
+          data.map(function(i) {
+            var mod = i.OilWells.length % TILE_COL;
+            if (mod !== 0) {
+              var remainings = TILE_COL - mod;
+              for (var j = 0; j < remainings; j++) {
+                i.OilWells.push({Status: '#d1d1d1'});
+              }
+            }
+          });
+
+          $scope.groups = [];
+          var group = [];
+
+          for (var i = 0; i < data.length; i++) {
+            group.push(data[i]);
+            if (group.length === PLANT_PER_GROUP) {
+              $scope.groups.push(group);
+              group = [];
+            }
+          }
+          $scope.groups.push(group);
         })
         .error(function(data) {
           console.log(data);
