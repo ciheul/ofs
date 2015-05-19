@@ -35,6 +35,14 @@ angular
         templateUrl: 'views/well-esp.html',
         controller: 'EspCtrl'
       })
+      .when('/st-detail', {
+        templateUrl: 'views/unit-view-substation.html',
+        controller: 'SubstationCtrl'
+      })
+      .when('/equipment', {
+        templateUrl: 'views/equ-view.html',
+        controller: 'SubstationCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

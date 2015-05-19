@@ -141,6 +141,7 @@ angular.module('ofsApp')
       $scope.eventsHistoric = data;
     });
   }, 1000);*/
+ 
 
   }]);
 
