@@ -3,7 +3,7 @@
 <div class="tile-group triple">
   <div class="tile-container">
     <div class="tile-big bg-grayLight fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
-      
+
       <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 20px; margin-top: 10px; width: 50px; height: 50px; font-size: 10px;" >
           <thead>
           <tr>
@@ -12,19 +12,19 @@
         </thead>
         <tbody>
             <td>Status</td>
-            <td>a</td>
+            <td colspan="2"><input type="text" value="{{dataId.FR601_ContactorStatus}}" style="width: 100px;"></td>
           </tr>
           <tr>
             <td>Voltage(V)</td>
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
+            <td>{{dataId.VoltageAverage}}</td>
+            <td>{{dataId.VoltageMax}}</td>
+            <td>{{dataId.VoltageMin}}</td>
           </tr>
           <tr>
             <td>Current(A)</td>
-            <td>a</td>
-            <td>a</td>
-            <td>a</td>
+            <td>{{dataId.CurrentAverage}}</td>
+            <td>{{dataId.CurrentMax}}</td>
+            <td>{{dataId.CurrentMin}}</td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td>Cycle CTR</td>
-            <td colspan="2">a</td>
+            <td colspan="2">{{dataId.CycleCounter}}</td>
           </tr>
         </tbody>
       </table>
@@ -85,7 +85,7 @@
           <tr>
             <td style="width: 90px;">Motor Status</td>
             <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_ContactorStatus}}</td>
-            <td></td>
+            <td>A</td>
           </tr>
           <tr>
             <td>SPM</td>
@@ -95,7 +95,12 @@
           <tr>
             <td>PPRL</td>
             <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PPRL}}</td>
-            <td></td>
+            <td>kg/m2</td>
+          </tr>
+          <tr>
+            <td>MPRL</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.MPRL}}</td>
+            <td>kg/m2</td>
           </tr>
           <tr>
             <td>PumpFillage</td>

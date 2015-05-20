@@ -12,11 +12,11 @@
         <tbody>
           <tr>
             <td colspan="2">Casing Pressure(br)</td>
-            <td>a</td>
+            <td>{{dataId.CasingHeadPressureBar}}</td>
           </tr>
           <tr>
             <td colspan="2">Tubing Pressure(br)</td>
-            <td>a</td>
+            <td>{{dataId.TubingHeadPressureBar}}</td>
           </tr>
         </tbody>
       </table>
@@ -39,7 +39,7 @@
         </tbody>
       </table>
 
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 240px; margin-top: -5px; width: 50px; height: 0px; font-size: 10px;" >
+      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 220px; margin-top: -5px; width: 50px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
             <th colspan="1">VOLTAGE(V)</th>
@@ -48,28 +48,28 @@
         <tbody>
           <tr>
             <td>AVG</td>
-            <td>a</td>
+            <td>{{dataId.VoltageAverage}}</td>
           </tr>
           <tr>
             <td>R</td>
-            <td>a</td>
+            <td>{{dataId.VoltageR}}</td>
           </tr>
           <tr>
             <td>S</td>
-            <td>a</td>
+            <td>{{dataId.VoltageS}}</td>
           </tr>
           <tr>
             <td>T</td>
-            <td>a</td>
+            <td>{{dataId.VoltageT}}</td>
           </tr>
           <tr>
             <td>UB</td>
-            <td>a</td>
+            <td>{{dataId.VoltageUnbalance}}</td>
           </tr>
         </tbody>
       </table>
 
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 340px; margin-top: -212px; width: 50px; height: 0px; font-size: 10px;" >
+      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 328px; margin-top: -212px; width: 50px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
             <th colspan="1">CURRENT(A)</th>
@@ -78,23 +78,23 @@
         <tbody>
           <tr>
             <td>AVG</td>
-            <td>a</td>
+            <td>{{dataId.CurrentAverage}}</td>
           </tr>
           <tr>
             <td>R</td>
-            <td>a</td>
+            <td>{{dataId.CurrentR}}</td>
           </tr>
           <tr>
             <td>S</td>
-            <td>a</td>
+            <td>{{dataId.CurrentS}}</td>
           </tr>
           <tr>
             <td>T</td>
-            <td>a</td>
+            <td>{{dataId.CurrentT}}</td>
           </tr>
           <tr>
             <td>UB</td>
-            <td>a</td>
+            <td>{{dataId.CurrentUnbalance}}</td>
           </tr>
         </tbody>
       </table>
@@ -108,11 +108,11 @@
         <tbody>
           <tr>
             <td>Frequency(Hz)</td>
-            <td>a</td>
+            <td>{{dataId.VSDFrequency}}</td>
           </tr>
           <tr>
             <td>Power(kW)</td>
-            <td>a</td>
+            <td>{{dataId.OutputPower}}</td>
           </tr>
         </tbody>
       </table>
@@ -126,7 +126,7 @@
         <tbody>
           <tr>
             <td>Intake Pressure(bar)</td>
-            <td>a</td>
+            <td>{{dataId.PumpIntakePressureBar}}</td></td>
           </tr>
           <tr>
             <td>Est. Liquid Level(m)</td>
@@ -163,103 +163,103 @@
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
     <div class="tile-container">
-      <span style="margin-left: 30px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>   
+      <span style="margin-left: 30px; width: 120px; font-size: 10px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>   
         <table class="table hovered fg-black table-report">
           <tbody>
             <tr>
-              <td style="width: 120px;">Contactor Status</td>
-              <td style="width: 90px;"><input type="text" value="{{dataId.ContactorStatus}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">Contactor Status</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.ContactorStatus}}" class="input-report" readonly></td>
               <td></td>
             </tr>
             <tr>
-              <td>VFD Status</td>
-              <td><input type="text" value="{{dataId.VSDStatus}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">VFD Status</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.VSDStatus}}" class="input-report" readonly></td>
               <td></td>
             </tr>
             <tr>
-              <td>VFD Frequency</td>
-              <td><input type="text" value="{{dataId.VSDFrequency}}" class="input-report" readonly></td>
-              <td>Hz</td>
+              <td style="width: 120px; font-size: 10px;">VFD Frequency</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.VSDFrequency}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">Hz</td>
             </tr>
             <tr>
-              <td>Output Power</td>
-              <td><input type="text" value="{{dataId.OutputPower}}" class="input-report" readonly></td>
-              <td>kW</td>
+              <td style="width: 120px; font-size: 10px;">Output Power</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.OutputPower}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">kW</td>
             </tr>
             <tr>
-              <td>Voltage Average</td>
-              <td><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
-              <td>V</td>
+              <td style="width: 120px; font-size: 10px;">Voltage Average</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">V</td>
             </tr>
             <tr>
-              <td>Voltage R</td>
-              <td><input type="text" value="{{dataId.VoltageR}}" class="input-report" readonly></td>
-              <td>V</td>
+              <td style="width: 120px; font-size: 10px;">Voltage R</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.VoltageR}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">V</td>
             </tr>
             <tr>
-              <td>Voltage S</td>
-              <td><input type="text" value="{{dataId.VoltageS}}" class="input-report" readonly></td>
-              <td>V</td>
+              <td style="width: 120px; font-size: 10px;">Voltage S</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.VoltageS}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">V</td>
             </tr>
             <tr>
-              <td>Voltage T</td>
-              <td><input type="text" value="{{dataId.VoltageT}}" class="input-report" readonly></td>
-              <td>V</td>
+              <td style="width: 120px; font-size: 10px;">Voltage T</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.VoltageT}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">V</td>
             </tr>
             <tr>
-              <td>Voltage Unbalan.</td>
-              <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
-              <td>%</td>
+              <td style="width: 120px; font-size: 10px;">Voltage Unbalan.</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">%</td>
             </tr>
             <tr>
-              <td>Current Average</td>
-              <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
-              <td>A</td>
+              <td style="width: 120px; font-size: 10px;">Current Average</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">A</td>
             </tr>
             <tr>
-              <td>Current R</td>
-              <td><input type="text" value="{{dataId.CurrentR}}" class="input-report" readonly></td>
-              <td>A</td>
+              <td style="width: 120px; font-size: 10px;">Current R</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.CurrentR}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">A</td>
             </tr>
              <tr>
-              <td>Current S</td>
-              <td><input type="text" value="{{dataId.CurrentS}}" class="input-report" readonly></td>
-              <td>A</td>    
+              <td style="width: 120px; font-size: 10px;">Current S</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.CurrentS}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">A</td>    
             </tr>
              <tr>
-              <td>Current T</td>
-              <td><input type="text" value="{{dataId.CurrentT}}" class="input-report" readonly></td>
-              <td>A</td>    
+              <td style="width: 120px; font-size: 10px;">Current T</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.CurrentT}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">A</td>    
             </tr>
             <tr>
-              <td>Current Unbalan.</td>
-              <td><input type="text" value="{{dataId.CurrentUnbalance}}" class="input-report" readonly></td>
-              <td>%</td>
+              <td style="width: 120px; font-size: 10px;">Current Unbalan.</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.CurrentUnbalance}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">%</td>
             </tr>
             <tr>
-              <td>Pump In Press.</td>
-              <td><input type="text" value="{{dataId.PumpIntakePressureBar}}" class="input-report" readonly></td>
-              <td>bar</td>
+              <td style="width: 120px; font-size: 10px;">Pump In Press.</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.PumpIntakePressureBar}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">bar</td>
             </tr>
             <tr>
-              <td>Est. Liquid Level</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
-              <td>m</td>
+              <td style="width: 120px; font-size: 10px;">Est. Liquid Level</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">m</td>
             </tr>
             <tr>
-              <td>Casing head Press.</td>
-              <td><input type="text" value="{{dataId.CasingHeadPressureBar}}" class="input-report" readonly></td>
-              <td>bar</td>
+              <td style="width: 120px; font-size: 10px;">Casing head Press.</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.CasingHeadPressureBar}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">bar</td>
             </tr>
             <tr>
-              <td>Tubing head Press.</td>
-              <td><input type="text" value="{{dataId.TubingHeadPressureBar}}" class="input-report" readonly></td>
-              <td>bar</td>
+              <td style="width: 120px; font-size: 10px;">Tubing head Press.</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.TubingHeadPressureBar}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">bar</td>
             </tr>
             <tr>
-              <td>Inferred Prod.</td>
-              <td><input type="text" value="{{dataId.EstProdRateBPH}}" class="input-report" readonly></td>
-              <td>bph</td>
+              <td style="width: 120px; font-size: 10px;">Inferred Prod.</td>
+              <td style="width: 120px; font-size: 10px;"><input type="text" value="{{dataId.EstProdRateBPH}}" class="input-report" readonly></td>
+              <td style="width: 120px; font-size: 10px;">bph</td>
             </tr>
           </tbody>
         </table>  
