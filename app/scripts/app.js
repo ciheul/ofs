@@ -36,11 +36,11 @@ angular
         controller: 'EspCtrl'
       })
       .when('/st-detail', {
-        templateUrl: 'views/unit-view-substation.html',
+        templateUrl: 'views/substation-unit-view.html',
         controller: 'SubstationCtrl'
       })
       .when('/equipment', {
-        templateUrl: 'views/equ-view.html',
+        templateUrl: 'views/substation-equ-view.html',
         controller: 'SubstationCtrl'
       })
       .otherwise({

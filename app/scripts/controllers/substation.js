@@ -7,36 +7,36 @@ angular.module('ofsApp')
     function($scope, $rootScope, $http, $interval) {
 
       /* plants get data */
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
+      $http.get('')/*http://localhost:3000/api/wells*/
         .success(function(data) {
-          $scope.totalWells = data;
+          $scope.plants = data;
         })
         .error(function(data) {
           console.log(data);
         });
 
       $scope.pollSubstations = $interval(function() {
-       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')/*http://localhost:3000/api/wells*/
+       $http.get('')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.totalWells = data;
         });
       }, 10000);
 
       /* interval Active Alarm */
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+      $http.get('')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
 
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+        $http.get('')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
       }, 10000);
 
        /* interval Historical Alarm */
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
+      $http.get('')
         .success(function(data) {
           $scope.eventsHistoric = data;
         });
@@ -54,7 +54,7 @@ angular.module('ofsApp')
         start = start.replace(/\./g, '');
         end = end.replace(/\./g, '');
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
-        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
+        $http.get('', {params: params})
         .success(function(data){
           console.log(data);
           $scope.eventsHistoric = data;
