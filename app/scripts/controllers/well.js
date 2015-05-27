@@ -80,7 +80,6 @@ angular.module('ofsApp')
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
         $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
         .success(function(data){
-          console.log(data);
           $scope.eventsHistoric = data;
         });
       };
