@@ -1,0 +1,166 @@
+<h2 style="padding-left: 20px;">PM-{{}}</h2>
+
+<div class="tile-group double">
+  <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
+    <div class="tile-container">   
+        <table class="table hovered fg-black table-report">
+          <tbody>
+            <tr>
+              <td style="width: 120px;">Voltage Average</td>
+              <td style="width: 90px;"><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Voltage R</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage S</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage T</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Unbalan.</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+              <td>Current Average</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Current R</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+             <tr>
+              <td>Current S</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>A</td>    
+            </tr>
+             <tr>
+              <td>Current T</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>A</td>    
+            </tr>
+            <tr>
+              <td>Current Unbalan.</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Power Apparent</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>kVA</td>
+            </tr>
+            <tr>
+              <td>Power Reactive</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>kVA</td>
+            </tr>
+            <tr>
+              <td>Power Real</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>KW</td>
+            </tr>
+            <tr>
+              <td>THD Average</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>THD R</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>THD S</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>THD T</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Energy Totalizer</td>
+              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td>bph</td>
+            </tr>
+          </tbody>
+        </table>  
+    </div>
+</div>
+
+<div class="tile-group">
+  <span class="tile-group-title fg-black">ACTIVE ALARM</span>
+  <div class="tile-container">
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Date</th>
+          <th style="width: 110px;">Time</th>
+          <th style="width: 160px;">Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{}}</td>
+          <td>{{}}</td>
+          <td>{{}}</td>
+          <td>{{}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tile-group">
+  <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
+  <div class="tile-container">
+    <span style="padding-left: 30px;">START</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="start" />
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div>
+
+    <span style="padding-left: 30px;">END</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="end">
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div> 
+
+    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
+
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Date</th>
+          <th style="width: 110px;">Time</th>
+          <th style="width: 160px;">Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{}}</td>
+          <td>{{}}</td>
+          <td>{{}}</td>
+          <td>{{}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

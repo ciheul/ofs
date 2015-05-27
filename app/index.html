@@ -20,7 +20,7 @@
     
     <style>
       body {
-        height: 100%;
+        height: 118%;
         width: 300%;
       }
 
@@ -53,10 +53,11 @@
     <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; position: relative; background-color: #7d7d7d">
       <h1 class="align-center tile-area-title fg-white">OFS</h1>
       <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
-      <li><a class="fg-white" href="#/substation" class="dropdown-toggle" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
-      <div style="margin-top: 220px;">
-        <!-- <h1 class="fg-darkRed" style="font-size: 45px;">{{result.red}}</h1> -->
-        <!-- <h2 class="align&#45;center">{{result.total}}<br>ALARM</h2> -->
+      <li><a class="fg-white" href="#/substation" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
+      <div ng-controller="IndexCtrl" style="margin-top: 350px;">
+        <h1 class="fg-white" style="margin-left: 40px; font-size: 20px;">{{getCount()}}</h1>
+        <h1 class="fg-white" style="margin-left: 16px; font-size: 20px;">ALARM</h1>
+        
       </div>
     </ul>
 
@@ -92,6 +93,9 @@
     <script src="scripts/controllers/well-srp.js"></script>
     <script src="scripts/controllers/well-esp.js"></script>
     <script src="scripts/controllers/substation.js"></script>
+    <script src="scripts/controllers/index.js"></script>
+
+    
     <!-- endbuild -->
          
   </body>

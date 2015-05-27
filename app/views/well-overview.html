@@ -7,7 +7,7 @@
       <div ng-repeat="w in well.OilWells">
         <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
           <div class="tile-content fg-black">
-            <span class="tile-label" style="font-size: 12px;">{{w.Name}}</span>
+            <span class="tile-label" style="font-size: 12px; margin-left: 5px;">{{w.Name}}</span>
           </div>
         </a>
       </div>
@@ -16,6 +16,18 @@
   </div>
 </div>
 
+<div class="label">UNIT LOCATION</div>
+  <div class="tile-group triple">
+    <div class="tile-container">
+      <div class="tile-big bg-grayLight fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
+        <map center="-34.397, 150.644" zoom="8"></map>
+      </div>
+    </div>
+  </div>
+  <map center="-34.397, 150.644" zoom="8"></map>
+<!-- <div>
+ {{getCount()}}
+</div> -->
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
@@ -45,7 +57,7 @@
   <div class="tile-container">
     <span style="padding-left: 30px;">START</span>
     <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="start" />
+      <input type="text" ng-model="start">
       <button class="button">
         <span class="mif-calendar"></span>
       </button>

@@ -10,7 +10,7 @@ angular.module('ofsApp')
       const PLANT_PER_GROUP = 3;
 
       $scope.groups = [];
-
+      $scope.eventsAlarm = [];
       /* plants get data */
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')
         .success(function(data) {
@@ -55,6 +55,8 @@ angular.module('ofsApp')
           });
         }, 10000);
 
+      
+      console.log($scope.getCount);
       /* interval Active Alarm */
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         .success(function(data){
@@ -89,6 +91,17 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollWells);
         $interval.cancel($scope.pollActiveAlarms);
       });
+   
+      $scope.getCount = function(){
+        return $scope.eventsAlarm.length;
+        /*return 0;*/
+      };
+
+      console.log('WellCtrl - debug 1');
+      $rootScope.$emit('showData', {
+        showData: $scope.getCount
+      });
+      console.log('WellCtrl - debug 1 ends');
 
   /*$scope.result = { total : 0};*/
  

@@ -2,9 +2,76 @@
 
 <div class="tile-group triple">
   <div class="tile-container">
-    <div class="tile-big bg-grayLight fg-white" data-role="tile">
-      <div class="tile-content">
+    <div class="tile-big bg-grayLight fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
+
+      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 20px; margin-top: 10px; width: 50px; height: 50px; font-size: 10px;" >
+          <thead>
+          <tr>
+            <th colspan="2">MOTOR STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+            <td>Status</td>
+            <td colspan="2"><input type="text" value="{{dataId.FR601_ContactorStatus}}" style="width: 100px;"></td>
+          </tr>
+          <tr>
+            <td>Voltage(V)</td>
+            <td>{{dataId.VoltageAverage}}</td>
+            <td>{{dataId.VoltageMax}}</td>
+            <td>{{dataId.VoltageMin}}</td>
+          </tr>
+          <tr>
+            <td>Current(A)</td>
+            <td>{{dataId.CurrentAverage}}</td>
+            <td>{{dataId.CurrentMax}}</td>
+            <td>{{dataId.CurrentMin}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="image-container" style="margin-left: 50px; margin-top: -10px;">
+          <img src="images/EquView_SRP.png"/>
       </div>
+
+      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 20px; margin-top: -75px; width: 50px; height: 0px; font-size: 10px;" >
+        <thead>
+          <tr>
+            <th colspan="2">PUMP STROKE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Speed(rpm)</td>
+            <td colspan="2">a</td>
+          </tr>
+          <tr>
+            <td>Fillage(%)</td>
+            <td colspan="2">a</td>
+          </tr>
+          <tr>
+            <td>Cycle CTR</td>
+            <td colspan="2">{{dataId.CycleCounter}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -300px; width: 50px; height: 0px; font-size: 10px;" >
+        <thead>
+          <tr>
+            <th colspan="2">INFERRED PROD.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rate(BPD)</td>
+            <td colspan="2">a</td>
+          </tr>
+          <tr>
+            <td>Total(barrel)</td>
+            <td colspan="2">a</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -12,12 +79,13 @@
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR601-SRP Monitoring Report</span>
     <div class="tile-container">
+      <span style="width: 120px;">{{dataId.FR601_TimeStamp}}</span>   
       <table class="table hovered fg-black table-report-simple">
         <tbody>
           <tr>
             <td style="width: 90px;">Motor Status</td>
             <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_ContactorStatus}}</td>
-            <td></td>
+            <td>A</td>
           </tr>
           <tr>
             <td>SPM</td>
@@ -27,7 +95,12 @@
           <tr>
             <td>PPRL</td>
             <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PPRL}}</td>
-            <td></td>
+            <td>kg/m2</td>
+          </tr>
+          <tr>
+            <td>MPRL</td>
+            <td class="td-report-simple" style="padding-right: 20px;">{{dataId.MPRL}}</td>
+            <td>kg/m2</td>
           </tr>
           <tr>
             <td>PumpFillage</td>
@@ -35,7 +108,7 @@
             <td>kg/m2</td>
           </tr>
           <tr>
-            <td>Cycle Counter</td>
+            <td>Cycle Counter</td> 
             <td class="td-report-simple" style="padding-right: 20px;">{{dataId.CycleCounter}}</td>
             <td></td>
           </tr>
@@ -49,9 +122,11 @@
   </div>
 </div>
 
+
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR602-SRP PM Report</span>
-    <div class="tile-container">   
+    <div class="tile-container">
+    <span style="margin-left: 25px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.FR602_Validity}};">{{dataId.FR602_TimeStamp}}</span>   
         <table class="table hovered fg-black table-report">
           <tbody>
             <tr>
