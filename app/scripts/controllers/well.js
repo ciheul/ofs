@@ -98,12 +98,11 @@ angular.module('ofsApp')
         /*return 0;*/
       };
 
-      console.log('WellCtrl - debug 1');
-      $rootScope.$emit('showData', {
-        showData: $scope.getCount
-      });
-      console.log('WellCtrl - debug 1 ends');
-
+      $scope.count = function(){
+        $rootScope.$broadcast('ping',{
+          ping:$scope.getCount
+        });
+      };
   /*$scope.result = { total : 0};*/
  
   /*$scope.count = function(totalWells) {

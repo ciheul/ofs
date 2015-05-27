@@ -36,4 +36,13 @@ angular.module('ofsApp')
       }
       console.log($scope.timeStamp);
     };*/
-    }]);
+    /*$scope.getCount = function(){
+      return $scope.eventsAlarm.length;
+    };
+
+    $scope.count = function(){
+      $rootScope.$broadcast('ping',{
+        ping:$scope.getCount
+      });
+    };*/
+  }]);

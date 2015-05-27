@@ -2,6 +2,7 @@
 
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   <div class="tile-container" style="margin-left: -50px;">
+    
     <div ng-repeat="well in group">
       <div class="label">{{well.Name}}</div>
       <div ng-repeat="w in well.OilWells">
@@ -15,7 +16,7 @@
     </div>
   </div>
 </div>
-
+<span>{{count()}}</span>
 <div class="label">UNIT LOCATION</div>
   <div class="tile-group triple">
     <div class="tile-container">

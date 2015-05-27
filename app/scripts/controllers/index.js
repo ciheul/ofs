@@ -21,12 +21,16 @@ angular.module('ofsApp')
       });
       console.log('IndexCtrl - DEBUG 1 ENDS');*/
 
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+      /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
 
       $scope.getCount = function(){
         return $scope.eventsAlarm.length;
-      };
+      };*/
+
+    $scope.$on('ping', function(e, Object){
+      $scope.add = Object;
+    });
   }]);
