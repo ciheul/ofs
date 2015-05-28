@@ -30,10 +30,23 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollDataSrp);
       }); 
 
-      $scope.trendingData = {};
-      $http.get('/data/trend.json').success(function(data) {
-        $scope.data = data;
-      });
+      $scope.filterTrending = function(startTrend, endTrend) {
+        startTrend = startTrend.replace(/\./g, '');
+        endTrend = endTrend.replace(/\./g, '');
+
+        var params = {
+          unitId: $routeParams.UnitId,
+          dtfrom: startTrend + '000000',
+          dtto: endTrend + '000000'
+        };
+
+        //http://teleconscada-web00.cloudapp.net:1980/api/SRPTrending/?unitId=EPTJ%5COW.T150&dtfrom=20150506160000&dtto=20150507160000
+        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/SRPTrending/',
+          { params: params }).success(function(data) {
+            $scope.dataTrend = data;
+          });
+      };
+
 
    /* $scope.date = new Date();
 */

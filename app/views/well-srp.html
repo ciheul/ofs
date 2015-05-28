@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             <td>Status</td>
-            <td colspan="2"><input type="text" value="{{dataId.FR601_ContactorStatus}}" style="width: 100px;"></td>
+            <td colspan="3"><input type="text" value="{{dataId.FR601_ContactorStatus}}" style="width: 100px;"></td>
           </tr>
           <tr>
             <td>Voltage(V)</td>
@@ -205,8 +205,29 @@
 
 <div class="tile-group">
   <span class="tile-group-title fg-black">TRENDING</span>
-  <trending-chart val="data"></trending-chart>
   <div class="tile-container">
+    <span style="padding-left: 30px;">START</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="startTrend" />
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div>
+
+    <span style="padding-left: 30px;">END</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+      <input type="text" ng-model="endTrend">
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div> 
+
+    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterTrending(startTrend, endTrend)">LOAD</button>
+
+    <div class="chart-container">
+      <trending-chart val="dataTrend"></trending-chart>
+      <div id="legends"></div>
+    </div>
   </div>
 </div>
 

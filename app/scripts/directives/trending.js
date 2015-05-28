@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ofsApp')
-  .directive('trendingChart', function() {
+  .directive('trendingChart', function($document) {
     return {
       restrict: 'E',
       scope: {
@@ -98,8 +98,8 @@ angular.module('ofsApp')
             //   }, ...
             // ]
             var dataTrends = color.domain().map(function(key) {
-              var isShow = true;
-              // if (key !== 'CurrentMaxlist') { isShow = true; }
+              var isShow = false;
+              if (key === 'CurrentMaxlist') { isShow = true; }
               return {
                 name: key,
                 show: isShow,
@@ -149,21 +149,23 @@ angular.module('ofsApp')
           
             // draw the DOM based on the data provided
             var trend = trendsContainer.selectAll('path.line')
-              .data(dataTrends.filter(function(d) { return d.show; }), function(d) {
-                return d.name;
-              });
+              .data(dataTrends.filter(function(d) { return d.show; }),
+                function(d) {
+                  return d.name;
+                });
           
             // draw lines by executing data-join with the DOM created above
-            // furthermore, add function to draw line and function to select color
+            // furthermore, add function to draw line and function to select
+            // color
             trend.enter().append('path')
               .attr('class', 'line')
               .attr('d', function(d) { return line(d.values); })
               .style('stroke', function(d) { return color(d.name); });
           
-            // draw an invisible rectangle around chart
-            // these following lines must be declared after all lines to wrap them 
+            // draw an invisible rectangle around chart. these following lines
+            // must be declared after all lines to wrap them 
             // container.append("rect")
-            //   .attr("class", "panex")
+            //   .attr("class", "pane")
             //   .attr("width", width)
             //   .attr("height", height)
             //   .call(zoom);
@@ -203,26 +205,28 @@ angular.module('ofsApp')
               trend2.exit().remove();
             }
 
-            // function addLegends(dataTrends) {
-            //   d3.select('body').append('h3').text('Legends');
-            //
-            //   // add checkboxes to the body
-            //   dataTrends.forEach(function(t) {
-            //     var input = $document.createElement('input');
-            //
-            //     input.setAttribute('type', 'checkbox');
-            //     input.setAttribute('value', t.name);
-            //     input.checked = t.show;
-            //
-            //     input.addEventListener('change', updateLines);
-            //
-            //     $document.body.appendChild(input);
-            //     $document.body.appendChild($document.createTextNode(' ' + t.name));
-            //   });
-            // }
+            function addLegends(dataTrends) {
+              d3.select('body').append('h3').text('Legends');
+
+              // add checkboxes to the body
+              dataTrends.forEach(function(t) {
+                var input = $document[0].createElement('input');
+
+                input.setAttribute('class', 'legend');
+                input.setAttribute('type', 'checkbox');
+                input.setAttribute('value', t.name);
+                input.checked = t.show;
+
+                input.addEventListener('change', updateLines);
+
+                var legends = $document[0].getElementById('legends');
+                legends.appendChild(input);
+                legends.appendChild($document[0].createTextNode(' ' + t.name));
+              });
+            }
 
             draw();
-            // addLegends(dataTrends);
+            addLegends(dataTrends);
           }
           
           renderGraph(alterDataStructure(newVal));
