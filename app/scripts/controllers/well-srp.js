@@ -8,24 +8,33 @@ angular.module('ofsApp')
 
       var param = {unitId: $routeParams.UnitId};
 
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
+      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
+      $http.get('/data/srp.json')
       	.success(function(data) {
         	$scope.dataId = data;
             
         });
+
       $scope.pollDataSrp = $interval(function(){
-        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
-        .success(function(data) {
-          $scope.dataId = data;
-        })
-        .error(function() {
-          $scope.dataId = '0';
-        });
-      }, 10000);
+        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
+        $http.get('/data/srp.json')
+          .success(function(data) {
+            $scope.dataId = data;
+          })
+          .error(function() {
+            $scope.dataId = '0';
+          });
+      }, 100000000000);
       
       $rootScope.$on('$locationChangeSuccess', function() {
         $interval.cancel($scope.pollDataSrp);
       }); 
+
+      $scope.trendingData = {};
+      $http.get('/data/trend.json').success(function(data) {
+        $scope.data = data;
+      });
+
    /* $scope.date = new Date();
 */
    /* $scope.timeStamp = function(dataId){

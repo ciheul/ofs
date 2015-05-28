@@ -21,7 +21,9 @@ angular.module('ofsApp')
       });
       console.log('IndexCtrl - DEBUG 1 ENDS');*/
 
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+      $scope.eventsAlarm = [];
+      $http.get('/data/well-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
