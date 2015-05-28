@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ofsApp')
-  .directive('trendingChart', function($document) {
+  .directive('trendingChart', function() {
     return {
       restrict: 'E',
       scope: {
@@ -203,26 +203,26 @@ angular.module('ofsApp')
               trend2.exit().remove();
             }
 
-            function addLegends(dataTrends) {
-              d3.select('body').append('h3').text('Legends');
-          
-              // add checkboxes to the body
-              dataTrends.forEach(function(t) {
-                var input = $document.createElement('input');
-            
-                input.setAttribute('type', 'checkbox');
-                input.setAttribute('value', t.name);
-                input.checked = t.show;
-            
-                input.addEventListener('change', updateLines);
-            
-                $document.body.appendChild(input);
-                $document.body.appendChild($document.createTextNode(' ' + t.name));
-              });
-            }
+            // function addLegends(dataTrends) {
+            //   d3.select('body').append('h3').text('Legends');
+            //
+            //   // add checkboxes to the body
+            //   dataTrends.forEach(function(t) {
+            //     var input = $document.createElement('input');
+            //
+            //     input.setAttribute('type', 'checkbox');
+            //     input.setAttribute('value', t.name);
+            //     input.checked = t.show;
+            //
+            //     input.addEventListener('change', updateLines);
+            //
+            //     $document.body.appendChild(input);
+            //     $document.body.appendChild($document.createTextNode(' ' + t.name));
+            //   });
+            // }
 
             draw();
-            addLegends(dataTrends);
+            // addLegends(dataTrends);
           }
           
           renderGraph(alterDataStructure(newVal));

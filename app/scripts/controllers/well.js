@@ -97,10 +97,11 @@ angular.module('ofsApp')
         /*return 0;*/
       };
 
-      $rootScope.$emit('showData', {
-        showData: $scope.getCount
-      });
-
+      $scope.count = function(){
+        $rootScope.$broadcast('ping',{
+          ping:$scope.getCount
+        });
+      };
   /*$scope.result = { total : 0};*/
  
   /*$scope.count = function(totalWells) {
@@ -155,3 +156,4 @@ angular.module('ofsApp')
   };*/
 
   }]);
+

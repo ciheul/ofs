@@ -2,6 +2,7 @@
 
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   <div class="tile-container" style="margin-left: -50px;">
+    
     <div ng-repeat="well in group">
       <div class="label">{{well.Name}}</div>
       <div ng-repeat="w in well.OilWells">
@@ -15,19 +16,25 @@
     </div>
   </div>
 </div>
+<span>{{count()}}</span>
 
 <div class="label">UNIT LOCATION</div>
   <div class="tile-group triple">
     <div class="tile-container">
       <div class="tile-big bg-grayLight fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
-        <map center="-34.397, 150.644" zoom="8"></map>
+        <div class="bing-map-container">
+          <bing-map
+            credentials="'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v'"
+            center="mapOptions.center"
+            zoom="mapOptions.zoom"
+            mapType="mapOptions.mapType">
+          </bing-map>
+        </div>
       </div>
     </div>
   </div>
-  <map center="-34.397, 150.644" zoom="8"></map>
-<!-- <div>
- {{getCount()}}
-</div> -->
+
+  
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
