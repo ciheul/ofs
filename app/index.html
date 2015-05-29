@@ -20,8 +20,13 @@
     
     <style>
       body {
+<<<<<<< HEAD
+        height: 318%;
+        width: 300%;
+=======
         height: 118%;
         width: 400%;
+>>>>>>> 45126294f4cbfe6fd228ad8a0ca2a6843f9d8ac0
       }
 
       .tile-group {
@@ -46,11 +51,20 @@
           display: none;
         }
       }
-      bing-map-container {
-        height: 10%;
-        width: 100%;
+      #mapDiv {
+        margin-left: 800px;
+        margin-top: 15px; 
+        width: 100px;
+      }
+      #mapDiv2 {
+        margin-left : 310px;
+        margin-top: 20px; 
       }
     </style>
+    <script type="text/javascript">
+
+
+    </script>
   </head>
 
   <body>
@@ -85,6 +99,8 @@
     <script src="bower_components/metro-ui-css/build/js/metro.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-ui-utils/event.js"></script>
+    <script src="bower_components/angular-ui-map-bing/ui-map.js"></script>
     <script src="bower_components/d3/d3.js"></script>
     <!-- endbower -->
     <!-- endbower -->
@@ -98,7 +114,10 @@
     <script src="scripts/controllers/well-esp.js"></script>
     <script src="scripts/controllers/substation.js"></script>
     <script src="scripts/controllers/index.js"></script>
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
     <script src="scripts/directives/trending.js"></script>
+
 
     
     <!-- endbuild -->

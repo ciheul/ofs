@@ -19,23 +19,15 @@
 <span>{{count()}}</span>
 
 <div class="label">UNIT LOCATION</div>
-  <div class="tile-group triple">
+  <!-- <div class="tile-group triple">
     <div class="tile-container">
-      <div class="tile-big bg-grayLight fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
-        <div class="bing-map-container">
-          <bing-map
-            credentials="'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v'"
-            center="mapOptions.center"
-            zoom="mapOptions.zoom"
-            mapType="mapOptions.mapType">
-          </bing-map>
-        </div>
+      <div class="tile-big fg-white" style="background-color: #d2d2d2" data-role="tile" style="margin-top: -30px; height: 570px;">
+       
       </div>
     </div>
-  </div>
+  </div> -->
 
-  
-<div class="tile-group">
+<div class="tile-group" style="margin-left: 600px;">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
@@ -100,4 +92,6 @@
     </table>
   </div>
 </div>
-
+<div ng-init="GetMap()">
+  <div id='mapDiv' style="width:500px; height:500px;"></div>
+</div>

@@ -6,6 +6,33 @@ angular.module('ofsApp')
   .controller('SubstationCtrl', ['$scope', '$rootScope', '$http', '$interval', 
     function($scope, $rootScope, $http, $interval) {
 
+    var map = null;
+
+    $scope.GetMap = function()
+    {
+      console.log("debug")
+      map = new Microsoft.Maps.Map(document.getElementById("mapDiv2"), {credentials: "AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v", center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+
+      Microsoft.Maps.loadModule('Microsoft.Maps.Search');
+
+    }
+
+
+   /* function searchModuleLoaded()
+    {
+      var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+
+      var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
+      searchManager.search(searchRequest);
+    }*/
+
+    
+
+    function searchError(searchRequest)
+    {
+      alert("An error occurred.");
+    }
+
       /* plants get data */
       $http.get('')/*http://localhost:3000/api/wells*/
         .success(function(data) {
