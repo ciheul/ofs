@@ -80,22 +80,22 @@ angular.module('ofsApp')
           .success(function(data) {
             $scope.totalWells = data;
           });
-        }, 10000);
-
+      }, 1000000000000);
       
-      console.log($scope.getCount);
       /* interval Active Alarm */
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+      $http.get('/data/well-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
 
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+        $http.get('/data/well-active-alarm.json')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
-      }, 10000);
+      }, 1000000000000);
 
        /* interval Historical Alarm */
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
@@ -109,7 +109,6 @@ angular.module('ofsApp')
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
         $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
         .success(function(data){
-          console.log(data);
           $scope.eventsHistoric = data;
         });
       };

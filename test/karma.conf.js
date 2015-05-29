@@ -35,6 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-material/angular-material.js',
       'bower_components/angular-ui-utils/event.js',
       'bower_components/angular-ui-map-bing/ui-map.js',
+      'bower_components/d3/d3.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

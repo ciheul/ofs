@@ -8,8 +8,7 @@
  *
  * Main module of the application.
  */
-angular
-  .module('ofsApp', [
+angular.module('ofsApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

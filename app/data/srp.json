@@ -1,0 +1,6 @@
+{"FR601_TimeStamp":null,"EquipmentID":null,"FR601_ContactorStatus":0,"SPM":0.0,"PPRL":0.0,"MPRL":0.0
+,"PumpFillage":0.0,"CycleCounter":0,"FR601_EstProdRateBPH":0.0,"FR601_Validity":null,"FR602_TimeStamp"
+:"2015-05-27 11:49:02","FR602_ContactorStatus":1,"PMStatus":1,"VoltageAverage":440.524078,"VoltageMax"
+:440.6027,"VoltageMin":440.443848,"VoltageUnbalance":0.0,"CurrentAverage":42.84631,"CurrentMax":50.9287567
+,"CurrentMin":38.90115,"CurrentUnbalance":2.47935629,"PowerAverage":6.45975828,"PowerMax":25.21005,"PowerMin"
+:-12.1210461,"StrokeEnergyWH":0.0,"FR602_EstProdRateBPH":0.0,"FR602_Validity":"green"}
