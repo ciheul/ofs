@@ -9,18 +9,14 @@
  * Main module of the application.
  */
 angular.module('ofsApp', [
-    'ngAnimate',
-    'ngCookies',
     'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch',
   ])
   .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/well', {
         templateUrl: 'views/well-overview.html',
-        controller: 'WellCtrl'
+        controller: 'WellCtrl',
       })
       .when('/substation', {
         templateUrl: 'views/substation-overview.html',

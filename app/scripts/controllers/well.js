@@ -4,17 +4,20 @@
 
 angular.module('ofsApp')
   .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 
+
     function($scope, $rootScope, $http, $interval) {
+
+  const INTERVAL = 10000;
   var map = null;
 
     $scope.GetMap = function()
     {
-      console.log("debug")
-      map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {credentials: "AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v", center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+      console.log('debug"');
+      map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
 
       Microsoft.Maps.loadModule('Microsoft.Maps.Search');
 
-    }
+    };
 
 
    /* function searchModuleLoaded()
@@ -29,7 +32,7 @@ angular.module('ofsApp')
 
     function searchError(searchRequest)
     {
-      alert("An error occurred.");
+      alert('An error occurred.');
     }
 
     
@@ -39,7 +42,7 @@ angular.module('ofsApp')
       $scope.groups = [];
       $scope.eventsAlarm = [];
       /* plants get data */
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')
+      $http.get('/data/well-overview.json')
         .success(function(data) {
           // handle escape character for url routing
           data.map(function(i) {
@@ -76,26 +79,33 @@ angular.module('ofsApp')
         });
 
       $scope.pollWells = $interval(function() {
-        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/OilWellOverView')
+        $http.get('/data/well-overview.json')
           .success(function(data) {
             $scope.totalWells = data;
           });
-      }, 1000000000000);
+      }, INTERVAL);
       
+     /* WellCtrl.resolve = {
+        totalWells: function(data){
+          return data;
+        };
+      };*/
+
       /* interval Active Alarm */
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
       $http.get('/data/well-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
-
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/data/well-active-alarm.json')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
-      }, 1000000000000);
+      }, INTERVAL);
+
+
 
        /* interval Historical Alarm */
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
