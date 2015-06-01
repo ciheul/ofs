@@ -1,19 +1,13 @@
 <h2 style="padding-left: 20px;">ELECTRICAL OVERVIEW</h2>
 
 <div class="tile-group one" data-role="tile" style="padding-top: 10px;">
-  <div class="tile" data-click="transform" data-role="tile" style="height: 120px; width: 120px;">
-    		
-	</div>
-	<div class="tile bg-yellow" data-click="transform" data-role="tile" style="height: 120px; width: 120px;">
-    <a href="#/st-detail">a</a>
-	</div>
-	<div class="tile" data-click="transform" data-role="tile" style="height: 120px; width: 120px;">
-    		
-	</div>
-	<div class="tile" data-click="transform" data-role="tile" style="height: 120px; width: 120px;">
-    		
-	</div>
+  <div class="tile-container" ng-repeat="well in totalWells">
+    <div class="label">{{well.Name}}</div>
+    <a class="tile-small" href="{{well.DetailUrl}}/{{well.Name}}" data-click="transform" data-role="tile" style="height: 120px; width: 120px; background-color: {{well.Status}};">{{well.AlarmCount}}</a>
+  </div>
 </div>
+<!-- <div class="tile-group double" ng-repeat="well in totalWell">
+</div> -->
 
 <div class="label" style="margin-left: 50px;">UNIT LOCATION</div>
   <div class="tile-group triple">
@@ -90,6 +84,6 @@
   </div>
 </div>
 
-<div ng-init="GetMap()">
-  <div id='mapDiv2' style="width:500px; height:490px;"></div>
-</div>
+<!-- <div ng-init="GetMap()">
+  <div id='mapDiv2' style="width:500px; height:500px;"></div>
+</div> -->

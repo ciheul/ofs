@@ -8,16 +8,14 @@ angular.module('ofsApp')
 
       var param = {unitId: $routeParams.UnitId};
 
-      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
-      $http.get('/data/srp.json')
+      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
       	.success(function(data) {
         	$scope.dataId = data;
             
         });
 
       $scope.pollDataSrp = $interval(function(){
-        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
-        $http.get('/data/srp.json')
+        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})
           .success(function(data) {
             $scope.dataId = data;
           })
