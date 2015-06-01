@@ -34,16 +34,16 @@ angular.module('ofsApp')
     }
 
       /* plants get data */
-      $http.get('')/*http://localhost:3000/api/wells*/
+      $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
-          $scope.plants = data;
+          $scope.totalWells = data;
         })
         .error(function(data) {
           console.log(data);
         });
 
       $scope.pollSubstations = $interval(function() {
-       $http.get('')/*http://localhost:3000/api/wells*/
+       $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.totalWells = data;
         });

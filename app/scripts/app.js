@@ -30,13 +30,13 @@ angular.module('ofsApp', [
         templateUrl: 'views/well-esp.html',
         controller: 'EspCtrl'
       })
-      .when('/st-detail', {
+      .when('/api/st-detail/:Name', {
         templateUrl: 'views/substation-unit-view.html',
-        controller: 'SubstationCtrl'
+        controller: 'SubstationUnitCtrl'
       })
       .when('/equipment', {
         templateUrl: 'views/substation-equ-view.html',
-        controller: 'SubstationCtrl'
+        controller: 'SubstationEquCtrl'
       })
       .otherwise({
         redirectTo: '/'
