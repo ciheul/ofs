@@ -3,7 +3,7 @@
 <div class="tile-group one" data-role="tile" style="padding-top: 10px;">
   <div class="tile-container" ng-repeat="well in totalWells">
     <div class="label">{{well.Name}}</div>
-    <a class="tile-small" href="{{well.DetailUrl}}/{{well.Name}}" data-click="transform" data-role="tile" style="height: 120px; width: 120px; background-color: {{well.Status}};">{{well.AlarmCount}}</a>
+    <a class="tile-small" href="#/{{well.DetailUrl}}/{{well.Name}}" data-click="transform" data-role="tile" style="height: 120px; width: 120px; background-color: {{well.Status}};">{{well.AlarmCount}}</a>
   </div>
 </div>
 <!-- <div class="tile-group double" ng-repeat="well in totalWell">

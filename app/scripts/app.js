@@ -24,19 +24,19 @@ angular.module('ofsApp', [
       })
       .when('/api/srpdetail/:UnitId', {
         templateUrl: 'views/well-srp.html',
-        controller: 'SrpCtrl'
+        controller: 'SrpCtrl',
       })
       .when('/api/espdetail/:UnitId', {
         templateUrl: 'views/well-esp.html',
-        controller: 'EspCtrl'
+        controller: 'EspCtrl',
       })
-      .when('/api/st-detail/:Name', {
+      .when('/st-detail/:Name', {
         templateUrl: 'views/substation-unit-view.html',
-        controller: 'SubstationUnitCtrl'
+        controller: 'UnitCtrl',
       })
       .when('/equipment', {
         templateUrl: 'views/substation-equ-view.html',
-        controller: 'SubstationEquCtrl'
+        controller: 'EquCtrl',
       })
       .otherwise({
         redirectTo: '/'

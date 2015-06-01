@@ -1,4 +1,4 @@
-<h2 style="padding-left: 20px;">ST-{{}}</h2>
+<h2 style="padding-left: 20px;">ST-{{Name}}</h2>
 
 <div class="tile-group triple">
   <div class="tile-container">
@@ -9,23 +9,13 @@
   </div>
 </div>
 
-<div class="tile-group one">
+<div class="tile-group one" ng-repeat="well in unit">
   <span class="tile-group-title fg-black">EQUIPMENT LIST</span>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-    <a class="fg-white" href="#/equipment">lorem ipsum</a>
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
+    <div class="tile-container" ng-repeat="w in well.Substation">
+      <a class="tile-small" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
+        {{w.Name}}
+      </a>
+    </div>
 </div>
 
 <div class="tile-group">

@@ -1,22 +1,24 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('SubstationUnitCtrl', ['$scope', '$rootScope', '$http', '$interval', 
-    function($scope, $rootScope, $http, $interval) {
+ .controller('UnitCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval',
+    function($scope, $rootScope, $http, $routeParams, $interval) {
+      $scope.Name = $routeParams.Name;
 
+    var param = {name: $routeParams.Name};
       /* plants get data */
-      $http.get('')/*http://localhost:3000/api/wells*/
+      $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
+        .success(function(data) {
+          $scope.unit = data;
+        });
+
+      $scope.pollSubstations = $interval(function() {
+       $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.unit = data;
         })
         .error(function(data) {
           console.log(data);
-        });
-
-      $scope.pollSubstations = $interval(function() {
-       $http.get('')/*http://localhost:3000/api/wells*/
-        .success(function(data) {
-          $scope.totalWells = data;
         });
       }, 10000);
 
@@ -39,7 +41,7 @@ angular.module('ofsApp')
           $scope.eventsHistoric = data;
         });
 
-      $scope.filterAlarm = function(start, end) {
+     /* $scope.filterAlarm = function(start, end) {
         console.log('hello');
         console.log(start);
         console.log(end);
@@ -57,7 +59,7 @@ angular.module('ofsApp')
           console.log(data);
           $scope.eventsHistoric = data;
         });
-      };
+      };*/
 
       // when routes changes, cancel all interval operations
       $rootScope.$on('$locationChangeSuccess', function() {
