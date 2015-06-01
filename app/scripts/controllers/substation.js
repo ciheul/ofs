@@ -10,12 +10,12 @@ angular.module('ofsApp')
 
     $scope.GetMap = function()
     {
-      console.log("debug")
-      map = new Microsoft.Maps.Map(document.getElementById("mapDiv2"), {credentials: "AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v", center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+      console.log('debug');
+      map = new Microsoft.Maps.Map(document.getElementById('mapDiv2'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
 
       Microsoft.Maps.loadModule('Microsoft.Maps.Search');
 
-    }
+    };
 
 
    /* function searchModuleLoaded()
@@ -30,7 +30,7 @@ angular.module('ofsApp')
 
     function searchError(searchRequest)
     {
-      alert("An error occurred.");
+      alert('An error occurred.');
     }
 
       /* plants get data */

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('SubstationCtrl', ['$scope', '$rootScope', '$http', '$interval', 
+  .controller('SubstationUnitCtrl', ['$scope', '$rootScope', '$http', '$interval', 
     function($scope, $rootScope, $http, $interval) {
 
       /* plants get data */
