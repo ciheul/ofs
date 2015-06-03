@@ -1,0 +1,69 @@
+[
+	{
+		"Name": "CIRCUIT BREAKER",
+		"Substation": [
+			{
+				"Name": "CB-I.01",
+				"GroupName": "Circuit Breaker",
+				"Size": "0",
+				"Status": "black",
+				"DetailUrl": "st-equipment",
+				"UnitId": "EPTJ\\CB-I.01",
+				"AlarmStatus": 0,
+				"AlarmCount": 0
+			},
+			{
+				"Name": "CB-O.01",
+				"GroupName": "ST-V",
+				"Size": "0",
+				"Status": "black",
+				"DetailUrl": "st-equipment",
+				"UnitId": "EPTJ\\OW.T04",
+				"AlarmStatus": 0,
+				"AlarmCount": 0
+			}
+
+		]
+	},
+	{
+		"Name": "POWER METER",
+		"Substation": [
+			{
+				"Name": "PM-INC",
+				"GroupName": "ST-V",
+				"Size": "0",
+				"Status": "black",
+				"DetailUrl": "st-equipment",
+				"UnitId": "EPTJ\\PM-INC",
+				"AlarmStatus": 0,
+				"AlarmCount": 0
+			},
+			{
+				"Name": "PM-T150",
+				"GroupName": "ST-V",
+				"Size": "0",
+				"Status": "black",
+				"DetailUrl": "st-equipment",
+				"UnitId": "EPTJ\\PM-T150",
+				"AlarmStatus": 0,
+				"AlarmCount": 0
+			}
+		]
+	},
+	{
+		"Name": "TRANSFORMER",
+		"Substation": [
+			{
+				"Name": "TRF.STV",
+				"GroupName": "ST-V",
+				"Size": "0",
+				"Status": "black",
+				"DetailUrl": "st-equipment",
+				"UnitId": "EPTJ\\TRF.STV",
+				"AlarmStatus": 0,
+				"AlarmCount": 0
+			}
+		]
+		
+	}
+]

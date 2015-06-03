@@ -7,13 +7,13 @@ angular.module('ofsApp')
 
     var param = {name: $routeParams.Name};
       /* plants get data */
-      $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
+      $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.unit = data;
         });
 
       $scope.pollSubstations = $interval(function() {
-       $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
+       $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.unit = data;
         })

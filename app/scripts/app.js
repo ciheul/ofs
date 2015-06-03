@@ -34,7 +34,7 @@ angular.module('ofsApp', [
         templateUrl: 'views/substation-unit-view.html',
         controller: 'UnitCtrl',
       })
-      .when('/equipment', {
+      .when('/st-equipment/:Name', {
         templateUrl: 'views/substation-equ-view.html',
         controller: 'EquCtrl',
       })

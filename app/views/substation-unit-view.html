@@ -9,12 +9,17 @@
   </div>
 </div>
 
-<div class="tile-group one" ng-repeat="well in unit">
-  <span class="tile-group-title fg-black">EQUIPMENT LIST</span>
-    <div class="tile-container" ng-repeat="w in well.Substation">
-      <a class="tile-small" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
-        {{w.Name}}
-      </a>
+<div class="tile-group double">
+  <span class="tile-group-title fg-black">EQUIPMENT LIST</span>    
+    <div class="tile-container" ng-repeat="u in unit">
+      <span style="font-size: 12px;">{{u.Name}}</span>
+      <div ng-repeat="sub in u.Substation">
+        <a class="tile-small" href="#/{{sub.DetailUrl}}/{{sub.Name}}" data-click="transform" data-role="tile" style="background-color: {{sub.Status}}">
+          <div class="tile-content">
+            <span class="tile-label fg-white" style="font-size: 12px;">{{sub.Name}}</span>
+          </div>
+        </a>
+      </div>
     </div>
 </div>
 
