@@ -70,4 +70,17 @@ angular.module('ofsApp')
           ping:$scope.getCount
         });
       };
+<<<<<<< HEAD
+=======
+   /* $scope.date = new Date();
+*/
+   /* $scope.timeStamp = function(dataId){
+      for (var i = 0; i < dataId.length; i++) {
+        if (dataId[i].FR601_TimeStamp === 'null') {
+          $scope.timeStamp == 0;
+        }
+      }
+      console.log($scope.timeStamp);
+    };*/
+>>>>>>> 16fab069f770f7d4e41137c6bd7e550271c0c93f
   }]);
