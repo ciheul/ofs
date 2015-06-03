@@ -1,4 +1,4 @@
-<h2 style="padding-left: 20px;">ST-{{}}</h2>
+<h2 style="padding-left: 20px;">ST-{{Name}}</h2>
 
 <div class="tile-group triple">
   <div class="tile-container">
@@ -9,23 +9,18 @@
   </div>
 </div>
 
-<div class="tile-group one">
-  <span class="tile-group-title fg-black">EQUIPMENT LIST</span>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-    <a class="fg-white" href="#/equipment">lorem ipsum</a>
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
-  <div class="tile-small bg-black" data-click="transform" data-role="tile">
-        
-  </div>
+<div class="tile-group double">
+  <span class="tile-group-title fg-black">EQUIPMENT LIST</span>    
+    <div class="tile-container" ng-repeat="u in unit">
+      <span style="font-size: 12px;">{{u.Name}}</span>
+      <div ng-repeat="sub in u.Substation">
+        <a class="tile-small" href="#/{{sub.DetailUrl}}/{{sub.Name}}" data-click="transform" data-role="tile" style="background-color: {{sub.Status}}">
+          <div class="tile-content">
+            <span class="tile-label fg-white" style="font-size: 12px;">{{sub.Name}}</span>
+          </div>
+        </a>
+      </div>
+    </div>
 </div>
 
 <div class="tile-group">

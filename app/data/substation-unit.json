@@ -1,27 +1,13 @@
 [
 	{
-		"Name": "ST-P.PLANT",
-		"Status": "grey",
-		"AlarmCount": 0,
-		"DetailUrl": "st-detail",
-		"Substation":[
-			{
-
-			}
-		]
-	},
-	{
-		"Name": "ST-V",
-		"Status": "yellow",
-		"AlarmCount": 1,
-		"DetailUrl": "st-detail",
+		"Name": "CIRCUIT BREAKER",
 		"Substation": [
 			{
 				"Name": "CB-I.01",
-				"GroupName": "ST-V",
+				"GroupName": "Circuit Breaker",
 				"Size": "0",
 				"Status": "black",
-				"DetailUrl": "st-detail",
+				"DetailUrl": "st-equipment",
 				"UnitId": "EPTJ\\CB-I.01",
 				"AlarmStatus": 0,
 				"AlarmCount": 0
@@ -31,17 +17,23 @@
 				"GroupName": "ST-V",
 				"Size": "0",
 				"Status": "black",
-				"DetailUrl": "st-detail",
+				"DetailUrl": "st-equipment",
 				"UnitId": "EPTJ\\OW.T04",
 				"AlarmStatus": 0,
 				"AlarmCount": 0
-			},
+			}
+
+		]
+	},
+	{
+		"Name": "POWER METER",
+		"Substation": [
 			{
 				"Name": "PM-INC",
 				"GroupName": "ST-V",
 				"Size": "0",
 				"Status": "black",
-				"DetailUrl": "st-detail",
+				"DetailUrl": "st-equipment",
 				"UnitId": "EPTJ\\PM-INC",
 				"AlarmStatus": 0,
 				"AlarmCount": 0
@@ -51,33 +43,27 @@
 				"GroupName": "ST-V",
 				"Size": "0",
 				"Status": "black",
-				"DetailUrl": "st-detail",
+				"DetailUrl": "st-equipment",
 				"UnitId": "EPTJ\\PM-T150",
-				"AlarmStatus": 0,
-				"AlarmCount": 0
-			},
-			{
-				"Name": "TRF.STV",
-				"GroupName": "ST-V",
-				"Size": "0",
-				"Status": "black",
-				"DetailUrl": "st-detail",
-				"UnitId": "EPTJ\\TRF.STV",
 				"AlarmStatus": 0,
 				"AlarmCount": 0
 			}
 		]
 	},
 	{
-		"Name": "ST-VIIIA",
-		"Status": "grey",
-		"DetailUrl": "st-detail",
-		"AlarmCount": 0
-	},
-	{
-		"Name": "ST-VIIIC",
-		"Status": "grey",
-		"DetailUrl": "st-detail",
-		"AlarmCount": 0
+		"Name": "TRANSFORMER",
+		"Substation": [
+			{
+				"Name": "TRF.STV",
+				"GroupName": "ST-V",
+				"Size": "0",
+				"Status": "black",
+				"DetailUrl": "st-equipment",
+				"UnitId": "EPTJ\\TRF.STV",
+				"AlarmStatus": 0,
+				"AlarmCount": 0
+			}
+		]
+		
 	}
 ]

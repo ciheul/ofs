@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('SubstationEquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 
+  .controller('EquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 
     function($scope, $rootScope, $http, $routeParams, $interval) {
       // get SRP equipment name (ex: T150)
-      $scope.UnitId = $routeParams.UnitId.split('.')[1];
+      $scope.Name = $routeParams.Name;
 
-      var param = {unitId: $routeParams.UnitId};
+      var param = {name: $routeParams.Name};
 
       $http.get('', {params: param})
         .success(function(data) {
