@@ -1,97 +1,98 @@
 <h2 style="padding-left: 20px;">PM-{{Name}}</h2>
-
+<span>{{count()}}</span>
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
-    <div class="tile-container">   
+    <div class="tile-container">
+      <span style="font-size: 12px; margin-left: 30px;">{{dataId.TimeStamp}}</span>   
         <table class="table hovered fg-black table-report">
           <tbody>
             <tr>
               <td style="width: 120px;">Voltage Average</td>
-              <td style="width: 90px;"><input type="text" value="{{}}" class="input-report" readonly></td>
-              <td></td>
+              <td style="width: 90px;"><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
+              <td>V</td>
             </tr>
             <tr>
               <td>Voltage R</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.VoltageR}}" class="input-report" readonly></td>
               <td>V</td>
             </tr>
             <tr>
               <td>Voltage S</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.VoltageS}}" class="input-report" readonly></td>
               <td>V</td>
             </tr>
             <tr>
               <td>Voltage T</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.VoltageT}}" class="input-report" readonly></td>
               <td>V</td>
             </tr>
             <tr>
               <td>Voltage Unbalan.</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
               <td>%</td>
             </tr>
               <td>Current Average</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
               <td>A</td>
             </tr>
             <tr>
               <td>Current R</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.CurrentR}}" class="input-report" readonly></td>
               <td>A</td>
             </tr>
              <tr>
               <td>Current S</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.CurrentS}}" class="input-report" readonly></td>
               <td>A</td>    
             </tr>
              <tr>
               <td>Current T</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.CurrentT}}" class="input-report" readonly></td>
               <td>A</td>    
             </tr>
             <tr>
               <td>Current Unbalan.</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.CurrentUnbalance}}" class="input-report" readonly></td>
               <td>%</td>
             </tr>
             <tr>
               <td>Power Apparent</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.PowerApparent}}" class="input-report" readonly></td>
               <td>kVA</td>
             </tr>
             <tr>
               <td>Power Reactive</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.PowerReactive}}" class="input-report" readonly></td>
               <td>kVA</td>
             </tr>
             <tr>
               <td>Power Real</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.PowerReal}}" class="input-report" readonly></td>
               <td>KW</td>
             </tr>
             <tr>
               <td>THD Average</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.THDAverage}}" class="input-report" readonly></td>
               <td>%</td>
             </tr>
             <tr>
               <td>THD R</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.THDR}}" class="input-report" readonly></td>
               <td>%</td>
             </tr>
             <tr>
               <td>THD S</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.THDS}}" class="input-report" readonly></td>
               <td>%</td>
             </tr>
             <tr>
               <td>THD T</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.THDT}}" class="input-report" readonly></td>
               <td>%</td>
             </tr>
             <tr>
               <td>Energy Totalizer</td>
-              <td><input type="text" value="{{}}" class="input-report" readonly></td>
+              <td><input type="text" value="{{dataId.EnergyTotalizer}}" class="input-report" readonly></td>
               <td>bph</td>
             </tr>
           </tbody>
@@ -111,12 +112,12 @@
           <th>Message</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody ng-repeat="act in eventsAlarm">
         <tr>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
+          <td class="fg-red">{{act.Date}}</td>
+          <td class="fg-red">{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
         </tr>
       </tbody>
     </table>

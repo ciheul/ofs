@@ -2,12 +2,22 @@
 
 <div class="tile-group triple">
   <div class="tile-container">
-    <div class="tile-big bg-grayLight fg-white" data-role="tile">
+    <div class="tile-big bg-grayLighter fg-white" data-role="tile">
       <div class="tile-content">
+        <!-- <svg height="2000" width="500">
+          <line x1="430" y1="200" x2="30" y2="200" style="stroke:rgb(0,0,0);stroke-width:1" />
+          <line x1="30" y1="200" x2="30" y2="250" style="stroke:rgb(0,0,0);stroke-width:1" />
+          <line x1="30" y1="400" x2="30" y2="280" style="stroke:rgb(0,0,0);stroke-width:1" />
+          <line x1="225" y1="200" x2="225" y2="120" style="stroke:rgb(0,0,0);stroke-width:1" />
+          <line x1="225" y1="20" x2="225" y2="90" style="stroke:rgb(0,0,0);stroke-width:1`" />
+        </svg> -->
+        <img src="images/substation.svg"/>
       </div>
     </div>
   </div>
 </div>
+
+<span>{{count()}}</span>
 
 <div class="tile-group double">
   <span class="tile-group-title fg-black">EQUIPMENT LIST</span>    
@@ -26,7 +36,7 @@
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+    <table class="table striped hovered cell-hovered border bordered" style="margin-left: -110px; width: 750px;">
       <thead>
         <tr>
           <th style="width: 110px;">Date</th>
@@ -35,12 +45,12 @@
           <th>Message</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody ng-repeat="act in eventsAlarm">
         <tr>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
+          <td class="fg-red">{{act.Date}}</td>
+          <td class="fg-red">{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
         </tr>
       </tbody>
     </table>
@@ -77,7 +87,7 @@
           <th>Message</th>
         </tr>
       </thead>
-      <tbody
+      <tbody>
           <td>{{}}</td>
           <td>{{}}</td>
           <td>{{}}</td>

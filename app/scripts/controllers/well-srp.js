@@ -63,7 +63,6 @@ angular.module('ofsApp')
 
       $scope.getCount = function(){
         return $scope.eventsAlarm.length;
-        /*return 0;*/
       };
 
       $scope.count = function(){
@@ -71,23 +70,4 @@ angular.module('ofsApp')
           ping:$scope.getCount
         });
       };
-   /* $scope.date = new Date();
-*/
-   /* $scope.timeStamp = function(dataId){
-      for (var i = 0; i < dataId.length; i++) {
-        if (dataId[i].FR601_TimeStamp === 'null') {
-          $scope.timeStamp == 0;
-        }
-      }
-      console.log($scope.timeStamp);
-    };*/
-    /*$scope.getCount = function(){
-      return $scope.eventsAlarm.length;
-    };
-
-    $scope.count = function(){
-      $rootScope.$broadcast('ping',{
-        ping:$scope.getCount
-      });
-    };*/
   }]);
