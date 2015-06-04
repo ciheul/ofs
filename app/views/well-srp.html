@@ -2,7 +2,7 @@
 <!-- <span>{{count()}}</span> -->
 <div class="tile-group triple">
   <div class="tile-container">
-    <div class="tile-big bg-grayLight fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
+    <div class="tile-big bg-grayLighter fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
 
       <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 20px; margin-top: 10px; width: 50px; height: 50px; font-size: 10px;" >
           <thead>
@@ -207,22 +207,22 @@
 
 <div class="tile-group">
   <span class="tile-group-title fg-black">TRENDING</span>
-  <div class="tile-container">
-    <span style="padding-left: 30px;">START</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="startTrend" />
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div>
+    <div class="tile-container">
+      <span style="padding-left: 30px;">START</span>
+        <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+          <input type="text" ng-model="startTrend" />
+            <button class="button">
+              <span class="mif-calendar"></span>
+            </button>
+        </div>
 
     <span style="padding-left: 30px;">END</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="endTrend">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div> 
+      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+        <input type="text" ng-model="endTrend">
+          <button class="button">
+            <span class="mif-calendar"></span>
+          </button>
+     </div> 
 
     <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterTrending(startTrend, endTrend)">LOAD</button>
 
@@ -230,6 +230,7 @@
       <trending-chart val="dataTrend"></trending-chart>
       <div id="legends"></div>
     </div>
+
   </div>
 </div>
 
@@ -259,22 +260,22 @@
 
 <div class="tile-group">
   <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
-  <div class="tile-container">
-    <span style="padding-left: 30px;">START</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="start" />
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div>
+    <div class="tile-container">
+      <span style="padding-left: 30px;">START</span>
+        <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+          <input type="text" ng-model="start" />
+            <button class="button">
+              <span class="mif-calendar"></span>
+            </button>
+        </div>
 
     <span style="padding-left: 30px;">END</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="end">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div> 
+      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+        <input type="text" ng-model="end">
+          <button class="button">
+            <span class="mif-calendar"></span>
+          </button>
+      </div> 
 
     <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
 

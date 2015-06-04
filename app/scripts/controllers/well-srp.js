@@ -7,7 +7,8 @@ angular.module('ofsApp')
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
       var param = {unitId: $routeParams.UnitId};
-
+      $scope.eventsAlarm = [];
+      
       /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
       $http.get('/data/srp.json')
       	.success(function(data) {
@@ -63,7 +64,6 @@ angular.module('ofsApp')
 
       $scope.getCount = function(){
         return $scope.eventsAlarm.length;
-        /*return 0;*/
       };
 
       $scope.count = function(){
@@ -71,6 +71,8 @@ angular.module('ofsApp')
           ping:$scope.getCount
         });
       };
+
+
    /* $scope.date = new Date();
 */
    /* $scope.timeStamp = function(dataId){
@@ -81,4 +83,5 @@ angular.module('ofsApp')
       }
       console.log($scope.timeStamp);
     };*/
+
   }]);

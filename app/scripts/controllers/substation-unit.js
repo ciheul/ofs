@@ -6,6 +6,8 @@ angular.module('ofsApp')
       $scope.Name = $routeParams.Name;
 
     var param = {name: $routeParams.Name};
+    $scope.eventsAlarm = [];
+    
       /* plants get data */
       $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
@@ -23,13 +25,13 @@ angular.module('ofsApp')
       }, 10000);
 
       /* interval Active Alarm */
-      $http.get('')
+      $http.get('/data/substation-unit-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
 
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('')
+        $http.get('/data/substation-unit-active-alarm.json')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
@@ -66,4 +68,15 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollSubstations);
         $interval.cancel($scope.pollActiveAlarms);
       });
+
+      $scope.getCount = function(){
+        return $scope.eventsAlarm.length;
+        /*return 0;*/
+      };
+
+      $scope.count = function(){
+        $rootScope.$broadcast('ping',{
+          ping:$scope.getCount
+        });
+      };
   }]);

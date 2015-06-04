@@ -7,7 +7,8 @@ angular.module('ofsApp')
     function($scope, $rootScope, $http, $interval) {
 
     var map = null;
-
+    $scope.eventsAlarm = [];
+    
     $scope.GetMap = function()
     {
       console.log('debug');
@@ -28,10 +29,10 @@ angular.module('ofsApp')
 
     
 
-    function searchError(searchRequest)
-    {
-      alert('An error occurred.');
-    }
+      function searchError(searchRequest)
+      {
+        alert('An error occurred.');
+      }
 
       /* plants get data */
       $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
@@ -50,13 +51,13 @@ angular.module('ofsApp')
       }, 10000);
 
       /* interval Active Alarm */
-      $http.get('')
+      $http.get('/data/substation-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
 
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('')
+        $http.get('/data/substation-active-alarm.json')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
@@ -94,83 +95,17 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollActiveAlarms);
       });
 
-  /*$scope.result = { total : 0};*/
- 
-  /*$scope.count = function(totalWells) {
-    console.log('debug');
-    console.log(totalWells);
-    for (var i = 0; i < totalWells.length; i++) {
-      console.log(i);
-      for(var j = 0; j < totalWells[i].wells.length; j++) {
-        if (totalWells[i].wells[j].status === 'black') {
-          $scope.result.black += 1;
-        }
-        if (totalWells[i].wells[j].status === 'yellow') {
-          $scope.result.yellow += 1;
-        }
-        if (totalWells[i].wells[j].status === 'gray') {
-          $scope.result.gray += 1;
-        }
-        if (totalWells[i].wells[j].status === 'green') {
-          $scope.result.green += 1;
-        }
-        if (totalWells[i].wells[j].status === 'red') {
-          $scope.result.red += 1;
-        }
-        $scope.result.total = ($scope.result.black + 
-          $scope.result.yellow +
-          $scope.result.green +
-          $scope.result.gray 
-        );
-      }
-    }
-    console.log($scope.result);
-    console.log('debug 2');
-  };
-  console.log($scope.totalWells);
-  */
- /* $scope.showHidenData = function(n){
-    for (var i = 0; i < n.length; i++) {
-      Things[i]
-    };
-  }*/
+      $scope.getCount = function(){
+        return $scope.eventsAlarm.length;
+        /*return 0;*/
+      };
 
-
-
-  /*$scope.count = function(totalWells){
-    for (var i = 0; i < totalWells.length; i++) {
-      for(var j = 0; j < totalWells[i].OilWells.length; j++) {
-        if (totalWells[i].OilWells[j].AlarmCount === 1) {
-          $scope.result.total += 1;
-        }
-      }
-    }
-  };*/
-
- /* $scope.total = function() {
-    var count = 0;
-    angular.forEach($scope.totalWells, function(){
-      angular.forEach($scope.totalWells.OilWells.AlarmCount, function(totalWells){
-        count += totalWells.isSelected ? 1 : 0;
-    });
-    });
-    return count; 
-};*/
-
-
-   
-
-  /*$interval(function(){
-    var params = {dtfrom:'20150501000000', dtto:'20150512000000'};
-    $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
-    .success(function(data){
-      console.log(data);
-      $scope.eventsHistoric = data;
-    });
-  }, 1000);*/
- 
-
-  }]);
+      $scope.count = function(){
+        $rootScope.$broadcast('ping',{
+          ping:$scope.getCount
+        });
+      };
+}]);
 
  
   
