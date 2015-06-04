@@ -3,44 +3,36 @@
 /* ofs-well */
 
 angular.module('ofsApp')
-  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 
+  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$httpBackend', '$interval', 
+    function($scope, $rootScope, $http, $httpBackend, $interval) {
 
-    function($scope, $rootScope, $http, $interval) {
+      const INTERVAL = 10000;
+      var map = null;
 
-  const INTERVAL = 10000;
-  var map = null;
+      $scope.GetMap = function() {
+        map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
 
-    $scope.GetMap = function()
-    {
-      console.log('debug"');
-      map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+        Microsoft.Maps.loadModule('Microsoft.Maps.Search');
 
-      Microsoft.Maps.loadModule('Microsoft.Maps.Search');
+      };
 
-    };
+      /* function searchModuleLoaded() {
+        var searchManager = new Microsoft.Maps.Search.SearchManager(map);
 
+        var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
+        searchManager.search(searchRequest);
+      }*/
 
-   /* function searchModuleLoaded()
-    {
-      var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+      function searchError(searchRequest) {
+        alert('An error occurred.');
+      }
 
-      var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
-      searchManager.search(searchRequest);
-    }*/
-
-    
-
-    function searchError(searchRequest)
-    {
-      alert('An error occurred.');
-    }
-
-    
       const TILE_COL = 4;
       const PLANT_PER_GROUP = 3;
 
       $scope.groups = [];
       $scope.eventsAlarm = [];
+
       /* plants get data */
       $http.get('/data/well-overview.json')
         .success(function(data) {
@@ -85,30 +77,24 @@ angular.module('ofsApp')
           });
       }, INTERVAL);
       
-     /* WellCtrl.resolve = {
-        totalWells: function(data){
-          return data;
-        };
-      };*/
-
       /* interval Active Alarm */
-      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-      $http.get('/data/well-active-alarm.json')
-        .success(function(data){
-          $scope.eventsAlarm = data;
-        });
-      $scope.pollActiveAlarms = $interval(function() {
+      var getActiveAlarms = function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/data/well-active-alarm.json')
-        .success(function(data) {
-          $scope.eventsAlarm = data;
-        });
+          .success(function(data) {
+            $scope.eventsAlarm = data;
+          });
+      }
+
+      getActiveAlarms();
+
+      $scope.pollActiveAlarms = $interval(function() {
+        getActiveAlarms();
       }, INTERVAL);
 
-
-
        /* interval Historical Alarm */
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
+      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
+      $http.get('/api/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         });
@@ -129,69 +115,16 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollActiveAlarms);
       });
  
-      $scope.getCount = function(){
+      $scope.getCount = function() {
         return $scope.eventsAlarm.length;
         /*return 0;*/
       };
 
-      $scope.count = function(){
-        $rootScope.$broadcast('ping',{
+      $scope.count = function() {
+        $rootScope.$broadcast('ping', {
           ping:$scope.getCount
         });
       };
-  /*$scope.result = { total : 0};*/
- 
-  /*$scope.count = function(totalWells) {
-    console.log('debug');
-    console.log(totalWells);
-    for (var i = 0; i < totalWells.length; i++) {
-      console.log(i);
-      for(var j = 0; j < totalWells[i].wells.length; j++) {
-        if (totalWells[i].wells[j].status === 'black') {
-          $scope.result.black += 1;
-        }
-        if (totalWells[i].wells[j].status === 'yellow') {
-          $scope.result.yellow += 1;
-        }
-        if (totalWells[i].wells[j].status === 'gray') {
-          $scope.result.gray += 1;
-        }
-        if (totalWells[i].wells[j].status === 'green') {
-          $scope.result.green += 1;
-        }
-        if (totalWells[i].wells[j].status === 'red') {
-          $scope.result.red += 1;
-        }
-        $scope.result.total = ($scope.result.black + 
-          $scope.result.yellow +
-          $scope.result.green +
-          $scope.result.gray 
-        );
-      }
-    }
-    console.log($scope.result);
-    console.log('debug 2');
-  };
-  console.log($scope.totalWells);
-  */
- /* $scope.showHidenData = function(n){
-    for (var i = 0; i < n.length; i++) {
-      Things[i]
-    };
-  }*/
-
-
-
-  /*$scope.count = function(totalWells){
-    for (var i = 0; i < totalWells.length; i++) {
-      for(var j = 0; j < totalWells[i].OilWells.length; j++) {
-        if (totalWells[i].OilWells[j].AlarmCount === 1) {
-          $scope.result.total += 1;
-        }
-      }
-    }
-  };*/
-
 
   }]);
 
