@@ -7,7 +7,8 @@ angular.module('ofsApp')
     function($scope, $rootScope, $http, $interval) {
 
     var map = null;
-
+    $scope.eventsAlarm = [];
+    
     $scope.GetMap = function()
     {
       console.log('debug');
@@ -58,7 +59,7 @@ angular.module('ofsApp')
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/substation-active-alarm.json')
         .success(function(data) {
-          $scope.eventsAlarmSub = data;
+          $scope.eventsAlarm = data;
         });
       }, 10000);
 
@@ -95,7 +96,7 @@ angular.module('ofsApp')
       });
 
       $scope.getCount = function(){
-        return $scope.eventsAlarmSub.length;
+        return $scope.eventsAlarm.length;
         /*return 0;*/
       };
 

@@ -6,7 +6,8 @@ angular.module('ofsApp')
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
       var param = {unitId: $routeParams.UnitId};
-
+      $scope.eventsAlarm = [];
+      
       /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/espdetail/', {params: param})*/
       $http.get('/data/esp.json')
       	.success(function(data) {

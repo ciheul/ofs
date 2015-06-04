@@ -7,6 +7,7 @@ angular.module('ofsApp')
       $scope.Name = $routeParams.Name;
 
       var param = {name: $routeParams.Name};
+      $scope.eventsAlarm = [];
 
      /* $http.get('/data/substation-equ.json', {params: param})*/
       $http.get('/data/substation-equ.json')

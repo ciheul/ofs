@@ -6,6 +6,8 @@ angular.module('ofsApp')
       $scope.Name = $routeParams.Name;
 
     var param = {name: $routeParams.Name};
+    $scope.eventsAlarm = [];
+    
       /* plants get data */
       $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
