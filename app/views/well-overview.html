@@ -1,16 +1,17 @@
 <h2 style="padding-left: 20px;">Well Overview</h2>
-<div ng-show="isLoaded" data-role="preloader" data-type="ring"></div>
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   <div class="tile-container" style="margin-left: -50px;">
     <div ng-repeat="well in group">
-      <div class="label">{{well.Name}}</div>
-      <div ng-repeat="w in well.OilWells">
-        <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
-          <div class="tile-content fg-black">
-            <span class="tile-label" style="font-size: 12px; margin-left: 5px;">{{w.Name}}</span>
-          </div>
-        </a>
-      </div>
+     <!--  <div getData()>Reload</div> -->
+      <div ng-show="isLoading" data-role="preloader" data-type="ring"></div>
+        <div class="label">{{well.Name}}</div>
+          <div ng-repeat="w in well.OilWells">
+            <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
+            <div class="tile-content fg-black">
+              <span class="tile-label" style="font-size: 12px; margin-left: 5px;">{{w.Name}}</span>
+            </div>
+          </a>
+        </div>
       <div class="label" style="margin-bottom: 15px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
     </div>
   </div>

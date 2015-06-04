@@ -3,23 +3,24 @@
 /* ofs-well */
 
 angular.module('ofsApp')
+  
   .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 
-
     function($scope, $rootScope, $http, $interval) {
 
   const INTERVAL = 10000;
   var map = null;
+  const TILE_COL = 4;
+  const PLANT_PER_GROUP = 3;
 
-    $scope.GetMap = function()
-    {
-      console.log('debug"');
-      map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+  $scope.groups = [];
+  $scope.eventsAlarm = [];
 
-      Microsoft.Maps.loadModule('Microsoft.Maps.Search');
+      $scope.GetMap = function(){
+        console.log('debug"');
+        map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
 
-    };
-
-
+        Microsoft.Maps.loadModule('Microsoft.Maps.Search');
+      };
    /* function searchModuleLoaded()
     {
       var searchManager = new Microsoft.Maps.Search.SearchManager(map);
@@ -27,23 +28,15 @@ angular.module('ofsApp')
       var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
       searchManager.search(searchRequest);
     }*/
-
-    
-
-    function searchError(searchRequest)
-    {
-      alert('An error occurred.');
-    }
-
-    
-      const TILE_COL = 4;
-      const PLANT_PER_GROUP = 3;
-
-      $scope.groups = [];
-      $scope.eventsAlarm = [];
+      function searchError(searchRequest){
+        alert('An error occurred.');
+      }
+     
       /* plants get data */
+    $scope.getData = function(){
       $http.get('/data/well-overview.json')
         .success(function(data) {
+          /*ignoreLoadingBar: true*/
           // handle escape character for url routing
           data.map(function(i) {
             i.OilWells.map(function(j) {
@@ -77,6 +70,8 @@ angular.module('ofsApp')
         .error(function(data) {
           console.log(data);
         });
+    };
+    $scope.getData();
 
       $scope.pollWells = $interval(function() {
         $http.get('/data/well-overview.json')
