@@ -128,7 +128,7 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollWells);
         $interval.cancel($scope.pollActiveAlarms);
       });
-   
+ 
       $scope.getCount = function(){
         return $scope.eventsAlarm.length;
         /*return 0;*/
