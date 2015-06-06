@@ -54,8 +54,10 @@ angular.module('ofsApp')
       $http.get('/data/substation-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
+        })
+        .error(function(){
+          $scope.eventsAlarm = 0;
         });
-
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/substation-active-alarm.json')
         .success(function(data) {
@@ -67,6 +69,9 @@ angular.module('ofsApp')
       $http.get('')
         .success(function(data) {
           $scope.eventsHistoric = data;
+        })
+        .error(function(){
+          $scope.eventsHistoric = 0;
         });
 
       $scope.filterAlarm = function(start, end) {

@@ -5,22 +5,21 @@ angular.module('ofsApp')
     function($scope, $rootScope, $http, $routeParams, $interval) {
       $scope.Name = $routeParams.Name;
 
-    var param = {name: $routeParams.Name};
-    $scope.eventsAlarm = [];
+      /*var param = {name: $routeParams.Name};*/
+      $scope.eventsAlarm = [];
     
       /* plants get data */
       $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.unit = data;
+        })
+        .error(function(){
+          $scope.unit = 0;
         });
-
       $scope.pollSubstations = $interval(function() {
        $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.unit = data;
-        })
-        .error(function(data) {
-          console.log(data);
         });
       }, 10000);
 
@@ -28,8 +27,10 @@ angular.module('ofsApp')
       $http.get('/data/substation-unit-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
+        })
+        .error(function(){
+          $scope.eventsAlarm= 0;
         });
-
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/substation-unit-active-alarm.json')
         .success(function(data) {
@@ -41,6 +42,9 @@ angular.module('ofsApp')
       $http.get('')
         .success(function(data) {
           $scope.eventsHistoric = data;
+        })
+        .error(function(){
+          $scope.eventsHistoric = 0;
         });
 
      /* $scope.filterAlarm = function(start, end) {
@@ -69,12 +73,12 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollActiveAlarms);
       });
 
-      $scope.getCount = function(){
+      $scope.getCount = function() {
         return $scope.eventsAlarm.length;
         /*return 0;*/
       };
 
-      $scope.count = function(){
+      $scope.count = function() {
         $rootScope.$broadcast('ping',{
           ping:$scope.getCount
         });

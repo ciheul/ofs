@@ -6,23 +6,22 @@ angular.module('ofsApp')
       // get SRP equipment name (ex: T150)
       $scope.Name = $routeParams.Name;
 
-      var param = {name: $routeParams.Name};
+      /*var param = {name: $routeParams.Name};*/
       $scope.eventsAlarm = [];
 
      /* $http.get('/data/substation-equ.json', {params: param})*/
       $http.get('/data/substation-equ.json')
         .success(function(data) {
           $scope.dataId = data;
-            
+        })
+        .error(function() {
+          $scope.dataId = 0;
         });
       $scope.pollDataEqu = $interval(function(){
         /*$http.get('', {params: param})*/
         $http.get('/data/substation-equ.json')
         .success(function(data) {
           $scope.dataId = data;
-        })
-        .error(function() {
-          $scope.dataId = '0';
         });
       }, 10000);
       
@@ -30,8 +29,10 @@ angular.module('ofsApp')
       $http.get('/data/substation-equ-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
+        })
+        .error(function(){
+          $scope.eventsAlarm = 0;
         });
-
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/substation-equ-active-alarm.json')
         .success(function(data) {
@@ -43,6 +44,9 @@ angular.module('ofsApp')
       $http.get('')
         .success(function(data) {
           $scope.eventsHistoric = data;
+        })
+        .error(function(){
+          $scope.eventsHistoric = 0;
         });
 
      /* $scope.filterAlarm = function(start, end) {

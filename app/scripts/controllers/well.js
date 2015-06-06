@@ -3,17 +3,16 @@
 /* ofs-well */
 
 angular.module('ofsApp')
-  
   .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 
     function($scope, $rootScope, $http, $interval) {
 
-  const INTERVAL = 10000;
-  var map = null;
-  const TILE_COL = 4;
-  const PLANT_PER_GROUP = 3;
+      const INTERVAL = 10000;
+      var map = null;
+      const TILE_COL = 4;
+      const PLANT_PER_GROUP = 3;
 
-  $scope.groups = [];
-  $scope.eventsAlarm = [];
+      $scope.groups = [];
+      $scope.eventsAlarm = [];
 
       $scope.GetMap = function(){
         console.log('debug"');
@@ -31,7 +30,6 @@ angular.module('ofsApp')
       function searchError(searchRequest){
         alert('An error occurred.');
       }
-     
       /* plants get data */
     $scope.getData = function(){
       $http.get('/data/well-overview.json')
@@ -88,10 +86,12 @@ angular.module('ofsApp')
 
       /* interval Active Alarm */
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+    $scope.spin = function() {
       $http.get('/data/well-active-alarm.json')
         .success(function(data){
           $scope.eventsAlarm = data;
         });
+    };
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/data/well-active-alarm.json')
@@ -106,8 +106,10 @@ angular.module('ofsApp')
       $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
+        })
+        .error(function(){
+          $scope.eventsHistoric = 0;
         });
-
       $scope.filterAlarm = function(start, end) {
         start = start.replace(/\./g, '');
         end = end.replace(/\./g, '');
