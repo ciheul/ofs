@@ -1,6 +1,13 @@
 {
+    "identity": {
+        "TRF.STV": { },
+        "CB-I.01": { "status": "closed" },
+        "CB-O.01": { "status": "open" }
+    }
     "incoming": ["TRF.STV", "CB-I.01", "PM-INC"],
     "outgoing": [
         ["CB-O.01", "PM-T150"]
+        ["CB-O.02", "PM-T175"]
+        ["CB-O.03", "PM-T200"]
     ]
-},
+}
