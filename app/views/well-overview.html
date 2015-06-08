@@ -4,6 +4,8 @@
     <div ng-repeat="well in group">
       <!-- <div ng-show="isLoading" data-role="preloader" data-type="ring"></div> -->
         <div class="label">{{well.Name}}</div>
+          <div>{{startSpin()}}</div>
+          <div>{{stopSpin()}}</div>
           <div ng-repeat="w in well.OilWells">
             <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
             <div class="tile-content fg-black">
@@ -29,7 +31,7 @@
 
 <div class="tile-group" style="margin-left: 600px;">
   <span us-spinner="{radius:30, width:8, length: 16}"></span>
-  <div>{{spin()}}</div>
+ <!--  <div>{{spin()}}</div> -->
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">

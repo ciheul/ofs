@@ -3,8 +3,8 @@
 /* ofs-well */
 
 angular.module('ofsApp')
-  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 
-    function($scope, $rootScope, $http, $interval) {
+  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 'usSpinnerService', 
+    function($scope, $rootScope, $http, $interval, usSpinnerService) {
 
       const INTERVAL = 10000;
       var map = null;
@@ -20,18 +20,31 @@ angular.module('ofsApp')
 
         Microsoft.Maps.loadModule('Microsoft.Maps.Search');
       };
-   /* function searchModuleLoaded()
-    {
-      var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+      function searchModuleLoaded()
+      {
+        var searchManager = new Microsoft.Maps.Search.SearchManager(map);
 
-      var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
-      searchManager.search(searchRequest);
-    }*/
+        /*var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
+        searchManager.search(searchRequest);*/
+      }
       function searchError(searchRequest){
         alert('An error occurred.');
       }
+
+      $scope.startSpin = function(){
+        if (!$scope.spinneractive) {
+          usSpinnerService.spin('spinner-1');
+          $scope.startcounter++;
+        }
+      };
+      $scope.spinneractive = false;
       /* plants get data */
-    $scope.getData = function(){
+      $scope.stopSpin = function(){
+        if ($scope.spinneractive) {
+          usSpinnerService.stop('spinner-1');
+        }
+      };
+ /*   $scope.getData = function(){*/
       $http.get('/data/well-overview.json')
         .success(function(data) {
           /*ignoreLoadingBar: true*/
@@ -41,7 +54,6 @@ angular.module('ofsApp')
               j.UnitId = encodeURI(j.UnitId);
             }); 
           });
-
           // add wells if the number of OilWells can not be divided by 4
           data.map(function(i) {
             var mod = i.OilWells.length % TILE_COL;
@@ -68,9 +80,8 @@ angular.module('ofsApp')
         .error(function(data) {
           console.log(data);
         });
-    };
-    $scope.getData();
-
+      
+    /*$scope.getData();*/
       $scope.pollWells = $interval(function() {
         $http.get('/data/well-overview.json')
           .success(function(data) {
@@ -79,29 +90,19 @@ angular.module('ofsApp')
       }, INTERVAL);
       
       /* interval Active Alarm */
-<<<<<<< HEAD
-      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-    $scope.spin = function() {
+        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
       $http.get('/data/well-active-alarm.json')
-        .success(function(data){
+        .success(function(data) {
+          $scope.eventsAlarm = data;
+      })
+      .error(function() {
+        $scope.eventsAlarm = 0;
+      });
+      $scope.pollActiveAlarms = $interval(function() {
+        $http.get('/data/well-active-alarm.json')
+        .success(function(data) {
           $scope.eventsAlarm = data;
         });
-    };
-      $scope.pollActiveAlarms = $interval(function() {
-=======
-      var getActiveAlarms = function() {
->>>>>>> a1e7323c59292dd1abcce4e81b8f688c22b22c37
-        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-        $http.get('/data/well-active-alarm.json')
-          .success(function(data) {
-            $scope.eventsAlarm = data;
-          });
-      }
-
-      getActiveAlarms();
-
-      $scope.pollActiveAlarms = $interval(function() {
-        getActiveAlarms();
       }, INTERVAL);
 
        /* interval Historical Alarm */
@@ -133,12 +134,10 @@ angular.module('ofsApp')
         return $scope.eventsAlarm.length;
         /*return 0;*/
       };
-
       $scope.count = function() {
         $rootScope.$broadcast('ping', {
           ping:$scope.getCount
         });
       };
-
   }]);
 

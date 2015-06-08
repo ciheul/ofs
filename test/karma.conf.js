@@ -30,7 +30,6 @@ module.exports = function(config) {
       'bower_components/angular-ui-utils/event.js',
       'bower_components/angular-ui-map-bing/ui-map.js',
       'bower_components/d3/d3.js',
-      'bower_components/angular-loading-bar/build/loading-bar.js',
       'bower_components/spin.js/spin.js',
       'bower_components/angular-spinner/angular-spinner.js',
       'bower_components/angular-loading-spinner/angular-loading-spinner.js',
