@@ -31,7 +31,7 @@ angular.module('ofsApp')
         alert('An error occurred.');
       }
 
-      $scope.startSpin = function(){
+      /*$scope.startSpin = function(){
         if (!$scope.spinneractive) {
           usSpinnerService.spin('spinner-1');
         }
@@ -41,7 +41,7 @@ angular.module('ofsApp')
           usSpinnerService.stop('spinner-1');
         }
       };
-      $scope.spinneractive = false;
+      $scope.spinneractive = false;*/
 
  /*   $scope.getData = function(){*/
    /* plants get data */
@@ -107,7 +107,7 @@ angular.module('ofsApp')
 
        /* interval Historical Alarm */
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
-      $http.get('/api/HistoricalAlarms')
+      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         })
