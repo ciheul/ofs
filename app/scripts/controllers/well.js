@@ -15,7 +15,7 @@ angular.module('ofsApp')
       $scope.eventsAlarm = [];
 
       $scope.GetMap = function(){
-        console.log('debug"');
+        // console.log('debug"');
         map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
 
         Microsoft.Maps.loadModule('Microsoft.Maps.Search');
