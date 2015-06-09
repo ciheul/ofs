@@ -79,5 +79,11 @@
 		"Status": "grey",
 		"DetailUrl": "st-detail",
 		"AlarmCount": 0
+	},
+	{
+		"Name": "ST-XC",
+		"Status": "grey",
+		"DetailUrl": "st-detail",
+		"AlarmCount": 0
 	}
 ]

@@ -2,16 +2,20 @@
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   <div class="tile-container" style="margin-left: -50px;">
     <div ng-repeat="well in group">
-      <!-- <div ng-show="isLoading" data-role="preloader" data-type="ring"></div> -->
-        <div class="label">{{well.Name}}</div>
+      <!-- <div ng-show="true"> -->
+       <!--  {{startSpin()}}
+        {{stopSpin()}}
+        <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span> -->
+      <!-- </div> -->
+      {{spin()}}
+      <rotating-plane-spinner ng-show="prograssing"></rotating-plane-spinner>
 
-         <!--  {{startSpin()}}
-         {{stopSpin()}} -->
-          <div ng-repeat="w in well.OilWells">
-            <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
-            <div class="tile-content fg-black">
-              <span class="tile-label" style="font-size: 12px; margin-left: 5px;">{{w.Name}}</span>
-            </div>
+      <div class="label">{{well.Name}}</div>
+        <div ng-repeat="w in well.OilWells">
+          <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
+          <div class="tile-content fg-black">
+            <span class="tile-label" style="font-size: 12px; margin-left: 5px;">{{w.Name}}</span>
+          </div>
           </a>
         </div>
       <div class="label" style="margin-bottom: 15px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
@@ -22,15 +26,13 @@
 <span>{{count()}}</span>
 
 <div class="label">UNIT LOCATION</div>
-  <!-- <div class="tile-group triple">
-    <div class="tile-container">
-      <div class="tile-big fg-white" style="background-color: #d2d2d2" data-role="tile" style="margin-top: -30px; height: 570px;">
-       
-      </div>
-    </div>
-  </div> -->
+<div ng-init="GetMap()">
+  
+  <div id='mapDiv' style="width:500px; height:500px;"></div>
+</div>
+
  
-<div class="tile-group" style="margin-left: 600px;">
+<div class="tile-group" style="margin-left: 1000px; margin-top: -550px;">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
@@ -54,7 +56,7 @@
   </div>
 </div>
 
-<div class="tile-group">
+<div class="tile-group" style="margin-left: 1800px; margin-top: -550px;">
   <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
     <div class="tile-container">
       <span style="padding-left: 30px;">START</span>
@@ -94,7 +96,4 @@
       </tbody>
     </table>
   </div>
-</div>
-<div ng-init="GetMap()">
-  <div id='mapDiv' style="width:500px; height:500px;"></div>
 </div>

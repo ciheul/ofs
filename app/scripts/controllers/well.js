@@ -1,10 +1,8 @@
 'use strict';
-/*Microsoft.Maps.loadModule('Microsoft.Maps.Location');*/
-/* ofs-well */
 
 angular.module('ofsApp')
-  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 'usSpinnerService', 
-    function($scope, $rootScope, $http, $interval, usSpinnerService) {
+  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval',
+    function($scope, $rootScope, $http, $interval) {
 
       const INTERVAL = 10000;
       var map = null;
@@ -31,23 +29,21 @@ angular.module('ofsApp')
         alert('An error occurred.');
       }
 
+    /* preloader before the data appears */
       /*$scope.startSpin = function(){
-        if (!$scope.spinneractive) {
           usSpinnerService.spin('spinner-1');
-        }
       };
       $scope.stopSpin = function(){
-        if ($scope.spinneractive) {
           usSpinnerService.stop('spinner-1');
-        }
-      };
-      $scope.spinneractive = false;*/
-
- /*   $scope.getData = function(){*/
+      };*/
+     
    /* plants get data */
+   /*$scope.prograssing = true;*/
+   $scope.spin = function(){
       $http.get('/data/well-overview.json')
         .success(function(data) {
-          /*ignoreLoadingBar: true*/
+          $scope.prograssing = true;
+
           // handle escape character for url routing
           data.map(function(i) {
             i.OilWells.map(function(j) {
@@ -80,8 +76,9 @@ angular.module('ofsApp')
         .error(function(data) {
           console.log(data);
         });
-      
-    /*$scope.getData();*/
+        $scope.prograssing = false;
+     };
+
       $scope.pollWells = $interval(function() {
         $http.get('/data/well-overview.json')
           .success(function(data) {
@@ -90,7 +87,7 @@ angular.module('ofsApp')
       }, INTERVAL);
       
       /* interval Active Alarm */
-        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
+      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
       $http.get('/data/well-active-alarm.json')
         .success(function(data) {
           $scope.eventsAlarm = data;
