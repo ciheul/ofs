@@ -34,17 +34,17 @@ angular.module('ofsApp')
       $scope.startSpin = function(){
         if (!$scope.spinneractive) {
           usSpinnerService.spin('spinner-1');
-          $scope.startcounter++;
         }
       };
-      $scope.spinneractive = false;
-      /* plants get data */
       $scope.stopSpin = function(){
         if ($scope.spinneractive) {
           usSpinnerService.stop('spinner-1');
         }
       };
+      $scope.spinneractive = false;
+
  /*   $scope.getData = function(){*/
+   /* plants get data */
       $http.get('/data/well-overview.json')
         .success(function(data) {
           /*ignoreLoadingBar: true*/

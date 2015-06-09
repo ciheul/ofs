@@ -11,6 +11,7 @@
 angular.module('ofsApp', [
     'ngResource',
     'ngRoute',
+    'angularSpinner',
   ])
   .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
