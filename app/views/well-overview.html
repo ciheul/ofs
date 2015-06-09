@@ -4,8 +4,9 @@
     <div ng-repeat="well in group">
       <!-- <div ng-show="isLoading" data-role="preloader" data-type="ring"></div> -->
         <div class="label">{{well.Name}}</div>
-          <div>{{startSpin()}}</div>
-          <div>{{stopSpin()}}</div>
+
+         <!--  {{startSpin()}}
+         {{stopSpin()}} -->
           <div ng-repeat="w in well.OilWells">
             <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
             <div class="tile-content fg-black">
@@ -28,10 +29,8 @@
       </div>
     </div>
   </div> -->
-
+ 
 <div class="tile-group" style="margin-left: 600px;">
-  <span us-spinner="{radius:30, width:8, length: 16}"></span>
- <!--  <div>{{spin()}}</div> -->
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
@@ -57,24 +56,24 @@
 
 <div class="tile-group">
   <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
-  <div class="tile-container">
-    <span style="padding-left: 30px;">START</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="start">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div>
+    <div class="tile-container">
+      <span style="padding-left: 30px;">START</span>
+      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+        <input type="text" ng-model="start">
+        <button class="button">
+          <span class="mif-calendar"></span>
+        </button>
+      </div>
 
     <span style="padding-left: 30px;">END</span>
     <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
       <input type="text" ng-model="end">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
+        <button class="button">
+          <span class="mif-calendar"></span>
+        </button>
     </div> 
 
-    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
+   <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
 
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
       <thead>
