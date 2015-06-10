@@ -20,7 +20,9 @@
 <span>{{count()}}</span>
 
 <div class="tile-group double">
-  <span class="tile-group-title fg-black">EQUIPMENT LIST</span>    
+  <span class="tile-group-title fg-black">EQUIPMENT LIST</span>
+  {{spinData}}
+  <circle-spinner ng-show="prograssing"></circle-spinner>    
     <div class="tile-container" ng-repeat="u in unit">
       <span style="font-size: 12px;">{{u.Name}}</span>
       <div ng-repeat="sub in u.Substation">
@@ -35,6 +37,8 @@
 
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
+  {{spinAlarms}}
+  <circle-spinner ng-show="prograssing"></circle-spinner>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="margin-left: -110px; width: 750px;">
       <thead>

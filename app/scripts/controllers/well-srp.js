@@ -9,14 +9,21 @@ angular.module('ofsApp')
       /*var param = {unitId: $routeParams.UnitId};*/
       $scope.eventsAlarm = [];
       
-      /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-      $http.get('/data/srp.json')
-      	.success(function(data) {
-        	$scope.dataId = data;
-        })
-        .error(function() {
-          $scope.dataId = 0;
-        });
+      $scope.loadData = function (){
+        $scope.prograssing = true;
+        /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
+        $http.get('/data/srp.json')
+      	 .success(function(data) {
+            $scope.prograssing = false;
+        	 $scope.dataId = data;
+          })
+          .error(function() {
+            $scope.prograssing = false;
+            $scope.dataId = 0;
+          });
+      };
+      $scope.spinData = $scope.loadData();
+
       $scope.pollDataSrp = $interval(function(){
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
         $http.get('/data/srp.json')
@@ -41,14 +48,18 @@ angular.module('ofsApp')
             $scope.dataTrend = data;
           });
       };
+      $scope.loadAlarm = function (){
+        $scope.prograssing = true;
+        $http.get('/data/srp-active-alarm.json')
+          .success(function(data){
+            $scope.eventsAlarm = data;
+          })
+          .error(function() {
+            $scope.eventsAlarm = 0;
+          });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
 
-      $http.get('/data/srp-active-alarm.json')
-        .success(function(data){
-          $scope.eventsAlarm = data;
-        })
-        .error(function() {
-          $scope.eventsAlarm = 0;
-        });
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/data/srp-active-alarm.json')

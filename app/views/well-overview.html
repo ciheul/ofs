@@ -1,15 +1,9 @@
 <h2 style="padding-left: 20px;">Well Overview</h2>
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
+  {{spinWells}}
+  <circle-spinner ng-show="prograssing"></circle-spinner>
   <div class="tile-container" style="margin-left: -50px;">
     <div ng-repeat="well in group">
-      <!-- <div ng-show="true"> -->
-       <!--  {{startSpin()}}
-        {{stopSpin()}}
-        <span us-spinner spinner-key="spinner-1" spinner-start-active="true"></span> -->
-      <!-- </div> -->
-      {{spin()}}
-      <rotating-plane-spinner ng-show="prograssing"></rotating-plane-spinner>
-
       <div class="label">{{well.Name}}</div>
         <div ng-repeat="w in well.OilWells">
           <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
@@ -35,26 +29,28 @@
 <div class="tile-group" style="margin-left: 1000px; margin-top: -550px;">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
-      <thead>
-        <tr>
-          <th style="width: 110px;">Date</th>
-          <th style="width: 110px;">Time</th>
-          <th style="width: 160px;">Equipment</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody ng-repeat="act in eventsAlarm">
-        <tr>
-          <td>{{act.Date}}</td>
-          <td>{{act.Time}}</td>
-          <td>{{act.Equipment}}</td>
-          <td>{{act.Message}}</td>
-        </tr>
-      </tbody>
-    </table>
+    {{spinAlarms}}
+    <circle-spinner ng-show="prograssing"></circle-spinner>
+      <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+        <thead>
+          <tr>
+            <th style="width: 110px;">Date</th>
+            <th style="width: 110px;">Time</th>
+            <th style="width: 160px;">Equipment</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="act in eventsAlarm">
+          <tr>
+            <td>{{act.Date}}</td>
+            <td>{{act.Time}}</td>
+            <td>{{act.Equipment}}</td>
+            <td>{{act.Message}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
 <div class="tile-group" style="margin-left: 1800px; margin-top: -550px;">
   <span class="tile-group-title fg-black">HISTORICAL ALARM</span>

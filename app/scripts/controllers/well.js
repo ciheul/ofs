@@ -37,47 +37,51 @@ angular.module('ofsApp')
           usSpinnerService.stop('spinner-1');
       };*/
      
-   /* plants get data */
-   /*$scope.prograssing = true;*/
-   $scope.spin = function(){
-      $http.get('/data/well-overview.json')
-        .success(function(data) {
-          $scope.prograssing = true;
+  
+      $scope.loadWell = function() {
+        $scope.prograssing = true;
+        /* plants get data */
+        $http.get('/data/well-overview.json')
+          .success(function(data) {
+            $scope.prograssing = false;
 
           // handle escape character for url routing
-          data.map(function(i) {
-            i.OilWells.map(function(j) {
-              j.UnitId = encodeURI(j.UnitId);
-            }); 
-          });
+            data.map(function(i) {
+              i.OilWells.map(function(j) {
+                j.UnitId = encodeURI(j.UnitId);
+              }); 
+            });
+
           // add wells if the number of OilWells can not be divided by 4
-          data.map(function(i) {
-            var mod = i.OilWells.length % TILE_COL;
-            if (mod !== 0) {
-              var remainings = TILE_COL - mod;
-              for (var j = 0; j < remainings; j++) {
-                i.OilWells.push({Status: '#d1d1d1'});
+            data.map(function(i) {
+              var mod = i.OilWells.length % TILE_COL;
+              if (mod !== 0) {
+                var remainings = TILE_COL - mod;
+                for (var j = 0; j < remainings; j++) {
+                  i.OilWells.push({Status: '#d1d1d1'});
+                }
+              }
+            });
+
+            // alter data structure such that can be rendered nicely
+            // in HTML. now it has 3 loops
+            var group = [];
+            for (var i = 0; i < data.length; i++) {
+              group.push(data[i]);
+              if (group.length === PLANT_PER_GROUP) {
+                $scope.groups.push(group);
+                group = [];
               }
             }
-          });
 
-          // alter data structure such that can be rendered nicely
-          // in HTML. now it has 3 loops
-          var group = [];
-          for (var i = 0; i < data.length; i++) {
-            group.push(data[i]);
-            if (group.length === PLANT_PER_GROUP) {
-              $scope.groups.push(group);
-              group = [];
-            }
-          }
-          $scope.groups.push(group);
-        })
-        .error(function(data) {
-          console.log(data);
-        });
-        $scope.prograssing = false;
-     };
+            $scope.groups.push(group);
+          })
+          .error(function(data) {
+            console.log(data);
+            $scope.prograssing = false;
+          });
+      };
+      $scope.spinWells = $scope.loadWell();
 
       $scope.pollWells = $interval(function() {
         $http.get('/data/well-overview.json')
@@ -86,15 +90,21 @@ angular.module('ofsApp')
           });
       }, INTERVAL);
       
+      
+      $scope.loadAlarm = function() {
+        $scope.prograssing = true;
       /* interval Active Alarm */
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-      $http.get('/data/well-active-alarm.json')
-        .success(function(data) {
-          $scope.eventsAlarm = data;
-      })
-      .error(function() {
-        $scope.eventsAlarm = 0;
-      });
+        $http.get('/data/well-active-alarm.json')
+          .success(function(data) {
+            $scope.eventsAlarm = data;
+        })
+        .error(function() {
+          $scope.eventsAlarm = 0;
+        });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
+
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/well-active-alarm.json')
         .success(function(data) {

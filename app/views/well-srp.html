@@ -1,11 +1,12 @@
 <h2 style="padding-left: 20px;">SRP-{{UnitId}}</h2>
+<span>{{count()}}</span>
 <!-- <span>{{count()}}</span> -->
 <div class="tile-group triple">
   <div class="tile-container">
     <div class="tile-big bg-grayLighter fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
 
       <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 20px; margin-top: 10px; width: 50px; height: 50px; font-size: 10px;" >
-          <thead>
+        <thead>
           <tr>
             <th colspan="2">MOTOR STATUS</th>
           </tr>
@@ -28,8 +29,6 @@
           </tr>
         </tbody>
       </table>
-
-      <span>{{count()}}</span>
       
       <div class="image-container" style="margin-left: 50px; margin-top: -10px;">
           <img src="images/EquView_SRP.png"/>
@@ -80,6 +79,8 @@
 
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR601-SRP Monitoring Report</span>
+   {{spinData}}
+    <circle-spinner ng-show="prograssing"></circle-spinner>
     <div class="tile-container">
       <span style="width: 120px;">{{dataId.FR601_TimeStamp}}</span>   
       <table class="table hovered fg-black table-report-simple">
@@ -127,6 +128,8 @@
 
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR602-SRP PM Report</span>
+  {{spinData}}
+    <circle-spinner ng-show="prograssing"></circle-spinner>
     <div class="tile-container">
     <span style="margin-left: 25px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.FR602_Validity}};">{{dataId.FR602_TimeStamp}}</span>   
         <table class="table hovered fg-black table-report">
@@ -236,6 +239,8 @@
 
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
+  {{spinAlarms}}
+  <circle-spinner ng-show="prograssing"></circle-spinner>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
       <thead>

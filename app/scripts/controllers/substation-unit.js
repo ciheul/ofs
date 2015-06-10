@@ -9,13 +9,20 @@ angular.module('ofsApp')
       $scope.eventsAlarm = [];
     
       /* plants get data */
-      $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
-        .success(function(data) {
-          $scope.unit = data;
-        })
-        .error(function(){
-          $scope.unit = 0;
+      $scope.loadData = function (){
+        $scope.prograssing = true;
+        $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
+          .success(function(data) {
+            $scope.prograssing = false;
+            $scope.unit = data;
+          })
+          .error(function(){
+            $scope.prograssing = false;
+            $scope.unit = 0;
         });
+      };
+      $scope.spinData = $scope.loadData();
+      
       $scope.pollSubstations = $interval(function() {
        $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
@@ -24,13 +31,20 @@ angular.module('ofsApp')
       }, 10000);
 
       /* interval Active Alarm */
-      $http.get('/data/substation-unit-active-alarm.json')
-        .success(function(data){
-          $scope.eventsAlarm = data;
-        })
-        .error(function(){
-          $scope.eventsAlarm= 0;
-        });
+      $scope.loadAlarm = function (){
+        $scope.prograssing = true;
+        $http.get('/data/substation-unit-active-alarm.json')
+          .success(function(data){
+            $scope.prograssing = false;
+            $scope.eventsAlarm = data;
+          })
+          .error(function() {
+            $scope.prograssing = false;
+            $scope.eventsAlarm = 0;
+          });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
+
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/substation-unit-active-alarm.json')
         .success(function(data) {

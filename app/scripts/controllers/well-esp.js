@@ -9,27 +9,39 @@ angular.module('ofsApp')
       $scope.eventsAlarm = [];
       
       /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/espdetail/', {params: param})*/
-      $http.get('/data/esp.json')
-      	.success(function(data) {
-        	$scope.dataId = data;
-        })
-        .error(function() {
-          $scope.dataId = 0;
-        });
+      $scope.loadData = function (){
+        $scope.prograssing = true;
+        $http.get('/data/esp.json')
+      	 .success(function(data) {
+            $scope.prograssing = false;
+        	  $scope.dataId = data;
+          })
+          .error(function() {
+            $scope.prograssing = false;
+            $scope.dataId = 0;
+          });
+      };
+      $scope.spinData = $scope.loadData();
+      
       $scope.pollDataEsp = $interval(function(){
       	$http.get('/data/esp.json', {params: param})
       	  .success(function(data) {
           	$scope.dataId = data;
           });
       }, 10000);
-
-      $http.get('/data/esp-active-alarm.json')
-        .success(function(data){
-          $scope.eventsAlarm = data;
-        })
-        .error(function() {
-          $scope.eventsAlarm = 0;
-        });
+      $scope.loadAlarm = function (){
+        $scope.prograssing = true;
+        $http.get('/data/esp-active-alarm.json')
+          .success(function(data){
+            $scope.prograssing = false;
+            $scope.eventsAlarm = data;
+          })
+          .error(function() {
+            $scope.prograssing = false;
+            $scope.eventsAlarm = 0;
+          });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/data/esp-active-alarm.json')
