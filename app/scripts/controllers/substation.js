@@ -35,14 +35,21 @@ angular.module('ofsApp')
       }
 
       /* plants get data */
-      $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
-        .success(function(data) {
-          $scope.totalWells = data;
-        })
-        .error(function(data) {
-          console.log(data);
-        });
-
+      $scope.loadWell = function() {
+        $scope.prograssing = true;
+        $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
+          .success(function(data) {
+            /*$scope.loaded = false;*/    
+            $scope.prograssing = false;
+            $scope.totalWells = data; 
+          })
+          .error(function(data) {
+            console.log(data);
+            $scope.prograssing = false;
+          });
+      };
+      $scope.spinWells = $scope.loadWell();
+     
       $scope.pollSubstations = $interval(function() {
        $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
         .success(function(data) {
@@ -51,13 +58,20 @@ angular.module('ofsApp')
       }, 10000);
 
       /* interval Active Alarm */
-      $http.get('/data/substation-active-alarm.json')
-        .success(function(data){
-          $scope.eventsAlarm = data;
-        })
-        .error(function(){
-          $scope.eventsAlarm = 0;
-        });
+      $scope.loadAlarm = function() {
+        $scope.prograssing = true;
+        $http.get('/data/substation-active-alarm.json')
+          .success(function(data){
+            $scope.prograssing = false;
+            $scope.eventsAlarm = data;
+          })
+          .error(function(){
+            $scope.prograssing = false;
+            $scope.eventsAlarm = 0;
+          });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
+
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/substation-active-alarm.json')
         .success(function(data) {

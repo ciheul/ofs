@@ -1,10 +1,8 @@
 'use strict';
-/*Microsoft.Maps.loadModule('Microsoft.Maps.Location');*/
-/* ofs-well */
 
 angular.module('ofsApp')
-  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', 'usSpinnerService', 
-    function($scope, $rootScope, $http, $interval, usSpinnerService) {
+  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval',
+    function($scope, $rootScope, $http, $interval) {
 
       const INTERVAL = 10000;
       var map = null;
@@ -32,58 +30,60 @@ angular.module('ofsApp')
         alert('An error occurred.');
       }
 
+    /* preloader before the data appears */
       /*$scope.startSpin = function(){
-        if (!$scope.spinneractive) {
           usSpinnerService.spin('spinner-1');
-        }
       };
       $scope.stopSpin = function(){
-        if ($scope.spinneractive) {
           usSpinnerService.stop('spinner-1');
-        }
-      };
-      $scope.spinneractive = false;*/
+      };*/
+     
+  
+      $scope.loadWell = function() {
+        $scope.prograssing = true;
+        /* plants get data */
+        $http.get('/api/OilWellOverView')
+          .success(function(data) {
+            $scope.prograssing = false;
 
- /*   $scope.getData = function(){*/
-   /* plants get data */
-      $http.get('/api/OilWellOverView')
-        .success(function(data) {
-          /*ignoreLoadingBar: true*/
-          // handle escape character for url routing
-          data.map(function(i) {
-            i.OilWells.map(function(j) {
-              j.UnitId = encodeURI(j.UnitId);
-            }); 
-          });
+            // handle escape character for url routing
+            data.map(function(i) {
+              i.OilWells.map(function(j) {
+                j.UnitId = encodeURI(j.UnitId);
+              }); 
+            });
 
           // add wells if the number of OilWells can not be divided by 4
-          data.map(function(i) {
-            var mod = i.OilWells.length % TILE_COL;
-            if (mod !== 0) {
-              var remainings = TILE_COL - mod;
-              for (var j = 0; j < remainings; j++) {
-                i.OilWells.push({Status: '#d1d1d1'});
+            data.map(function(i) {
+              var mod = i.OilWells.length % TILE_COL;
+              if (mod !== 0) {
+                var remainings = TILE_COL - mod;
+                for (var j = 0; j < remainings; j++) {
+                  i.OilWells.push({Status: '#d1d1d1'});
+                }
+              }
+            });
+
+            // alter data structure such that can be rendered nicely
+            // in HTML. now it has 3 loops
+            var group = [];
+            for (var i = 0; i < data.length; i++) {
+              group.push(data[i]);
+              if (group.length === PLANT_PER_GROUP) {
+                $scope.groups.push(group);
+                group = [];
               }
             }
-          });
 
-          // alter data structure such that can be rendered nicely
-          // in HTML. now it has 3 loops
-          var group = [];
-          for (var i = 0; i < data.length; i++) {
-            group.push(data[i]);
-            if (group.length === PLANT_PER_GROUP) {
-              $scope.groups.push(group);
-              group = [];
-            }
-          }
-          $scope.groups.push(group);
-        })
-        .error(function(data) {
-          console.log(data);
-        });
-      
-    /*$scope.getData();*/
+            $scope.groups.push(group);
+          })
+          .error(function(data) {
+            console.log(data);
+            $scope.prograssing = false;
+          });
+      };
+      $scope.spinWells = $scope.loadWell();
+
       $scope.pollWells = $interval(function() {
         $http.get('/api/OilWellOverView')
           .success(function(data) {
@@ -91,15 +91,20 @@ angular.module('ofsApp')
           });
       }, INTERVAL);
       
-      /* interval Active Alarm */
+      
+      $scope.loadAlarm = function() {
+        $scope.prograssing = true;
+        /* interval Active Alarm */
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-      $http.get('/api/ActiveAlarms')
-        .success(function(data) {
-          $scope.eventsAlarm = data;
-      })
-      .error(function() {
-        $scope.eventsAlarm = 0;
-      });
+        $http.get('/api/ActiveAlarms')
+          .success(function(data) {
+            $scope.eventsAlarm = data;
+        })
+        .error(function() {
+          $scope.eventsAlarm = 0;
+        });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
 
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/api/ActiveAlarms')
@@ -108,7 +113,7 @@ angular.module('ofsApp')
         });
       }, INTERVAL);
 
-       /* interval Historical Alarm */
+      /* interval Historical Alarm */
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
       $http.get('/api/HistoricalAlarms')
         .success(function(data) {

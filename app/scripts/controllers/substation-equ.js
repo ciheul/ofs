@@ -10,13 +10,20 @@ angular.module('ofsApp')
       $scope.eventsAlarm = [];
 
      /* $http.get('/data/substation-equ.json', {params: param})*/
-      $http.get('/data/substation-equ.json')
-        .success(function(data) {
-          $scope.dataId = data;
-        })
-        .error(function() {
-          $scope.dataId = 0;
-        });
+     $scope.loadData = function (){
+        $scope.prograssing = true;
+        $http.get('/data/substation-equ.json')
+         .success(function(data) {
+            $scope.prograssing = false;
+            $scope.dataId = data;
+          })
+          .error(function() {
+            $scope.prograssing = false;
+            $scope.dataId = 0;
+          });
+      };
+      $scope.spinData = $scope.loadData();
+
       $scope.pollDataEqu = $interval(function(){
         /*$http.get('', {params: param})*/
         $http.get('/data/substation-equ.json')
@@ -26,13 +33,19 @@ angular.module('ofsApp')
       }, 10000);
       
       /* interval Active Alarm */
-      $http.get('/data/substation-equ-active-alarm.json')
-        .success(function(data){
-          $scope.eventsAlarm = data;
-        })
-        .error(function(){
-          $scope.eventsAlarm = 0;
-        });
+      $scope.loadAlarm = function (){
+        $scope.prograssing = true;
+        $http.get('/data/substation-equ-active-alarm.json')
+          .success(function(data){
+            $scope.prograssing = false;
+            $scope.eventsAlarm = data;
+          })
+          .error(function() {
+            $scope.prograssing = false;
+            $scope.eventsAlarm = 0;
+          });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/data/substation-equ-active-alarm.json')
         .success(function(data) {

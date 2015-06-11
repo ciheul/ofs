@@ -11,16 +11,22 @@ angular.module('ofsApp')
 
       $scope.eventsAlarm = [];
       
-      /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-      $http.get('/api/srpdetail/', { params: param })
-      	.success(function(data) {
-        	$scope.dataId = data;
-        })
-        .error(function() {
-          $scope.dataId = 0;
-        });
+      $scope.loadData = function (){
+        $scope.prograssing = true;
+        /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
+        $http.get('/api/srpdetail/', { params: param })
+      	 .success(function(data) {
+            $scope.prograssing = false;
+        	 $scope.dataId = data;
+          })
+          .error(function() {
+            $scope.prograssing = false;
+            $scope.dataId = 0;
+          });
+      };
+      $scope.spinData = $scope.loadData();
 
-      $scope.pollDataSrp = $interval(function() {
+      $scope.pollDataSrp = $interval(function(){
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
         $http.get('/api/srpdetail/', { params: param })
           .success(function(data) {
@@ -44,6 +50,17 @@ angular.module('ofsApp')
             $scope.dataTrend = data;
           });
       };
+      $scope.loadAlarm = function (){
+        $scope.prograssing = true;
+        $http.get('/data/srp-active-alarm.json')
+          .success(function(data){
+            $scope.eventsAlarm = data;
+          })
+          .error(function() {
+            $scope.eventsAlarm = 0;
+          });
+      };
+      $scope.spinAlarms = $scope.loadAlarm();
 
       $http.get('/api/SRP/ActiveAlarms')
         .success(function(data){
@@ -93,17 +110,5 @@ angular.module('ofsApp')
           ping:$scope.getCount
         });
       };
-
-
-   /* $scope.date = new Date();
-*/
-   /* $scope.timeStamp = function(dataId){
-      for (var i = 0; i < dataId.length; i++) {
-        if (dataId[i].FR601_TimeStamp === 'null') {
-          $scope.timeStamp == 0;
-        }
-      }
-      console.log($scope.timeStamp);
-    };*/
 
   }]);
