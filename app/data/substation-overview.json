@@ -2,71 +2,14 @@
 	{
 		"Name": "ST-P.PLANT",
 		"Status": "grey",
-		"AlarmCount": 0,
 		"DetailUrl": "st-detail",
-		"Substation":[
-			{
-
-			}
-		]
+		"AlarmCount": 0
 	},
 	{
 		"Name": "ST-V",
 		"Status": "yellow",
-		"AlarmCount": 1,
 		"DetailUrl": "st-detail",
-		"Substation": [
-			{
-				"Name": "CB-I.01",
-				"GroupName": "ST-V",
-				"Size": "0",
-				"Status": "black",
-				"DetailUrl": "st-detail",
-				"UnitId": "EPTJ\\CB-I.01",
-				"AlarmStatus": 0,
-				"AlarmCount": 0
-			},
-			{
-				"Name": "CB-O.01",
-				"GroupName": "ST-V",
-				"Size": "0",
-				"Status": "black",
-				"DetailUrl": "st-detail",
-				"UnitId": "EPTJ\\OW.T04",
-				"AlarmStatus": 0,
-				"AlarmCount": 0
-			},
-			{
-				"Name": "PM-INC",
-				"GroupName": "ST-V",
-				"Size": "0",
-				"Status": "black",
-				"DetailUrl": "st-detail",
-				"UnitId": "EPTJ\\PM-INC",
-				"AlarmStatus": 0,
-				"AlarmCount": 0
-			},
-			{
-				"Name": "PM-T150",
-				"GroupName": "ST-V",
-				"Size": "0",
-				"Status": "black",
-				"DetailUrl": "st-detail",
-				"UnitId": "EPTJ\\PM-T150",
-				"AlarmStatus": 0,
-				"AlarmCount": 0
-			},
-			{
-				"Name": "TRF.STV",
-				"GroupName": "ST-V",
-				"Size": "0",
-				"Status": "black",
-				"DetailUrl": "st-detail",
-				"UnitId": "EPTJ\\TRF.STV",
-				"AlarmStatus": 0,
-				"AlarmCount": 0
-			}
-		]
+		"AlarmCount": 1
 	},
 	{
 		"Name": "ST-VIIIA",

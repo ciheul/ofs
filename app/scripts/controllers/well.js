@@ -29,15 +29,6 @@ angular.module('ofsApp')
       function searchError(searchRequest) {
         alert('An error occurred.');
       }
-
-    /* preloader before the data appears */
-      /*$scope.startSpin = function(){
-          usSpinnerService.spin('spinner-1');
-      };
-      $scope.stopSpin = function(){
-          usSpinnerService.stop('spinner-1');
-      };*/
-     
   
       $scope.loadWell = function() {
         $scope.prograssing = true;
@@ -78,7 +69,7 @@ angular.module('ofsApp')
             $scope.groups.push(group);
           })
           .error(function(data) {
-            console.log(data);
+            $scope.group = data || 'Request Failed';
             $scope.prograssing = false;
           });
       };
@@ -99,10 +90,13 @@ angular.module('ofsApp')
         $http.get('/api/ActiveAlarms')
           .success(function(data) {
             $scope.eventsAlarm = data;
+            $scope.prograssing = false;
         })
-        .error(function() {
-          $scope.eventsAlarm = 0;
-        });
+          .error(function(data) {
+            $scope.eventsAlarm = data || 'Request Failed';
+            $scope.prograssing = false;
+            console.log($scope.eventsAlarm);
+          });
       };
       $scope.spinAlarms = $scope.loadAlarm();
 

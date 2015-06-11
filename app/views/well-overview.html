@@ -18,40 +18,41 @@
 </div>
 
 <span>{{count()}}</span>
-
-<div class="label">UNIT LOCATION</div>
-<!-- <microsoft&#45;maps></microsoft&#45;maps> -->
-<div ng-init="GetMap()">
-  <div id='mapDiv' style="width:500px; height:500px;"></div>
+<div class="tile-group triple" data-role="tile">
+  <span class="tile-group-title fg-black">UNIT LOCATION</span>
+    <div ng-init="GetMap()">
+      <div id='mapDiv' style="width:500px; height:500px;"></div>
+    </div>
 </div>
 
-<div class="tile-group" style="margin-left: 1000px; margin-top: -550px;">
+ 
+<div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   <div class="tile-container">
-    {{spinAlarms}}
-    <circle-spinner ng-show="prograssing"></circle-spinner>
-      <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
-        <thead>
-          <tr>
-            <th style="width: 110px;">Date</th>
-            <th style="width: 110px;">Time</th>
-            <th style="width: 160px;">Equipment</th>
-            <th>Message</th>
-          </tr>
-        </thead>
-        <tbody ng-repeat="act in eventsAlarm">
-          <tr>
-            <td>{{act.Date}}</td>
-            <td>{{act.Time}}</td>
-            <td>{{act.Equipment}}</td>
-            <td>{{act.Message}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+      <thead>
+        <tr>
+          <th style="width: 110px;">Date</th>
+          <th style="width: 110px;">Time</th>
+          <th style="width: 160px;">Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody ng-repeat="act in eventsAlarm">
+        {{spinAlarms}}
+        <tr>
+          <circle-spinner ng-show="prograssing"></circle-spinner>
+          <td>{{act.Date}}</td>
+          <td>{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 
-<div class="tile-group" style="margin-left: 1800px; margin-top: -550px;">
+<div class="tile-group">
   <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
     <div class="tile-container">
       <span style="padding-left: 30px;">START</span>

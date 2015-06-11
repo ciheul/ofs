@@ -1,27 +1,27 @@
 <h2 style="padding-left: 20px;">Electrical Overview</h2>
 
 <div class="tile-group double" data-role="tile" style="margin-left: 50px; margin-top: -25px;">
-  {{spinWells}}
-  <circle-spinner ng-show="prograssing"></circle-spinner>
-    <div class="tile-container" ng-repeat="well in totalWells">
-      <div class="label">{{well.Name}}</div>
-        <a class="tile" href="#/{{well.DetailUrl}}/{{well.Name}}" data-click="transform" data-role="tile" style="height: 100px; width: 100px; background-color: {{well.Status}};">
-          <div class="tile-content">
-            <span class="tile-badge bg-red fg-white">{{well.AlarmCount}}</span>
-          </div>
-        </a>
-    </div>
+  <div class="tile-container" ng-repeat="well in totalWells">
+    {{spinWells}}
+    <circle-spinner ng-show="prograssing"></circle-spinner>
+    <div class="label">{{well.Name}}</div>
+      <a class="tile" href="#/{{well.DetailUrl}}/{{well.Name}}" data-click="transform" data-role="tile" style="height: 100px; width: 100px; background-color: {{well.Status}};">
+        <div class="tile-content">
+          <span class="tile-badge bg-red fg-white">{{well.AlarmCount}}</span>
+        </div>
+      </a>
+   </div>
 </div>
 
 <span>{{count()}}</span>
-<div>
-  <div class="label" style="margin-left: 310px; margin-top: 24px;">UNIT LOCATION</div>
-  <div ng-init="GetMap()">
-    <div id='mapDiv2' style="width:500px; height:500px;"></div>
-  </div>
+<div class="tile-group triple" data-role="tile">
+  <span class="tile-group-title fg-black">UNIT LOCATION</span>
+    <div ng-init="GetMap()">
+      <div id='mapDiv2' style="width:500px; height:500px;"></div>
+    </div>
 </div>
 
-<div class="tile-group" style="margin-left: 500px; margin-top: -550px;">
+<div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
     <div class="tile-container">
     {{spinAlarms}}
@@ -47,7 +47,7 @@
     </div>
 </div>
 
-<div class="tile-group" style="margin-left: 1300px; margin-top: -550px;">
+<div class="tile-group">
   <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
     <div class="tile-container">
       <span style="padding-left: 30px;">START</span>
