@@ -20,14 +20,15 @@ angular.module('ofsApp')
 
         Microsoft.Maps.loadModule('Microsoft.Maps.Search');
       };
-      function searchModuleLoaded()
-      {
+
+      function searchModuleLoaded() {
         var searchManager = new Microsoft.Maps.Search.SearchManager(map);
 
         /*var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
         searchManager.search(searchRequest);*/
       }
-      function searchError(searchRequest){
+
+      function searchError(searchRequest) {
         alert('An error occurred.');
       }
 
@@ -45,7 +46,7 @@ angular.module('ofsApp')
 
  /*   $scope.getData = function(){*/
    /* plants get data */
-      $http.get('/data/well-overview.json')
+      $http.get('/api/OilWellOverView')
         .success(function(data) {
           /*ignoreLoadingBar: true*/
           // handle escape character for url routing
@@ -54,6 +55,7 @@ angular.module('ofsApp')
               j.UnitId = encodeURI(j.UnitId);
             }); 
           });
+
           // add wells if the number of OilWells can not be divided by 4
           data.map(function(i) {
             var mod = i.OilWells.length % TILE_COL;
@@ -83,7 +85,7 @@ angular.module('ofsApp')
       
     /*$scope.getData();*/
       $scope.pollWells = $interval(function() {
-        $http.get('/data/well-overview.json')
+        $http.get('/api/OilWellOverView')
           .success(function(data) {
             $scope.totalWells = data;
           });
@@ -91,15 +93,16 @@ angular.module('ofsApp')
       
       /* interval Active Alarm */
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-      $http.get('/data/well-active-alarm.json')
+      $http.get('/api/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
       })
       .error(function() {
         $scope.eventsAlarm = 0;
       });
+
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('/data/well-active-alarm.json')
+        $http.get('/api/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
@@ -107,18 +110,19 @@ angular.module('ofsApp')
 
        /* interval Historical Alarm */
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
-      $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
+      $http.get('/api/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         })
-        .error(function(){
+        .error(function() {
           $scope.eventsHistoric = 0;
         });
+
       $scope.filterAlarm = function(start, end) {
         start = start.replace(/\./g, '');
         end = end.replace(/\./g, '');
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
-        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
+        $http.get('/api/HistoricalAlarms', {params: params})
         .success(function(data){
           $scope.eventsHistoric = data;
         });
@@ -134,6 +138,7 @@ angular.module('ofsApp')
         return $scope.eventsAlarm.length;
         /*return 0;*/
       };
+
       $scope.count = function() {
         $rootScope.$broadcast('ping', {
           ping:$scope.getCount

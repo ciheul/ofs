@@ -13,6 +13,12 @@ angular.module('ofsApp', [
     'ngRoute',
     'angularSpinner',
   ])
+  .constant('HOST', {
+    DEBUG: true,
+    BASE_URL: 'http://localhost',
+    PORT: 3000
+  })
+  .constant('HTTP_INTERVAL', 10000)
   .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/well', {
@@ -44,5 +50,6 @@ angular.module('ofsApp', [
       });
 
     $httpProvider.defaults.useXDomain = true;
+    $httpProvider.interceptors.push('httpGlobalUrlModifier');
   }]);
 
