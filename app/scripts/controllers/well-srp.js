@@ -17,11 +17,14 @@ angular.module('ofsApp')
         $http.get('/api/srpdetail/', { params: param })
       	 .success(function(data) {
             $scope.prograssing = false;
-        	 $scope.dataId = data;
+        	  $scope.dataId = data;
           })
-          .error(function() {
+          .error(function(data) {
+            $scope.dataId = data || [
+              {'msg': 'Request Failed from Server'}
+            ];
+            console.log('debug');
             $scope.prograssing = false;
-            $scope.dataId = 0;
           });
       };
       $scope.spinData = $scope.loadData();

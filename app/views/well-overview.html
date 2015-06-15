@@ -1,4 +1,16 @@
-<h2 style="padding-left: 20px;">Well Overview</h2>
+<span>{{count()}}</span>
+<div>
+  <h2 style="padding-left: 20px;">Well Overview
+    <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="group in group">
+      {{group.msg}}
+    </span>
+  </h2>
+  <div ng-repeat="group in group"  class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
+    <span style="margin-left: 135px;">{{group.msg}}</span>
+  </div>
+</div>
+
+
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   {{spinWells}}
   <circle-spinner ng-show="prograssing"></circle-spinner>
@@ -17,7 +29,7 @@
   </div>
 </div>
 
-<span>{{count()}}</span>
+
 <div class="tile-group triple" data-role="tile">
   <span class="tile-group-title fg-black">UNIT LOCATION</span>
     <div ng-init="GetMap()">

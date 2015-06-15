@@ -69,7 +69,9 @@ angular.module('ofsApp')
             $scope.groups.push(group);
           })
           .error(function(data) {
-            $scope.group = data || 'Request Failed';
+            $scope.group = data || [
+              {'msg': 'Request Failed from Server'}
+            ];
             $scope.prograssing = false;
           });
       };
@@ -93,7 +95,7 @@ angular.module('ofsApp')
             $scope.prograssing = false;
         })
           .error(function(data) {
-            $scope.eventsAlarm = data || 'Request Failed';
+            $scope.eventsAlarm = data || 'Request Failed from Server';
             $scope.prograssing = false;
             console.log($scope.eventsAlarm);
           });
@@ -137,6 +139,7 @@ angular.module('ofsApp')
         return $scope.eventsAlarm.length;
         /*return 0;*/
       };
+      
 
       $scope.count = function() {
         $rootScope.$broadcast('ping', {
