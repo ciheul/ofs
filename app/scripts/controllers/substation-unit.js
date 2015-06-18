@@ -33,7 +33,7 @@ angular.module('ofsApp')
       /* interval Active Alarm */
       $scope.loadAlarm = function (){
         $scope.prograssing = true;
-        $http.get('/data/substation-unit-active-alarm.json')
+        $http.get('/api/SubstationOverview/SubstationUnit/ActiveAlarms')
           .success(function(data){
             $scope.prograssing = false;
             $scope.eventsAlarm = data;
@@ -46,14 +46,14 @@ angular.module('ofsApp')
       $scope.spinAlarms = $scope.loadAlarm();
 
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('/data/substation-unit-active-alarm.json')
+        $http.get('/api/SubstationOverview/SubstationUnit/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
       }, 10000);
 
        /* interval Historical Alarm */
-      $http.get('')
+      $http.get('/api/SubstationOverview/SubstationUnit/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         })

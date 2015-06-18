@@ -12,7 +12,7 @@ angular.module('ofsApp')
      /* $http.get('/data/substation-equ.json', {params: param})*/
      $scope.loadData = function (){
         $scope.prograssing = true;
-        $http.get('/data/substation-equ.json')
+        $http.get('/api/SubstationOverview/SubstationEqu')
          .success(function(data) {
             $scope.prograssing = false;
             $scope.dataId = data;
@@ -26,7 +26,7 @@ angular.module('ofsApp')
 
       $scope.pollDataEqu = $interval(function(){
         /*$http.get('', {params: param})*/
-        $http.get('/data/substation-equ.json')
+        $http.get('/api/SubstationOverview/SubstationEqu')
         .success(function(data) {
           $scope.dataId = data;
         });
@@ -35,7 +35,7 @@ angular.module('ofsApp')
       /* interval Active Alarm */
       $scope.loadAlarm = function (){
         $scope.prograssing = true;
-        $http.get('/data/substation-equ-active-alarm.json')
+        $http.get('/api/SubstationOverview/SubstationEqu/ActiveAlarms')
           .success(function(data){
             $scope.prograssing = false;
             $scope.eventsAlarm = data;
@@ -47,14 +47,14 @@ angular.module('ofsApp')
       };
       $scope.spinAlarms = $scope.loadAlarm();
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('/data/substation-equ-active-alarm.json')
+        $http.get('/api/SubstationOverview/SubstationEqu/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
       }, 10000);
 
        /* interval Historical Alarm */
-      $http.get('')
+      $http.get('api/SubstationOverview/SubstationEqu/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         })
