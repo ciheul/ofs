@@ -1,4 +1,10 @@
-<h2 style="padding-left: 20px;">ESP-{{UnitId}}</h2>
+<div>
+  <h2 style="padding-left: 20px;">ESP-{{UnitId}}
+    <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="alert2 in dataId">
+      {{alert2.msg}}
+    </span>
+  </h2>
+</div>
 
 <div class="tile-group triple">
   <div class="tile-container">

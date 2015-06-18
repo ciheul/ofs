@@ -11,17 +11,21 @@ angular.module('ofsApp')
 
       $scope.eventsAlarm = [];
       
+      /*spin loader data srp*/
       $scope.loadData = function (){
         $scope.prograssing = true;
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-        $http.get('/api/srpdetail/', { params: param })
+        $http.get('api/Srp/', { params: param })
       	 .success(function(data) {
-            $scope.prograssing = false;
         	  $scope.dataId = data;
+            $scope.prograssing = false;
           })
           .error(function(data) {
-            $scope.dataId = data || [
-              {'msg': 'Request Failed from Server'}
+            $scope.dataId = data || 
+            [
+              {
+                'msg': 'Request Failed from Server'
+              }
             ];
             console.log('debug');
             $scope.prograssing = false;
@@ -29,14 +33,16 @@ angular.module('ofsApp')
       };
       $scope.spinData = $scope.loadData();
 
+      /*interval data srp*/
       $scope.pollDataSrp = $interval(function(){
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-        $http.get('/api/srpdetail/', { params: param })
+        $http.get('/api/Srp/', { params: param })
           .success(function(data) {
             $scope.dataId = data;
           });
       }, HTTP_INTERVAL);
 
+      /*trending*/
       $scope.filterTrending = function(startTrend, endTrend) {
         startTrend = startTrend.replace(/\./g, '');
         endTrend = endTrend.replace(/\./g, '');
@@ -48,39 +54,47 @@ angular.module('ofsApp')
         };
 
         //http://teleconscada-web00.cloudapp.net:1980/api/SRPTrending/?unitId=EPTJ%5COW.T150&dtfrom=20150506160000&dtto=20150507160000
-        $http.get('/api/SRPTrending/', { params: params })
+        $http.get('', { params: params })
           .success(function(data) {
             $scope.dataTrend = data;
           });
       };
+
+      /*spin loader active alarm*/
       $scope.loadAlarm = function (){
         $scope.prograssing = true;
-        $http.get('/data/srp-active-alarm.json')
+        $http.get('/api/Srp/ActiveAlarms')
           .success(function(data){
             $scope.eventsAlarm = data;
+            $scope.prograssing = false;
+
+            $scope.getCount = function(){
+              return $scope.eventsAlarm.length;
+            };
+
+            $scope.count = function(){
+              $rootScope.$broadcast('ping',{
+                ping:$scope.getCount
+              });
+            };
           })
-          .error(function() {
-            $scope.eventsAlarm = 0;
+          .error(function(data) {
+            $scope.eventsAlarm = data || 'Request Failed from Server';
+            $scope.prograssing = false;
           });
       };
       $scope.spinAlarms = $scope.loadAlarm();
 
-      $http.get('/api/SRP/ActiveAlarms')
-        .success(function(data){
-          $scope.eventsAlarm = data;
-        })
-        .error(function() {
-          $scope.eventsAlarm = 0;
-        });
-
+      /*interva; active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-        $http.get('/api/SRP/ActiveAlarms')
+        $http.get('/api/Srp/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
       }, 10000);
 
+      /*Historical Alarm*/
       $http.get('')
         .success(function(data) {
           $scope.eventsHistoric = data;
@@ -103,15 +117,4 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollDataSrp);
         $interval.cancel($scope.pollActiveAlarms);
       });
-
-      $scope.getCount = function(){
-        return $scope.eventsAlarm.length;
-      };
-
-      $scope.count = function(){
-        $rootScope.$broadcast('ping',{
-          ping:$scope.getCount
-        });
-      };
-
   }]);

@@ -9,47 +9,70 @@ angular.module('ofsApp')
       $scope.eventsAlarm = [];
       
       /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/espdetail/', {params: param})*/
+      /*spin loader esp data*/
       $scope.loadData = function (){
         $scope.prograssing = true;
-        $http.get('/data/esp.json')
+        $http.get('/api/Esp/', { params: param })
       	 .success(function(data) {
+            $scope.dataId = data;
             $scope.prograssing = false;
-        	  $scope.dataId = data;
           })
-          .error(function() {
+          .error(function(data) {
+            $scope.dataId = data || 
+            [
+              {
+                'msg': 'Request Failed from Server'
+              }
+            ];
+            console.log('debug');
             $scope.prograssing = false;
-            $scope.dataId = 0;
           });
       };
       $scope.spinData = $scope.loadData();
       
+      /*interval esp data*/
       $scope.pollDataEsp = $interval(function(){
-      	$http.get('/data/esp.json', {params: param})
+      	$http.get('/api/Esp/', {params: param})
       	  .success(function(data) {
           	$scope.dataId = data;
           });
       }, 10000);
+
+      /*spin loader active alarm*/
       $scope.loadAlarm = function (){
         $scope.prograssing = true;
-        $http.get('/data/esp-active-alarm.json')
+        $http.get('/api/Srp/ActiveAlarms')
           .success(function(data){
-            $scope.prograssing = false;
             $scope.eventsAlarm = data;
-          })
-          .error(function() {
             $scope.prograssing = false;
-            $scope.eventsAlarm = 0;
+
+            $scope.getCount = function(){
+              return $scope.eventsAlarm.length;
+            };
+
+            $scope.count = function(){
+              $rootScope.$broadcast('ping',{
+                ping:$scope.getCount
+              });
+            };
+          })
+          .error(function(data) {
+            $scope.eventsAlarm = data || 'Request Failed from Server';
+            $scope.prograssing = false;
           });
       };
       $scope.spinAlarms = $scope.loadAlarm();
+
+      /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-        $http.get('/data/esp-active-alarm.json')
+        $http.get('/api/Srp/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
       }, 10000);
 
+      /*historical alarm*/
        $http.get('')
         .success(function(data) {
           $scope.eventsHistoric = data;
@@ -65,17 +88,6 @@ angular.module('ofsApp')
         $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
         .success(function(data){
           $scope.eventsHistoric = data;
-        });
-      };
-
-      $scope.getCount = function(){
-        return $scope.eventsAlarm.length;
-        /*return 0;*/
-      };
-
-      $scope.count = function(){
-        $rootScope.$broadcast('ping',{
-          ping:$scope.getCount
         });
       };
 

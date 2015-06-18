@@ -69,7 +69,8 @@ angular.module('ofsApp')
             $scope.groups.push(group);
           })
           .error(function(data) {
-            $scope.group = data || [
+            $scope.group = data || 
+            [
               {'msg': 'Request Failed from Server'}
             ];
             $scope.prograssing = false;
@@ -84,7 +85,7 @@ angular.module('ofsApp')
           });
       }, INTERVAL);
       
-      
+      /*spin active alarm*/
       $scope.loadAlarm = function() {
         $scope.prograssing = true;
         /* interval Active Alarm */
@@ -93,6 +94,16 @@ angular.module('ofsApp')
           .success(function(data) {
             $scope.eventsAlarm = data;
             $scope.prograssing = false;
+
+            $scope.getCount = function() {
+              return $scope.eventsAlarm.length;
+            };
+
+            $scope.count = function() {
+              $rootScope.$broadcast('ping', {
+                ping:$scope.getCount
+              });
+            };
         })
           .error(function(data) {
             $scope.eventsAlarm = data || 'Request Failed from Server';
@@ -101,7 +112,8 @@ angular.module('ofsApp')
           });
       };
       $scope.spinAlarms = $scope.loadAlarm();
-
+      
+      /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         $http.get('/api/ActiveAlarms')
         .success(function(data) {
@@ -135,16 +147,6 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollActiveAlarms);
       });
  
-      $scope.getCount = function() {
-        return $scope.eventsAlarm.length;
-        /*return 0;*/
-      };
       
-
-      $scope.count = function() {
-        $rootScope.$broadcast('ping', {
-          ping:$scope.getCount
-        });
-      };
   }]);
 

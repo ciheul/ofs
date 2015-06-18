@@ -37,7 +37,7 @@ angular.module('ofsApp')
       /* plants get data */
       $scope.loadWell = function() {
         $scope.prograssing = true;
-        $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
+        $http.get('/api/substationOverview')/*http://localhost:3000/api/wells*/
           .success(function(data) {
             /*$scope.loaded = false;*/    
             $scope.prograssing = false;
@@ -51,7 +51,7 @@ angular.module('ofsApp')
       $scope.spinWells = $scope.loadWell();
      
       $scope.pollSubstations = $interval(function() {
-       $http.get('/data/substation-overview.json')/*http://localhost:3000/api/wells*/
+       $http.get('/api/substationOverview')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.totalWells = data;
         });
@@ -60,7 +60,7 @@ angular.module('ofsApp')
       /* interval Active Alarm */
       $scope.loadAlarm = function() {
         $scope.prograssing = true;
-        $http.get('/data/substation-active-alarm.json')
+        $http.get('/api/substationOverview/ActiveAlarms')
           .success(function(data){
             $scope.prograssing = false;
             $scope.eventsAlarm = data;
@@ -73,14 +73,14 @@ angular.module('ofsApp')
       $scope.spinAlarms = $scope.loadAlarm();
 
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('/data/substation-active-alarm.json')
+        $http.get('/api/substationOverview/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
       }, 10000);
 
        /* interval Historical Alarm */
-      $http.get('')
+      $http.get('/api/substationOverview/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         })
