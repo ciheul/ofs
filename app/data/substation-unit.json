@@ -1,7 +1,7 @@
 [
 	{
 		"Name": "CIRCUIT BREAKER",
-		"Substation": [
+		"Substations": [
 			{
 				"Name": "CB-I.01",
 				"GroupName": "Circuit Breaker",
@@ -27,7 +27,7 @@
 	},
 	{
 		"Name": "POWER METER",
-		"Substation": [
+		"Substations": [
 			{
 				"Name": "PM-INC",
 				"GroupName": "ST-V",
@@ -52,7 +52,7 @@
 	},
 	{
 		"Name": "TRANSFORMER",
-		"Substation": [
+		"Substations": [
 			{
 				"Name": "TRF.STV",
 				"GroupName": "ST-V",

@@ -104,9 +104,12 @@ angular.module('ofsApp')
                 ping:$scope.getCount
               });
             };
-        })
+          })
           .error(function(data) {
-            $scope.eventsAlarm = data || 'Request Failed from Server';
+            $scope.eventsAlarm = data ||
+            [
+              {'msg': 'Request Failed from Server'}
+            ]; 
             $scope.prograssing = false;
             console.log($scope.eventsAlarm);
           });

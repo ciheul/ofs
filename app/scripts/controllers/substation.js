@@ -40,12 +40,16 @@ angular.module('ofsApp')
         $http.get('/api/substationOverview')/*http://localhost:3000/api/wells*/
           .success(function(data) {
             /*$scope.loaded = false;*/    
-            $scope.prograssing = false;
             $scope.totalWells = data; 
+            $scope.prograssing = false;
           })
           .error(function(data) {
-            console.log(data);
+            $scope.totalWells = data ||
+            [
+              {'msg': 'Request Failed from Server'}
+            ];
             $scope.prograssing = false;
+            console.log(data);
           });
       };
       $scope.spinWells = $scope.loadWell();
@@ -64,6 +68,17 @@ angular.module('ofsApp')
           .success(function(data){
             $scope.prograssing = false;
             $scope.eventsAlarm = data;
+
+            $scope.getCount = function(){
+              return $scope.eventsAlarm.length;
+              /*return 0;*/
+            };
+
+            $scope.count = function(){
+              $rootScope.$broadcast('ping',{
+                ping:$scope.getCount
+              });
+            };
           })
           .error(function(){
             $scope.prograssing = false;
@@ -113,17 +128,6 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollSubstations);
         $interval.cancel($scope.pollActiveAlarms);
       });
-
-      $scope.getCount = function(){
-        return $scope.eventsAlarm.length;
-        /*return 0;*/
-      };
-
-      $scope.count = function(){
-        $rootScope.$broadcast('ping',{
-          ping:$scope.getCount
-        });
-      };
 }]);
 
  

@@ -1,11 +1,15 @@
 <span>{{count()}}</span>
+<!-- <span class="mif-arrow-left fg-green" onclick="history.back();" value="Back" style="margin-top: 10px;"></span> -->
+<!-- <input type="button" class="mif-earth fg-green" > -->
 <div>
   <h2 style="padding-left: 20px;">Well Overview
     <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="group in group">
       {{group.msg}}
     </span>
   </h2>
-  <div ng-repeat="group in group"  class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
+</div>
+
+  <div ng-repeat="group in group" class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
     <br><br><br><br><br><br><br><br><br>
     <span style="margin-left: 135px;">
     {{group.msg}}
@@ -14,12 +18,11 @@
       </h1>
     </span>
   </div>
-</div>
 
 
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   {{spinWells}}
-  <circle-spinner ng-show="prograssing"></circle-spinner>
+  <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
   <div class="tile-container" style="margin-left: -50px;">
     <div ng-repeat="well in group">
       <div class="label">{{well.Name}}</div>
@@ -59,7 +62,7 @@
       <tbody ng-repeat="act in eventsAlarm">
         {{spinAlarms}}
         <tr>
-          <circle-spinner ng-show="prograssing"></circle-spinner>
+          <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
           <td>{{act.Date}}</td>
           <td>{{act.Time}}</td>
           <td>{{act.Equipment}}</td>

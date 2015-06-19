@@ -173,7 +173,7 @@
     <div class="tile-container">
       <span style="margin-left: 30px; width: 120px; font-size: 10px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>
       {{spinData}}
-      <circle-spinner ng-show="prograssing"></circle-spinner>   
+      <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
         <table class="table hovered fg-black table-report">
           <tbody>
             <tr>
@@ -307,7 +307,7 @@
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   {{spinAlarms}}
-  <circle-spinner ng-show="prograssing"></circle-spinner>
+  <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
       <thead>

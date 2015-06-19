@@ -86,7 +86,7 @@
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR601-SRP Monitoring Report</span>
    {{spinData}}
-    <circle-spinner ng-show="prograssing"></circle-spinner>
+    <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
     <div class="tile-container">
       <span style="width: 120px;">{{dataId.FR601_TimeStamp}}</span>   
       <table class="table hovered fg-black table-report-simple">
@@ -135,7 +135,7 @@
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR602-SRP PM Report</span>
   {{spinData}}
-    <circle-spinner ng-show="prograssing"></circle-spinner>
+    <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
     <div class="tile-container">
     <span style="margin-left: 25px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.FR602_Validity}};">{{dataId.FR602_TimeStamp}}</span>   
         <table class="table hovered fg-black table-report">
@@ -246,7 +246,7 @@
 <div class="tile-group">
   <span class="tile-group-title fg-black">ACTIVE ALARM</span>
   {{spinAlarms}}
-  <circle-spinner ng-show="prograssing"></circle-spinner>
+  <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
   <div class="tile-container">
     <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
       <thead>

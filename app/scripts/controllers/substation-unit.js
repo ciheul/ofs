@@ -11,20 +11,20 @@ angular.module('ofsApp')
       /* plants get data */
       $scope.loadData = function (){
         $scope.prograssing = true;
-        $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
+        $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
           .success(function(data) {
-            $scope.prograssing = false;
             $scope.unit = data;
+            $scope.prograssing = false;
           })
           .error(function(){
-            $scope.prograssing = false;
             $scope.unit = 0;
+            $scope.prograssing = false;
         });
       };
       $scope.spinData = $scope.loadData();
       
       $scope.pollSubstations = $interval(function() {
-       $http.get('/data/substation-unit.json')/*http://localhost:3000/api/wells*/
+       $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
         .success(function(data) {
           $scope.unit = data;
         });

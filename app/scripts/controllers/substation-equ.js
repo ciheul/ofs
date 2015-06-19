@@ -10,21 +10,26 @@ angular.module('ofsApp')
       $scope.eventsAlarm = [];
 
      /* $http.get('/data/substation-equ.json', {params: param})*/
-     $scope.loadData = function (){
+     $scope.loadData = function () {
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationEqu')
          .success(function(data) {
-            $scope.prograssing = false;
             $scope.dataId = data;
-          })
-          .error(function() {
             $scope.prograssing = false;
-            $scope.dataId = 0;
+          })
+          .error(function(data) {
+            $scope.dataId = data ||
+            [
+              {
+                'msg': 'Request Failed From Server'
+              }
+            ];
+            $scope.prograssing = false;
           });
       };
       $scope.spinData = $scope.loadData();
 
-      $scope.pollDataEqu = $interval(function(){
+      $scope.pollDataEqu = $interval(function() {
         /*$http.get('', {params: param})*/
         $http.get('/api/SubstationOverview/SubstationEqu')
         .success(function(data) {
@@ -33,16 +38,25 @@ angular.module('ofsApp')
       }, 10000);
       
       /* interval Active Alarm */
-      $scope.loadAlarm = function (){
+      $scope.loadAlarm = function () {
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationEqu/ActiveAlarms')
-          .success(function(data){
-            $scope.prograssing = false;
+          .success(function(data) {
             $scope.eventsAlarm = data;
+            $scope.prograssing = false;
+            $scope.getCount = function(){
+              return $scope.eventsAlarm.length;
+            };
+
+            $scope.count = function() {
+              $rootScope.$broadcast('ping',{
+                ping:$scope.getCount
+              });
+            };
           })
           .error(function() {
-            $scope.prograssing = false;
             $scope.eventsAlarm = 0;
+            $scope.prograssing = false;
           });
       };
       $scope.spinAlarms = $scope.loadAlarm();
@@ -87,14 +101,4 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollDataEqu);
         $interval.cancel($scope.pollActiveAlarms);
       }); 
-
-      $scope.getCount = function(){
-        return $scope.eventsAlarm.length;
-      };
-
-      $scope.count = function(){
-        $rootScope.$broadcast('ping',{
-          ping:$scope.getCount
-        });
-      };
 }]);
