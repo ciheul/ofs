@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('ofsApp')
-  .directive('trendingChart', function($document) {
+  .directive('trendingChart', ['$document', 'd3Service',
+      function($document, d3Service) {
     return {
       restrict: 'E',
       scope: {
         val: '='
       },
       link: function(scope, element, attrs) {
+        d3Service.X().then(function(d3) {
         // just to silent warnings in jshint
         attrs = null;
 
@@ -231,6 +233,7 @@ angular.module('ofsApp')
           
           renderGraph(alterDataStructure(newVal));
         });
-      }
+        });
+      },
     };
-  });
+  }]);

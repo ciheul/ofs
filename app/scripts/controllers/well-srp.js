@@ -27,7 +27,6 @@ angular.module('ofsApp')
                 'msg': 'Request Failed from Server'
               }
             ];
-            console.log('debug');
             $scope.prograssing = false;
           });
       };
@@ -54,7 +53,8 @@ angular.module('ofsApp')
         };
 
         //http://teleconscada-web00.cloudapp.net:1980/api/SRPTrending/?unitId=EPTJ%5COW.T150&dtfrom=20150506160000&dtto=20150507160000
-        $http.get('', { params: params })
+        //$http.get('', { params: params })
+        $http.get('http://localhost:28000/data/trend.json')
           .success(function(data) {
             $scope.dataTrend = data;
           });
@@ -92,7 +92,7 @@ angular.module('ofsApp')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
-      }, 10000);
+      }, HTTP_INTERVAL);
 
       /*Historical Alarm*/
       $http.get('')
