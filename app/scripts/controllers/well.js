@@ -44,7 +44,7 @@ angular.module('ofsApp')
               }); 
             });
 
-          // add wells if the number of OilWells can not be divided by 4
+            // add wells if the number of OilWells can not be divided by 4
             data.map(function(i) {
               var mod = i.OilWells.length % TILE_COL;
               if (mod !== 0) {
