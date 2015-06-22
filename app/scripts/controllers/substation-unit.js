@@ -16,8 +16,13 @@ angular.module('ofsApp')
             $scope.unit = data;
             $scope.prograssing = false;
           })
-          .error(function(){
-            $scope.unit = 0;
+          .error(function(data){
+            $scope.alert = data ||
+            [
+              {
+                'msg': 'Request Failed From Server'
+              }
+            ];
             $scope.prograssing = false;
         });
       };
@@ -35,12 +40,27 @@ angular.module('ofsApp')
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationUnit/ActiveAlarms')
           .success(function(data){
-            $scope.prograssing = false;
             $scope.eventsAlarm = data;
-          })
-          .error(function() {
             $scope.prograssing = false;
-            $scope.eventsAlarm = 0;
+
+            $scope.getCount = function() {
+              return $scope.eventsAlarm.length;
+            };
+
+            $scope.count = function() {
+              $rootScope.$broadcast('ping',{
+                ping:$scope.getCount
+              });
+            };
+          })
+          .error(function(data) {
+            $scope.alertActiveAlarm = data ||
+            [
+              {
+                'msg': 'Request Failed From Server'
+              }
+            ];
+            $scope.prograssing = false;
           });
       };
       $scope.spinAlarms = $scope.loadAlarm();
@@ -61,22 +81,22 @@ angular.module('ofsApp')
           $scope.eventsHistoric = 0;
         });
 
-     /* $scope.filterAlarm = function(start, end) {
-        console.log('hello');
-        console.log(start);
-        console.log(end);
-        
-        console.log($scope.start);
-        console.log($scope.end);
+    /* interval Historical Alarm */
+      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
+      /*$http.get('/api/HistoricalAlarms')
+        .success(function(data) {
+          $scope.eventsHistoric = data;
+        })
+        .error(function() {
+          $scope.eventsHistoric = 0;
+        });
 
-        console.log(this.start);
-        console.log(this.end);
+      $scope.filterAlarm = function(start, end) {
         start = start.replace(/\./g, '');
         end = end.replace(/\./g, '');
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
-        $http.get('', {params: params})
+        $http.get('/api/HistoricalAlarms', {params: params})
         .success(function(data){
-          console.log(data);
           $scope.eventsHistoric = data;
         });
       };*/
@@ -86,15 +106,4 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollSubstations);
         $interval.cancel($scope.pollActiveAlarms);
       });
-
-      $scope.getCount = function() {
-        return $scope.eventsAlarm.length;
-        /*return 0;*/
-      };
-
-      $scope.count = function() {
-        $rootScope.$broadcast('ping',{
-          ping:$scope.getCount
-        });
-      };
   }]);

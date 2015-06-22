@@ -69,6 +69,11 @@
           <td>{{act.Message}}</td>
         </tr>
       </tbody>
+      <tbody ng-repeat="alert in alertActiveAlarm">
+        <tr>
+          <td class="fg-red" colspan="4" style="text-align: center;">{{alert.msg}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

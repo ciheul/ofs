@@ -1,22 +1,23 @@
-<h2 style="padding-left: 20px;">{{Name}}
 <span>{{count()}}</span>
-
-<div ng-show="totalWells">
-  <!-- <h2 style="padding-left: 20px;">{{Name}} -->
-    <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="dataId in dataId">
-      {{dataId.msg}}
+<div>
+  <h2 style="padding-left: 20px;">{{Name}}
+    <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="alert in alert">
+      {{alert.msg}}
     </span>
   </h2>
 </div>
 
-<!-- <div ng-repeat="dataId in dataId" class="tile-large tile-wide-y" data-click="transform" data-role="tile" style="background-color: #d2d2d2;">
-  <br><br><br><br>
-  <span  style="margin-left: 70px; margin-top: 130px; padding :5px; 5px; font-size: 12px;">
-    {{dataId.msg}}
-  </span>
-</div> -->
+
 <div class="tile-group double">
   <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
+
+    <div ng-repeat="alert in alert" class="tile-large tile-wide-y" data-click="transform" data-role="tile"  style="background-color: #d2d2d2;">
+      <br><br><br><br>
+      <span class="fg-red" style="margin-left: 70px; margin-top: 130px; padding :5px; 5px; font-size: 12px;">
+        {{alert.msg}}
+      </span>
+    </div>
+
     <div class="tile-container">
       {{spinData}}
       <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
@@ -140,6 +141,11 @@
           <td class="fg-red">{{act.Time}}</td>
           <td>{{act.Equipment}}</td>
           <td>{{act.Message}}</td>
+        </tr>
+      </tbody>
+      <tbody ng-repeat="alert in alertActiveAlarm">
+        <tr>
+          <td class="fg-red" colspan="4" style="text-align: center;">{{alert.msg}}</td>
         </tr>
       </tbody>
     </table>
