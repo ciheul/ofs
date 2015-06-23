@@ -2,33 +2,35 @@
 
 angular.module('ofsApp')
   .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval',
-    function($scope, $rootScope, $http, $interval) {
+      'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $interval, HTTP_INTERVAL) {
 
-      const INTERVAL = 10000;
-      var map = null;
+      // var map = null;
       const TILE_COL = 4;
       const PLANT_PER_GROUP = 3;
+      const ACTIVE_ALARM_ROWS = 10;
+      const HISTORICAL_ALARM_ROWS = 9;
 
       $scope.groups = [];
       $scope.eventsAlarm = [];
 
-      $scope.GetMap = function(){
-        // console.log('debug"');
-        map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
-
-        Microsoft.Maps.loadModule('Microsoft.Maps.Search');
-      };
-
-      function searchModuleLoaded() {
-        var searchManager = new Microsoft.Maps.Search.SearchManager(map);
-
-        /*var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
-        searchManager.search(searchRequest);*/
-      }
-
-      function searchError(searchRequest) {
-        alert('An error occurred.');
-      }
+      // $scope.GetMap = function(){
+      //   // console.log('debug"');
+      //   map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+      //
+      //   Microsoft.Maps.loadModule('Microsoft.Maps.Search');
+      // };
+      //
+      // function searchModuleLoaded() {
+      //   var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+      //
+      //   #<{(|var searchRequest = {query:"pizza in Seattle, WA", count: 5, callback:searchCallback, errorCallback:searchError};
+      //   searchManager.search(searchRequest);|)}>#
+      // }
+      //
+      // function searchError(searchRequest) {
+      //   alert('An error occurred.');
+      // }
   
       $scope.loadWell = function() {
         $scope.prograssing = true;
@@ -83,7 +85,7 @@ angular.module('ofsApp')
           .success(function(data) {
             $scope.totalWells = data;
           });
-      }, INTERVAL);
+      }, HTTP_INTERVAL);
       
       /*spin active alarm*/
       $scope.loadAlarm = function() {
@@ -92,16 +94,27 @@ angular.module('ofsApp')
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/api/ActiveAlarms')
           .success(function(data) {
+            // to make the fixed table, fill with empty rows
+            $scope.activeAlarmLength = data.length;
+            if (data.length !== ACTIVE_ALARM_ROWS) {
+              var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+              var numRepeat = ACTIVE_ALARM_ROWS - data.length;
+              for (var i = 0; i < numRepeat; i++) {
+                data.push(emptyObj);
+              } 
+            }
+
             $scope.eventsAlarm = data;
             $scope.prograssing = false;
 
             $scope.getCount = function() {
-              return $scope.eventsAlarm.length;
+              // return $scope.eventsAlarm.length;
+              return $scope.activeAlarmLength;
             };
 
             $scope.count = function() {
               $rootScope.$broadcast('ping', {
-                ping:$scope.getCount
+                ping: $scope.getCount
               });
             };
           })
@@ -118,16 +131,24 @@ angular.module('ofsApp')
       
       /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
-        $http.get('/api/ActiveAlarms')
-        .success(function(data) {
-          $scope.eventsAlarm = data;
-        });
-      }, INTERVAL);
+        $scope.loadAlarm();
+        // $http.get('/api/ActiveAlarms')
+        // .success(function(data) {
+        //   $scope.eventsAlarm = data;
+        // });
+      }, HTTP_INTERVAL);
 
       /* interval Historical Alarm */
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
       $http.get('/api/HistoricalAlarms')
         .success(function(data) {
+          if (data.length !== HISTORICAL_ALARM_ROWS) {
+            var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+            var numRepeat = HISTORICAL_ALARM_ROWS - data.length;
+            for (var i = 0; i < numRepeat; i++) {
+              data.push(emptyObj);
+            } 
+          }
           $scope.eventsHistoric = data;
         })
         .error(function() {
@@ -135,11 +156,21 @@ angular.module('ofsApp')
         });
 
       $scope.filterAlarm = function(start, end) {
+        $scope.isHistoricalProgressing = true;
         start = start.replace(/\./g, '');
         end = end.replace(/\./g, '');
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
         $http.get('/api/HistoricalAlarms', {params: params})
         .success(function(data){
+          $scope.isHistoricalProgressing = false;
+
+          if (data.length !== HISTORICAL_ALARM_ROWS) {
+            var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+            var numRepeat = HISTORICAL_ALARM_ROWS - data.length;
+            for (var i = 0; i < numRepeat; i++) {
+              data.push(emptyObj);
+            } 
+          }
           $scope.eventsHistoric = data;
         });
       };
@@ -150,6 +181,5 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollActiveAlarms);
       });
  
-      
   }]);
 

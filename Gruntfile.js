@@ -389,6 +389,16 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'bower_components/metro-ui-css/fonts',
+          src: 'metro.*',
+          dest: '<%= yeoman.dist %>/fonts',
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/data',
+          src: 'trend.json',
+          dest: '<%= yeoman.dist %>/data',
         }]
       },
       styles: {

@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('EspCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval',
-    function($scope, $rootScope, $http, $routeParams, $interval) {
+  .controller('EspCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $routeParams, $interval, HTTP_INTERVAL) {
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
       var param = {unitId: $routeParams.UnitId};
       $scope.eventsAlarm = [];
-      
+
       /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/espdetail/', {params: param})*/
       /*spin loader esp data*/
       $scope.loadData = function (){
         $scope.prograssing = true;
-        $http.get('/api/Esp/', { params: param })
+        $http.get('/api/EspDetail/', { params: param })
       	 .success(function(data) {
             $scope.dataId = data;
             $scope.prograssing = false;
@@ -29,10 +29,10 @@ angular.module('ofsApp')
           });
       };
       $scope.spinData = $scope.loadData();
-      
+
       /*interval esp data*/
       $scope.pollDataEsp = $interval(function(){
-      	$http.get('/api/Esp/', {params: param})
+      	$http.get('/api/EspDetail/', {params: param})
       	  .success(function(data) {
           	$scope.dataId = data;
           });
@@ -41,7 +41,7 @@ angular.module('ofsApp')
       /*spin loader active alarm*/
       $scope.loadAlarm = function (){
         $scope.prograssing = true;
-        $http.get('/api/Srp/ActiveAlarms')
+        $http.get('/api/ActiveAlarms')
           .success(function(data){
             $scope.eventsAlarm = data;
             $scope.prograssing = false;
@@ -66,14 +66,14 @@ angular.module('ofsApp')
       /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-        $http.get('/api/Srp/ActiveAlarms')
+        $http.get('/api/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
       }, 10000);
 
       /*historical alarm*/
-       $http.get('')
+      $http.get('/api/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         })

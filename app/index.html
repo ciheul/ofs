@@ -56,13 +56,12 @@
   </head>
 
   <body>
-    
     <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 120%; background-color: #7d7d7d; margin-top: px">
       <li><h1 class="align-center tile-area-title fg-white">OFS</h1></li>
       <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
       <li><a class="fg-white" href="#/substation" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
       <div ng-controller="IndexCtrl" style="margin-top: 350px;">
-        <div>
+        <div ng-if="add.ping()">
           <h1 class="fg-white" style="margin-left: 40px; font-size: 20px;">{{add.ping()}}</h1>
           <h1 class="fg-white" style="margin-left: 16px; font-size: 20px;">ALARM</h1>
         </div>  
@@ -106,9 +105,9 @@
     <script src="scripts/controllers/substation-equ.js"></script>
     <script src="scripts/services/http-global-url-modifier.js"></script>
     <script src="scripts/services/microsoft-maps-service.js"></script>
-    <!-- <script src="scripts/directives/microsoft&#45;maps.js"></script> -->
+    <script src="scripts/directives/microsoft-maps.js"></script>
     <script src="scripts/directives/trending.js"></script>
-    <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <!-- <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script> -->
     <!-- endbuild -->
          
   </body>

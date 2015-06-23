@@ -7,7 +7,7 @@ angular.module('ofsApp')
       // get SRP equipment name (ex: T150)
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
-      var param = { unitId: $routeParams.UnitId };
+      var param = { UnitId: $routeParams.UnitId };
 
       $scope.eventsAlarm = [];
       
@@ -15,7 +15,7 @@ angular.module('ofsApp')
       $scope.loadData = function (){
         $scope.prograssing = true;
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-        $http.get('api/Srp/', { params: param })
+        $http.get('api/SrpDetail/', { params: param })
       	 .success(function(data) {
         	  $scope.dataId = data;
             $scope.prograssing = false;
@@ -63,7 +63,7 @@ angular.module('ofsApp')
       /*spin loader active alarm*/
       $scope.loadAlarm = function (){
         $scope.prograssing = true;
-        $http.get('/api/Srp/ActiveAlarms')
+        $http.get('/api/ActiveAlarms')
           .success(function(data){
             $scope.eventsAlarm = data;
             $scope.prograssing = false;
@@ -95,7 +95,7 @@ angular.module('ofsApp')
       }, HTTP_INTERVAL);
 
       /*Historical Alarm*/
-      $http.get('')
+      $http.get('/api/HistoricalAlarms')
         .success(function(data) {
           $scope.eventsHistoric = data;
         })

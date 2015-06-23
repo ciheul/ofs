@@ -47,7 +47,7 @@ angular.module('ofsApp', [
         controller: 'EquCtrl',
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/well'
       });
 
     $httpProvider.defaults.useXDomain = true;
