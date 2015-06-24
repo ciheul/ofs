@@ -7,8 +7,6 @@
   </a>
 </div>
 <h2 style="padding-left: 20px; margin-left: 90px;">ESP-{{UnitId}}</h2>
-<div class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile" ng-show="alert">
-</div>
 
 <div class="tile-group triple">
   <div class="tile-container">
@@ -322,9 +320,9 @@
           <th>Message</th>
         </tr>
       </thead>
-      <tbody ng-repeat="act in eventsAlarm">
+      <tbody ng-repeat="act in eventsAlarm track by $index">
         <tr>
-          <td>{{act.Date}}</td>
+          <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
           <td>{{act.Time}}</td>
           <td>{{act.Equipment}}</td>
           <td>{{act.Message}}</td>

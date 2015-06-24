@@ -29,19 +29,22 @@ angular.module('ofsApp')
 
     
 
-      function searchError(searchRequest)
+     /* function searchError(searchRequest)
       {
         alert('An error occurred.');
-      }
+      }*/
 
+      
       /* plants get data */
       $scope.loadWell = function() {
+        $/*scope.isLoaded = true;*/
         $scope.prograssing = true;
         $http.get('/api/substationOverview')/*http://localhost:3000/api/wells*/
           .success(function(data) {
-            /*$scope.loaded = false;*/    
-            $scope.totalWells = data; 
+            /*$scope.isLoaded = false;*/
             $scope.prograssing = false;
+            $scope.alert = false; 
+            $scope.totalWells = data;
           })
           .error(function(data) {
             $scope.alert = data ||'Request Failed From Server';
@@ -49,13 +52,12 @@ angular.module('ofsApp')
             console.log(data);
           });
       };
-      $scope.spinWells = $scope.loadWell();
-     
+  
       $scope.pollSubstations = $interval(function() {
-       $http.get('/api/substationOverview')/*http://localhost:3000/api/wells*/
-        .success(function(data) {
-          $scope.totalWells = data;
-        });
+       // $http.get('/api/substationOverview')/*http://localhost:3000/api/wells*/
+        // .success(function(data) {
+          $scope.loadWell();
+        // });
       }, 10000);
 
       /* interval Active Alarm */

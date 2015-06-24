@@ -10,7 +10,10 @@ angular.module('ofsApp')
       var param = { UnitId: $routeParams.UnitId };
 
       $scope.eventsAlarm = [];
-      
+      const ACTIVE_ALARM_ROWS = 10;
+      const HISTORICAL_ALARM_ROWS = 9;
+
+
       /*spin loader data srp*/
       $scope.loadData = function (){
         $scope.prograssing = true;
@@ -18,6 +21,7 @@ angular.module('ofsApp')
         $http.get('api/SrpDetail/', { params: param })
       	 .success(function(data) {
         	  $scope.dataId = data;
+            $scope.alert = false;
             $scope.prograssing = false;
           })
           .error(function(data) {
@@ -25,15 +29,14 @@ angular.module('ofsApp')
             $scope.prograssing = false;
           });
       };
-      $scope.spinData = $scope.loadData();
+      $scope.loadData();
 
       /*interval data srp*/
       $scope.pollDataSrp = $interval(function(){
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-        $http.get('/api/SrpDetail/', { params: param })
-          .success(function(data) {
-            $scope.dataId = data;
-          });
+        /*$http.get('/api/SrpDetail/', { params: param })
+          .success(function(data) {*/
+            $scope.loadData();
       }, HTTP_INTERVAL);
 
       /*trending*/
@@ -56,20 +59,37 @@ angular.module('ofsApp')
       };
 
       /*spin loader active alarm*/
-      $scope.loadAlarm = function (){
+      /*spin active alarm*/
+      $scope.loadAlarm = function() {
         $scope.prograssing = true;
+        /* interval Active Alarm */
+        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/api/ActiveAlarms')
-          .success(function(data){
+          .success(function(data) {
+            // to make the fixed table, fill with empty rows
+            $scope.activeAlarmLength = data.length;
+            if (data.length !== ACTIVE_ALARM_ROWS) {
+              var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+              var numRepeat = ACTIVE_ALARM_ROWS - data.length;
+              for (var i = 0; i < numRepeat; i++) {
+                data.push(emptyObj);
+              } 
+            }
+
             $scope.eventsAlarm = data;
+            
+            console.log('scope.eventsAlarm');
+            console.log($scope.eventsAlarm);
             $scope.prograssing = false;
 
-            $scope.getCount = function(){
-              return $scope.eventsAlarm.length;
+            $scope.getCount = function() {
+              // return $scope.eventsAlarm.length;
+              return $scope.activeAlarmLength;
             };
 
-            $scope.count = function(){
-              $rootScope.$broadcast('ping',{
-                ping:$scope.getCount
+            $scope.count = function() {
+              $rootScope.$broadcast('ping', {
+                ping: $scope.getCount
               });
             };
           })
@@ -77,20 +97,26 @@ angular.module('ofsApp')
             $scope.prograssing = false;
           });
       };
-      $scope.spinAlarms = $scope.loadAlarm();
+      $scope.loadAlarm();
 
-      /*interva; active alarm*/
+      /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-        $http.get('/api/ActiveAlarms')
-        .success(function(data) {
-          $scope.eventsAlarm = data;
-        });
+        // $http.get('/api/ActiveAlarms')
+        // .success(function(data) {
+          $scope.loadAlarm();
+        // });
       }, HTTP_INTERVAL);
 
-      /*Historical Alarm*/
       $http.get('/api/HistoricalAlarms')
         .success(function(data) {
+          if (data.length !== HISTORICAL_ALARM_ROWS) {
+            var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+            var numRepeat = HISTORICAL_ALARM_ROWS - data.length;
+            for (var i = 0; i < numRepeat; i++) {
+              data.push(emptyObj);
+            } 
+          }
           $scope.eventsHistoric = data;
         })
         .error(function() {
@@ -98,13 +124,23 @@ angular.module('ofsApp')
         });
 
       $scope.filterAlarm = function(start, end) {
+        $scope.isHistoricalProgressing = true;
         start = start.replace(/\./g, '');
         end = end.replace(/\./g, '');
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
-        $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms', {params: params})
-          .success(function(data){
-            $scope.eventsHistoric = data;
-          });
+        $http.get('/api/HistoricalAlarms', {params: params})
+        .success(function(data){
+          $scope.isHistoricalProgressing = false;
+
+          if (data.length !== HISTORICAL_ALARM_ROWS) {
+            var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+            var numRepeat = HISTORICAL_ALARM_ROWS - data.length;
+            for (var i = 0; i < numRepeat; i++) {
+              data.push(emptyObj);
+            } 
+          }
+          $scope.eventsHistoric = data;
+        });
       };
 
       $rootScope.$on('$locationChangeSuccess', function() {

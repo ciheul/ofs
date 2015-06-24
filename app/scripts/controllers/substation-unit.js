@@ -7,14 +7,17 @@ angular.module('ofsApp')
 
       /*var param = {name: $routeParams.Name};*/
       $scope.eventsAlarm = [];
+      /*$scope.isLoaded = false;*/
     
       /* plants get data */
       $scope.loadData = function (){
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
           .success(function(data) {
-            $scope.unit = data;
             $scope.prograssing = false;
+            $scope.alert = false;
+            $scope.isLoaded = true;
+            $scope.unit = data;
           })
           .error(function(data){
             $scope.alert = data || 'Request Failed From Server';
