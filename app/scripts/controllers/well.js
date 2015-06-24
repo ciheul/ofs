@@ -119,12 +119,13 @@ angular.module('ofsApp')
             };
           })
           .error(function(data) {
-            $scope.eventsAlarm = data ||
+            $scope.alertActiveAlarm = data ||
             [
-              {'msg': 'Request Failed from Server'}
-            ]; 
+              {
+                'msg': 'Request Failed From Server'
+              }
+            ];
             $scope.prograssing = false;
-            console.log($scope.eventsAlarm);
           });
       };
       $scope.spinAlarms = $scope.loadAlarm();

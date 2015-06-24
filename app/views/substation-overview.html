@@ -1,6 +1,24 @@
-<h2 style="padding-left: 20px;">Electrical Overview</h2>
+<span>{{count()}}</span>
 
-<div class="tile-group double" data-role="tile" style="margin-left: 50px; margin-top: -25px;">
+<div>
+  <h2 style="padding-left: 20px;">Electrical Overview
+    <span class="bg-yellow fg-black bd-amber" style="margin-left: 300px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="alert in alert">
+      {{alert.msg}}
+    </span>
+  </h2>
+</div>
+
+<div ng-repeat="alert in alert" class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 50px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
+  <br><br><br><br><br><br><br><br><br>
+  <span style="margin-left: 135px;">
+  {{alert.msg}}
+    <h1 style="margin-left: 190px;">
+      404
+    </h1>
+  </span>
+</div>
+
+<div class="tile-group" data-role="tile" style="margin-left: 80px; margin-top: -25px;">
   <div class="tile-container" ng-repeat="well in totalWells">
     {{spinWells}}
     <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
@@ -14,7 +32,6 @@
 
 </div>
 
-<span>{{count()}}</span>
 <div class="tile-group triple" data-role="tile">
   <span class="tile-group-title fg-black">UNIT LOCATION</span>
     <div ng-init="GetMap()">
@@ -42,6 +59,11 @@
             <td class="fg-red">{{act.Time}}</td>
             <td>{{act.Equipment}}</td>
             <td>{{act.Message}}</td>
+          </tr>
+        </tbody>
+        <tbody ng-repeat="alert in alertActiveAlarm">
+          <tr>
+            <td class="fg-red" colspan="4" style="text-align: center;">{{alert.msg}}</td>
           </tr>
         </tbody>
       </table>
