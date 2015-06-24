@@ -35,7 +35,7 @@ angular.module('ofsApp')
       /*interval data srp*/
       $scope.pollDataSrp = $interval(function(){
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-        $http.get('/api/Srp/', { params: param })
+        $http.get('/api/SrpDetail/', { params: param })
           .success(function(data) {
             $scope.dataId = data;
           });
@@ -88,7 +88,7 @@ angular.module('ofsApp')
       /*interva; active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
-        $http.get('/api/Srp/ActiveAlarms')
+        $http.get('/api/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
         });
