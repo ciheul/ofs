@@ -1,14 +1,19 @@
 <span>{{count()}}</span>
 <br>
-<div style="margin-left: 700px;">
+<div style="position: absolute; margin-left: 700px;">
   <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
     {{alert}}
   </a>
 </div>
 <h2 style="padding-left: 20px; margin-left: 100px;">Electrical Overview</h2>
-<div class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile" ng-show="alert">
-</div>
+<!-- 
+<div ng-show="isLoaded">
+ -->  <!-- <div class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
+  </div> -->
+<<!-- /div> -->
 
+
+<!-- <div ng-hide="isLoaded"> -->
 <div class="tile-group" data-role="tile" style="margin-left: 80px; margin-top: -25px;">
   <div class="tile-container" ng-repeat="well in totalWells">
     {{spinWells}}
@@ -20,8 +25,8 @@
         </div>
       </a>
    </div>
-
-</div>
+  </div>
+<!-- </div> -->
 
 <div class="tile-group triple" data-role="tile">
   <span class="tile-group-title fg-black">UNIT LOCATION</span>

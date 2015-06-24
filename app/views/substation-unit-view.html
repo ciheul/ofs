@@ -1,7 +1,7 @@
 <span>{{count()}}</span>
 <br>
-<div style="margin-left: 700px;">
-  <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
+<div style="position: absolute; margin-left: 700px;">
+  <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
     {{alert}}
   </a>
 </div>
@@ -24,6 +24,7 @@
   </div>
 </div>
 
+<div ng-show: "isLoaded">
 <div class="tile-group double">
   <span class="tile-group-title fg-black">EQUIPMENT LIST</span>
   <span class=fg-cyan ng-repeat="alert in alert" style="margin-left: 5px; font-size: 10px;">{{alert.msg}}</span>
@@ -39,6 +40,7 @@
         </a>
       </div>
     </div>
+</div>
 </div>
 
 <div class="tile-group">
