@@ -6,14 +6,6 @@ angular.module('ofsApp')
     function($scope, $rootScope, $http, $interval, HTTP_INTERVAL) {
 
       // var map = null;
-      const TILE_COL = 4;
-      const PLANT_PER_GROUP = 3;
-      const ACTIVE_ALARM_ROWS = 10;
-      const HISTORICAL_ALARM_ROWS = 9;
-
-      $scope.groups = [];
-      $scope.eventsAlarm = [];
-
       // $scope.GetMap = function(){
       //   // console.log('debug"');
       //   map = new Microsoft.Maps.Map(document.getElementById('mapDiv'), {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
@@ -32,6 +24,12 @@ angular.module('ofsApp')
       //   alert('An error occurred.');
       // }
   
+      const TILE_COL = 4;
+      const PLANT_PER_GROUP = 3;
+      const ACTIVE_ALARM_ROWS = 12;
+      const HISTORICAL_ALARM_ROWS = 12;
+
+      $scope.groups = [];
 
       $scope.isFirstGroup = false;
       $scope.isPlantLoaded = false;
@@ -49,7 +47,13 @@ angular.module('ofsApp')
             // handle escape character for url routing
             data.map(function(i) {
               i.OilWells.map(function(j) {
-                j.UnitId = encodeURI(j.UnitId);
+                // disable click if not green or yellow
+                if (j.Status === 'green' || j.Status === 'yellow') {
+                  j.UnitId = encodeURI(j.UnitId);
+                  j.Url = '#/' + j.DetailUrl + '/' + j.UnitId;
+                } else {
+                  j.Url = '#';
+                }
               }); 
             });
 
@@ -72,9 +76,11 @@ angular.module('ofsApp')
                 group = { plants: [], isFirstGroup: false };
               }
             }
-            $scope.groups.push(group);
 
-            console.log($scope.groups);
+            // if the latest new group doesn't have plants, do not render
+            if (group.plants.length > 0) {
+              $scope.groups.push(group);
+            }
           })
           .error(function(data) {
             $scope.alert = data || 'Request Failed from Server';
@@ -88,27 +94,27 @@ angular.module('ofsApp')
       }, HTTP_INTERVAL);
       
       /*spin active alarm*/
+      $scope.eventsAlarm = [];
       $scope.loadAlarm = function() {
-        $scope.prograssing = true;
+        $scope.isActiveProgressing = true;
         /* interval Active Alarm */
         // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/api/ActiveAlarms')
           .success(function(data) {
+            $scope.isActiveProgressing = false;
+
             // to make the fixed table, fill with empty rows
             $scope.activeAlarmLength = data.length;
             if (data.length !== ACTIVE_ALARM_ROWS) {
-              var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+              var emptyObj = { Date: '', Time: '', Equipment: '', Message: '' };
               var numRepeat = ACTIVE_ALARM_ROWS - data.length;
               for (var i = 0; i < numRepeat; i++) {
                 data.push(emptyObj);
               } 
             }
 
+            // $scope.eventsAlarm = [];
             $scope.eventsAlarm = data;
-            
-            console.log('scope.eventsAlarm');
-            console.log($scope.eventsAlarm);
-            $scope.prograssing = false;
 
             $scope.getCount = function() {
               // return $scope.eventsAlarm.length;
@@ -122,7 +128,14 @@ angular.module('ofsApp')
             };
           })
           .error(function(data) {
-            $scope.prograssing = false;
+            $scope.isActiveProgressing = false;
+
+            if (data === null && $scope.eventsAlarm.length === 0) {
+              var emptyObj = { Date: '', Time: '', Equipment: '', Message: '' };
+              for (var i = 0; i < ACTIVE_ALARM_ROWS; i++) {
+                $scope.eventsAlarm.push(emptyObj);
+              } 
+            }
           });
       };
       $scope.loadAlarm();
@@ -130,13 +143,10 @@ angular.module('ofsApp')
       /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         $scope.loadAlarm();
-        // $http.get('/api/ActiveAlarms')
-        // .success(function(data) {
-        //   $scope.eventsAlarm = data;
-        // });
       }, HTTP_INTERVAL);
 
       /* interval Historical Alarm */
+      $scope.eventsHistoric = [];
       // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
       $http.get('/api/HistoricalAlarms')
         .success(function(data) {
@@ -149,8 +159,13 @@ angular.module('ofsApp')
           }
           $scope.eventsHistoric = data;
         })
-        .error(function() {
-          $scope.eventsHistoric = 0;
+        .error(function(data) {
+          if (data === null) {
+            var emptyObj = { Date: '', Time: '', Equipment: '', Message: '' };
+            for (var i = 0; i < HISTORICAL_ALARM_ROWS; i++) {
+              $scope.eventsHistoric.push(emptyObj);
+            } 
+          }
         });
 
       $scope.filterAlarm = function(start, end) {
@@ -159,18 +174,21 @@ angular.module('ofsApp')
         end = end.replace(/\./g, '');
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
         $http.get('/api/HistoricalAlarms', {params: params})
-        .success(function(data){
-          $scope.isHistoricalProgressing = false;
+          .success(function(data){
+            $scope.isHistoricalProgressing = false;
 
-          if (data.length !== HISTORICAL_ALARM_ROWS) {
-            var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
-            var numRepeat = HISTORICAL_ALARM_ROWS - data.length;
-            for (var i = 0; i < numRepeat; i++) {
-              data.push(emptyObj);
-            } 
-          }
-          $scope.eventsHistoric = data;
-        });
+            if (data.length !== HISTORICAL_ALARM_ROWS) {
+              var emptyObj = {Date: '', Time: '', Equipment: '', Message: ''};
+              var numRepeat = HISTORICAL_ALARM_ROWS - data.length;
+              for (var i = 0; i < numRepeat; i++) {
+                data.push(emptyObj);
+              } 
+            }
+            $scope.eventsHistoric = data;
+          })
+          .error(function(data) {
+            $scope.isHistoricalProgressing = false;
+          });
       };
 
       // when routes changes, cancel all interval operations

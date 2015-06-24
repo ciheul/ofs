@@ -11,7 +11,7 @@ angular.module('ofsApp')
 
         microsoftService.X().then(function(Microsoft) {
           var el = document.getElementById('map-div');
-          new Microsoft.Maps.Map(el, {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+          new Microsoft.Maps.Map(el, {credentials: 'AmSRI0ujkP_9tyTGJVQxuuXTEnX6dumwkQyflm7aqzbOCLVZ-lRGRosGueF8Cf2v', center: new Microsoft.Maps.Location(-6.9022246,107.6145759), zoom: 14 });
 
           Microsoft.Maps.loadModule('Microsoft.Maps.Search');
 
