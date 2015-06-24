@@ -1,21 +1,12 @@
 <span>{{count()}}</span>
-
-<div>
-  <h2 style="padding-left: 20px;">Electrical Overview
-    <span class="bg-yellow fg-black bd-amber" style="margin-left: 300px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="alert in alert">
-      {{alert.msg}}
-    </span>
-  </h2>
+<br>
+<div style="margin-left: 700px;">
+  <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
+    {{alert}}
+  </a>
 </div>
-
-<div ng-repeat="alert in alert" class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 50px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
-  <br><br><br><br><br><br><br><br><br>
-  <span style="margin-left: 135px;">
-  {{alert.msg}}
-    <h1 style="margin-left: 190px;">
-      404
-    </h1>
-  </span>
+<h2 style="padding-left: 20px; margin-left: 90px;">Electrical Overview</h2>
+<div class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile" ng-show="alert">
 </div>
 
 <div class="tile-group" data-role="tile" style="margin-left: 80px; margin-top: -25px;">
@@ -59,11 +50,6 @@
             <td class="fg-red">{{act.Time}}</td>
             <td>{{act.Equipment}}</td>
             <td>{{act.Message}}</td>
-          </tr>
-        </tbody>
-        <tbody ng-repeat="alert in alertActiveAlarm">
-          <tr>
-            <td class="fg-red" colspan="4" style="text-align: center;">{{alert.msg}}</td>
           </tr>
         </tbody>
       </table>

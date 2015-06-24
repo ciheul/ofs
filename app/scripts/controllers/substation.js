@@ -44,12 +44,7 @@ angular.module('ofsApp')
             $scope.prograssing = false;
           })
           .error(function(data) {
-            $scope.alert = data ||
-            [
-              {
-                'msg': 'Request Failed From Server'
-              }
-            ];
+            $scope.alert = data ||'Request Failed From Server';
             $scope.prograssing = false;
             console.log(data);
           });
@@ -83,12 +78,6 @@ angular.module('ofsApp')
             };
           })
           .error(function(data){
-            $scope.alertActiveAlarm = data ||
-            [
-              {
-                'msg': 'Request Failed From Server'
-              }
-            ];
             $scope.prograssing = false;
           });
       };
@@ -98,6 +87,10 @@ angular.module('ofsApp')
         $http.get('/api/substationOverview/ActiveAlarms')
         .success(function(data) {
           $scope.eventsAlarm = data;
+        })
+        .error(function(data) {
+          $scope.prograssing = false;
+          console.log(data);
         });
       }, 10000);
 

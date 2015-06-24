@@ -34,11 +34,12 @@ angular.module('ofsApp')
   
       $scope.loadWell = function() {
         $scope.prograssing = true;
+        $scope.alert = false;
         /* plants get data */
         $http.get('/api/OilWellOverView')
           .success(function(data) {
             $scope.prograssing = false;
-
+            $scope.alert = false;
             // handle escape character for url routing
             data.map(function(i) {
               i.OilWells.map(function(j) {
@@ -71,10 +72,7 @@ angular.module('ofsApp')
             $scope.groups.push(group);
           })
           .error(function(data) {
-            $scope.group = data || 
-            [
-              {'msg': 'Request Failed from Server'}
-            ];
+            $scope.alert = data || 'Request Failed from Server';
             $scope.prograssing = false;
           });
       };
@@ -119,12 +117,6 @@ angular.module('ofsApp')
             };
           })
           .error(function(data) {
-            $scope.alertActiveAlarm = data ||
-            [
-              {
-                'msg': 'Request Failed From Server'
-              }
-            ];
             $scope.prograssing = false;
           });
       };

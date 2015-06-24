@@ -21,12 +21,7 @@ angular.module('ofsApp')
             $scope.prograssing = false;
           })
           .error(function(data) {
-            $scope.dataId = data || 
-            [
-              {
-                'msg': 'Request Failed from Server'
-              }
-            ];
+            $scope.alert = data ||'Request Failed from Server';
             $scope.prograssing = false;
           });
       };
@@ -79,7 +74,6 @@ angular.module('ofsApp')
             };
           })
           .error(function(data) {
-            $scope.eventsAlarm = data || 'Request Failed from Server';
             $scope.prograssing = false;
           });
       };

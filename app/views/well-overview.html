@@ -1,24 +1,16 @@
 <span>{{count()}}</span>
-<!-- <span class="mif-arrow-left fg-green" onclick="history.back();" value="Back" style="margin-top: 10px;"></span> -->
-<!-- <input type="button" class="mif-earth fg-green" > -->
-<div>
-  <h2 style="padding-left: 20px;">Well Overview
-    <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="group in group">
-      {{group.msg}}
-    </span>
-  </h2>
+
+<br>
+<div style="margin-left: 700px;">
+  <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
+    {{alert}}
+  </a>
 </div>
 
-  <div ng-repeat="group in group" class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
-    <br><br><br><br><br><br><br><br><br>
-    <span style="margin-left: 135px;">
-    {{group.msg}}
-      <h1 style="margin-left: 190px;">
-        404
-      </h1>
-    </span>
-  </div>
+<h2 style="padding-left: 20px; margin-left: 90px;">Well Overview</h2>
 
+<div class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile" ng-show="alert">
+</div>
 
 <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
   {{spinWells}}
@@ -116,14 +108,6 @@
           <th>Message</th>
         </tr>
       </thead>
-      <tbody ng-repeat="hst in eventsHistoric track by $index">
-        <tr>
-          <td style="height: 44px; min-height:44px;">{{hst.Date}}</td>
-          <td>{{hst.Time}}</td>
-          <td>{{hst.Equipment}}</td>
-          <td>{{hst.Message}}</td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </div>

@@ -1,12 +1,12 @@
-
 <span>{{count()}}</span>
-<div>
-  <h2 style="padding-left: 20px;">SRP-{{UnitId}}
-    <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="alert in dataId">
-      {{alert.msg}}
-    </span>
-  </h2>
+<br>
+<div style="margin-left: 700px;">
+  <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
+    {{alert}}
+  </a>
 </div>
+<h2 style="padding-left: 20px; margin-left: 90px;">SRP-{{UnitId}}</h2>
+
 <div class="tile-group triple">
   <div class="tile-container">
     <div class="tile-big bg-grayLighter fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
@@ -310,4 +310,3 @@
     </table>
   </div>
 </div>
-
