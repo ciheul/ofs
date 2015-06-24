@@ -32,12 +32,18 @@ angular.module('ofsApp')
       //   alert('An error occurred.');
       // }
   
+
+      $scope.isFirstGroup = false;
+      $scope.isPlantLoaded = false;
+
       $scope.loadWell = function() {
-        $scope.prograssing = true;
+        $scope.progressing = true;
         /* plants get data */
         $http.get('/api/OilWellOverView')
           .success(function(data) {
-            $scope.prograssing = false;
+            $scope.isPlantLoaded = true;
+            $scope.progressing = false;
+            $scope.groups = [];
 
             // handle escape character for url routing
             data.map(function(i) {
@@ -59,32 +65,48 @@ angular.module('ofsApp')
 
             // alter data structure such that can be rendered nicely
             // in HTML. now it has 3 loops
-            var group = [];
+            // var group = [];
+            // for (var i = 0; i < data.length; i++) {
+            //   group.push(data[i]);
+            //   if (group.length === PLANT_PER_GROUP) {
+            //     $scope.groups.push(group);
+            //     group = [];
+            //   }
+            // }
+            // $scope.groups.push(group);
+            //
+            // console.log($scope.groups);
+
+            var group = { plants: [], isFirstGroup: true };
             for (var i = 0; i < data.length; i++) {
-              group.push(data[i]);
-              if (group.length === PLANT_PER_GROUP) {
+              group.plants.push(data[i]);
+              if (group.plants.length === PLANT_PER_GROUP) {
                 $scope.groups.push(group);
-                group = [];
+                group = { plants: [], isFirstGroup: false };
               }
             }
-
             $scope.groups.push(group);
+
+            console.log($scope.groups);
           })
           .error(function(data) {
             $scope.group = data || 
             [
               {'msg': 'Request Failed from Server'}
             ];
-            $scope.prograssing = false;
+            $scope.progressing = false;
           });
       };
-      $scope.spinWells = $scope.loadWell();
+      $scope.loadWell();
+      // $scope.spinWells = $scope.loadWell();
 
       $scope.pollWells = $interval(function() {
-        $http.get('/api/OilWellOverView')
-          .success(function(data) {
-            $scope.totalWells = data;
-          });
+        $scope.loadWell();
+        // $http.get('/api/OilWellOverView')
+        //   .success(function(data) {
+        //     $scope.isPlantLoaded = true;
+        //     // $scope.totalWells = data;
+        //   });
       }, HTTP_INTERVAL);
       
       /*spin active alarm*/

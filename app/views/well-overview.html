@@ -2,30 +2,30 @@
 <!-- <span class="mif-arrow-left fg-green" onclick="history.back();" value="Back" style="margin-top: 10px;"></span> -->
 <!-- <input type="button" class="mif-earth fg-green" > -->
 <div>
-  <h2 style="padding-left: 20px;">Well Overview
-    <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="group in group">
-      {{group.msg}}
-    </span>
-  </h2>
+  <h2 style="padding-left: 20px;">Well Overview</h2>
+  <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="group in group">
+    {{group.msg}}
+  </span>
 </div>
 
-  <div ng-repeat="group in group" class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
-    <br><br><br><br><br><br><br><br><br>
-    <span style="margin-left: 135px;">
-    {{group.msg}}
-      <h1 style="margin-left: 190px;">
-        404
-      </h1>
-    </span>
+<div class="tile-group" ng-hide="isPlantLoaded">
+  <span class="tile-group-title fg-black">
+    PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
+  </span>
+  <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 500px;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">DISCONNECTED</div>
   </div>
+</div>
 
-
-<div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="padding-top: 10px;">
-  {{spinWells}}
-  <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-  <div class="tile-container" style="margin-left: -50px;">
-    <div ng-repeat="well in group">
-      <div class="label">{{well.Name}}</div>
+<div ng-show="isPlantLoaded">
+  <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="">
+    <span class="tile-group-title fg-black" ng-show="group.isFirstGroup">
+      PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
+    </span>
+    
+    <div class="tile-container" style="">
+      <div ng-repeat="well in group.plants">
+        <div class="label" style="font-size: 12px;">{{well.Name}}</div>
         <div ng-repeat="w in well.OilWells">
           <a class="tile-small" href="#/{{w.DetailUrl}}/{{w.UnitId}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
           <div class="tile-content fg-black">
@@ -33,11 +33,11 @@
           </div>
           </a>
         </div>
-      <div class="label" style="margin-bottom: 15px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
+        <div class="label" style="margin-bottom: 15px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
+      </div>
     </div>
   </div>
 </div>
-
 
 <div class="tile-group triple" data-role="tile">
   <span class="tile-group-title fg-black">UNIT LOCATION</span>
@@ -56,7 +56,7 @@
   </span>
   
   <div class="tile-container">
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px">
+    <table class="table striped hovered cell-hovered border bordered" style="width: 750px; margin-top: 0px;">
       <thead>
         <tr>
           <th style="width: 130px;">Date</th>
