@@ -17,12 +17,7 @@ angular.module('ofsApp')
             $scope.prograssing = false;
           })
           .error(function(data){
-            $scope.alert = data ||
-            [
-              {
-                'msg': 'Request Failed From Server'
-              }
-            ];
+            $scope.alert = data || 'Request Failed From Server';
             $scope.prograssing = false;
         });
       };
@@ -54,12 +49,7 @@ angular.module('ofsApp')
             };
           })
           .error(function(data) {
-            $scope.alertActiveAlarm = data ||
-            [
-              {
-                'msg': 'Request Failed From Server'
-              }
-            ];
+            $scope.alertActiveAlarm = data || 'Request Failed From Server';
             $scope.prograssing = false;
           });
       };

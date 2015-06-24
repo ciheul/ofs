@@ -21,7 +21,7 @@
     
     <style>
       body {
-        height: 100%;
+        height: 120%;
         width: 300%;
       }
 
@@ -56,8 +56,9 @@
   </head>
 
   <body>
-    <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 120%; background-color: #7d7d7d; margin-top: px">
-      <li><h1 class="align-center tile-area-title fg-white">OFS</h1></li>
+    <div style="background-color: #d2d2d2; height: 100%; width: 100%;">
+    <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; background-color: #7d7d7d;">
+      <li><h1 class="align-center tile-area-title fg-white" style="margin-top: 25px;">OFS</h1></li>
       <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
       <li><a class="fg-white" href="#/substation" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
       <div ng-controller="IndexCtrl" style="margin-top: 350px;">
@@ -67,9 +68,8 @@
         </div>  
       </div>
     </ul>
-    <div ng-view style="background-color: #d2d2d2; margin-left: 90px; height: 120%; width: 100%; margin-top: -10px;">
-      <div class="tile-area tile-area-scheme no-padding fg-black" style="height: 100%; width: 100%;">
-      </div> 
+    
+      <div ng-view ></div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->

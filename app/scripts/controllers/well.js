@@ -44,6 +44,7 @@ angular.module('ofsApp')
             $scope.isPlantLoaded = true;
             $scope.progressing = false;
             $scope.groups = [];
+            $scope.alert = false;
 
             // handle escape character for url routing
             data.map(function(i) {
@@ -63,20 +64,6 @@ angular.module('ofsApp')
               }
             });
 
-            // alter data structure such that can be rendered nicely
-            // in HTML. now it has 3 loops
-            // var group = [];
-            // for (var i = 0; i < data.length; i++) {
-            //   group.push(data[i]);
-            //   if (group.length === PLANT_PER_GROUP) {
-            //     $scope.groups.push(group);
-            //     group = [];
-            //   }
-            // }
-            // $scope.groups.push(group);
-            //
-            // console.log($scope.groups);
-
             var group = { plants: [], isFirstGroup: true };
             for (var i = 0; i < data.length; i++) {
               group.plants.push(data[i]);
@@ -90,23 +77,14 @@ angular.module('ofsApp')
             console.log($scope.groups);
           })
           .error(function(data) {
-            $scope.group = data || 
-            [
-              {'msg': 'Request Failed from Server'}
-            ];
+            $scope.alert = data || 'Request Failed from Server';
             $scope.progressing = false;
           });
       };
       $scope.loadWell();
-      // $scope.spinWells = $scope.loadWell();
 
       $scope.pollWells = $interval(function() {
         $scope.loadWell();
-        // $http.get('/api/OilWellOverView')
-        //   .success(function(data) {
-        //     $scope.isPlantLoaded = true;
-        //     // $scope.totalWells = data;
-        //   });
       }, HTTP_INTERVAL);
       
       /*spin active alarm*/
@@ -127,6 +105,9 @@ angular.module('ofsApp')
             }
 
             $scope.eventsAlarm = data;
+            
+            console.log('scope.eventsAlarm');
+            console.log($scope.eventsAlarm);
             $scope.prograssing = false;
 
             $scope.getCount = function() {
@@ -141,16 +122,10 @@ angular.module('ofsApp')
             };
           })
           .error(function(data) {
-            $scope.alertActiveAlarm = data ||
-            [
-              {
-                'msg': 'Request Failed From Server'
-              }
-            ];
             $scope.prograssing = false;
           });
       };
-      $scope.spinAlarms = $scope.loadAlarm();
+      $scope.loadAlarm();
       
       /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {

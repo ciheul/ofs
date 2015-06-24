@@ -1,19 +1,20 @@
 <span>{{count()}}</span>
+<br>
 <!-- <span class="mif-arrow-left fg-green" onclick="history.back();" value="Back" style="margin-top: 10px;"></span> -->
 <!-- <input type="button" class="mif-earth fg-green" > -->
-<div>
-  <h2 style="padding-left: 20px;">Well Overview</h2>
-  <span class="bg-yellow fg-black bd-amber" style="margin-left: 330px; padding :5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="group in group">
-    {{group.msg}}
-  </span>
+<div style="margin-left: 700px;">
+  <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
+    {{alert}}
+  </a>
 </div>
+<h2 style="padding-left: 20px; margin-left: 100px;">Well Overview</h2>
 
 <div class="tile-group" ng-hide="isPlantLoaded">
   <span class="tile-group-title fg-black">
     PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
   </span>
   <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 500px;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">DISCONNECTED</div>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"><!-- empty --></div>
   </div>
 </div>
 
@@ -66,9 +67,7 @@
         </tr>
       </thead>
       <tbody ng-repeat="act in eventsAlarm track by $index">
-        {{spinAlarms}}
         <tr>
-          
           <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
           <td>{{act.Time}}</td>
           <td>{{act.Equipment}}</td>
@@ -116,14 +115,6 @@
           <th>Message</th>
         </tr>
       </thead>
-      <tbody ng-repeat="hst in eventsHistoric track by $index">
-        <tr>
-          <td style="height: 44px; min-height:44px;">{{hst.Date}}</td>
-          <td>{{hst.Time}}</td>
-          <td>{{hst.Equipment}}</td>
-          <td>{{hst.Message}}</td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </div>

@@ -18,13 +18,7 @@ angular.module('ofsApp')
             $scope.prograssing = false;
           })
           .error(function(data) {
-            $scope.dataId = data || 
-            [
-              {
-                'msg': 'Request Failed from Server'
-              }
-            ];
-            console.log('debug');
+            $scope.alert = data ||'Request Failed from Server';
             $scope.prograssing = false;
           });
       };

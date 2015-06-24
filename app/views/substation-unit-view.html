@@ -1,11 +1,11 @@
 <span>{{count()}}</span>
-<div>
-  <h2 style="padding-left: 20px;">{{Name}}</h2>
-    <span class="bg-yellow fg-black bd-amber" style="margin-left: 250px; padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-repeat="alert in alert">
-      {{alert.msg}}
-    </span>
-  </h2>
+<br>
+<div style="margin-left: 700px;">
+  <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
+    {{alert}}
+  </a>
 </div>
+<h2 style="padding-left: 20px; margin-left: 90px;">{{Name}}</h2>
 
 <div class="tile-group triple">
   <div class="tile-container">
