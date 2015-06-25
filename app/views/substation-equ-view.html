@@ -132,7 +132,7 @@
           <th>Message</th>
         </tr>
       </thead>
-      <tbody ng-repeat="act in eventsAlarm">
+      <tbody ng-repeat="act in eventsAlarm track by $index">
         <tr>
           <td class="fg-red">{{act.Date}}</td>
           <td class="fg-red">{{act.Time}}</td>
