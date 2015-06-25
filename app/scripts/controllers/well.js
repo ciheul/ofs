@@ -92,13 +92,12 @@ angular.module('ofsApp')
       $scope.pollWells = $interval(function() {
         $scope.loadWell();
       }, HTTP_INTERVAL);
-      
+
       /*spin active alarm*/
       $scope.eventsAlarm = [];
       $scope.loadAlarm = function() {
         $scope.isActiveProgressing = true;
         /* interval Active Alarm */
-        // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/ActiveAlarms')
         $http.get('/api/ActiveAlarms')
           .success(function(data) {
             $scope.isActiveProgressing = false;
@@ -139,7 +138,7 @@ angular.module('ofsApp')
           });
       };
       $scope.loadAlarm();
-      
+
       /*interval active alarm*/
       $scope.pollActiveAlarms = $interval(function() {
         $scope.loadAlarm();

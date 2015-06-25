@@ -1,3 +1,52 @@
+body {
+    height: 100%;
+    width: 255%;
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box; */
+    /* white-space: nowrap; */
+    /* display: block; */
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+#content {
+    background-color: #d2d2d2;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tile-group {
+    left: 10px;
+}
+
+.tile-common {
+    border: 1px solid #999999;
+    background-color: #dcdcdc;
+}
+
+/* @media screen and (max-width: 640px) { */
+/*     .tile-area { */
+/*         overflow-y: scroll; */
+/*     } */
+/*     .tile-area-controls { */
+/*         display: none; */
+/*     } */
+/* } */
+/*  */
+/* @media screen and (max-width: 320px) { */
+/*     .tile-area { */
+/*         overflow-y: scroll; */
+/*     } */
+/*  */
+/*     .tile-area-controls { */
+/*         display: none; */
+/*     } */
+/* } */
+
 .table-report-simple tbody tr td {
     padding: 9px 0 9px 0;
     font-size: 12px;
@@ -9,9 +58,11 @@
 }
 
 .input-report {
-    width: 80px;
+    width: 100px;
     height: 22px;
     text-align: right;
+    padding-right: 5px;
+    margin-right: 10px;
 }
 
 .td-report-simple {
