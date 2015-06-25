@@ -6,101 +6,45 @@
   </a>
 </div>
 <h2 style="padding-left: 20px; margin-left: 100px;">Electrical Overview</h2>
-<!-- 
-<div ng-show="isLoaded">
- -->  <!-- <div class="tile tile-big fg-amber" style="margin-top: 40px; margin-left: 25px; background-color: #d2d2d2; border-color: #d2d2d2;" data-click="transform" data-role="tile">
-  </div> -->
-<!-- /div> -->
 
-
-<!-- <div ng-hide="isLoaded"> -->
-<div class="tile-group" data-role="tile" style="margin-left: 80px; margin-top: -25px;">
-  <div class="tile-container" ng-repeat="well in totalWells">
+<!-- div class="tile-group" ng-repeat="group in groups" data-role="tile" style="margin-left: 80px; margin-top: -25px;">
+  <div class="tile-container" ng-repeat="well in group.Substations">
+    <div class="label">{{well.Name}}</div>
     {{spinWells}}
     <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-    <div class="label">{{well.Name}}</div>
+    
       <a class="tile" href="#/{{well.DetailUrl}}/{{well.Name}}" data-click="transform" data-role="tile" style="height: 100px; width: 100px; background-color: {{well.Status}};">
         <div class="tile-content">
           <span class="tile-badge bg-red fg-white">{{well.AlarmCount}}</span>
         </div>
       </a>
    </div>
-  </div>
-<!-- </div> -->
-
-<div class="tile-group triple" data-role="tile">
-  <span class="tile-group-title fg-black">UNIT LOCATION</span>
-    <div ng-init="GetMap()">
-      <div id='mapDiv2' style="width:500px; height:500px;"></div>
-    </div>
-</div>
-
-<div class="tile-group">
-  <span class="tile-group-title fg-black">ACTIVE ALARM</span>
+  </div> -->
+  <div class="tile-group" ng-repeat="group in groups" data-role="tile" style="">
     <div class="tile-container">
-    {{spinAlarms}}
-    <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-      <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
-        <thead>
-          <tr>
-            <th style="width: 110px;">Date</th>
-            <th style="width: 110px;">Time</th>
-            <th style="width: 160px;">Equipment</th>
-            <th>Message</th>
-          </tr>
-        </thead>
-        <tbody ng-repeat="act in eventsAlarm">
-          <tr>
-            <td class="fg-red">{{act.Date}}</td>
-            <td class="fg-red">{{act.Time}}</td>
-            <td>{{act.Equipment}}</td>
-            <td>{{act.Message}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-</div>
-
-<div class="tile-group">
-  <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
-    <div class="tile-container">
-      <span style="padding-left: 30px;">START</span>
-        <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-          <input type="text" ng-model="start">
-            <button class="button">
-              <span class="mif-calendar"></span>
-            </button>
+      <div ng-repeat="well in group.plants">
+        <div class="label" style="font-size: 12px;">{{w.Name}}</div>
+        <div ng-repeat="w in well.Substations">
+          <a class="tile" href="#/{{w.DetailUrl}}/{{w.Name}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}}; width: 100px; height: 100px;">
+          <div class="tile-content">
+            <span class="tile-badge bg-red fg-white">{{w.AlarmCount}}</span>
+          </div>
+          </a>
         </div>
-
-    <span style="padding-left: 30px;">END</span>
-      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-        <input type="text" ng-model="end">
-          <button class="button">
-            <span class="mif-calendar"></span>
-          </button>
-      </div> 
-
-    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
-
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
-      <thead>
-        <tr>
-          <th style="width: 110px;">Date</th>
-          <th style="width: 110px;">Time</th>
-          <th style="width: 160px;">Equipment</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-        </tr>
-      </tbody>
-    </table>
+      </div>
+    </div>
   </div>
+
+<div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
+  <span class="tile-group-title fg-black">UNIT LOCATION</span>
+  <div class="tile-container">
+    <div id='map-div' style="width:500px; height:575px; border: 1px solid #999999">
+      <microsoft-maps></microsoft-maps>
+    </div>
+  </div>
+  <!-- <div ng&#45;init="GetMap()"> -->
+  <!--   <div id='mapDiv' style="width:500px; height:500px;"></div> -->
+  <!-- </div> -->
 </div>
 
-
+<div ng-include="'views/alarm.html'"></div>
