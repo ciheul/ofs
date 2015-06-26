@@ -7,8 +7,8 @@ angular.module('ofsApp')
     function($scope, $rootScope, $http, $interval, HTTP_INTERVAL) {
 
     const TILE_COL = 4;
-    const ACTIVE_ALARM_ROWS = 10;
-    const HISTORICAL_ALARM_ROWS = 9;
+    const ACTIVE_ALARM_ROWS = 12;
+    const HISTORICAL_ALARM_ROWS = 12;
     const PLANT_PER_GROUP = 4;
 
     var map = null;
@@ -50,6 +50,17 @@ angular.module('ofsApp')
             $scope.groups = [];
             $scope.prograssing = false;
             $scope.alert = false; 
+
+            data.map(function(i) {
+              i.Substations.map(function(j) {
+                // disable click if not green or yellow
+                if (j.Status === 'green' || j.Status === 'yellow') {
+                  j.Url = '#/' + j.DetailUrl + '/' + j.Name;
+                } else {
+                  j.Url = '#/substation';
+                }
+              }); 
+            });
 
             var group = { plants: [], isFirstGroup: true };
             for (var i = 0; i < data.length; i++) {

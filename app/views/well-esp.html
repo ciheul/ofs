@@ -10,11 +10,11 @@
 
 <div class="tile-group triple">
   <div class="tile-container">
-    <div class="tile-big bg-grayLighter fg-white" data-role="tile" style="margin-top: -30px; height: 570px;">
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-top: 5px; margin-left: 10px; width: 50px; height: 50px; font-size: 10px;"> 
+    <div class="tile-big  fg-white" data-role="tile" style="margin-top: -30px; height: 675px; width: 600px;">
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-top: 5px; margin-left: 10px; width: 50px; height: 50px; font-size: 10px;"> 
           <thead>
           <tr>
-            <th colspan="1">WELLHEAD</th>
+            <th colspan="2">WELLHEAD</th>
           </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
         </tbody>
       </table>
 
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 333px; margin-top: -135px; width: 50px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 460px; margin-top: -135px; width: 50px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
             <th colspan="2">INFERRED PROD.</th>
@@ -47,7 +47,7 @@
         </tbody>
       </table>
 
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 199px; margin-top: -5px; width: 10px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 10px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
             <th colspan="1">VOLTAGE(V)</th>
@@ -77,7 +77,7 @@
         </tbody>
       </table>
 
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 331px; margin-top: -212px; width: 10px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 460px; margin-top: -218px; width: 10px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
             <th colspan="1">CURRENT(A)</th>
@@ -107,7 +107,7 @@
         </tbody>
       </table>
 
-        <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 319px; margin-top: -7px; width: 100px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 260px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
             <th colspan="2">MOTOR</th>
@@ -125,29 +125,25 @@
         </tbody>
       </table>
 
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 195px; margin-top: -7px; width: 50px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 260px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
-            <th colspan="1">PUMP</th>
+            <th colspan="2">PUMP</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Intake Pressure(bar)</td>
+            <td colspan="2">Intake Pressure(bar)</td>
             <td>{{dataId.PumpIntakePressureBar}}</td></td>
           </tr>
           <tr>
-            <td>Est. Liquid Level(m)</td>
+            <td colspan="2">Est. Liquid Level(m)</td>
             <td>a</td>
           </tr>
         </tbody>
       </table>
 
-      <div class="image-container" style="margin-left: -130px; margin-top: -400px;">
-          <img src="images/EquView_ESP.png"/>
-      </div>
-
-      <table class="table hovered fg-black" style="background-color: #d2d2d2; margin-left: 328px; margin-top: -400px; width: 50px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -6px; width: 260px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
             <th>STATUS</th>
@@ -156,7 +152,7 @@
         <tbody>
           <tr>
             <td>VFD STATUS</td>
-            <td class="fg-green">{{dataId.VSDStatusMessage}}</td>
+            <td class="fg-black" style="background-color: {{dataId.Validity}}">{{dataId.VSDStatusMessage}}</td>
           </tr>
           <tr>
             <td colspan="2"><input type="text" style="width: 100px;"></td>
@@ -164,13 +160,17 @@
         </tbody>
       </table>
 
+      <div class="image-container" style="height: 400px; margin-left: 30px; margin-top: -530px;">
+          <img src="images/EquView_ESP.png"/>
+      </div>
+
     </div>
   </div>
 </div>
 
 <span>{{count()}}</span>
 
-<div class="tile-group double">
+<div class="tile-group double" style="margin-left: 170px; margin-top: -20px;">
   <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
     <div class="tile-container">
       <span style="margin-left: 30px; width: 120px; font-size: 10px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>
@@ -307,21 +307,22 @@
 </div>
 
 <div class="tile-group">
-  <span class="tile-group-title fg-black">ACTIVE ALARM</span>
-  {{spinAlarms}}
-  <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+  <span class="tile-group-title fg-black">
+    ACTIVE ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isActiveProgressing" style="margin-left: 10px;"></span>
+  </span>
+  
   <div class="tile-container">
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+    <table class="table hovered border bordered fixed_headers">
       <thead>
         <tr>
-          <th style="width: 110px;">Date</th>
-          <th style="width: 110px;">Time</th>
-          <th style="width: 160px;">Equipment</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Equipment</th>
           <th>Message</th>
         </tr>
       </thead>
-      <tbody ng-repeat="act in eventsAlarm track by $index">
-        <tr>
+      <tbody>
+        <tr ng-repeat="act in eventsAlarm track by $index">
           <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
           <td>{{act.Time}}</td>
           <td>{{act.Equipment}}</td>
@@ -333,41 +334,43 @@
 </div>
 
 <div class="tile-group">
-  <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
-  <div class="tile-container">
+  <span class="tile-group-title fg-black">
+    HISTORICAL ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isHistoricalProgressing" style="margin-left: 10px;"></span>
+  </span>
+  <div class="tile-container" style="padding-top: 0px;">
     <span style="padding-left: 30px;">START</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="start" />
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px; margin-top: 0px;">
+      <input type="text" ng-model="start">
       <button class="button">
         <span class="mif-calendar"></span>
       </button>
     </div>
 
     <span style="padding-left: 30px;">END</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px; margin-top: 0px;">
       <input type="text" ng-model="end">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
+        <button class="button">
+          <span class="mif-calendar"></span>
+        </button>
     </div> 
 
     <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
 
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
+    <table class="table hovered border bordered fixed_headers" style="width: 750px; margin-top: 2px;">
       <thead>
         <tr>
-          <th style="width: 110px;">Date</th>
-          <th style="width: 110px;">Time</th>
-          <th style="width: 160px;">Equipment</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Equipment</th>
           <th>Message</th>
         </tr>
       </thead>
-      <tbody ng-repeat="hst in eventsHistoric">
-        <tr>
-          <td>{{hst.Date}}</td>
-          <td>{{hst.Time}}</td>
-          <td>{{hst.Equipment}}</td>
-          <td>{{hst.Message}}</td>
+      <tbody>
+        <tr ng-repeat="act in eventsHistoric track by $index">
+          <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
+          <td>{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
         </tr>
       </tbody>
     </table>

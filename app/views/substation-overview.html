@@ -32,7 +32,7 @@
       <div ng-repeat="well in group.plants">
         <div class="label" style="font-size: 12px;">{{w.Name}}</div>
         <div ng-repeat="w in well.Substations">
-          <a class="tile" href="#/{{w.DetailUrl}}/{{w.Name}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}}; width: 100px; height: 100px;">
+          <a class="tile" href="{{w.Url}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}}; width: 100px; height: 100px;">
           <div class="tile-content">
             <span class="tile-badge bg-red fg-white">{{w.AlarmCount}}</span>
           </div>
@@ -55,67 +55,70 @@
 </div>
 
 <div class="tile-group">
-  <span class="tile-group-title fg-black">ACTIVE ALARM</span>
-    <div class="tile-container">
-    {{spinAlarms}}
-    <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-      <table class="table striped hovered cell-hovered border bordered" style="width: 750px; margin-top: -1px;">
-        <thead>
-          <tr>
-            <th style="width: 110px;">Date</th>
-            <th style="width: 110px;">Time</th>
-            <th style="width: 160px;">Equipment</th>
-            <th>Message</th>
-          </tr>
-        </thead>
-        <tbody ng-repeat="act in eventsAlarm track by $index">
-          <tr>
-            <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
-            <td>{{act.Time}}</td>
-            <td>{{act.Equipment}}</td>
-            <td>{{act.Message}}</td>
-          </tr>
-      </tbody>
-      </table>
-    </div>
-</div>
-
-<div class="tile-group">
-  <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
-    <div class="tile-container">
-      <span style="padding-left: 30px;">START</span>
-        <div class="input-control text" data-role="datepicker" style="margin-left: 10px; margin-top: -2px;">
-          <input type="text" ng-model="start">
-            <button class="button">
-              <span class="mif-calendar"></span>
-            </button>
-        </div>
-
-    <span style="padding-left: 30px;">END</span>
-      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-        <input type="text" ng-model="end">
-          <button class="button">
-            <span class="mif-calendar"></span>
-          </button>
-      </div> 
-
-    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
-
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px; margin-top: -1px;">
+  <span class="tile-group-title fg-black">
+    ACTIVE ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isActiveProgressing" style="margin-left: 10px;"></span>
+  </span>
+  
+  <div class="tile-container">
+    <table class="table hovered border bordered fixed_headers">
       <thead>
         <tr>
-          <th style="width: 110px;">Date</th>
-          <th style="width: 110px;">Time</th>
-          <th style="width: 160px;">Equipment</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Equipment</th>
           <th>Message</th>
         </tr>
       </thead>
       <tbody>
+        <tr ng-repeat="act in eventsAlarm track by $index">
+          <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
+          <td>{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="tile-group">
+  <span class="tile-group-title fg-black">
+    HISTORICAL ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isHistoricalProgressing" style="margin-left: 10px;"></span>
+  </span>
+  <div class="tile-container" style="padding-top: 0px;">
+    <span style="padding-left: 30px;">START</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px; margin-top: 0px;">
+      <input type="text" ng-model="start">
+      <button class="button">
+        <span class="mif-calendar"></span>
+      </button>
+    </div>
+
+    <span style="padding-left: 30px;">END</span>
+    <div class="input-control text" data-role="datepicker" style="margin-left: 10px; margin-top: 0px;">
+      <input type="text" ng-model="end">
+        <button class="button">
+          <span class="mif-calendar"></span>
+        </button>
+    </div> 
+
+    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
+
+    <table class="table hovered border bordered fixed_headers" style="width: 750px; margin-top: 2px;">
+      <thead>
         <tr>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Equipment</th>
+          <th>Message</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="act in eventsHistoric track by $index">
+          <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
+          <td>{{act.Time}}</td>
+          <td>{{act.Equipment}}</td>
+          <td>{{act.Message}}</td>
         </tr>
       </tbody>
     </table>
