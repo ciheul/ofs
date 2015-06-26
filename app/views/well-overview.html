@@ -8,12 +8,11 @@
   </a>
 </div>
 <h2 style="padding-left: 20px; margin-left: 100px;">Well Overview</h2>
-
 <div class="tile-group" ng-hide="isPlantLoaded">
   <span class="tile-group-title fg-black">
     PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
   </span>
-  <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 570px;">
+  <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 575px;">
     <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"><!-- empty --></div>
   </div>
 </div>
@@ -43,7 +42,7 @@
 <div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
   <span class="tile-group-title fg-black">UNIT LOCATION</span>
   <div class="tile-container">
-    <div id='map-div' style="width:500px; height:575px; border: 1px solid #999999">
+    <div id='map-div' style="background-color: #eeeeee; width:500px; height:575px; border: 1px solid #999999">
       <microsoft-maps></microsoft-maps>
     </div>
   </div>
@@ -51,6 +50,7 @@
   <!--   <div id='mapDiv' style="width:500px; height:500px;"></div> -->
   <!-- </div> -->
 </div>
+<<<<<<< HEAD
 
 <div class="tile-group">
   <span class="tile-group-title fg-black">
@@ -122,3 +122,7 @@
     </table>
   </div>
 </div>
+=======
+ 
+<div ng-include="'views/alarm.html'"></div>
+>>>>>>> acc5456a2adc804a0a0f905ba9ab38e717f3fcfd

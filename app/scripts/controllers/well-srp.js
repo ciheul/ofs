@@ -13,7 +13,6 @@ angular.module('ofsApp')
       const ACTIVE_ALARM_ROWS = 10;
       const HISTORICAL_ALARM_ROWS = 9;
 
-
       /*spin loader data srp*/
       $scope.loadData = function (){
         $scope.prograssing = true;
@@ -78,8 +77,6 @@ angular.module('ofsApp')
 
             $scope.eventsAlarm = data;
             
-            console.log('scope.eventsAlarm');
-            console.log($scope.eventsAlarm);
             $scope.prograssing = false;
 
             $scope.getCount = function() {

@@ -281,15 +281,30 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
+    cssmin: {
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/styles/main.css': [
+            '.tmp/styles/{,*/}*.css',
+            '<%= yeoman.app %>/styles/{,*/}*.css'
+          ]
+        }
+      }
+    },
+
     // cssmin: {
     //   dist: {
     //     files: {
     //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
+    //         '.tmp/styles/{,|)}>#}*.css',
+    //         'app/styles/{,|)}>#}*.css'
     //       ]
     //     }
-    //   }
+    //   },
+    //   'dist/styles/ofs.css': 'dist/styles/ofs.css',
+    //   'dist/styles/spinner.css': 'dist/styles/spinner.css'
     // },
+
     // uglify: {
     //   dist: {
     //     files: {
@@ -299,6 +314,7 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
+
     // concat: {
     //   dist: {}
     // },

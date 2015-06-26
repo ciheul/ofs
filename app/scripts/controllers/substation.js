@@ -110,8 +110,6 @@ angular.module('ofsApp')
 
             $scope.eventsAlarm = data;
             
-            console.log('scope.eventsAlarm');
-            console.log($scope.eventsAlarm);
             $scope.prograssing = false;
 
             $scope.getCount = function() {
