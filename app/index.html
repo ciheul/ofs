@@ -16,48 +16,6 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/ofs.css" />
     <link rel="stylesheet" href="styles/spinner.css" />
-    <!-- endbuild -->    
-    <style>
-      body {
-        height: 125%;
-        width: 350%;
-        margin: 0;
-      }
-
-      .fixed {
-        width: 100%;
-        height: 30px;
-        position: fixed;
-        margin-left: 700px;
-      }
-      .tile-group {
-        left: 10px;
-      }
-
-      @media screen and (max-width: 640px) {
-        .tile-area {
-          overflow-y: scroll;
-        }
-        .tile-area-controls {
-          display: none;
-        }
-      }
-
-      @media screen and (max-width: 320px) {
-        .tile-area {
-          overflow-y: scroll;
-        }
-
-        .tile-area-controls {
-          display: none;
-        }
-      }
-      
-    </style>
-    <script type="text/javascript">
-
-
-    </script>
   </head>
 
   <body>
@@ -107,6 +65,7 @@
     <script src="scripts/controllers/index.js"></script>
     <script src="scripts/controllers/substation-unit.js"></script>
     <script src="scripts/controllers/substation-equ.js"></script>
+    <script src="scripts/controllers/alarm.js"></script>
     <script src="scripts/services/http-global-url-modifier.js"></script>
     <script src="scripts/services/microsoft-maps-service.js"></script>
     <script src="scripts/directives/microsoft-maps.js"></script>
