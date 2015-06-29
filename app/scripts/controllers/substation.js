@@ -11,7 +11,7 @@ angular.module('ofsApp')
     const HISTORICAL_ALARM_ROWS = 12;
     const PLANT_PER_GROUP = 4;
 
-    var map = null;
+    /*var map = null;
     $scope.eventsAlarm = [];
     
     $scope.GetMap = function()
@@ -22,7 +22,7 @@ angular.module('ofsApp')
       Microsoft.Maps.loadModule('Microsoft.Maps.Search');
 
     };
-
+*/
 
    /* function searchModuleLoaded()
     {
@@ -38,7 +38,7 @@ angular.module('ofsApp')
       {
         alert('An error occurred.');
       }*/
-
+      $scope.groups = [];
       $scope.isLoaded = false;
       /* plants get data */
       $scope.loadWell = function() {
@@ -181,11 +181,3 @@ angular.module('ofsApp')
         $interval.cancel($scope.pollActiveAlarms);
       });
 }]);
-
- 
-  
-  
-/*end of ofs-well*/
-
-/*SRP-DETAIL*/
-

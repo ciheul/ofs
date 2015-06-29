@@ -7,32 +7,61 @@ angular.module('ofsApp')
 
       /*var param = {name: $routeParams.Name};*/
       $scope.eventsAlarm = [];
+      const TILE_COL = 4;
+      const PLANT_PER_GROUP = 3;
       const ACTIVE_ALARM_ROWS = 12;
       const HISTORICAL_ALARM_ROWS = 12;
       /*$scope.isLoaded = false;*/
-    
+      $scope.groups = [];
+
+      $scope.isFirstGroup = false;
+      $scope.isLoaded = false;
       /* plants get data */
       $scope.loadData = function (){
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
           .success(function(data) {
             $scope.prograssing = false;
+            $scope.groups = [];
             $scope.alert = false;
             $scope.isLoaded = true;
-            $scope.unit = data;
+
+            data.map(function(i) {
+              var mod = i.OilWells.length % TILE_COL;
+              if (mod !== 0) {
+                var remainings = TILE_COL - mod;
+                for (var j = 0; j < remainings; j++) {
+                  i.OilWells.push({Status: '#d1d1d1'});
+                }
+              }
+            });
+
+            var group = { plants: [], isFirstGroup: true };
+            for (var i = 0; i < data.length; i++) {
+              group.plants.push(data[i]);
+              if (group.plants.length === PLANT_PER_GROUP) {
+                $scope.groups.push(group);
+                group = { plants: [], isFirstGroup: false };
+              }
+            }
+
+            // if the latest new group doesn't have plants, do not render
+            if (group.plants.length > 0) {
+              $scope.groups.push(group);
+            }
           })
           .error(function(data){
             $scope.alert = data || 'Request Failed From Server';
             $scope.prograssing = false;
         });
       };
-      $scope.spinData = $scope.loadData();
+     $scope.loadData();
       
       $scope.pollSubstations = $interval(function() {
-       $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
-        .success(function(data) {
-          $scope.unit = data;
-        });
+       // $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
+        // .success(function(data) {
+          $scope.loadData();
+        // });
       }, 10000);
 
       $scope.loadAlarm = function() {

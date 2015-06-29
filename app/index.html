@@ -16,14 +16,19 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/ofs.css" />
     <link rel="stylesheet" href="styles/spinner.css" />
-    <!-- endbuild -->
-<<<<<<< HEAD
-    
+    <!-- endbuild -->    
     <style>
       body {
         height: 125%;
         width: 350%;
         margin: 0;
+      }
+
+      .fixed {
+        width: 100%;
+        height: 30px;
+        position: fixed;
+        margin-left: 700px;
       }
       .tile-group {
         left: 10px;
@@ -53,12 +58,10 @@
 
 
     </script>
-=======
->>>>>>> acc5456a2adc804a0a0f905ba9ab38e717f3fcfd
   </head>
 
   <body>
-    <div id="content">
+    <div id="content" style="position: relative;">
       <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; background-color: #7d7d7d;">
         <li><h2 class="align-center tile-area-title fg-white" style="margin-top: 25px;">OFS</h2></li>
         <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
@@ -71,7 +74,7 @@
         </div>
       </ul>
     
-      <div ng-view ></div>
+      <div ng-view></div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->

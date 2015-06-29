@@ -2,16 +2,19 @@
 <br>
 <!-- <span class="mif-arrow-left fg-green" onclick="history.back();" value="Back" style="margin-top: 10px;"></span> -->
 <!-- <input type="button" class="mif-earth fg-green" > -->
-<div style="position: absolute;">
+<div class="fixed">
   <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
     {{alert}}
   </a>
 </div>
+
 <h2 style="padding-left: 20px; margin-left: 100px;">Well Overview</h2>
+
 <div class="tile-group" ng-hide="isPlantLoaded">
   <span class="tile-group-title fg-black">
     PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
   </span>
+
   <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 575px;">
     <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"><!-- empty --></div>
   </div>
@@ -50,9 +53,8 @@
   <!--   <div id='mapDiv' style="width:500px; height:500px;"></div> -->
   <!-- </div> -->
 </div>
-<<<<<<< HEAD
 
-<div class="tile-group">
+<!-- <div class="tile-group">
   <span class="tile-group-title fg-black">
     ACTIVE ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isActiveProgressing" style="margin-left: 10px;"></span>
   </span>
@@ -77,9 +79,11 @@
       </tbody>
     </table>
   </div>
-</div>
+</div> -->
 
-<div class="tile-group">
+<div ng-include="'views/alarm.html'"></div>
+
+<!-- <div class="tile-group">
   <span class="tile-group-title fg-black">
     HISTORICAL ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isHistoricalProgressing" style="margin-left: 10px;"></span>
   </span>
@@ -121,8 +125,5 @@
       </tbody>
     </table>
   </div>
-</div>
-=======
- 
-<div ng-include="'views/alarm.html'"></div>
->>>>>>> acc5456a2adc804a0a0f905ba9ab38e717f3fcfd
+</div>  -->
+

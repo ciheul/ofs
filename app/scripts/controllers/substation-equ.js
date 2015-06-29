@@ -11,27 +11,31 @@ angular.module('ofsApp')
       const ACTIVE_ALARM_ROWS = 12;
       const HISTORICAL_ALARM_ROWS = 12;
 
+      $scope.isLoaded = false;
      /* $http.get('/data/substation-equ.json', {params: param})*/
-     $scope.loadData = function () {
+      $scope.loadData = function () {
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationEqu')
          .success(function(data) {
-            $scope.dataId = data;
+            $scope.isLoaded = true;
+            $scope.alert = false;
             $scope.prograssing = false;
+            $scope.dataId = data;
           })
           .error(function(data) {
             $scope.alert = data ||'Request Failed From Server';
             $scope.prograssing = false;
           });
       };
-      $scope.spinData = $scope.loadData();
+      $scope.loadData();
 
       $scope.pollDataEqu = $interval(function() {
         /*$http.get('', {params: param})*/
-        $http.get('/api/SubstationOverview/SubstationEqu')
-        .success(function(data) {
-          $scope.dataId = data;
-        });
+        // $http.get('/api/SubstationOverview/SubstationEqu')
+        // .success(function(data) {
+        $scope.loadData();
+        //   $scope.dataId = data;
+        // });
       }, 10000);
       
       /*spin active alarm*/

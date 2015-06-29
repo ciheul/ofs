@@ -1,20 +1,19 @@
 <span>{{count()}}</span>
 <br>
-<div style="margin-left: 700px;">
-  <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
+<div class="fixed">
+  <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
     {{alert}}
   </a>
 </div>
 <h2 style="padding-left: 20px; margin-left: 90px;">{{Name}}</h2>
 
+<div class="tile-group double" ng-hide="isLoaded">
+  <div class="tile-large tile-wide-y" data-click="transform" data-role="tile"  style="background-color: #d2d2d2;">
+  </div>
+</div>
 
-<div class="tile-group double">
+<div class="tile-group double" ng-show="isLoaded">
   <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
-
-    <div ng-show="alert" class="tile-large tile-wide-y" data-click="transform" data-role="tile"  style="background-color: #d2d2d2;">
-      {{alert}}
-    </div>
-
     <div class="tile-container">
       {{spinData}}
       <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
@@ -176,10 +175,10 @@
       </thead>
       <tbody>
         <tr>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
