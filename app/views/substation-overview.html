@@ -1,25 +1,19 @@
 <span>{{count()}}</span>
 <br>
-<div style="position: absolute; margin-left: 700px;">
+<div class="fixed">
   <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
     {{alert}}
   </a>
 </div>
 <h2 style="padding-left: 20px; margin-left: 100px;">Electrical Overview</h2>
 
-<!-- div class="tile-group" ng-repeat="group in groups" data-role="tile" style="margin-left: 80px; margin-top: -25px;">
-  <div class="tile-container" ng-repeat="well in group.Substations">
-    <div class="label">{{well.Name}}</div>
-    {{spinWells}}
-    <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-    
-      <a class="tile" href="#/{{well.DetailUrl}}/{{well.Name}}" data-click="transform" data-role="tile" style="height: 100px; width: 100px; background-color: {{well.Status}};">
-        <div class="tile-content">
-          <span class="tile-badge bg-red fg-white">{{well.AlarmCount}}</span>
-        </div>
-      </a>
-   </div>
-  </div> -->
+<div class="tile-group" ng-hide="isLoaded">
+  <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 575px;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"><!-- empty --></div>
+  </div>
+</div>
+
+<div ng-show="isLoaded">
   <div class="tile-group" ng-repeat="group in groups" data-role="tile" style="">
     <div class="tile-container">
       <div ng-repeat="well in group.plants">
@@ -34,11 +28,12 @@
       </div>
     </div>
   </div>
+</div>
 
 <div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
   <span class="tile-group-title fg-black">UNIT LOCATION</span>
   <div class="tile-container">
-    <div id='map-div' style="width:500px; height:575px; border: 1px solid #999999">
+    <div id='map-div' style="background-color: #eeeeee; width:500px; height:575px; border: 1px solid #999999">
       <microsoft-maps></microsoft-maps>
     </div>
   </div>
@@ -47,79 +42,4 @@
   <!-- </div> -->
 </div>
 
-<<<<<<< HEAD
-<div class="tile-group">
-  <span class="tile-group-title fg-black">
-    ACTIVE ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isActiveProgressing" style="margin-left: 10px;"></span>
-  </span>
-  
-  <div class="tile-container">
-    <table class="table hovered border bordered fixed_headers">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Equipment</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="act in eventsAlarm track by $index">
-          <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
-          <td>{{act.Time}}</td>
-          <td>{{act.Equipment}}</td>
-          <td>{{act.Message}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<div class="tile-group">
-  <span class="tile-group-title fg-black">
-    HISTORICAL ALARM <span class="mif-spinner2 mif-ani-spin" ng-show="isHistoricalProgressing" style="margin-left: 10px;"></span>
-  </span>
-  <div class="tile-container" style="padding-top: 0px;">
-    <span style="padding-left: 30px;">START</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px; margin-top: 0px;">
-      <input type="text" ng-model="start">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div>
-
-    <span style="padding-left: 30px;">END</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px; margin-top: 0px;">
-      <input type="text" ng-model="end">
-        <button class="button">
-          <span class="mif-calendar"></span>
-        </button>
-    </div> 
-
-    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
-
-    <table class="table hovered border bordered fixed_headers" style="width: 750px; margin-top: 2px;">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Equipment</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="act in eventsHistoric track by $index">
-          <td style="height: 44px; min-height:44px;">{{act.Date}}</td>
-          <td>{{act.Time}}</td>
-          <td>{{act.Equipment}}</td>
-          <td>{{act.Message}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-=======
 <div ng-include="'views/alarm.html'"></div>
->>>>>>> acc5456a2adc804a0a0f905ba9ab38e717f3fcfd

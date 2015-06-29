@@ -1,6 +1,6 @@
 <span>{{count()}}</span>
 <br>
-<div style="position: absolute; margin-left: 700px;">
+<div class="fixed">
   <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
     {{alert}}
   </a>
@@ -24,88 +24,34 @@
   </div>
 </div>
 
-<div ng-show="isLoaded">
-<div class="tile-group double">
-  <span class="tile-group-title fg-black">EQUIPMENT LIST</span>
-  <span class=fg-cyan ng-repeat="alert in alert" style="margin-left: 5px; font-size: 10px;">{{alert.msg}}</span>
-  {{spinData}}
-  <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-    <div class="tile-container" ng-repeat="u in unit">
-      <span style="font-size: 12px;">{{u.Name}}</span>
-      <div ng-repeat="sub in u.SubstationUnits">
-        <a class="tile-small" href="#/{{sub.DetailUrl}}/{{sub.Name}}" data-click="transform" data-role="tile" style="background-color: {{sub.Status}}">
-          <div class="tile-content">
-            <span class="tile-label fg-white" style="font-size: 12px;">{{sub.Name}}</span>
-          </div>
-        </a>
+<div ng-hide="isLoaded">
+  <div class="tile-group" style="margin-left: 10px; margin-top: 5px;">
+    <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 250px; height: 250px;">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
+        <!-- empty -->
       </div>
     </div>
-</div>
-</div>
-
-<div class="tile-group">
-  <span class="tile-group-title fg-black">ACTIVE ALARM</span>
-  {{spinAlarms}}
-  <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-  <div class="tile-container">
-    <table class="table striped hovered cell-hovered border bordered" style="margin-left: -110px; width: 750px;">
-      <thead>
-        <tr>
-          <th style="width: 110px;">Date</th>
-          <th style="width: 110px;">Time</th>
-          <th style="width: 160px;">Equipment</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody ng-repeat="act in eventsAlarm track by $index">
-        <tr>
-          <td class="fg-red">{{act.Date}}</td>
-          <td class="fg-red">{{act.Time}}</td>
-          <td>{{act.Equipment}}</td>
-          <td>{{act.Message}}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
 
-<div class="tile-group">
-  <span class="tile-group-title fg-black">HISTORICAL ALARM</span>
-    <div class="tile-container">
-      <span style="padding-left: 30px;">START</span>
-      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-        <input type="text" ng-model="start" />
-        <button class="button">
-          <span class="mif-calendar"></span>
-        </button>
+<div ng-show="isLoaded">
+  <div class="tile-group double" ng-repeat="group in groups" data-role="tile" style="">
+    <span class="tile-group-title fg-black" ng-show="group.isFirstGroup">EQUIPMENT LIST</span>
+    <!-- <span class=fg-cyan ng-repeat="alert in alert" style="margin-left: 5px; font-size: 10px;">{{alert.msg}}</span>
+    {{spinData}} -->
+    
+    <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+      <div class="tile-container" ng-repeat="u in group.plants" style="margin-left: 20px;">
+        <span style="font-size: 12px;">{{u.Name}}</span>
+        <div ng-repeat="sub in u.SubstationUnits">
+          <a class="tile-small" href="#/{{sub.DetailUrl}}/{{sub.Name}}" data-click="transform" data-role="tile" style="background-color: {{sub.Status}}">
+            <div class="tile-content">
+              <span class="tile-label fg-white" style="font-size: 12px;">{{sub.Name}}</span>
+            </div>
+          </a>
+        </div>
       </div>
-
-    <span style="padding-left: 30px;">END</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="end">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div> 
-
-    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterAlarm(start, end)">LOAD</button>
-
-    <table class="table striped hovered cell-hovered border bordered" style="width: 750px;">
-      <thead>
-        <tr>
-          <th style="width: 110px;">Date</th>
-          <th style="width: 110px;">Time</th>
-          <th style="width: 160px;">Equipment</th>
-          <th>Message</th>
-        </tr>
-      </thead>
-      <tbody>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-          <td>{{}}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
+
+<div ng-include="'views/alarm.html'"></div>

@@ -1,7 +1,7 @@
 <div>
   <span>{{count()}}</span>
 <br>
-<div style="margin-left: 700px;">
+<div class="fixed">
   <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
     {{alert}}
   </a>
@@ -155,12 +155,12 @@
             <td class="fg-black" style="background-color: {{dataId.Validity}}">{{dataId.VSDStatusMessage}}</td>
           </tr>
           <tr>
-            <td colspan="2"><input type="text" style="width: 100px;"></td>
+            <td colspan="2"><input type="text" style="width: 220px;"></td>
           </tr>
         </tbody>
       </table>
 
-      <div class="image-container" style="height: 400px; margin-left: 30px; margin-top: -530px;">
+      <div class="image-container" style="height: 400px; width: 270px; margin-left: 30px; margin-top: -530px;">
           <img src="images/EquView_ESP.png"/>
       </div>
 
@@ -173,7 +173,7 @@
 <div class="tile-group double" style="margin-left: 170px; margin-top: -20px;">
   <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
     <div class="tile-container">
-      <span style="margin-left: 30px; width: 120px; font-size: 10px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>
+      <span style="margin-left: 30px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>
       {{spinData}}
       <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
         <table class="table hovered fg-black table-report">

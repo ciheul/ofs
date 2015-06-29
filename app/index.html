@@ -16,11 +16,10 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/ofs.css" />
     <link rel="stylesheet" href="styles/spinner.css" />
-    <!-- endbuild -->
   </head>
 
   <body>
-    <div id="content">
+    <div id="content" style="position: relative;">
       <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; background-color: #7d7d7d;">
         <li><h2 class="align-center tile-area-title fg-white" style="margin-top: 25px;">OFS</h2></li>
         <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
@@ -33,7 +32,7 @@
         </div>
       </ul>
     
-      <div ng-view ></div>
+      <div ng-view></div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
