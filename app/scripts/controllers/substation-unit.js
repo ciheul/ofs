@@ -31,7 +31,7 @@ angular.module('ofsApp')
               if (mod !== 0) {
                 var remainings = TILE_COL - mod;
                 for (var j = 0; j < remainings; j++) {
-                  i.OilWells.push({Status: '#d1d1d1'});
+                  i.SubstationUnits.push({Status: '#d1d1d1'});
                 }
               }
             });
