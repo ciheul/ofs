@@ -83,7 +83,8 @@ angular.module('ofsApp')
             console.log(data);
           });
       };
-  
+      $scope.loadWell();
+      
       $scope.pollSubstations = $interval(function() {
        // $http.get('/api/substationOverview')/*http://localhost:3000/api/wells*/
         // .success(function(data) {

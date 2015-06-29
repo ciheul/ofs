@@ -1,108 +1,104 @@
 <div>
   <span>{{count()}}</span>
 <br>
-<div class="fixed">
-  <a class="bg-yellow fg-black bd-amber" style="padding :5px; 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
-    {{alert}}
-  </a>
-</div>
+<div ng-include="'views/alert.html'"></div>
 <h2 style="padding-left: 20px; margin-left: 90px;">ESP-{{UnitId}}</h2>
 
 <div class="tile-group triple">
   <div class="tile-container">
     <div class="tile-big  fg-white" data-role="tile" style="margin-top: -30px; height: 675px; width: 600px;">
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-top: 5px; margin-left: 10px; width: 50px; height: 50px; font-size: 10px;"> 
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-top: 5px; margin-left: 10px; width: 250px; height: 50px; font-size: 10px;"> 
           <thead>
           <tr>
-            <th colspan="2">WELLHEAD</th>
+            <th colspan="4">WELLHEAD</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td colspan="2">Casing Pressure(br)</td>
-            <td>{{dataId.CasingHeadPressureBar}}</td>
+            <td>Casing Pressure(br)</td>
+            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.CasingHeadPressureBar}}</td>
           </tr>
           <tr>
-            <td colspan="2">Tubing Pressure(br)</td>
-            <td>{{dataId.TubingHeadPressureBar}}</td>
+            <td>Tubing Pressure(br)</td>
+            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.TubingHeadPressureBar}}</td>
           </tr>
         </tbody>
       </table>
 
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 460px; margin-top: -135px; width: 50px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 390px; margin-top: -117px; width: 200px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
-            <th colspan="2">INFERRED PROD.</th>
+            <th colspan="3">INFERRED PROD.</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Rate(BPD)</td>
-            <td colspan="2">a</td>
+            <td colspan="2" class="bg-grayLighter text-align-right">a</td>
           </tr>
           <tr>
             <td>Total(barrel)</td>
-            <td colspan="2">a</td>
+            <td colspan="2" class="bg-grayLighter text-align-right">a</td>
           </tr>
         </tbody>
       </table>
 
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 10px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 390px; margin-top: -7px; width: 10px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
-            <th colspan="1">VOLTAGE(V)</th>
+            <th colspan="2">VOLTAGE(V)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>AVG</td>
-            <td>{{dataId.VoltageAverage}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.VoltageAverage}}</td>
           </tr>
           <tr>
             <td>R</td>
-            <td>{{dataId.VoltageR}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.VoltageR}}</td>
           </tr>
           <tr>
             <td>S</td>
-            <td>{{dataId.VoltageS}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.VoltageS}}</td>
           </tr>
           <tr>
             <td>T</td>
-            <td>{{dataId.VoltageT}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.VoltageT}}</td>
           </tr>
           <tr>
             <td>UB</td>
-            <td>{{dataId.VoltageUnbalance}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.VoltageUnbalance}}</td>
           </tr>
         </tbody>
       </table>
 
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 460px; margin-top: -218px; width: 10px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 491px; margin-top: -218px; width: 10px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
-            <th colspan="1">CURRENT(A)</th>
+            <th colspan="2">CURRENT(A)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>AVG</td>
-            <td>{{dataId.CurrentAverage}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.CurrentAverage}}</td>
           </tr>
           <tr>
             <td>R</td>
-            <td>{{dataId.CurrentR}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.CurrentR}}</td>
           </tr>
           <tr>
             <td>S</td>
-            <td>{{dataId.CurrentS}}</td>
+            <td class="bg-grayLighter text-align-right" class="bg-grayLighter text-align-right">{{dataId.CurrentS}}</td>
           </tr>
           <tr>
             <td>T</td>
-            <td>{{dataId.CurrentT}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.CurrentT}}</td>
           </tr>
           <tr>
             <td>UB</td>
-            <td>{{dataId.CurrentUnbalance}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.CurrentUnbalance}}</td>
           </tr>
         </tbody>
       </table>
@@ -110,17 +106,17 @@
       <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 260px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
-            <th colspan="2">MOTOR</th>
+            <th colspan="4">MOTOR</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td colspan="2">Frequency(Hz)</td>
-            <td>{{dataId.VSDFrequency}}</td>
+            <td>Frequency(Hz)</td>
+            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.VSDFrequency}}</td>
           </tr>
           <tr>
-            <td colspan="2">Power(kW)</td>
-            <td>{{dataId.OutputPower}}</td>
+            <td>Power(kW)</td>
+            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.OutputPower}}</td>
           </tr>
         </tbody>
       </table>
@@ -128,17 +124,17 @@
       <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 260px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
-            <th colspan="2">PUMP</th>
+            <th colspan="4">PUMP</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td colspan="2">Intake Pressure(bar)</td>
-            <td>{{dataId.PumpIntakePressureBar}}</td></td>
+            <td>Intake Pressure(bar)</td>
+            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.PumpIntakePressureBar}}</td></td>
           </tr>
           <tr>
-            <td colspan="2">Est. Liquid Level(m)</td>
-            <td>a</td>
+            <td>Est. Liquid Level(m)</td>
+            <td colspan="3" class="bg-grayLighter text-align-right">a</td>
           </tr>
         </tbody>
       </table>
@@ -146,16 +142,16 @@
       <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -6px; width: 260px; height: 0px; font-size: 10px;" >
         <thead>
           <tr>
-            <th>STATUS</th>
+            <th colspan="4">STATUS</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>VFD STATUS</td>
-            <td class="fg-black" style="background-color: {{dataId.Validity}}">{{dataId.VSDStatusMessage}}</td>
+            <td colspan="3" class="fg-black" style="background-color: {{dataId.Validity}}">{{dataId.VSDStatusMessage}}</td>
           </tr>
           <tr>
-            <td colspan="2"><input type="text" style="width: 220px;"></td>
+            <td colspan="4"><input type="text" style="width: 200px;"></td>
           </tr>
         </tbody>
       </table>

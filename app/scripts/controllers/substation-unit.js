@@ -27,7 +27,7 @@ angular.module('ofsApp')
             $scope.isLoaded = true;
 
             data.map(function(i) {
-              var mod = i.OilWells.length % TILE_COL;
+              var mod = i.SubstationUnits.length % TILE_COL;
               if (mod !== 0) {
                 var remainings = TILE_COL - mod;
                 for (var j = 0; j < remainings; j++) {

@@ -2,12 +2,7 @@
 <br>
 <!-- <span class="mif-arrow-left fg-green" onclick="history.back();" value="Back" style="margin-top: 10px;"></span> -->
 <!-- <input type="button" class="mif-earth fg-green" > -->
-<div class="fixed">
-  <a class="bg-yellow fg-black bd-amber" style="padding: 5px; font-size: 12px; border-style: solid; border-width: 2px;" ng-show="alert">
-    {{alert}}
-  </a>
-</div>
-
+<div ng-include="'views/alert.html'"></div>
 <h2 style="padding-left: 20px; margin-left: 100px;">Well Overview</h2>
 
 <div class="tile-group" ng-hide="isPlantLoaded">
