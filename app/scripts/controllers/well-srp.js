@@ -49,10 +49,13 @@ angular.module('ofsApp')
           dtto: endTrend + '000000'
         };
 
+        $scope.isFilteringSRP = true;
         //http://teleconscada-web00.cloudapp.net:1980/api/SRPTrending/?unitId=EPTJ%5COW.T150&dtfrom=20150506160000&dtto=20150507160000
-        //$http.get('', { params: params })
-        $http.get('http://localhost:28000/data/trend.json')
+        // $http.get('data/trend.json')
+        $http.get('http://localhost:9000/data/trend.json')
+        // $http.get('/api/SRPTrending', { params: params })
           .success(function(data) {
+            $scope.isFilteringSRP = false;
             $scope.dataTrend = data;
           });
       };

@@ -23,7 +23,7 @@ angular.module('ofsApp')
 
               var keys = d3.keys(res);
               var dataset = [];
-              for (var i = 0; i < res.CurrentMaxlist.length; i++) {
+              for (var i = 0; i < res.VoltageUnbalances.length; i++) {
                 var obj = {};
                 for (var k = 0; k < keys.length; k++) {
                   var key = keys[k];
@@ -41,6 +41,12 @@ angular.module('ofsApp')
             }
 
             function renderGraph(data) {
+
+              var trendingChart = $document[0].getElementsByTagName('trending-chart')[0];
+              while (trendingChart.firstChild) {
+                trendingChart.removeChild(trendingChart.firstChild);
+              }
+
               // margin the chart
               var margin = { top: 10, right: 20, bottom: 30, left: 50 };
             

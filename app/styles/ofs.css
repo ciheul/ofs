@@ -131,19 +131,19 @@ trending-chart {
 }
 .fixed_headers td:nth-child(1),
 .fixed_headers th:nth-child(1) {
-  min-width: 130px;
+  min-width: 120px;
 }
 .fixed_headers td:nth-child(2),
 .fixed_headers th:nth-child(2) {
-  min-width: 130px;
+  min-width: 100px;
 }
 .fixed_headers td:nth-child(3),
 .fixed_headers th:nth-child(3) {
-  min-width: 170px;
+  min-width: 225px;
 }
 .fixed_headers td:nth-child(4),
 .fixed_headers th:nth-child(4) {
-  width: 350px;
+  width: 400px;
 }
 .fixed_headers thead {
   /* background-color: #333333; */
