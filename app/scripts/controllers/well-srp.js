@@ -56,5 +56,10 @@ angular.module('ofsApp')
             $scope.dataTrend = data;
           });
       };
+
+      // when routes changes, cancel all interval operations
+      $rootScope.$on('$locationChangeSuccess', function() {
+        $interval.cancel($scope.pollDataSrp);
+      });
     }
   ]);

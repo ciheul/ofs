@@ -107,7 +107,6 @@ angular.module('ofsApp')
 
       // when routes changes, cancel all interval operations
       $rootScope.$on('$locationChangeSuccess', function() {
-        $interval.cancel($scope.pollWells);
         $interval.cancel($scope.pollActiveAlarms);
       });
     }

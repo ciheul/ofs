@@ -90,5 +90,10 @@ angular.module('ofsApp')
       $scope.pollWells = $interval(function() {
         $scope.loadWell();
       }, HTTP_INTERVAL);
+
+      // when routes changes, cancel all interval operations
+      $rootScope.$on('$locationChangeSuccess', function() {
+        $interval.cancel($scope.pollWells);
+      });
     }
   ]);

@@ -36,4 +36,9 @@ angular.module('ofsApp')
           /*});*/
       }, 10000);
 
-     }]);
+      // when routes changes, cancel all interval operations
+      $rootScope.$on('$locationChangeSuccess', function() {
+        $interval.cancel($scope.pollDataEsp);
+      });
+    }
+  ]);
