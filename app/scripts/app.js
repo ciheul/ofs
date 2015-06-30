@@ -17,7 +17,9 @@ angular.module('ofsApp', [
   .constant('HOST', {
     DEBUG: true,
     BASE_URL: 'http://localhost',
-    PORT: 3000
+    PORT:3000 
+    // BASE_URL: 'http://teleconscada-web00.cloudapp.net',
+    // PORT: 1980
   })
   .constant('HTTP_INTERVAL', 10000)
   .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {

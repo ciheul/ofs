@@ -77,7 +77,7 @@ angular.module('ofsApp')
             }
           })
           .error(function(data) {
-            $scope.alert = data ||'Request Failed From Server';
+            $scope.alert = 'Request Failed From Server';
             $scope.prograssing = false;
           });
       };

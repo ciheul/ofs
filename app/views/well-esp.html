@@ -169,11 +169,13 @@
 
 
 <div class="tile-group double" style="margin-left: 170px; margin-top: -20px;">
-  <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
+  <span class="tile-group-title fg-black">
+    FR604-ESP Monitoring Report <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+  </span>
     <div class="tile-container">
       <span style="margin-left: 30px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>
       {{spinData}}
-      <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+      
         <table class="table hovered fg-black table-report">
           <tbody>
             <tr>

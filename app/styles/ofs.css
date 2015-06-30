@@ -23,6 +23,11 @@ body {
     left: 10px;
 }
 
+.alert-message {
+    position:fixed;
+    left:650px;
+}
+
 .tile-common {
     border: 1px solid #999999;
     background-color: #dcdcdc;
