@@ -1,3 +1,8 @@
+/**
+ *  url:
+ *  http://computationallyendowed.com/blog/2013/01/21/bounded-panning-in-d3.html
+ */
+
 'use strict';
 
 angular.module('ofsApp')
@@ -87,9 +92,20 @@ angular.module('ofsApp')
                 .style('stroke', 'rgb(100, 100, 100)')
        			    .style('fill', 'none');
 
+              // function to zoom. it calls draw() function.
+              var zoom = d3.behavior.zoom().scaleExtent([1, 10]);
+
               // when zoom function is called, draw x-axis, y-axis, and line according
               // to zoom level
               var draw = function() {
+                // var t = zoom.translate();
+                // var tx = t[0];
+                // var ty = t[1];
+                //
+                // tx = Math.min(tx, 0);
+                // ty = Math.max(tx, width);
+                // zoom.translate([tx, ty]);
+
                 svg.select('g.x.axis').call(xAxis);
                 svg.select('g.y.axis').call(yAxis);
                 svg.selectAll('path.line').attr('d', function(d) {
@@ -97,15 +113,14 @@ angular.module('ofsApp')
                 });
               };
             
-              // function to zoom. it calls draw() function.
-              var zoom = d3.behavior.zoom().scaleExtent([0, 10]).on('zoom', draw);
+              zoom.on('zoom', draw);
             
               // populate a list with all keys except FR602_TimeStamplist
               // output: ['CurrentMaxlist', 'CurrentMinlist', ...]
               color.domain(d3.keys(data[0]).filter(function(key) {
                 return key !== 'FR602_TimeStamplist' && key !== 'FR601_TimeStamplist';
               }));
-            
+
               // modify dataset to a new data structure that fits for d3.extent
               // notice that timestamp is redundant for other information
               // (ex: CurrentMinlist)
@@ -140,7 +155,7 @@ angular.module('ofsApp')
             
               // when scrolling up or down, this lines handle the scaling of x,y-axis
               zoom.x(x);
-              // zoom.y(y);
+              zoom.y(y);
             
               // draw the main container
               var container = svg.append('g')
@@ -182,11 +197,12 @@ angular.module('ofsApp')
             
               // draw an invisible rectangle around chart. these following lines
               // must be declared after all lines to wrap them 
-              // container.append("rect")
-              //   .attr("class", "pane")
-              //   .attr("width", width)
-              //   .attr("height", height)
-              //   .call(zoom);
+              container.append('rect')
+                .attr('class', 'pane')
+                .attr('width', width)
+                .attr('height', height)
+                // .style('fill', 'none')
+                .call(zoom);
             
               function updateLines() {
                 // set 'show' state to show or hide a line

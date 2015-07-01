@@ -87,6 +87,10 @@ body {
     display: none;
 }
 
+rect.pane {
+    opacity: 0;
+}
+
 .line {
     fill: none;
     stroke: steelblue;
