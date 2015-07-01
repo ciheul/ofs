@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('EquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, HTTP_INTERVAL) {
+  .controller('EquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 
+    '$localStorage', '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $routeParams, $interval, $localStorage, HTTP_INTERVAL) {
       // get SRP equipment name (ex: T150)
       $scope.Name = $routeParams.Name;
 
@@ -21,8 +22,10 @@ angular.module('ofsApp')
             $scope.alert = false;
             $scope.prograssing = false;
             $scope.dataId = data;
+            $localStorage.substationEqu = $scope.dataId;
           })
           .error(function(data) {
+            $scope.dataId = $localStorage.substationEqu;
             $scope.alert = data ||'Request Failed From Server';
             $scope.prograssing = false;
           });

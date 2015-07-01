@@ -33,6 +33,8 @@ module.exports = function(config) {
       'bower_components/angular-spinner/angular-spinner.js',
       'bower_components/angular-loading-spinner/angular-loading-spinner.js',
       'bower_components/angular-spinkit/build/angular-spinkit.js',
+      'bower_components/angular-html5-storage/dist/angular-html5-storage.js',
+      'bower_components/ngstorage/ngStorage.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

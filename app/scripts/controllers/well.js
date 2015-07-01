@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval',
-      'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $interval, HTTP_INTERVAL) {
+  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', '$localStorage',
+    '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $interval, $localStorage, $sessionStorage, HTTP_INTERVAL) {
 
       // var map = null;
       // $scope.GetMap = function(){
@@ -23,11 +23,15 @@ angular.module('ofsApp')
       // function searchError(searchRequest) {
       //   alert('An error occurred.');
       // }
-  
+      
       const TILE_COL = 4;
       const PLANT_PER_GROUP = 3;
+      // var well = [];
+      // var loadWell = [];
+
 
       $scope.groups = [];
+      console.log($scope.groups);
 
       $scope.isFirstGroup = false;
       $scope.isPlantLoaded = false;
@@ -40,7 +44,7 @@ angular.module('ofsApp')
             $scope.isPlantLoaded = true;
             $scope.progressing = false;
             $scope.groups = [];
-            $scope.alert = false;
+            console.log($scope.groups);
 
             // handle escape character for url routing
             data.map(function(i) {
@@ -78,10 +82,16 @@ angular.module('ofsApp')
             // if the latest new group doesn't have plants, do not render
             if (group.plants.length > 0) {
               $scope.groups.push(group);
+              $scope.groups.push($localStorage);
             }
+
+            $localStorage.message = data;
+            console.log($localStorage.message);
           })
           .error(function(data) {
             $scope.alert = data || 'Request Failed from Server';
+            $scope.groups = $localStorage.message;
+            console.log($scope.groups);
             $scope.progressing = false;
           });
       };
@@ -90,5 +100,18 @@ angular.module('ofsApp')
       $scope.pollWells = $interval(function() {
         $scope.loadWell();
       }, HTTP_INTERVAL);
+
+      /*$scope.$storage = $localStorage.$default({
+        x: $scope.loadWell(),
+        y: 22
+      });
+
+      $scope.deleteX = function() {
+        delete $scope.$storage.x;
+      };
+        
+      $scope.deleteY = function() {
+        delete $scope.$storage.y;
+      };*/
     }
   ]);

@@ -13,6 +13,7 @@ angular.module('ofsApp', [
     'ngRoute',
     'angularSpinner',
     'angular-spinkit',
+    'ngStorage',
   ])
   .constant('HOST', {
     DEBUG: true,
@@ -28,7 +29,7 @@ angular.module('ofsApp', [
       })
       .when('/substation', {
         templateUrl: 'views/substation-overview.html',
-        controller: 'SubstationCtrl'
+        controller: 'SubstationCtrl',
       })
       .when('/api/srpdetail/:UnitId', {
         templateUrl: 'views/well-srp.html',

@@ -2,8 +2,8 @@
 
 angular.module('ofsApp')
   .controller('SrpCtrl', ['$scope', '$rootScope', '$http', '$routeParams',
-    '$interval', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, HTTP_INTERVAL) {
+    '$interval', '$localStorage', '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $routeParams, $interval, $localStorage, HTTP_INTERVAL) {
       // get SRP equipment name (ex: T150)
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
@@ -22,8 +22,11 @@ angular.module('ofsApp')
         	  $scope.dataId = data;
             $scope.alert = false;
             $scope.prograssing = false;
+            $localStorage.dataSrp = $scope.dataId;
           })
           .error(function(data) {
+            $scope.dataId = $localStorage.dataSrp;
+            console.log($scope.dataId);
             $scope.alert = data ||'Request Failed from Server';
             $scope.prograssing = false;
           });

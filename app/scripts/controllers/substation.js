@@ -3,8 +3,9 @@
 /* ofs-well */
 
 angular.module('ofsApp')
-  .controller('SubstationCtrl', ['$scope', '$rootScope', '$http', '$interval', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $interval, HTTP_INTERVAL) {
+  .controller('SubstationCtrl', ['$scope', '$rootScope', '$http', '$interval', '$localStorage',
+    '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $interval, $localStorage, $sessionStorage, HTTP_INTERVAL) {
 
     const TILE_COL = 4;
     const ACTIVE_ALARM_ROWS = 12;
@@ -49,7 +50,6 @@ angular.module('ofsApp')
             $scope.totalWells = data;
             $scope.groups = [];
             $scope.prograssing = false;
-            $scope.alert = false; 
 
             data.map(function(i) {
               i.Substations.map(function(j) {
@@ -75,10 +75,17 @@ angular.module('ofsApp')
             if (group.plants.length > 0) {
               $scope.groups.push(group);
             }
+
+            $scope.coba = data;
+            $localStorage.message = data;
           })
           .error(function(data) {
             $scope.alert = data ||'Request Failed From Server';
             $scope.prograssing = false;
+            $scope.panggilCoba = $scope.coba;
+            $scope.groups = $localStorage.message;
+            console.log($scope.panggilCoba);
+            console.log($scope.groups);
           });
       };
       $scope.loadWell();

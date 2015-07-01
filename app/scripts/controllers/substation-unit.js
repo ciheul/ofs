@@ -27,6 +27,17 @@ angular.module('ofsApp')
             $scope.isLoaded = true;
 
             data.map(function(i) {
+              i.SubstationUnits.map(function(j) {
+                // disable click if not green or yellow
+                if (j.Status === 'green' || j.Status === 'yellow') {
+                  j.Url = '#/' + j.DetailUrl + '/' + j.Name;
+                } else {
+                  j.Url = '#/st-detail/' + j.Name;
+                }
+              }); 
+            });
+
+            data.map(function(i) {
               var mod = i.SubstationUnits.length % TILE_COL;
               if (mod !== 0) {
                 var remainings = TILE_COL - mod;

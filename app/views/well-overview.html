@@ -1,7 +1,5 @@
 <span>{{count()}}</span>
 <br>
-<!-- <span class="mif-arrow-left fg-green" onclick="history.back();" value="Back" style="margin-top: 10px;"></span> -->
-<!-- <input type="button" class="mif-earth fg-green" > -->
 <div ng-include="'views/alert.html'"></div>
 <h2 style="padding-left: 20px; margin-left: 100px;">Well Overview</h2>
 
@@ -21,7 +19,7 @@
       PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
     </span>
     
-    <div class="tile-container">
+    <div class="tile-container" id="wells">
       <div ng-repeat="well in group.plants">
         <div class="label" style="font-size: 12px;">{{well.Name}}</div>
         <div ng-repeat="w in well.OilWells">
