@@ -78,14 +78,14 @@ angular.module('ofsApp')
                   .attr('height', height + margin.top + margin.bottom)
                   .style('background-color', 'white');
 
-              var borderPath = svg.append("rect")
-       			    .attr("x", 0)
-       			    .attr("y", 0)
-       			    .attr("height", 500)
-       			    .attr("width", 1000)
+              svg.append('rect')
+       			    .attr('x', 0)
+       			    .attr('y', 0)
+       			    .attr('height', 500)
+       			    .attr('width', 1000)
                 .style('stroke-width', '1')
                 .style('stroke', 'rgb(100, 100, 100)')
-       			    .style("fill", "none");
+       			    .style('fill', 'none');
 
               // when zoom function is called, draw x-axis, y-axis, and line according
               // to zoom level
@@ -225,6 +225,12 @@ angular.module('ofsApp')
 
               function addLegends(dataTrends) {
                 const LEGENDS_PER_ROW = 6;
+
+                // delete previous legends
+                var prevLegends = $document[0].getElementById('legends');
+                while (prevLegends.firstChild) {
+                  prevLegends.removeChild(prevLegends.firstChild);
+                }
 
                 // create table skeleton
                 var legendsTable = $document[0].createElement('table');

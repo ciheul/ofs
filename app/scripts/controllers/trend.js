@@ -41,6 +41,7 @@ angular.module('ofsApp')
             $scope.isTrendingLoaded = true;
           })
           .error(function(data) {
+            data = null;
             $scope.isTrendingLoaded = false;
             $scope.isFilteringSRP = false;
           });

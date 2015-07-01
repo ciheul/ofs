@@ -10,8 +10,6 @@ angular.module('ofsApp')
       var param = { UnitId: $routeParams.UnitId };
 
       $scope.eventsAlarm = [];
-      const ACTIVE_ALARM_ROWS = 10;
-      const HISTORICAL_ALARM_ROWS = 9;
 
       /*spin loader data srp*/
       $scope.loadData = function (){

@@ -101,6 +101,7 @@ angular.module('ofsApp')
             $scope.eventsHistoric = data;
           })
           .error(function(data) {
+            data = null;
             $scope.isHistoricalProgressing = false;
           });
       };

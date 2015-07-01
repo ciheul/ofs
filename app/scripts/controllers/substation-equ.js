@@ -1,15 +1,13 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('EquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, HTTP_INTERVAL) {
+  .controller('EquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval',
+    function($scope, $rootScope, $http, $routeParams, $interval) {
       // get SRP equipment name (ex: T150)
       $scope.Name = $routeParams.Name;
 
       /*var param = {name: $routeParams.Name};*/
       $scope.eventsAlarm = [];
-      const ACTIVE_ALARM_ROWS = 12;
-      const HISTORICAL_ALARM_ROWS = 12;
 
       $scope.isLoaded = false;
      /* $http.get('/data/substation-equ.json', {params: param})*/

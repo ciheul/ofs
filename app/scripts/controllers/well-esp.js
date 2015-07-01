@@ -1,15 +1,12 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('EspCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, HTTP_INTERVAL) {
+  .controller('EspCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval',
+    function($scope, $rootScope, $http, $routeParams, $interval) {
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
       var param = {unitId: $routeParams.UnitId};
       $scope.eventsAlarm = [];
-      const ACTIVE_ALARM_ROWS = 10;
-      const HISTORICAL_ALARM_ROWS = 9;
-
 
       /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/espdetail/', {params: param})*/
       /*spin loader esp data*/
