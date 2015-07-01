@@ -28,34 +28,10 @@ angular.module('ofsApp')
       };
       $scope.loadData();
 
-      /*interval esp data*/
+      /* interval esp data */
       $scope.pollDataEsp = $interval(function(){
-      	/*$http.get('/api/EspDetail/', {params: param})
-      	  .success(function(data) {*/
-          	$scope.loadData();
-          /*});*/
+        $scope.loadData();
       }, 10000);
-
-      /*trending*/
-      $scope.filterTrending = function(startTrend, endTrend) {
-        startTrend = startTrend.replace(/\./g, '');
-        endTrend = endTrend.replace(/\./g, '');
-
-        var params = {
-          unitId: $routeParams.UnitId,
-          dtfrom: startTrend + '000000',
-          dtto: endTrend + '000000'
-        };
-
-        $scope.isFilteringESP = true;
-        //http://teleconscada-web00.cloudapp.net:1980/api/SRPTrending/?unitId=EPTJ%5COW.T150&dtfrom=20150506160000&dtto=20150507160000
-        // $http.get('data/trend.json')
-        $http.get('/api/ESPTrending', { params: params })
-          .success(function(data) {
-            $scope.isFilteringESP = false;
-            $scope.dataTrend = data;
-          });
-      };
 
       // when routes changes, cancel all interval operations
       $rootScope.$on('$locationChangeSuccess', function() {

@@ -30,12 +30,7 @@ angular.module('ofsApp')
       $scope.loadData();
 
       $scope.pollDataEqu = $interval(function() {
-        /*$http.get('', {params: param})*/
-        // $http.get('/api/SubstationOverview/SubstationEqu')
-        // .success(function(data) {
         $scope.loadData();
-        //   $scope.dataId = data;
-        // });
       }, 10000);
       
     }

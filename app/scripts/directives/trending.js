@@ -8,6 +8,7 @@ angular.module('ofsApp')
       scope: {
         val: '='
       },
+      transclue: true,
       link: function(scope, element, attrs) {
         d3Service.X().then(function(d3) {
           // just to silent warnings in jshint
@@ -76,7 +77,16 @@ angular.module('ofsApp')
                   .attr('width', width + margin.left + margin.right)
                   .attr('height', height + margin.top + margin.bottom)
                   .style('background-color', 'white');
-            
+
+              var borderPath = svg.append("rect")
+       			    .attr("x", 0)
+       			    .attr("y", 0)
+       			    .attr("height", 500)
+       			    .attr("width", 1000)
+                .style('stroke-width', '1')
+                .style('stroke', 'rgb(100, 100, 100)')
+       			    .style("fill", "none");
+
               // when zoom function is called, draw x-axis, y-axis, and line according
               // to zoom level
               var draw = function() {
@@ -214,29 +224,57 @@ angular.module('ofsApp')
               }
 
               function addLegends(dataTrends) {
-                d3.select('body').append('h3').text('Legends');
+                const LEGENDS_PER_ROW = 6;
 
+                // create table skeleton
+                var legendsTable = $document[0].createElement('table');
+                var tbody = $document[0].createElement('tbody');
+                legendsTable.appendChild(tbody);
+
+                var tr = $document[0].createElement('tr');
+                tr.setAttribute('class', 'tr-legends');
+
+                var counter = 0;
                 // add checkboxes to the body
                 dataTrends.forEach(function(t) {
-                  var input = $document[0].createElement('input');
+                  // when a row already has the specified numbers
+                  // start a new tr tag
+                  if (counter >= LEGENDS_PER_ROW) {
+                    tbody.appendChild(tr);
+                    tr = $document[0].createElement('tr');
+                    tr.setAttribute('class', 'tr-legends');
+                    counter = 0;
+                  }
 
+                  // create a checkbox and its listener to update the chart
+                  var input = $document[0].createElement('input');
                   input.setAttribute('class', 'legend');
                   input.setAttribute('type', 'checkbox');
                   input.setAttribute('value', t.name);
                   input.checked = t.show;
-
                   input.addEventListener('change', updateLines);
 
-                  var legends = $document[0].getElementById('legends');
-                  legends.appendChild(input);
-                  legends.appendChild($document[0].createTextNode(' ' + t.name));
+                  var td = $document[0].createElement('td');
+                  td.setAttribute('class', 'td-legends');
+                  td.appendChild(input);
+                  td.appendChild($document[0].createTextNode(' ' + t.name));
+
+                  tr.appendChild(td);
+
+                  counter += 1;
                 });
+                tbody.appendChild(tr);
+
+                var legends = $document[0].getElementById('legends');
+                legends.appendChild(legendsTable);
               }
 
               draw();
               addLegends(dataTrends);
             }
             
+            scope.totalLegends = 0;
+
             renderGraph(alterDataStructure(newVal));
           });
         });
