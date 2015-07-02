@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('EspCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, HTTP_INTERVAL) {
+  .controller('EspCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 
+    '$localStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $routeParams, $interval, $localStorage, HTTP_INTERVAL) {
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
       var param = {unitId: $routeParams.UnitId};
@@ -20,8 +21,10 @@ angular.module('ofsApp')
             $scope.dataId = data;
             $scope.prograssing = false;
             $scope.alert = false;
+            $localStorage.dataEsp = $scope.dataId;
           })
           .error(function(data) {
+            $scope.dataId = $localStorage.dataEsp;
             $scope.alert = data ||'Request Failed from Server';
             $scope.prograssing = false;
           });

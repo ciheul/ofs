@@ -48,6 +48,7 @@ angular.module('ofsApp')
           .success(function(data) {
             $scope.isLoaded = true;
             $scope.totalWells = data;
+            $scope.alert = false;
             $scope.groups = [];
             $scope.prograssing = false;
 
@@ -77,13 +78,15 @@ angular.module('ofsApp')
             }
 
             $scope.coba = data;
-            $localStorage.message = data;
+            $localStorage.message = $scope.totalWells;
+            console.log($localStorage.message);
           })
           .error(function(data) {
+            $scope.groups = [];
             $scope.alert = data ||'Request Failed From Server';
             $scope.prograssing = false;
             $scope.panggilCoba = $scope.coba;
-            $scope.groups = $localStorage.message;
+            $scope.Substations = $localStorage.message;
             console.log($scope.panggilCoba);
             console.log($scope.groups);
           });

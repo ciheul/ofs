@@ -2,7 +2,7 @@
 
 angular.module('ofsApp')
   .controller('SrpCtrl', ['$scope', '$rootScope', '$http', '$routeParams',
-    '$interval', '$localStorage', '$sessionStorage', 'HTTP_INTERVAL',
+    '$interval', '$localStorage', 'HTTP_INTERVAL',
     function($scope, $rootScope, $http, $routeParams, $interval, $localStorage, HTTP_INTERVAL) {
       // get SRP equipment name (ex: T150)
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
@@ -19,9 +19,9 @@ angular.module('ofsApp')
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
         $http.get('api/SrpDetail/', { params: param })
       	 .success(function(data) {
-        	  $scope.dataId = data;
             $scope.alert = false;
             $scope.prograssing = false;
+            $scope.dataId = data;
             $localStorage.dataSrp = $scope.dataId;
           })
           .error(function(data) {

@@ -44,8 +44,8 @@ angular.module('ofsApp')
             $scope.isPlantLoaded = true;
             $scope.progressing = false;
             $scope.groups = [];
-            console.log($scope.groups);
-
+            $scope.alert = false;
+      
             // handle escape character for url routing
             data.map(function(i) {
               i.OilWells.map(function(j) {
