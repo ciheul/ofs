@@ -2,14 +2,14 @@
 <br>
 <div ng-include="'views/alert.html'"></div>
 <h2 style="padding-left: 20px; margin-left: 100px;">Substation Overview</h2>
-
+<!-- 
 <div class="tile-group" ng-hide="isLoaded">
   <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 575px;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"><!-- empty --></div>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"></div>
   </div>
-</div>
+</div> -->
 
-<div ng-show="isLoaded">
+<!-- <div ng-show="isLoaded"> -->
   <div class="tile-group" ng-repeat="group in groups" data-role="tile" style="">
     <div class="tile-container">
       <div ng-repeat="well in group.plants">
@@ -24,7 +24,7 @@
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->
 
 <div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
   <span class="tile-group-title fg-black">UNIT LOCATION</span>

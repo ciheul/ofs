@@ -46,13 +46,12 @@ angular.module('ofsApp')
               $scope.groups.push(group);
             }
 
-            $scope.coba = data;
-            $sessionStorage.message = $scope.totalWells;
+            $sessionStorage.substation = $scope.groups;
             console.log($sessionStorage.message);
           })
           .error(function(data) {
             $scope.alert = data ||'Request Failed From Server';
-            $scope.Substations = $sessionStorage.message;
+            $scope.groups = $sessionStorage.substation;
             console.log($scope.groups);
           });
       };

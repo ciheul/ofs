@@ -61,12 +61,12 @@ angular.module('ofsApp')
               $scope.groups.push(group);
             }
 
-            $sessionStorage = $scope.groups;
-            console.log($sessionStorage.message);
+            $sessionStorage.plants = $scope.groups;
+            console.log($sessionStorage.plants);
           })
           .error(function(data) {
             $scope.alert = data || 'Request Failed from Server';
-            $scope.groups = $sessionStorage;
+            $scope.groups = $sessionStorage.plants;
             console.log($scope.groups);
             $scope.progressing = false;
           });
