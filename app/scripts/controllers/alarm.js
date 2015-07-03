@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('AlarmCtrl', ['$scope', '$rootScope', '$http', '$interval',
-    '$localStorage', '$sessionStorage', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $interval, $localStorage, $sessionStorage, HTTP_INTERVAL) {
+  .controller('AlarmCtrl', ['$scope', '$rootScope', '$http', '$interval', '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $interval, $sessionStorage, HTTP_INTERVAL) {
       
       const ACTIVE_ALARM_ROWS = 12;
       const HISTORICAL_ALARM_ROWS = 12;
@@ -29,7 +28,7 @@ angular.module('ofsApp')
 
             // $scope.eventsAlarm = [];
             $scope.eventsAlarm = data;
-            $localStorage.alarm = $scope.eventsAlarm;
+            $sessionStorage.alarm = $scope.eventsAlarm;
             $scope.getCount = function() {
               // return $scope.eventsAlarm.length;
               return $scope.activeAlarmLength;
@@ -42,8 +41,8 @@ angular.module('ofsApp')
             };
           })
           .error(function(data) {
-            $scope.eventsAlarm = $localStorage.alarm;
-            console.log($scope.eventsAlarm);
+            $scope.eventsAlarm = $sessionStorage.alarm;
+            /*console.log($scope.eventsAlarm);*/
             $scope.isActiveProgressing = false;
 
             if (data === null && $scope.eventsAlarm.length === 0) {
@@ -74,7 +73,7 @@ angular.module('ofsApp')
             } 
           }
           $scope.eventsHistoric = data;
-          $localStorage.alarmHistorical = $scope.eventsHistoric;
+          /*$sessionStorage.alarmHistorical = $scope.eventsHistoric;*/
         })
         .error(function(data) {
           if (data === null) {
@@ -92,8 +91,8 @@ angular.module('ofsApp')
         var params = {dtfrom: start + '000000', dtto: end + '000000'};
         $http.get('/api/HistoricalAlarms', {params: params})
           .success(function(data){
-            $scope.eventsHistoric = $localStorage.alarmHistorical;
-            console.log($scope.eventsHistoric);
+            /*$scope.eventsHistoric = $sessionStorage.alarmHistorical;
+            console.log($scope.eventsHistoric);*/
             $scope.isHistoricalProgressing = false;
 
             if (data.length !== HISTORICAL_ALARM_ROWS) {
@@ -106,13 +105,13 @@ angular.module('ofsApp')
             $scope.eventsHistoric = data;
           })
           .error(function(data) {
+            data = null;
             $scope.isHistoricalProgressing = false;
           });
       };
 
       // when routes changes, cancel all interval operations
       $rootScope.$on('$locationChangeSuccess', function() {
-        $interval.cancel($scope.pollWells);
         $interval.cancel($scope.pollActiveAlarms);
       });
     }

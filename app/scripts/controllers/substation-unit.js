@@ -6,12 +6,10 @@ angular.module('ofsApp')
       $scope.Name = $routeParams.Name;
 
       /*var param = {name: $routeParams.Name};*/
-      $scope.eventsAlarm = [];
       const TILE_COL = 4;
       const PLANT_PER_GROUP = 3;
-      const ACTIVE_ALARM_ROWS = 12;
-      const HISTORICAL_ALARM_ROWS = 12;
-      /*$scope.isLoaded = false;*/
+
+      $scope.eventsAlarm = [];
       $scope.groups = [];
 
       $scope.isFirstGroup = false;
@@ -73,7 +71,11 @@ angular.module('ofsApp')
         // .success(function(data) {
           $scope.loadData();
         // });
-      }, 10000);
+      }, HTTP_INTERVAL);
+
+      $rootScope.$on('$locationChangeSuccess', function() {
+        $interval.cancel($scope.pollSubstations);
+      });
 
     }
   ]);

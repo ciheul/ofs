@@ -3,14 +3,12 @@
 angular.module('ofsApp')
   .controller('EquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 
     '$localStorage', '$sessionStorage', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, $localStorage, HTTP_INTERVAL) {
+    function($scope, $rootScope, $http, $routeParams, $interval, $sessionStorage, HTTP_INTERVAL) {
       // get SRP equipment name (ex: T150)
       $scope.Name = $routeParams.Name;
 
       /*var param = {name: $routeParams.Name};*/
       $scope.eventsAlarm = [];
-      const ACTIVE_ALARM_ROWS = 12;
-      const HISTORICAL_ALARM_ROWS = 12;
 
       $scope.isLoaded = false;
      /* $http.get('/data/substation-equ.json', {params: param})*/
@@ -22,10 +20,10 @@ angular.module('ofsApp')
             $scope.alert = false;
             $scope.prograssing = false;
             $scope.dataId = data;
-            $localStorage.substationEqu = $scope.dataId;
+            $sessionStorage.substationEqu = $scope.dataId;
           })
           .error(function(data) {
-            $scope.dataId = $localStorage.substationEqu;
+            $scope.dataId = $sessionStorage.substationEqu;
             $scope.alert = data ||'Request Failed From Server';
             $scope.prograssing = false;
           });
@@ -33,13 +31,11 @@ angular.module('ofsApp')
       $scope.loadData();
 
       $scope.pollDataEqu = $interval(function() {
-        /*$http.get('', {params: param})*/
-        // $http.get('/api/SubstationOverview/SubstationEqu')
-        // .success(function(data) {
         $scope.loadData();
-        //   $scope.dataId = data;
-        // });
-      }, 10000);
-      
+      }, HTTP_INTERVAL);
+
+      $rootScope.$on('$locationChangeSuccess', function() {
+        $interval.cancel($scope.pollDataEqu);
+      });
     }
   ]);

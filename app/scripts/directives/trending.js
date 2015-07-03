@@ -1,3 +1,8 @@
+/**
+ *  url:
+ *  http://computationallyendowed.com/blog/2013/01/21/bounded-panning-in-d3.html
+ */
+
 'use strict';
 
 angular.module('ofsApp')
@@ -8,6 +13,7 @@ angular.module('ofsApp')
       scope: {
         val: '='
       },
+      transclue: true,
       link: function(scope, element, attrs) {
         d3Service.X().then(function(d3) {
           // just to silent warnings in jshint
@@ -23,7 +29,7 @@ angular.module('ofsApp')
 
               var keys = d3.keys(res);
               var dataset = [];
-              for (var i = 0; i < res.CurrentMaxlist.length; i++) {
+              for (var i = 0; i < res.VoltageUnbalances.length; i++) {
                 var obj = {};
                 for (var k = 0; k < keys.length; k++) {
                   var key = keys[k];
@@ -41,6 +47,12 @@ angular.module('ofsApp')
             }
 
             function renderGraph(data) {
+
+              var trendingChart = $document[0].getElementsByTagName('trending-chart')[0];
+              while (trendingChart.firstChild) {
+                trendingChart.removeChild(trendingChart.firstChild);
+              }
+
               // margin the chart
               var margin = { top: 10, right: 20, bottom: 30, left: 50 };
             
@@ -70,10 +82,30 @@ angular.module('ofsApp')
                   .attr('width', width + margin.left + margin.right)
                   .attr('height', height + margin.top + margin.bottom)
                   .style('background-color', 'white');
-            
+
+              svg.append('rect')
+       			    .attr('x', 0)
+       			    .attr('y', 0)
+       			    .attr('height', 500)
+       			    .attr('width', 1000)
+                .style('stroke-width', '1')
+                .style('stroke', 'rgb(100, 100, 100)')
+       			    .style('fill', 'none');
+
+              // function to zoom. it calls draw() function.
+              var zoom = d3.behavior.zoom().scaleExtent([1, 10]);
+
               // when zoom function is called, draw x-axis, y-axis, and line according
               // to zoom level
               var draw = function() {
+                // var t = zoom.translate();
+                // var tx = t[0];
+                // var ty = t[1];
+                //
+                // tx = Math.min(tx, 0);
+                // ty = Math.max(tx, width);
+                // zoom.translate([tx, ty]);
+
                 svg.select('g.x.axis').call(xAxis);
                 svg.select('g.y.axis').call(yAxis);
                 svg.selectAll('path.line').attr('d', function(d) {
@@ -81,15 +113,14 @@ angular.module('ofsApp')
                 });
               };
             
-              // function to zoom. it calls draw() function.
-              var zoom = d3.behavior.zoom().scaleExtent([0, 10]).on('zoom', draw);
+              zoom.on('zoom', draw);
             
               // populate a list with all keys except FR602_TimeStamplist
               // output: ['CurrentMaxlist', 'CurrentMinlist', ...]
               color.domain(d3.keys(data[0]).filter(function(key) {
                 return key !== 'FR602_TimeStamplist' && key !== 'FR601_TimeStamplist';
               }));
-            
+
               // modify dataset to a new data structure that fits for d3.extent
               // notice that timestamp is redundant for other information
               // (ex: CurrentMinlist)
@@ -124,7 +155,7 @@ angular.module('ofsApp')
             
               // when scrolling up or down, this lines handle the scaling of x,y-axis
               zoom.x(x);
-              // zoom.y(y);
+              zoom.y(y);
             
               // draw the main container
               var container = svg.append('g')
@@ -166,11 +197,12 @@ angular.module('ofsApp')
             
               // draw an invisible rectangle around chart. these following lines
               // must be declared after all lines to wrap them 
-              // container.append("rect")
-              //   .attr("class", "pane")
-              //   .attr("width", width)
-              //   .attr("height", height)
-              //   .call(zoom);
+              container.append('rect')
+                .attr('class', 'pane')
+                .attr('width', width)
+                .attr('height', height)
+                // .style('fill', 'none')
+                .call(zoom);
             
               function updateLines() {
                 // set 'show' state to show or hide a line
@@ -208,29 +240,63 @@ angular.module('ofsApp')
               }
 
               function addLegends(dataTrends) {
-                d3.select('body').append('h3').text('Legends');
+                const LEGENDS_PER_ROW = 6;
 
+                // delete previous legends
+                var prevLegends = $document[0].getElementById('legends');
+                while (prevLegends.firstChild) {
+                  prevLegends.removeChild(prevLegends.firstChild);
+                }
+
+                // create table skeleton
+                var legendsTable = $document[0].createElement('table');
+                var tbody = $document[0].createElement('tbody');
+                legendsTable.appendChild(tbody);
+
+                var tr = $document[0].createElement('tr');
+                tr.setAttribute('class', 'tr-legends');
+
+                var counter = 0;
                 // add checkboxes to the body
                 dataTrends.forEach(function(t) {
-                  var input = $document[0].createElement('input');
+                  // when a row already has the specified numbers
+                  // start a new tr tag
+                  if (counter >= LEGENDS_PER_ROW) {
+                    tbody.appendChild(tr);
+                    tr = $document[0].createElement('tr');
+                    tr.setAttribute('class', 'tr-legends');
+                    counter = 0;
+                  }
 
+                  // create a checkbox and its listener to update the chart
+                  var input = $document[0].createElement('input');
                   input.setAttribute('class', 'legend');
                   input.setAttribute('type', 'checkbox');
                   input.setAttribute('value', t.name);
                   input.checked = t.show;
-
                   input.addEventListener('change', updateLines);
 
-                  var legends = $document[0].getElementById('legends');
-                  legends.appendChild(input);
-                  legends.appendChild($document[0].createTextNode(' ' + t.name));
+                  var td = $document[0].createElement('td');
+                  td.setAttribute('class', 'td-legends');
+                  td.appendChild(input);
+                  td.appendChild($document[0].createTextNode(' ' + t.name));
+
+                  tr.appendChild(td);
+
+                  counter += 1;
                 });
+                tbody.appendChild(tr);
+
+                var legends = $document[0].getElementById('legends');
+                legends.appendChild(legendsTable);
               }
 
               draw();
               addLegends(dataTrends);
             }
             
+            scope.totalLegends = 0;
+
             renderGraph(alterDataStructure(newVal));
           });
         });

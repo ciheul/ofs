@@ -27,6 +27,11 @@ body {
     left:650px;
 }
 
+.alert-message {
+    position:fixed;
+    left:650px;
+}
+
 .tile-common {
     border: 1px solid #999999;
     background-color: #dcdcdc;
@@ -86,6 +91,10 @@ body {
     display: none;
 }
 
+rect.pane {
+    opacity: 0;
+}
+
 .line {
     fill: none;
     stroke: steelblue;
@@ -93,14 +102,23 @@ body {
 } 
 
 .legend {
-    margin-left: 10px;
-    margin-bottom: 10px;
+    /* margin-left: 10px; */
+    /* margin-bottom: 10px; */
 }
 
 #legends {
-    width: 930px;
+    width: 1000px;
     margin-top: 20px;
     font-size: 12px;
+}
+
+.tr-legends {
+    /* margin-bottom: 10px; */
+}
+
+.td-legends {
+    width: 300px;
+    padding-bottom: 10px;
 }
 
 .chart-container {
@@ -143,19 +161,19 @@ trending-chart {
 }
 .fixed_headers td:nth-child(1),
 .fixed_headers th:nth-child(1) {
-  min-width: 130px;
+  min-width: 120px;
 }
 .fixed_headers td:nth-child(2),
 .fixed_headers th:nth-child(2) {
-  min-width: 130px;
+  min-width: 100px;
 }
 .fixed_headers td:nth-child(3),
 .fixed_headers th:nth-child(3) {
-  min-width: 170px;
+  min-width: 225px;
 }
 .fixed_headers td:nth-child(4),
 .fixed_headers th:nth-child(4) {
-  width: 350px;
+  width: 400px;
 }
 .fixed_headers thead {
   /* background-color: #333333; */

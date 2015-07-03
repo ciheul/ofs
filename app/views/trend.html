@@ -1,0 +1,43 @@
+<div ng-controller="TrendCtrl">
+  <div class="tile-group">
+
+    <span class="tile-group-title fg-black">
+      TRENDING <span class="mif-spinner2 mif-ani-spin" ng-show="isFilteringSRP"></span>
+    </span>
+
+    <div class="tile-container">
+      <span style="padding-left: 30px;">START</span>
+      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+        <input type="text" ng-model="startTrend" />
+        <button class="button">
+          <span class="mif-calendar"></span>
+        </button>
+      </div>
+  
+      <span style="padding-left: 30px;">END</span>
+      <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
+        <input type="text" ng-model="endTrend">
+        <button class="button">
+          <span class="mif-calendar"></span>
+        </button>
+      </div> 
+  
+      <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterTrending(startTrend, endTrend)">LOAD</button>
+  
+      <div class="chart-container">
+        <div ng-hide="isTrendingLoaded">
+          <div class="tile-container" style="background-color: white; border: 1px solid #999999; width: 1000px; height: 500px;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"><!-- empty --></div>
+          </div>
+          
+        </div>
+  
+        <div ng-show="isTrendingLoaded">
+          <trending-chart val="dataTrend"></trending-chart>
+          <div id="legends"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

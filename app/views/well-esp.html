@@ -1,49 +1,59 @@
-<div>
-  <span>{{count()}}</span>
+<span>{{count()}}</span>
 <br>
 <div ng-include="'views/alert.html'"></div>
 <h2 style="padding-left: 20px; margin-left: 90px;">ESP-{{UnitId}}</h2>
 
 <div class="tile-group triple">
-  <div class="tile-container">
+
+ <!--  <div class="tile-container">
     <div class="tile-big  fg-white" style="margin-top: -30px; height: 675px; width: 600px;">
       <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-top: 5px; margin-left: 10px; width: 250px; height: 50px; font-size: 10px;"> 
-          <thead>
+          <thead> -->
+
+  <div class="tile-container tile-common">
+    <div class="" style="background-color: #dcdcdc; margin: 0; width: 478px; height: 600px;">
+
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 10px; width: 223px; font-size: 10px; float: left;"> 
+        <thead>
           <tr>
-            <th colspan="4">WELLHEAD</th>
+            <th colspan="2">WELLHEAD</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Casing Pressure(br)</td>
-            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.CasingHeadPressureBar}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.CasingHeadPressureBar}}</td>
           </tr>
           <tr>
             <td>Tubing Pressure(br)</td>
-            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.TubingHeadPressureBar}}</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.TubingHeadPressureBar}}</td>
           </tr>
         </tbody>
       </table>
 
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 390px; margin-top: -117px; width: 200px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-right: 10px; width: 223px; font-size: 10px; float: right">
         <thead>
           <tr>
-            <th colspan="3">INFERRED PROD.</th>
+            <th colspan="2">INFERRED PROD.</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Rate(BPD)</td>
-            <td colspan="2" class="bg-grayLighter text-align-right">a</td>
+            <td class="bg-grayLighter text-align-right">a</td>
           </tr>
           <tr>
             <td>Total(barrel)</td>
-            <td colspan="2" class="bg-grayLighter text-align-right">a</td>
+            <td class="bg-grayLighter text-align-right">a</td>
           </tr>
         </tbody>
       </table>
 
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 390px; margin-top: -7px; width: 10px; height: 0px; font-size: 10px;" >
+      <div class="image-container" style="height: 300px; width: 194px; margin-top: 30px; margin-left: 20px; margin-bottom: 10px; float: left;">
+        <img src="images/EquView_ESP.png"/>
+      </div>
+
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; width: 10px; margin-left: 31px; margin-top: 0px; font-size: 10px; float: left;" >
         <thead>
           <tr>
             <th colspan="2">VOLTAGE(V)</th>
@@ -73,7 +83,7 @@
         </tbody>
       </table>
 
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 491px; margin-top: -218px; width: 10px; height: 0px; font-size: 10px;" >
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; width: 10px; margin-right: 10px; margin-top: 0px; font-size: 10px; float: right;">
         <thead>
           <tr>
             <th colspan="2">CURRENT(A)</th>
@@ -103,7 +113,44 @@
         </tbody>
       </table>
 
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 260px; height: 0px; font-size: 10px;" >
+
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; width: 223px; margin-top: 0px; margin-right: 10px; font-size: 10px; float: right;">
+        <thead>
+          <tr>
+            <th colspan="2">STATUS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VFD STATUS</td>
+            <td class="fg-black" style="background-color: {{dataId.Validity}}">{{dataId.VSDStatusMessage}}</td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="text" style="width: 100px;"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="clear:both; background-color: green">
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; width: 223px; margin-top: 0px; margin-left: 10px; font-size: 10px; float: left;">
+        <thead>
+          <tr>
+            <th colspan="2">PUMP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Intake Pressure(bar)</td>
+            <td class="bg-grayLighter text-align-right">{{dataId.PumpIntakePressureBar}}</td></td>
+          </tr>
+          <tr>
+            <td>Est. Liquid Level(m)</td>
+            <td class="bg-grayLighter text-align-right">a</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; width: 223px; margin-top: 0px; margin-right: 10px; font-size: 10px; float: right;">
         <thead>
           <tr>
             <th colspan="4">MOTOR</th>
@@ -120,44 +167,6 @@
           </tr>
         </tbody>
       </table>
-
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -7px; width: 260px; height: 0px; font-size: 10px;" >
-        <thead>
-          <tr>
-            <th colspan="4">PUMP</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Intake Pressure(bar)</td>
-            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.PumpIntakePressureBar}}</td></td>
-          </tr>
-          <tr>
-            <td>Est. Liquid Level(m)</td>
-            <td colspan="3" class="bg-grayLighter text-align-right">a</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 330px; margin-top: -6px; width: 260px; height: 0px; font-size: 10px;" >
-        <thead>
-          <tr>
-            <th colspan="4">STATUS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>VFD STATUS</td>
-            <td colspan="3" class="fg-black" style="background-color: {{dataId.Validity}}">{{dataId.VSDStatusMessage}}</td>
-          </tr>
-          <tr>
-            <td colspan="4"><input type="text" style="width: 200px;"></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="image-container" style="height: 400px; width: 270px; margin-left: 30px; margin-top: -530px;">
-          <img src="images/EquView_ESP.png"/>
       </div>
 
     </div>
@@ -165,11 +174,13 @@
 </div>
 
 <div class="tile-group double" style="margin-left: 170px; margin-top: -20px;">
-  <span class="tile-group-title fg-black">FR604-ESP Monitoring Report</span>
+  <span class="tile-group-title fg-black">
+    FR604-ESP Monitoring Report <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+  </span>
     <div class="tile-container">
       <span style="margin-left: 30px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.Validity}};">{{dataId.TimeStamp}}</span>
       {{spinData}}
-      <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+      
         <table class="table hovered fg-black table-report">
           <tbody>
             <tr>
@@ -272,32 +283,6 @@
     </div>
 </div>
 
-<div class="tile-group">
-  <span class="tile-group-title fg-black">TRENDING</span>
-  <div class="tile-container">
-    <span style="padding-left: 30px;">START</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="startTrend" />
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div>
-
-    <span style="padding-left: 30px;">END</span>
-    <div class="input-control text" data-role="datepicker" style="margin-left: 10px;">
-      <input type="text" ng-model="endTrend">
-      <button class="button">
-        <span class="mif-calendar"></span>
-      </button>
-    </div> 
-
-    <button class="button rounded primary" style="margin-left: 30px;" ng-click="filterTrending(startTrend, endTrend)">LOAD</button>
-
-    <div class="chart-container">
-      <trending-chart val="dataTrend"></trending-chart>
-      <div id="legends"></div>
-    </div>
-  </div>
-</div>
+<div ng-include="'views/trend.html'"></div>
 
 <div ng-include="'views/alarm.html'"></div>
