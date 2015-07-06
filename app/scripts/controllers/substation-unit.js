@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('ofsApp')
- .controller('UnitCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, HTTP_INTERVAL) {
+ .controller('UnitCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $routeParams, $interval, $sessionStorage, HTTP_INTERVAL) {
       $scope.Name = $routeParams.Name;
 
       /*var param = {name: $routeParams.Name};*/
@@ -58,8 +58,11 @@ angular.module('ofsApp')
             if (group.plants.length > 0) {
               $scope.groups.push(group);
             }
+
+            $sessionStorage.SubstationUnit = $scope.groups;
           })
           .error(function(data){
+            $scope.groups = $sessionStorage.SubstationUnit;
             $scope.alert = data || 'Request Failed From Server';
             $scope.prograssing = false;
         });

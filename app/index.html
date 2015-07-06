@@ -20,8 +20,8 @@
   </head>
 
   <body>
-    <div id="content" style="position: relative;">
-      <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; background-color: #7d7d7d;">
+    <div id="content">
+      <!-- <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; background-color: #7d7d7d;">
         <li><h2 class="align-center tile-area-title fg-white" style="margin-top: 25px;">OFS</h2></li>
         <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
         <li><a class="fg-white" href="#/substation" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
@@ -31,7 +31,7 @@
             <h1 class="fg-white" style="margin-left: 16px; font-size: 20px;">ALARM</h1>
           </div>  
         </div>
-      </ul>
+      </ul> -->
     
       <div ng-view></div>
     </div>
@@ -61,6 +61,7 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/start-screen.js"></script>
+    <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/well.js"></script>
     <script src="scripts/controllers/well-srp.js"></script>
     <script src="scripts/controllers/well-esp.js"></script>
@@ -70,6 +71,7 @@
     <script src="scripts/controllers/substation-equ.js"></script>
     <script src="scripts/controllers/alarm.js"></script>
     <script src="scripts/controllers/trend.js"></script>
+    <!-- <script src="scripts/services/authentication.js"></script> -->
     <script src="scripts/services/http-global-url-modifier.js"></script>
     <script src="scripts/services/microsoft-maps-service.js"></script>
     <script src="scripts/directives/microsoft-maps.js"></script>

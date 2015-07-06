@@ -1,0 +1,11 @@
+<ul class="v-menu subdown fg-white">
+  <li><h2 class="align-center tile-area-title fg-white" style="margin-top: 25px;">OFS</h2></li>
+  <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
+  <li><a class="fg-white" href="#/substation" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
+  <li ng-controller="IndexCtrl" style="margin-top: 350px;">
+      <div ng-if="add.ping()">
+        <h1 class="fg-white" style="margin-left: 40px; font-size: 20px;">{{add.ping()}}</h1>
+        <h1 class="fg-white" style="margin-left: 16px; font-size: 20px;">ALARM</h1>
+      </div>  
+  </li>
+</ul>

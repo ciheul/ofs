@@ -25,6 +25,10 @@ angular.module('ofsApp', [
   .constant('HTTP_INTERVAL', 10000)
   .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+      })
       .when('/well', {
         templateUrl: 'views/well-overview.html',
         controller: 'WellCtrl',
@@ -50,7 +54,7 @@ angular.module('ofsApp', [
         controller: 'EquCtrl',
       })
       .otherwise({
-        redirectTo: '/well'
+        redirectTo: '/login'
       });
 
     $httpProvider.defaults.useXDomain = true;
