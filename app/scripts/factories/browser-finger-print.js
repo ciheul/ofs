@@ -20,7 +20,7 @@ angular.module('OfsApp')
         	navParam += ';' + navigator.languageanguage;
     		}
     		var script = $document.createElement('script');
-    		script.src = 'CryptoMD5.js';
+    		script.src = 'vendors/CryptoMD5.js';
     		($document.head || $document.documentElement).appendChild(script);
     		script.parentNode.removeChild(script);
     		var cryptoObject = CryptoJS.MD5(navParam);
