@@ -1,11 +1,9 @@
 'use strict';
 
-angular.module('OfsApp')
+angular.module('ofsApp')
   .factory('browserFingerprint', ['$document',
-  	function($document) {
-  		var CryptoJS;
-  		function getFingerprint() {
-
+  		function getFingerprint($document) {
+        var CryptoJS;
         var username;
         var password;
 
@@ -26,5 +24,4 @@ angular.module('OfsApp')
     		var cryptoObject = CryptoJS.MD5(navParam);
     		return cryptoObject.toString();
 		}
-  	}
   ]);
