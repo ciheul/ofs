@@ -1,31 +1,22 @@
 'use strict';
 
-angular.module('ofsApp')
-  .controller('LoginCtrl',
-    ['$scope', '$rootScope', '$location',
-    function ($scope, $rootScope, $location, AuthenticationService) {
-        // reset login status
-        /*AuthenticationService.ClearCredentials();
- */
-       /* $scope.login = function () {
-            $scope.dataLoading = true;
-            AuthenticationService.Login($scope.username, $scope.password, function(response) {
-                if(response.success) {
-                    AuthenticationService.SetCredentials($scope.username, $scope.password);
-                    $location.path('#/well');
-                } else {
-                    $scope.error = response.message;
-                    $scope.dataLoading = false;
-                }
-            });
-        };*/
 
-        $scope.login = function(){
-        	if ($scope.username === 'test' || $scope.password === 'test') {
-        		console.log('login berhasil');
-        		$location.path('#/well');
-        	} else {
-        		console.log('error');
-        	}
-        };
+angular.module('ofsApp')
+  .controller('LoginCtrl', ['browserFingerprint', '$scope', '$sessionStorage', '$routeParams', '$http',
+    function(browserFingerprint, $scope, $sessionStorage, $routeParams, $http) {
+
+        $scope.username = $routeParams.username;
+        $scope.password = $routeParams.password;
+        var browserfingerprint = getFingerPrint($routeParams.username, $routeParams.password);
+
+        $http.post('api/well', { params : browserfingerprint })
+          .success(function(response){
+            console.log(response);
+              $sessionStorage = response;
+          })
+          .error(function(){
+            console.log = 'error';
+          });
     }]);
+ 
+    
