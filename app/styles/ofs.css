@@ -1,8 +1,9 @@
 body {
-    height: 120%;
+    height: auto;
     width: 350%;
     padding: 0;
     margin: auto;
+    background-color: #d2d2d2;
     /* box-sizing: border-box; */
     /* white-space: nowrap; */
     /* display: block; */
@@ -12,15 +13,16 @@ body {
 }
 
 #content {
-    background-color: #d2d2d2;
+    /*background-color: #d2d2d2;*/
     height: 100%;
-    width: 100%;
+    width: auto;
     box-sizing: border-box;
 }
 
 .tile-group {
     left: 10px;
 }
+
 .alert-message {
     position:fixed;
     left:650px;
@@ -70,6 +72,7 @@ body {
     border: 1px solid #999999;
     background-color: #dcdcdc;
 }
+
 
 /* @media screen and (max-width: 640px) { */
 /*     .tile-area { */

@@ -18,6 +18,17 @@
     <link rel="stylesheet" href="styles/spinner.css" />
     <!-- endbuild -->
   </head>
+  <script>
+    $( document ).ready( function(){
+    setMaxWidth();
+    $( window ).bind( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
+
+    function setMaxWidth() {
+    $( "body" ).css( "maxWidth", ( $( window ).width() * 3.5 | 0 ) + "px" );
+    }
+
+    });
+  </script>
 
   <body>
     <div id="content">

@@ -3,7 +3,7 @@
 angular.module('ofsApp')
   .factory('AuthenticationService', 
   	['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
-  	function (Base64, $http, $cookieStore, $rootScope, $timeout) {
+  	function (Base64, $http, $cookieStore, $rootScope) {
   		var service = {};
 
   		service.Login = function (username, password, callback) {
