@@ -2,30 +2,37 @@
 
 angular.module('ofsApp')
   .factory('AuthenticationService', 
-  	['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
-  	function (Base64, $http, $cookieStore, $rootScope) {
+  	['Base64', '$http', '$cookieStore', '$rootScope', '$timeout', '$routeParams',
+  	function (Base64, $http, $cookieStore, $rootScope, $timeout, $routeParams) {
   		var service = {};
 
   		service.Login = function (username, password, callback) {
 
-  			// $timeout(function(){
-  			// 	var response = { success: username === 'test' && password === 'test' }
-  			// 	if (!response.success) {
-  			// 		response.message = 'Username or password is incorrect';
-  			// 	}
-  			// 	cllback(response);
-  			// }, 1000);
+  			$timeout(function(){
+  				var response = { success: username === 'test' && password === 'test' };
+  				if (!response.success) {
+  					response.message = 'Username or password is incorrect';
+  				}
+  				callback(response);
+  			}, 1000);
 
-
-  			/* Use this for real authentication
+        /* Use this for real authentication
              ----------------------------------------------*/
-            $http.post('/api/authenticate', { username: username, password: password })
-               .success(function (response) {
-                   callback(response);
-               });
+        /*var param = {
+          bfp:$routeParams.browserFingerprint.getFingerprint(username, password)
+        };
+        console.log($routeParams.browserFingerprint(username, password));
+  			
+        $http.post('/api/OilWellOverview', { params : param })
+          .success(function (response) {
+            if (!response.success) {
+              response.message = 'Username or password is incorrect';
+            }
+            callback(response);
+        });*/
   		};
 
-  		service.SetCredetials = function(username, password) {
+  		service.SetCredentials = function(username, password) {
   			var authdata = Base64.encode(username + ';' + password);
 
   			$rootScope.globals = {

@@ -18,17 +18,7 @@
     <link rel="stylesheet" href="styles/spinner.css" />
     <!-- endbuild -->
   </head>
-  <script>
-    $( document ).ready( function(){
-    setMaxWidth();
-    $( window ).bind( "resize", setMaxWidth ); //Remove this if it's not needed. It will react when window changes size.
-
-    function setMaxWidth() {
-    $( "body" ).css( "maxWidth", ( $( window ).width() * 3.5 | 0 ) + "px" );
-    }
-
-    });
-  </script>
+  
 
   <body>
     <div id="content">
@@ -68,10 +58,11 @@
     <!-- endbower -->
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/start-screen.js"></script>
+    <!-- <script src="scripts/start-screen.js"></script> -->
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/well.js"></script>
     <script src="scripts/controllers/well-srp.js"></script>
@@ -88,8 +79,9 @@
     <script src="scripts/directives/trending.js"></script>
     <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
     <!-- endbuild -->
-    <script src="scripts/factories/browser-finger-print.js"></script>
-    <script src="scripts/vendors/CryptoMD5.js"></script>
+    <script src="scripts/factories/Authentication.js"></script>
+    <!-- <script src="scripts/factories/browser-finger-print.js"></script>
+    <script src="scripts/vendors/CryptoMD5.js"></script> -->
          
   </body>
 

@@ -1,11 +1,8 @@
 'use strict';
 
 angular.module('ofsApp')
-  .factory('browserFingerprint', ['$document',
-  		function getFingerprint($document) {
-        var CryptoJS;
-        var username;
-        var password;
+  .factory('browserFingerprint', ['$document', 'CryptoJS', 'username', 'password', 
+  		function getFingerprint($document, CryptoJS, username, password) {
 
     		var isIE = (navigator.userAgent.indexOf('MSIE') !== -1);
     		var navParam = + username + ';' + password + ';' + navigator.userAgent + ';' + navigator.appCodeName + ';' + navigator.appName + ';' + 
@@ -17,9 +14,9 @@ angular.module('ofsApp')
     		else {
         	navParam += ';' + navigator.languageanguage;
     		}
-    		var script = $document.createElement('script');
+    		var script = document.createElement('script');
     		script.src = 'vendors/CryptoMD5.js';
-    		($document.head || $document.documentElement).appendChild(script);
+    		(document.head || document.documentElement).appendChild(script);
     		script.parentNode.removeChild(script);
     		var cryptoObject = CryptoJS.MD5(navParam);
     		return cryptoObject.toString();
