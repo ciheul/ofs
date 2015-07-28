@@ -10,12 +10,14 @@ angular.module('ofsApp')
         AuthenticationService.ClearCredentials();
         
         $scope.login = function () {
+          $scope.progressing = true;
           AuthenticationService.Login($scope.username, $scope.password, function(response) {
             if(response.success) {
               AuthenticationService.SetCredentials($scope.username, $scope.password);
               $location.path('/well');
             } else {
               $scope.error = response.message;
+              $scope.progressing = false;
             }
           });
         };

@@ -23,6 +23,11 @@ body {
     left: 10px;
 }
 
+.tile-area-controls {
+    position:fixed;
+    left:1100px;
+}
+
 .alert-message {
     position:fixed;
     left:650px;
