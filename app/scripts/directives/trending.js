@@ -1,5 +1,6 @@
 /**
  *  url:
+ *  http://alignedleft.com/tutorials/d3/
  *  http://computationallyendowed.com/blog/2013/01/21/bounded-panning-in-d3.html
  */
 
@@ -58,11 +59,13 @@ angular.module('ofsApp')
             
               // width and height of the chart
               var width = 1000 - margin.left - margin.right;
+              console.log(width);
               var height = 500 - margin.top - margin.bottom;
               
-              // function to determine the scale of x-axis in time and y-axis in linear
+              // FUNCTION to determine the scale of x-axis in time and y-axis in linear
               var x = d3.time.scale().range([0, width]);
               var y = d3.scale.linear().range([height, 0]);
+
               
               var xAxis = d3.svg.axis().scale(x).orient('bottom');
               var yAxis = d3.svg.axis().scale(y).orient('left');
@@ -92,28 +95,6 @@ angular.module('ofsApp')
                 .style('stroke', 'rgb(100, 100, 100)')
        			    .style('fill', 'none');
 
-              // function to zoom. it calls draw() function.
-              var zoom = d3.behavior.zoom().scaleExtent([1, 10]);
-
-              // when zoom function is called, draw x-axis, y-axis, and line according
-              // to zoom level
-              var draw = function() {
-                // var t = zoom.translate();
-                // var tx = t[0];
-                // var ty = t[1];
-                //
-                // tx = Math.min(tx, 0);
-                // ty = Math.max(tx, width);
-                // zoom.translate([tx, ty]);
-
-                svg.select('g.x.axis').call(xAxis);
-                svg.select('g.y.axis').call(yAxis);
-                svg.selectAll('path.line').attr('d', function(d) {
-                  return line(d.values);
-                });
-              };
-            
-              zoom.on('zoom', draw);
             
               // populate a list with all keys except FR602_TimeStamplist
               // output: ['CurrentMaxlist', 'CurrentMinlist', ...]
@@ -141,7 +122,9 @@ angular.module('ofsApp')
                   }) 
                 };
               });
-            
+
+              // extent returns min and max value of timestamp, it is an array
+              // ex: [minTimestamp, maxTimestamp]
               x.domain(d3.extent(data, function(d) { return d.FR602_TimeStamplist; }));
             
               y.domain([ 
@@ -152,7 +135,41 @@ angular.module('ofsApp')
                   return d3.max(c.values, function(v) { return v.value; });
                 })
               ]); 
+
+              var max = d3.max(data, function(d) { return d.FR602_TimeStamplist; });
+              console.log(max);
+              console.log(x(max));
+
+              // function to zoom. it calls draw() function.
+              var zoom = d3.behavior.zoom().scaleExtent([1, 10]);
+
+              // when zoom function is called, draw x-axis, y-axis, and line according
+              // to zoom level
+              var draw = function() {
+                var t = zoom.translate();
+                var tx = t[0];
+                var ty = t[1];
+                // console.log(tx);
+                //
+                // tx = Math.min(0, Math.max(tx, 100));
+                tx = Math.min(tx, 0);
+                // console.log(t[0], tx);
+                tx = Math.max(tx, width - x(max));
+                console.log('===');
+                console.log(0, t[0], x(max), width - x(max), tx);
+                console.log('***');
+                // ty = Math.max(tx, -width);
+                zoom.translate([tx, ty]);
+
+                svg.select('g.x.axis').call(xAxis);
+                svg.select('g.y.axis').call(yAxis);
+                svg.selectAll('path.line').attr('d', function(d) {
+                  return line(d.values);
+                });
+              };
             
+              zoom.on('zoom', draw);
+   
               // when scrolling up or down, this lines handle the scaling of x,y-axis
               zoom.x(x);
               zoom.y(y);

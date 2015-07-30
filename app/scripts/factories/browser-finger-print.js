@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('OfsApp')
+angular.module('ofsApp')
   .factory('browserFingerprint', ['$document',
   	function($document) {
   		var CryptoJS;
