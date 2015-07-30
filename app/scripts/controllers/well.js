@@ -62,7 +62,7 @@ angular.module('ofsApp')
             }
 
             $sessionStorage.plants = $scope.groups;
-            console.log($sessionStorage.plants);
+            // console.log($sessionStorage.plants);
           })
           .error(function(data) {
             $scope.alert = data || 'Request Failed from Server';

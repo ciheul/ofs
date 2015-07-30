@@ -1,4 +1,5 @@
 <div ng-include="'views/menu.html'" style="position: relative;"></div>
+<div ng-include="'views/logout.html'" style="position: relative;"></div>
 <span>{{count()}}</span>
 <br>
 <div ng-include="'views/alert.html'"></div>
@@ -21,7 +22,7 @@
             <tbody>
               <tr>
                 <td style="width: 120px;">Voltage Average</td>
-                <td style="width: 90px;"><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
+                <td><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
                 <td>V</td>
               </tr>
               <tr>
@@ -44,6 +45,7 @@
                 <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
                 <td>%</td>
               </tr>
+              <tr>
                 <td>Current Average</td>
                 <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
                 <td>A</td>

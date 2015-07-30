@@ -1,8 +1,9 @@
 body {
-    height: 120%;
+    height: auto;
     width: 350%;
     padding: 0;
-    margin: 0;
+    margin: auto;
+    background-color: #d2d2d2;
     /* box-sizing: border-box; */
     /* white-space: nowrap; */
     /* display: block; */
@@ -11,16 +12,23 @@ body {
     text-align: right;
 }
 
-#content {
+/*#content {
     background-color: #d2d2d2;
     height: 100%;
-    width: 100%;
+    width: auto;
     box-sizing: border-box;
-}
+}*/
 
 .tile-group {
     left: 10px;
 }
+
+.tile-area-controls {
+    float: right;
+    position:fixed;
+    margin: 0 0 0 1130px;
+}
+
 .alert-message {
     position:fixed;
     left:650px;
@@ -33,7 +41,7 @@ body {
   left: 43%;
   width: 200px;
 }
-.login-descriptive {
+/*.login-descriptive {
   position: fixed;
   margin-top: -12.999rem;
   top: 103%;
@@ -56,20 +64,21 @@ body {
     left: 35%;
     background-color: #dcdcdc;
     opacity: 0.7;
-    /*-webkit-transform: scale(.8);
-    transform: scale(.8);*/
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
 }
-.v-menu {
+.vertical-menu {
   width: 90px; 
   font-size: 12px; 
   height: 117vh; 
   background-color: #7d7d7d;
-}
+}*/
 
 .tile-common {
     border: 1px solid #999999;
     background-color: #dcdcdc;
 }
+
 
 /* @media screen and (max-width: 640px) { */
 /*     .tile-area { */
