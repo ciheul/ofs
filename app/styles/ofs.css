@@ -24,8 +24,9 @@ body {
 }
 
 .tile-area-controls {
+    float: right;
     position:fixed;
-    left:1100px;
+    margin: 0 0 0 1130px;
 }
 
 .alert-message {
