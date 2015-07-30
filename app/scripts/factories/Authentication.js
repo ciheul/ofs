@@ -13,6 +13,7 @@ angular.module('ofsApp')
   				var response = { success: username === 'test' && password === 'test' || username === 'okky' && password === 'okky'  };
   				if (!response.success) {
   					response.message = 'Username or password is incorrect';
+            console.log(response.message);
   				}
   				callback(response);
   			}, 1000);

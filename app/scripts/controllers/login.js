@@ -15,11 +15,14 @@ angular.module('ofsApp')
             if(response.success) {
               AuthenticationService.SetCredentials($scope.username, $scope.password);
               $location.path('/well');
+              console.log($scope.username);
             } else {
               $scope.error = response.message;
               $scope.progressing = false;
             }
           });
+          /*$scope.data = AuthenticationService.Login;
+          $sessionStorage.data = $scope.data;*/
         };
 
        /* $scope.login = function (username, password, callback) {
