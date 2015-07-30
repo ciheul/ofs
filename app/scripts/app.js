@@ -11,8 +11,6 @@
 angular.module('ofsApp', [
     'ngResource',
     'ngRoute',
-    'angularSpinner',
-    'angular-spinkit',
     'ngStorage',
     'ngCookies',
   ])

@@ -12,12 +12,12 @@ body {
     text-align: right;
 }
 
-#content {
-    /*background-color: #d2d2d2;*/
+/*#content {
+    background-color: #d2d2d2;
     height: 100%;
     width: auto;
     box-sizing: border-box;
-}
+}*/
 
 .tile-group {
     left: 10px;
@@ -40,7 +40,7 @@ body {
   left: 43%;
   width: 200px;
 }
-.login-descriptive {
+/*.login-descriptive {
   position: fixed;
   margin-top: -12.999rem;
   top: 103%;
@@ -63,15 +63,15 @@ body {
     left: 35%;
     background-color: #dcdcdc;
     opacity: 0.7;
-    /*-webkit-transform: scale(.8);
-    transform: scale(.8);*/
+    -webkit-transform: scale(.8);
+    transform: scale(.8);
 }
-.v-menu {
+.vertical-menu {
   width: 90px; 
   font-size: 12px; 
   height: 117vh; 
   background-color: #7d7d7d;
-}
+}*/
 
 .tile-common {
     border: 1px solid #999999;
