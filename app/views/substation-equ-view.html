@@ -18,7 +18,7 @@
       <div ng-repeat="dataId in dataId">
         <span style="font-size: 12px; margin-left: 30px;">{{dataId.TimeStamp}}</span>   
         <span class="fg-red" style="margin-left: -20px; padding: 4px; font-size: 14px;">{{dataId.msg}}</span>   
-          <table class="table hovered fg-black table-report" style="padding: 9px 0 9px 0; font-size: 12px;">
+          <table class="table hovered fg-black table-report">
             <tbody>
               <tr>
                 <td style="width: 120px;">Voltage Average</td>
@@ -45,6 +45,7 @@
                 <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
                 <td>%</td>
               </tr>
+              <tr>
                 <td>Current Average</td>
                 <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
                 <td>A</td>
