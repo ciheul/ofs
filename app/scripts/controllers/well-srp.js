@@ -15,7 +15,7 @@ angular.module('ofsApp')
       $scope.loadData = function (){
         $scope.prograssing = true;
         /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
-        $http.get('api/SrpDetail/', { params: param })
+        $http.get('api/SrpDetail', { params: param })
       	 .success(function(data) {
             $scope.alert = false;
             $scope.prograssing = false;

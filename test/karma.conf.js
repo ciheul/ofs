@@ -33,6 +33,7 @@ module.exports = function(config) {
       'bower_components/angular-html5-storage/dist/angular-html5-storage.js',
       'bower_components/ngstorage/ngStorage.js',
       'bower_components/crypto-js/index.js',
+      'bower_components/Processing.js/processing.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

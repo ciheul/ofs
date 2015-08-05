@@ -2,9 +2,9 @@
 
 
 angular.module('ofsApp')
-  .controller('LoginCtrl', ['$scope', '$sessionStorage', '$routeParams','$http', '$location', 
-    'AuthenticationService',
-    function($scope, $sessionStorage, $routeParams, $http, $location, AuthenticationService) {
+  .controller('LoginCtrl', ['$scope', '$sessionStorage', '$routeParams','$http', '$location',
+    'AuthenticationService', '$rootScope',
+    function($scope, $sessionStorage, $routeParams, $http, $location, AuthenticationService, $rootScope) {
 
       // reset login status
         AuthenticationService.ClearCredentials();
@@ -12,10 +12,10 @@ angular.module('ofsApp')
         $scope.login = function () {
           $scope.progressing = true;
           AuthenticationService.Login($scope.username, $scope.password, function(response) {
-            if(response.success) {
+            if(response) {
               AuthenticationService.SetCredentials($scope.username, $scope.password);
+              /*$rootScope.loggedUser = $scope.username;*/
               $location.path('/well');
-              console.log($scope.username);
             } else {
               $scope.error = response.message;
               $scope.progressing = false;

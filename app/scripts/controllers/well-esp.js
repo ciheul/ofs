@@ -14,7 +14,7 @@ angular.module('ofsApp')
       /*spin loader esp data*/
       $scope.loadData = function (){
         $scope.prograssing = true;
-        $http.get('/api/EspDetail/', { params: param })
+        $http.get('/api/EspDetail', { params: param })
       	 .success(function(data) {
             $scope.dataId = data;
             $scope.prograssing = false;

@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('ofsApp')
-  .factory('httpGlobalUrlModifier', function(HOST) {
+  .factory('httpGlobalUrlModifier', 
+    function(HOST, browserFingerprint) {
     return {
-      request: function(config) {
+      request: function(config, username, password) {
         // console.log('before:' + config.url);
+        var uuid = browserFingerprint.getFingerprint(username, password);
 
         if (HOST.DEBUG === true && 
             config.url.indexOf('views') < 0 &&
@@ -15,7 +17,7 @@ angular.module('ofsApp')
           if (config.url.charAt(0) === '/') {
             config.url = config.url.substring(1);
           }
-          config.url = HOST.BASE_URL + ':' + HOST.PORT + '/' + config.url;
+          config.url = HOST.BASE_URL + ':' + HOST.PORT + '/' + config.url + '/' + '?uuid=' + uuid;
         }
 
         // console.log('after: ' + config.url);

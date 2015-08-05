@@ -7,27 +7,31 @@ angular.module('ofsApp')
   		var service = {};
 
   		service.Login = function (username, password, callback) {
-        var token = browserFingerprint.getFingerprint(username, password);
-        console.log(token);
-  			$timeout(function(){
+        var uuid = browserFingerprint.getFingerprint(username, password);
+        /*console.log(uuid);*/
+  			/*$timeout(function(){
   				var response = { success: username === 'test' && password === 'test' || username === 'okky' && password === 'okky'  };
   				if (!response.success) {
   					response.message = 'Username or password is incorrect';
             console.log(response.message);
   				}
   				callback(response);
-  			}, 1000);
+          console.log(response);
+  			}, 1000);*/
 
         /* Use this for real authentication
              ----------------------------------------------*/
-        /*$http.post('/api/login', { username: username, password: password, uuid: token })
+
+       /* console.log(uuid);*/
+
+        $http.get('http://localhost:3000/api/ActiveAlarms', { uuid: uuid })
           .success(function (response) {
+            console.log('success');
             callback(response);
-            console.log(response);
           })
           .error(function(response) {
-            console.log('gagal');
-          });	*/
+            response.message = 'Username or password is incorrect';
+          });	
   		};
 
   		service.SetCredentials = function(username, password) {
