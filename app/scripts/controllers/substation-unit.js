@@ -19,6 +19,7 @@ angular.module('ofsApp')
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
           .success(function(data) {
+            console.log(data.length);
             $scope.prograssing = false;
             $scope.groups = [];
             $scope.alert = false;
@@ -29,6 +30,7 @@ angular.module('ofsApp')
                 // disable click if not green or yellow
                 if (j.Status === 'green' || j.Status === 'yellow') {
                   j.Url = '#/' + j.DetailUrl + '/' + j.Name;
+                  /*console.log(j.Status.length);*/
                 } else {
                   j.Url = '#/st-detail/' + j.Name;
                 }
