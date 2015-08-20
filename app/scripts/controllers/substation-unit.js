@@ -19,7 +19,7 @@ angular.module('ofsApp')
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
           .success(function(data) {
-            console.log(data.length);
+            // console.log(data.length);
             $scope.prograssing = false;
             $scope.groups = [];
             $scope.alert = false;
