@@ -22,7 +22,8 @@ angular.module('ofsApp', [
     // PORT: 1980
   })
   .constant('HTTP_INTERVAL', 10000)
-  .config(['$routeProvider','$httpProvider', function ($routeProvider, $httpProvider) {
+  .config(['$routeProvider','$httpProvider',
+      function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/login', {
         templateUrl: 'views/login.html',
@@ -59,7 +60,6 @@ angular.module('ofsApp', [
     $httpProvider.defaults.useXDomain = true;
     $httpProvider.interceptors.push('httpGlobalUrlModifier');
   }])
-
   .run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
       // keep user logged in after page refresh
@@ -75,7 +75,3 @@ angular.module('ofsApp', [
         }
       });
     }]);
-
-
-
-

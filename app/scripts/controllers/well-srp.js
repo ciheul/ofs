@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('SrpCtrl',  ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 
-    '$sessionStorage', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, $sessionStorage, HTTP_INTERVAL) {
+  .controller('SrpCtrl',  ['$scope', '$rootScope', '$http', '$routeParams',
+    '$interval', '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $routeParams, $interval,
+        $sessionStorage, HTTP_INTERVAL) {
       // get SRP equipment name (ex: T150)
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 
@@ -14,7 +15,6 @@ angular.module('ofsApp')
       /*spin loader data srp*/
       $scope.loadData = function (){
         $scope.prograssing = true;
-        /*$http.get('http://teleconscada-web00.cloudapp.net:1980/api/srpdetail/', {params: param})*/
         $http.get('api/SrpDetail', { params: param })
       	 .success(function(data) {
             $scope.alert = false;
@@ -24,7 +24,6 @@ angular.module('ofsApp')
           })
           .error(function(data) {
             $scope.dataId = $sessionStorage.dataSrp;
-            console.log($scope.dataId);
             $scope.alert = data ||'Request Failed from Server';
             $scope.prograssing = false;
           });

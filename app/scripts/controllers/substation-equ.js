@@ -15,7 +15,7 @@ angular.module('ofsApp')
       $scope.loadData = function () {
         $scope.prograssing = true;
         $http.get('/api/SubstationOverview/SubstationEqu')
-         .success(function(data) {
+          .success(function(data) {
             $scope.isLoaded = true;
             $scope.alert = false;
             $scope.prograssing = false;
