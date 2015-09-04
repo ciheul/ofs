@@ -59,16 +59,23 @@ angular.module('ofsApp')
             
               // width and height of the chart
               var width = 1000 - margin.left - margin.right;
-              console.log(width);
               var height = 500 - margin.top - margin.bottom;
               
               // FUNCTION to determine the scale of x-axis in time and y-axis in linear
               var x = d3.time.scale().range([0, width]);
               var y = d3.scale.linear().range([height, 0]);
 
-              
-              var xAxis = d3.svg.axis().scale(x).orient('bottom');
-              var yAxis = d3.svg.axis().scale(y).orient('left');
+              var xAxis = d3.svg.axis()
+                .scale(x)
+                .orient('bottom');
+                // .innerTickSize(-height) // grid
+                // .outerTickSize(0);
+
+              var yAxis = d3.svg.axis()
+                .scale(y)
+                .orient('left');
+                // .innerTickSize(-width) // grid
+                // .outerTickSize(0);
             
               // function to select color
               var color = d3.scale.category10();
@@ -137,8 +144,7 @@ angular.module('ofsApp')
               ]); 
 
               var max = d3.max(data, function(d) { return d.FR602_TimeStamplist; });
-              console.log(max);
-              console.log(x(max));
+              var min = d3.min(data, function(d) { return d.FR602_TimeStamplist; });
 
               // function to zoom. it calls draw() function.
               var zoom = d3.behavior.zoom().scaleExtent([1, 10]);
@@ -146,19 +152,58 @@ angular.module('ofsApp')
               // when zoom function is called, draw x-axis, y-axis, and line according
               // to zoom level
               var draw = function() {
+                // distance between initial point to final point while panning
+                // the chart. 
                 var t = zoom.translate();
-                var tx = t[0];
+                var tx = t[0]; 
                 var ty = t[1];
-                // console.log(tx);
+
+                // x(min) is the x position of the first data
+                // x(max) is the x position of the last data
                 //
-                // tx = Math.min(0, Math.max(tx, 100));
-                tx = Math.min(tx, 0);
-                // console.log(t[0], tx);
-                tx = Math.max(tx, width - x(max));
-                console.log('===');
-                console.log(0, t[0], x(max), width - x(max), tx);
-                console.log('***');
-                // ty = Math.max(tx, -width);
+                // when panning horizontally to the left, tx will be negative
+                // and positive for the opposite direction
+                //
+                // when panning horizontally, x(max) will change as this.
+                // remember, tx can be negative or positive depends on the
+                // panning direction
+                // x(max) = x(max) + tx
+                //
+                // when zooming, x(min) and x(max) will also scale
+
+                // after zooming, x(max) - x(min) is wider than width
+                //
+                //  tx < 0     tx > 0
+                //     <---- ---->
+                //   |------|------------|-------|
+                // x(min)   0        chart_max  x(max)
+                //      ^
+                //       \-- xxx 
+                //
+                //  remember: x(min) and x(max) will change when panning!
+                //            0 and xxx are fixed
+                //
+                //  width = chart_max - 0
+                var xxx = width - (x(max) - x(min));
+
+                // there are 4 states.
+                //   (1) pan to the right (translate); tx == 0
+                //   (2) pan to the right till it can not translate; tx
+                //   (3) pan to the left (translate); tx
+                //   (4) pan to the left till it can not translate; tx === xxx
+                //
+                // (2) when panning to the right and reach maximum,
+                //   math.max; tx is positive, xxx is negative --> tx
+                //   math.min; tx is bigger than 0             --> 0
+                //
+                // (4) when panning to the left and reach maximum,
+                //   math.max; tx is negative, xxx is negative
+                //             tx < xxx                        --> xxx
+                //   math.min; xxx is less than 0              --> xxx
+                tx = Math.min(0, Math.max(tx, xxx));
+
+                // when panning and tx does not change, graph will not move
+                // in x axis
                 zoom.translate([tx, ty]);
 
                 svg.select('g.x.axis').call(xAxis);

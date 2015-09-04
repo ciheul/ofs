@@ -138,6 +138,10 @@ rect.pane {
     opacity: 0;
 }
 
+.tick line {
+    opacity: 0.2;
+}
+
 .line {
     fill: none;
     stroke: steelblue;

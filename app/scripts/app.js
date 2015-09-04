@@ -57,8 +57,9 @@ angular.module('ofsApp', [
         redirectTo: '/well'
       });
 
-    $httpProvider.defaults.useXDomain = true;
+    // $httpProvider.defaults.useXDomain = true;
     $httpProvider.interceptors.push('httpGlobalUrlModifier');
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
   }])
   .run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
