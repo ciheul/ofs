@@ -67,15 +67,15 @@ angular.module('ofsApp')
 
               var xAxis = d3.svg.axis()
                 .scale(x)
-                .orient('bottom');
-                // .innerTickSize(-height) // grid
-                // .outerTickSize(0);
+                .orient('bottom')
+                .innerTickSize(-height) // grid
+                .outerTickSize(0);
 
               var yAxis = d3.svg.axis()
                 .scale(y)
-                .orient('left');
-                // .innerTickSize(-width) // grid
-                // .outerTickSize(0);
+                .orient('left')
+                .innerTickSize(-width) // grid
+                .outerTickSize(0);
             
               // function to select color
               var color = d3.scale.category10();
