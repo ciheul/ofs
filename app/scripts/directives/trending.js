@@ -219,6 +219,8 @@ angular.module('ofsApp')
               zoom.x(x);
               zoom.y(y);
             
+              svg.call(zoom);
+
               // draw the main container
               var container = svg.append('g')
                   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
@@ -238,9 +240,22 @@ angular.module('ofsApp')
                   .style('text-anchor', 'end')
                   .text('Value');
             
+              // draw an invisible rectangle around chart. these following lines
+              // must be declared after all lines to wrap them 
+              container.append('clipPath')
+                  .attr('id', 'clip')
+                .append('rect')
+                  .attr('class', 'pane')
+                  .attr('x', 0)
+                  .attr('y', 0)
+                  .attr('width', width)
+                  .attr('height', height);
+                  //   // .style('fill', 'none')
+                  //   .call(zoom);
+
               // put all trend lines to this container
               var trendsContainer = container.append('g')
-                .attr('class', 'trends');
+                .attr('clip-path', 'url(#clip)');
             
               // draw the DOM based on the data provided
               var trend = trendsContainer.selectAll('path.line')
@@ -257,14 +272,6 @@ angular.module('ofsApp')
                 .attr('d', function(d) { return line(d.values); })
                 .style('stroke', function(d) { return color(d.name); });
             
-              // draw an invisible rectangle around chart. these following lines
-              // must be declared after all lines to wrap them 
-              container.append('rect')
-                .attr('class', 'pane')
-                .attr('width', width)
-                .attr('height', height)
-                // .style('fill', 'none')
-                .call(zoom);
             
               function updateLines() {
                 // set 'show' state to show or hide a line
