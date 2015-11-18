@@ -1,51 +1,38 @@
-<div ng-include="'views/menu.html'" style="position: relative;"></div>
-<div ng-include="'views/logout.html'" style="position: relative;"></div>
-<span>{{count()}}</span>
-<br>
-<div ng-include="'views/alert.html'"></div>
-<h2 style="padding-left: 20px; margin-left: 100px;">Well Overview</h2>
+<div class="content">
+  <div class="tile-area" style="width: {{widthScreen}}px;">
+    <div class="tile-area-title">Well Overview</div>
+    <div ng-include="'views/top-nav.html'"></div>
 
-<!-- <div class="tile-group">
-  <span class="tile-group-title fg-black">
-    PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
-  </span>
-
-  <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 500px;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)">empty</div>
-  </div>
-</div> -->
-
-<div>
-  <div class="tile-group double" ng-repeat="group in groups" data-role="tile">
-    <span class="tile-group-title fg-black" ng-show="group.isFirstGroup">
-      PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
-    </span>
-    <div class="tile-container">
-      <div ng-repeat="well in group.plants">
-        <div class="label" style="font-size: 12px;">{{well.Name}}</div>
-        <div ng-repeat="w in well.OilWells">
-          <a class="tile-small" href="{{w.Url}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
-          <div class="tile-content fg-black">
-            <span class="tile-label" style="font-size: 12px; margin-left: 5px;">{{w.Name}}</span>
+    <div class="tile-group double" ng-repeat="group in groups" data-role="tile">
+      <span class="tile-group-title fg-black" ng-show="group.isFirstGroup">
+        PLANTS <span class="mif-spinner2 mif-ani-spin" ng-show="progressing"></span>
+      </span>
+      <div class="tile-container">
+        <div ng-repeat="well in group.plants">
+          <div class="label" style="font-size: 12px;">{{well.Name}}</div>
+          <div ng-repeat="w in well.OilWells">
+            <a class="tile-small" href="{{w.Url}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}};">
+            <div class="tile-content fg-black">
+              <span class="tile-label" style="font-size: 12px; margin-left: 5px;">
+                {{w.Name}}
+              </span>
+            </div>
+            </a>
           </div>
-          </a>
+          <div class="label" style="margin-bottom: 15px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
         </div>
-        <div class="label" style="margin-bottom: 15px; margin-left: 5px; font-size: 12px;">bopd {{}}/ brl {{}}</div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
-  <span class="tile-group-title fg-black">UNIT LOCATION</span>
-  <div class="tile-container">
-    <div id='map-div' style="background-color: #eeeeee; width:500px; height:575px; border: 1px solid #999999">
-      <microsoft-maps></microsoft-maps>
+    <div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
+      <span class="tile-group-title fg-black">UNIT LOCATION</span>
+      <div class="tile-container">
+        <div id='map-div' style="background-color: #eeeeee; width:500px; height:575px; border: 1px solid #999999">
+          <microsoft-maps></microsoft-maps>
+        </div>
+      </div>
     </div>
+
+    <div ng-include="'views/alarm.html'"></div>
   </div>
-  <!-- <div ng&#45;init="GetMap()"> -->
-  <!--   <div id='mapDiv' style="width:500px; height:500px;"></div> -->
-  <!-- </div> -->
 </div>
- 
-<div ng-include="'views/alarm.html'"></div>

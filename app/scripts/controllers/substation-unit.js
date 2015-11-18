@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('ofsApp')
- .controller('UnitCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', '$sessionStorage', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $routeParams, $interval, $sessionStorage, HTTP_INTERVAL) {
+ .controller('UnitCtrl', ['$scope', '$rootScope', '$http', '$routeParams',
+    '$interval', '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $routeParams, $interval,
+        $sessionStorage, HTTP_INTERVAL) {
+      $scope.widthScreen = 3020;
+
       $scope.Name = $routeParams.Name;
 
       /*var param = {name: $routeParams.Name};*/
@@ -17,7 +21,7 @@ angular.module('ofsApp')
       /* plants get data */
       $scope.loadData = function (){
         $scope.prograssing = true;
-        $http.get('/api/SubstationOverview/SubstationUnit')/*http://localhost:3000/api/wells*/
+        $http.get('/api/SubstationOverview/SubstationUnit')
           .success(function(data) {
             // console.log(data.length);
             $scope.prograssing = false;

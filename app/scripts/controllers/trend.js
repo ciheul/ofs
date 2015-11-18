@@ -33,8 +33,8 @@ angular.module('ofsApp')
         $scope.isFilteringSRP = true;
         //http://teleconscada-web00.cloudapp.net:1980/api/SRPTrending/?unitId=EPTJ%5COW.T150&dtfrom=20150506160000&dtto=20150507160000
         // $http.get('data/trend.json')
-        // $http.get('/api/SRPTrending', { params: params })
-        $http.get('http://localhost:9000/data/trend.json')
+        $http.get('/api/SRPTrending', { params: params })
+        // $http.get('http://localhost:19000/data/trend.json')
           .success(function(data) {
             $scope.dataTrend = data;
             $scope.isFilteringSRP = false;

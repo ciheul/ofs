@@ -4,6 +4,8 @@ angular.module('ofsApp')
   .controller('EquCtrl', ['$scope', '$rootScope', '$http', '$routeParams', '$interval', 
   '$sessionStorage', 'HTTP_INTERVAL',
     function($scope, $rootScope, $http, $routeParams, $interval, $sessionStorage, HTTP_INTERVAL) {
+      $scope.widthScreen = 3020;
+
       // get SRP equipment name (ex: T150)
       $scope.Name = $routeParams.Name;
 

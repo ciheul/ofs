@@ -1,43 +1,32 @@
-<div ng-include="'views/menu.html'" style="position: relative;"></div>
-<div ng-include="'views/logout.html'" style="position: relative;"></div>
-<span>{{count()}}</span>
-<br>
-<div ng-include="'views/alert.html'"></div>
-<h2 style="padding-left: 20px; margin-left: 100px;">Substation Overview</h2>
-<!-- 
-<div class="tile-group" ng-hide="isLoaded">
-  <div class="tile-container" style="background-color: #eeeeee; border: 1px solid #999999; width: 500px; height: 575px;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%)"></div>
-  </div>
-</div> -->
+<div class="content">
+  <div class="tile-area" style="width: {{widthScreen}}px;">
+    <div class="tile-area-title">Substation Overview</div>
+    <div ng-include="'views/top-nav.html'"></div>
 
-<!-- <div ng-show="isLoaded"> -->
-  <div class="tile-group" ng-repeat="group in groups" data-role="tile" style="">
-    <div class="tile-container">
-      <div ng-repeat="well in group.plants">
-        <div class="label" style="font-size: 12px;">{{w.Name}}</div>
-        <div ng-repeat="w in well.Substations">
-          <a class="tile" href="{{w.Url}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}}; width: 100px; height: 100px;">
-          <div class="tile-content">
-            <span class="tile-badge bg-red fg-white">{{w.AlarmCount}}</span>
+    <div class="tile-group" ng-repeat="group in groups" data-role="tile" style="">
+      <div class="tile-container">
+        <div ng-repeat="well in group.plants">
+          <div class="label" style="font-size: 12px;">{{w.Name}}</div>
+          <div ng-repeat="w in well.Substations">
+            <a class="tile" href="{{w.Url}}" data-click="transform" data-role="tile" style="background-color: {{w.Status}}; width: 100px; height: 100px;">
+            <div class="tile-content">
+              <span class="tile-badge bg-red fg-white">{{w.AlarmCount}}</span>
+            </div>
+            </a>
           </div>
-          </a>
         </div>
       </div>
     </div>
-  </div>
-<!-- </div> -->
 
-<div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
-  <span class="tile-group-title fg-black">UNIT LOCATION</span>
-  <div class="tile-container">
-    <div id='map-div' style="background-color: #eeeeee; width:500px; height:575px; border: 1px solid #999999">
-      <microsoft-maps></microsoft-maps>
+    <div class="tile-group triple" data-role="tile" style="margin-right: 20px;">
+      <span class="tile-group-title fg-black">UNIT LOCATION</span>
+      <div class="tile-container">
+        <div id='map-div' style="background-color: #eeeeee; width:500px; height:575px; border: 1px solid #999999">
+          <microsoft-maps></microsoft-maps>
+        </div>
+      </div>
     </div>
+    
+    <div ng-include="'views/alarm.html'"></div>
   </div>
-  <!-- <div ng&#45;init="GetMap()"> -->
-  <!--   <div id='mapDiv' style="width:500px; height:500px;"></div> -->
-  <!-- </div> -->
 </div>
-
-<div ng-include="'views/alarm.html'"></div>

@@ -16,8 +16,10 @@ angular.module('ofsApp', [
   ])
   .constant('HOST', {
     DEBUG: true,
+    // BASE_URL: 'http://ak-vm-web00.cloudapp.net',
+    // PORT: 1980
     BASE_URL: 'http://localhost',
-    PORT:3000 
+    PORT: 3000 
     // BASE_URL: 'http://teleconscada-web00.cloudapp.net',
     // PORT: 1980
   })
@@ -69,7 +71,8 @@ angular.module('ofsApp', [
           $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         }
  
-      $rootScope.$on('$locationChangeStart', function (event, next, current) {
+      //$rootScope.$on('$locationChangeStart', function (event, next, current) {
+      $rootScope.$on('$locationChangeStart', function () {
         // redirect to login page if not logged in
         if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
           $location.path('/login');

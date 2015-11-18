@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('SrpCtrl',  ['$scope', '$rootScope', '$http', '$routeParams',
+  .controller('SrpCtrl', ['$scope', '$rootScope', '$http', '$routeParams',
     '$interval', '$sessionStorage', 'HTTP_INTERVAL',
     function($scope, $rootScope, $http, $routeParams, $interval,
         $sessionStorage, HTTP_INTERVAL) {
+      $scope.widthScreen = 4180;
+
       // get SRP equipment name (ex: T150)
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 

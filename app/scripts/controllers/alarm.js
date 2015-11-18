@@ -1,9 +1,11 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('AlarmCtrl', ['$scope', '$rootScope', '$http', '$interval', '$sessionStorage', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $interval, $sessionStorage, HTTP_INTERVAL) {
-      
+  .controller('AlarmCtrl', ['$scope', '$rootScope', '$http', '$interval',
+    '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $interval, $sessionStorage,
+        HTTP_INTERVAL) {
+
       const ACTIVE_ALARM_ROWS = 12;
       const HISTORICAL_ALARM_ROWS = 12;
 
@@ -42,10 +44,10 @@ angular.module('ofsApp')
           })
           .error(function(data) {
             $scope.eventsAlarm = $sessionStorage.alarm;
-            /*console.log($scope.eventsAlarm);*/
             $scope.isActiveProgressing = false;
 
-            if (data === null && $scope.eventsAlarm.length === 0) {
+            // if (data === null && $scope.eventsAlarm.length === 0) {
+            if (data === null && $scope.eventsAlarm !== undefined) {
               var emptyObj = { Date: '', Time: '', Equipment: '', Message: '' };
               for (var i = 0; i < ACTIVE_ALARM_ROWS; i++) {
                 $scope.eventsAlarm.push(emptyObj);
@@ -62,7 +64,6 @@ angular.module('ofsApp')
 
       /* interval Historical Alarm */
       $scope.eventsHistoric = [];
-      // $http.get('http://teleconscada-web00.cloudapp.net:1980/api/HistoricalAlarms')
       $http.get('/api/HistoricalAlarms')
         .success(function(data) {
           if (data.length !== HISTORICAL_ALARM_ROWS) {

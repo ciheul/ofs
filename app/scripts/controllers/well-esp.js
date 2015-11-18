@@ -5,6 +5,8 @@ angular.module('ofsApp')
     '$interval', '$sessionStorage', 'HTTP_INTERVAL',
     function($scope, $rootScope, $http, $routeParams, $interval,
         $sessionStorage, HTTP_INTERVAL) {
+      $scope.widthScreen = 3870;
+
       // get ESP equipment name (ex: T150)
       $scope.UnitId = $routeParams.UnitId.split('.')[1];
 

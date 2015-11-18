@@ -1,14 +1,16 @@
 'use strict';
 
 angular.module('ofsApp')
-  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval', '$sessionStorage', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $interval, $sessionStorage, HTTP_INTERVAL) {
-
+  .controller('WellCtrl', ['$scope', '$rootScope', '$http', '$interval',
+    '$sessionStorage', 'HTTP_INTERVAL',
+    function($scope, $rootScope, $http, $interval, $sessionStorage,
+        HTTP_INTERVAL) {
       const TILE_COL = 4;
       const PLANT_PER_GROUP = 3;
       // var well = [];
       // var loadWell = [];
 
+      $scope.widthScreen = 3120;
       $scope.groups = [];
       $scope.isFirstGroup = false;
       $scope.isPlantLoaded = false;
@@ -67,7 +69,7 @@ angular.module('ofsApp')
           .error(function(data) {
             $scope.alert = data || 'Request Failed from Server';
             $scope.groups = $sessionStorage.plants;
-            console.log($scope.groups);
+            // console.log($scope.groups);
             $scope.progressing = false;
           });
       };
@@ -76,7 +78,6 @@ angular.module('ofsApp')
       $scope.pollWells = $interval(function() {
         $scope.loadWell();
       }, HTTP_INTERVAL);
-
 
       // when routes changes, cancel all interval operations
       $rootScope.$on('$locationChangeSuccess', function() {

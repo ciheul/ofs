@@ -14,59 +14,55 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/ofs.css" />
-    <link rel="stylesheet" href="styles/spinner.css" />
+    <!-- <link rel="stylesheet" href="styles/spinner.css" /> -->
     <!-- endbuild -->
   </head>
-  
-
+ 
   <body>
-    <div id="content">
-      <!-- <ul class="v-menu subdown fg-white" style="width: 90px; font-size: 12px; height: 100%; background-color: #7d7d7d;">
-        <li><h2 class="align-center tile-area-title fg-white" style="margin-top: 25px;">OFS</h2></li>
-        <li><a class="fg-white" href="#/well" style="margin-left: -30px; font-size: 10px;">OIL WELL</a></li>
-        <li><a class="fg-white" href="#/substation" style="margin-left: -30px; font-size: 10px;">SUBSTATION</a></li>
-        <div ng-controller="IndexCtrl" style="margin-top: 350px;">
-          <div ng-if="add.ping()">
-            <h1 class="fg-white" style="margin-left: 40px; font-size: 20px;">{{add.ping()}}</h1>
-            <h1 class="fg-white" style="margin-left: 16px; font-size: 20px;">ALARM</h1>
-          </div>  
-        </div>
-      </ul> -->
-    
-      <div ng-view></div>
+    <div class="ofs-container">
+      <div class="sidenav" ng-controller="SideNavCtrl" ng-hide="isLogin">
+        <ul class="sidenav-ul">
+          <li><a href="#/well">Well</a></li>
+          <li><a href="#/substation">Substation</a></li>
+        </ul>
+      </div>
+
+      <div class="content">
+        <div ng-view></div>
+      </div>
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jqueryui/jquery-ui.js"></script>
+    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/jqueryui/jquery-ui.js"></script>
-    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="bower_components/metro-ui-css/build/js/metro.js"></script>
     <script src="bower_components/angular-ui-utils/event.js"></script>
     <script src="bower_components/angular-ui-map-bing/ui-map.js"></script>
-    <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/angular-html5-storage/dist/angular-html5-storage.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/metro-ui-css/build/js/metro.js"></script>
     <script src="bower_components/crypto-js/index.js"></script>
     <script src="bower_components/Processing.js/processing.js"></script>
     <!-- endbower -->
     <!-- endbower -->
     <!-- endbuild -->
    
-
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <!-- <script src="scripts/start-screen.js"></script> -->
     <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/controllers/top-nav.js"></script>
+    <script src="scripts/controllers/side-nav.js"></script>
     <script src="scripts/controllers/well.js"></script>
     <script src="scripts/controllers/well-srp.js"></script>
     <script src="scripts/controllers/well-esp.js"></script>
     <script src="scripts/controllers/substation.js"></script>
-    <script src="scripts/controllers/index.js"></script>
     <script src="scripts/controllers/substation-unit.js"></script>
     <script src="scripts/controllers/substation-equ.js"></script>
     <script src="scripts/controllers/alarm.js"></script>
@@ -77,7 +73,7 @@
     <script src="scripts/directives/trending.js"></script>
     <script src="scripts/directives/substation-circuit.js"></script>
     <!-- <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script> -->
-    <script src="scripts/factories/Authentication.js"></script>
+    <script src="scripts/factories/authentication.js"></script>
     <script src="scripts/factories/browser-finger-print.js"></script>
     <script src="scripts/vendors/CryptoMD5.js"></script>
     <!-- endbuild -->

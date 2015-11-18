@@ -1,223 +1,223 @@
-<div ng-include="'views/menu.html'" style="position: relative;"></div>
-<div ng-include="'views/logout.html'" style="position: relative;"></div>
-<br>
-<div ng-include="'views/alert.html'"></div>
-<h2 style="padding-left: 20px; margin-left: 90px;">SRP-{{UnitId}}</h2>
+<div class="content">
+  <div class="tile-area" style="width: {{widthScreen}}px;">
+    
+    <div class="tile-area-title"><a href="#/well"><img src="images/back.png" style="margin-right: 20px;" /></a>SRP-{{UnitId}}</div>
+    <div ng-include="'views/top-nav.html'"></div>
 
-<div class="tile-group triple">
-  <div class="tile-container tile-common">
-    <!-- <div class="tile&#45;big bg&#45;grayLighter fg&#45;white" style="background&#45;color: red; height: 600px;"> -->
-    <div class="tile-big" style="background-color: #dcdcdc; margin: 0; width: 478px; height: 600px;">
-
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; font-size: 10px;" >
-        <thead>
-          <tr>
-            <th colspan="4">MOTOR STATUS</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Status</td>
-            <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.FR601_ContactorStatus}}</td>
-          </tr>
-          <tr>
-            <td>Voltage(V)</td>
-            <td class="bg-grayLighter text-align-right">{{dataId.VoltageAverage}}</td>
-            <td class="bg-grayLighter text-align-right">{{dataId.VoltageMax}}</td>
-            <td class="bg-grayLighter text-align-right">{{dataId.VoltageMin}}</td>
-          </tr>
-          <tr>
-            <td>Current(A)</td>
-            <td class="bg-grayLighter text-align-right">{{dataId.CurrentAverage}}</td>
-            <td class="bg-grayLighter text-align-right">{{dataId.CurrentMax}}</td>
-            <td class="bg-grayLighter text-align-right">{{dataId.CurrentMin}}</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div class="image-container" style="margin-left: 50px; margin-top: 0px;">
-        <img src="images/EquView_SRP.png"/>
+    <div class="tile-group triple">
+      <div class="tile-container tile-common">
+        <div class="tile-big" style="background-color: #dcdcdc; margin: 0; width: 478px; height: 600px;">
+    
+          <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 10px; margin-top: 10px; width: 50px; height: 50px; font-size: 10px;" >
+            <thead>
+              <tr>
+                <th colspan="4">MOTOR STATUS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Status</td>
+                <td colspan="3" class="bg-grayLighter text-align-right">{{dataId.FR601_ContactorStatus}}</td>
+              </tr>
+              <tr>
+                <td>Voltage(V)</td>
+                <td class="bg-grayLighter text-align-right">{{dataId.VoltageAverage}}</td>
+                <td class="bg-grayLighter text-align-right">{{dataId.VoltageMax}}</td>
+                <td class="bg-grayLighter text-align-right">{{dataId.VoltageMin}}</td>
+              </tr>
+              <tr>
+                <td>Current(A)</td>
+                <td class="bg-grayLighter text-align-right">{{dataId.CurrentAverage}}</td>
+                <td class="bg-grayLighter text-align-right">{{dataId.CurrentMax}}</td>
+                <td class="bg-grayLighter text-align-right">{{dataId.CurrentMin}}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+          <div class="image-container" style="margin-left: 50px; margin-top: 0px;">
+            <img src="images/EquView_SRP.png"/>
+          </div>
+    
+          <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 10px; margin-top: -70px; width: 160px; height: 0px; font-size: 10px;" >
+            <thead>
+              <tr>
+                <th colspan="4">PUMP STROKE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Speed(rpm)</td>
+                <td class="bg-grayLighter text-align-right">a</td>
+              </tr>
+              <tr>
+                <td>Fillage(%)</td>
+                <td class="bg-grayLighter text-align-right">a</td>
+              </tr>
+              <tr>
+                <td>Cycle CTR</td>
+                <td class="bg-grayLighter text-align-right">{{dataId.CycleCounter}}</td>
+              </tr>
+            </tbody>
+          </table>
+    
+          <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 337px; margin-top: -320px; width: 50px; height: 0px; font-size: 10px;" >
+            <thead>
+              <tr>
+                <th colspan="2">INFERRED PROD.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Rate(BPD)</td>
+                <td class="bg-grayLighter text-align-right">a</td>
+              </tr>
+              <tr>
+                <td>Total(barrel)</td>
+                <td class="bg-grayLighter text-align-right">a</td>
+              </tr>
+            </tbody>
+          </table>
+    
+        </div>
       </div>
-
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 10px; margin-top: -70px; width: 160px; height: 0px; font-size: 10px;" >
-        <thead>
-          <tr>
-            <th colspan="4">PUMP STROKE</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Speed(rpm)</td>
-            <td class="bg-grayLighter text-align-right">a</td>
-          </tr>
-          <tr>
-            <td>Fillage(%)</td>
-            <td class="bg-grayLighter text-align-right">a</td>
-          </tr>
-          <tr>
-            <td>Cycle CTR</td>
-            <td class="bg-grayLighter text-align-right">{{dataId.CycleCounter}}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <table class="table hovered border bordered fg-black" style="background-color: #d2d2d2; margin-left: 337px; margin-top: -320px; width: 50px; height: 0px; font-size: 10px;" >
-        <thead>
-          <tr>
-            <th colspan="2">INFERRED PROD.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Rate(BPD)</td>
-            <td class="bg-grayLighter text-align-right">a</td>
-          </tr>
-          <tr>
-            <td>Total(barrel)</td>
-            <td class="bg-grayLighter text-align-right">a</td>
-          </tr>
-        </tbody>
-      </table>
-
     </div>
+    
+    <div class="tile-group double">
+      <span class="tile-group-title fg-black">
+        FR601-SRP Monitoring Report <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+      </span>
+      
+      <div class="tile-container">
+        <span style="width: 120px;">{{dataId.FR601_TimeStamp}}</span>   
+        <table class="table hovered fg-black table-report-simple">
+          <tbody>
+            <tr>
+              <td style="width: 90px;">Motor Status</td>
+              <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_ContactorStatus}}</td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>SPM</td>
+              <td class="td-report-simple" style="padding-right: 20px;">{{dataId.SPM}}</td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>PPRL</td>
+              <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PPRL}}</td>
+              <td>kg/m2</td>
+            </tr>
+            <tr>
+              <td>MPRL</td>
+              <td class="td-report-simple" style="padding-right: 20px;">{{dataId.MPRL}}</td>
+              <td>kg/m2</td>
+            </tr>
+            <tr>
+              <td>PumpFillage</td>
+              <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PumpFillage}}</td>
+              <td>kg/m2</td>
+            </tr>
+            <tr>
+              <td>Cycle Counter</td> 
+              <td class="td-report-simple" style="padding-right: 20px;">{{dataId.CycleCounter}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>inferred Prod</td>
+              <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_EstProdRateBPH}}</td>
+              <td>bph</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    
+    <div class="tile-group double">
+      <span class="tile-group-title fg-black">
+        FR602-SRP PM Report <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
+      </span>
+      
+      <div class="tile-container">
+        <span style="margin-left: 25px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.FR602_Validity}};">{{dataId.FR602_TimeStamp}}</span>   
+    
+        <table class="table hovered fg-black table-report">
+          <tbody>
+            <tr>
+              <td style="width: 120px;">Motor Status</td>
+              <td style="width: 90px;"><input type="text" value="{{dataId.PMStatus}}" class="input-report" readonly></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Voltage Average</td>
+              <td><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Max</td>
+              <td><input type="text" value="{{dataId.VoltageMax}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Min</td>
+              <td><input type="text" value="{{dataId.VoltageMin}}" class="input-report" readonly></td>
+              <td>V</td>
+            </tr>
+            <tr>
+              <td>Voltage Unbalan.</td>
+              <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Current Average</td>
+              <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+            <tr>
+              <td>Current Min</td>
+              <td><input type="text" value="{{dataId.CurrentMin}}" class="input-report" readonly></td>
+              <td>A</td>
+            </tr>
+             <tr>
+              <td>Current Max</td>
+              <td><input type="text" value="{{dataId.CurrentMax}}" class="input-report" readonly></td>
+              <td>A</td>    
+            </tr>
+            <tr>
+              <td>Current Unbalan.</td>
+              <td><input type="text" value="{{dataId.CurrentUnbalance}}" class="input-report" readonly></td>
+              <td>%</td>
+            </tr>
+            <tr>
+              <td>Power Average</td>
+              <td><input type="text" value="{{dataId.PowerAverage}}" class="input-report" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Power Max</td>
+              <td><input type="text" value="{{dataId.PowerMax}}" class="input-report" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Power Min</td>
+              <td><input type="text" value="{{dataId.PowerMin}}" class="input-report" readonly></td>
+              <td>kW</td>
+            </tr>
+            <tr>
+              <td>Stroke Energy</td>
+              <td><input type="text" value="{{dataId.StrokeEnergyWH}}" class="input-report" readonly></td>
+              <td>kWh</td>
+            </tr>
+            <tr>
+              <td>Inferred Prod.</td>
+              <td><input type="text" value="{{dataId.FR602_EstProdRateBPH}}" class="input-report" readonly></td>
+              <td>bph</td>
+            </tr>
+          </tbody>
+        </table>  
+      </div>
+    </div>
+    
+    <div ng-include="'views/trend.html'"></div>
+    <div ng-include="'views/alarm.html'"></div>
   </div>
 </div>
-
-<div class="tile-group double">
-  <span class="tile-group-title fg-black">
-    FR601-SRP Monitoring Report <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-  </span>
-  
-  <div class="tile-container">
-    <span style="width: 120px;">{{dataId.FR601_TimeStamp}}</span>   
-    <table class="table hovered fg-black table-report-simple">
-      <tbody>
-        <tr>
-          <td style="width: 90px;">Motor Status</td>
-          <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_ContactorStatus}}</td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>SPM</td>
-          <td class="td-report-simple" style="padding-right: 20px;">{{dataId.SPM}}</td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>PPRL</td>
-          <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PPRL}}</td>
-          <td>kg/m2</td>
-        </tr>
-        <tr>
-          <td>MPRL</td>
-          <td class="td-report-simple" style="padding-right: 20px;">{{dataId.MPRL}}</td>
-          <td>kg/m2</td>
-        </tr>
-        <tr>
-          <td>PumpFillage</td>
-          <td class="td-report-simple" style="padding-right: 20px;">{{dataId.PumpFillage}}</td>
-          <td>kg/m2</td>
-        </tr>
-        <tr>
-          <td>Cycle Counter</td> 
-          <td class="td-report-simple" style="padding-right: 20px;">{{dataId.CycleCounter}}</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>inferred Prod</td>
-          <td class="td-report-simple" style="padding-right: 20px;">{{dataId.FR601_EstProdRateBPH}}</td>
-          <td>bph</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-<div class="tile-group double">
-  <span class="tile-group-title fg-black">
-    FR602-SRP PM Report <span class="mif-spinner2 mif-ani-spin" ng-show="prograssing"></span>
-  </span>
-  
-  <div class="tile-container">
-    <span style="margin-left: 25px; width: 120px; font-size: 14px; text-align: center; color: {{dataId.FR602_Validity}};">{{dataId.FR602_TimeStamp}}</span>   
-
-    <table class="table hovered fg-black table-report">
-      <tbody>
-        <tr>
-          <td style="width: 120px;">Motor Status</td>
-          <td style="width: 90px;"><input type="text" value="{{dataId.PMStatus}}" class="input-report" readonly></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Voltage Average</td>
-          <td><input type="text" value="{{dataId.VoltageAverage}}" class="input-report" readonly></td>
-          <td>V</td>
-        </tr>
-        <tr>
-          <td>Voltage Max</td>
-          <td><input type="text" value="{{dataId.VoltageMax}}" class="input-report" readonly></td>
-          <td>V</td>
-        </tr>
-        <tr>
-          <td>Voltage Min</td>
-          <td><input type="text" value="{{dataId.VoltageMin}}" class="input-report" readonly></td>
-          <td>V</td>
-        </tr>
-        <tr>
-          <td>Voltage Unbalan.</td>
-          <td><input type="text" value="{{dataId.VoltageUnbalance}}" class="input-report" readonly></td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>Current Average</td>
-          <td><input type="text" value="{{dataId.CurrentAverage}}" class="input-report" readonly></td>
-          <td>A</td>
-        </tr>
-        <tr>
-          <td>Current Min</td>
-          <td><input type="text" value="{{dataId.CurrentMin}}" class="input-report" readonly></td>
-          <td>A</td>
-        </tr>
-         <tr>
-          <td>Current Max</td>
-          <td><input type="text" value="{{dataId.CurrentMax}}" class="input-report" readonly></td>
-          <td>A</td>    
-        </tr>
-        <tr>
-          <td>Current Unbalan.</td>
-          <td><input type="text" value="{{dataId.CurrentUnbalance}}" class="input-report" readonly></td>
-          <td>%</td>
-        </tr>
-        <tr>
-          <td>Power Average</td>
-          <td><input type="text" value="{{dataId.PowerAverage}}" class="input-report" readonly></td>
-          <td>kW</td>
-        </tr>
-        <tr>
-          <td>Power Max</td>
-          <td><input type="text" value="{{dataId.PowerMax}}" class="input-report" readonly></td>
-          <td>kW</td>
-        </tr>
-        <tr>
-          <td>Power Min</td>
-          <td><input type="text" value="{{dataId.PowerMin}}" class="input-report" readonly></td>
-          <td>kW</td>
-        </tr>
-        <tr>
-          <td>Stroke Energy</td>
-          <td><input type="text" value="{{dataId.StrokeEnergyWH}}" class="input-report" readonly></td>
-          <td>kWh</td>
-        </tr>
-        <tr>
-          <td>Inferred Prod.</td>
-          <td><input type="text" value="{{dataId.FR602_EstProdRateBPH}}" class="input-report" readonly></td>
-          <td>bph</td>
-        </tr>
-      </tbody>
-    </table>  
-  </div>
-</div>
-
-<div ng-include="'views/trend.html'"></div>
-
-<div ng-include="'views/alarm.html'"></div>

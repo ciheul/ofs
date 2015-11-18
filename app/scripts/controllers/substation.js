@@ -1,11 +1,12 @@
 'use strict';
 
-/* ofs-well */
-
 angular.module('ofsApp')
   .controller('SubstationCtrl', ['$scope', '$rootScope', '$http', '$interval', 
     '$sessionStorage', 'HTTP_INTERVAL',
-    function($scope, $rootScope, $http, $interval, $sessionStorage, HTTP_INTERVAL) {
+    function($scope, $rootScope, $http, $interval, $sessionStorage,
+        HTTP_INTERVAL) {
+      $scope.widthScreen = 2890;
+
       const PLANT_PER_GROUP = 4;
 
       $scope.groups = [];

@@ -1,37 +1,90 @@
 body {
-    height: auto;
-    width: 350%;
-    padding: 0;
-    margin: auto;
-    background-color: #d2d2d2;
-    /* box-sizing: border-box; */
-    /* white-space: nowrap; */
-    /* display: block; */
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: #d2d2d2;
 }
+
+.ofs-container {
+  height: 100%;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+}
+
+/***** SIDE NAV *****/
+
+.sidenav {
+  background: #7d7d7d;
+  border-right: 1px solid #e3e3e3;
+  width: 130px;
+  -ms-flex: 0 100px;
+  -webkit-box-flex:  0;
+  -moz-box-flex:  0;
+  -ms-box-flex:  0;
+  box-flex:  0;  
+}
+
+.sidenav-ul {
+  list-style-type: none;
+  /* font-size: 36px; */
+  margin-top: 55px;
+  padding-left: 13px;
+}
+
+.sidenav-ul li {
+  padding-bottom: 30px;
+}
+
+.sidenav-ul li a {
+  color: white;
+}
+
+/***** END OF SIDENAV *****/
+
+.content {
+  /* background: #E3E3E3; */
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;  
+}
+
 .text-align-right {
-    text-align: right;
+  text-align: right;
 }
 
-/*#content {
-    background-color: #d2d2d2;
-    height: 100%;
-    width: auto;
-    box-sizing: border-box;
-}*/
+.tile-area .tile-area-title {
+  position: fixed;
+  top: 30px;
+  left: 170px;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.1;
+}
 
-.tile-group {
-    left: 10px;
+.tile-area {
+  padding-top: 100px;
 }
 
 .tile-area-controls {
-    float: right;
-    position:fixed;
-    margin: 0 0 0 1260px;
+  position:fixed;
+  right: 40px;
+  top: 30px;
 }
 
 .alert-message {
-    position:fixed;
-    left:650px;
+  position:fixed;
+  left:650px;
 }
 
 .login-logo {
@@ -237,3 +290,40 @@ trending-chart {
 .old_ie_wrapper tbody {
   height: auto;
 }
+
+/***** SPINNER.CSS *****/
+
+/** for pages that don't load angular but have angular templates in them. **/
+.[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@-webkit-keyframes rotate360 {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+
+.spinner {
+  display:inline-block;
+  border-radius: 50px;
+  border-style: solid;
+  border-bottom-color: #3b5641;
+  border-top-color: #67b3a9;
+  border-left-color: #df7950;
+  border-right-color: #decb3f;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  animation: rotate360 1s linear infinite;
+  -webkit-animation: rotate360 1s linear infinite;
+  border-width: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+/***** END OF SPINNER.CSS *****/
